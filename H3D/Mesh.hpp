@@ -1,0 +1,22 @@
+#pragma once
+#if defined DLL_EXPORT
+#define H3D_API _declspec(dllexport)
+#else
+#define H3D_API _declspec(dllimport)
+#endif
+
+#include <vector>
+#include "Vertex.hpp"
+/////////////////////////////////////////////////////////////////
+//	h3d::Mesh
+/////////////////////////////////////////////////////////////////
+namespace h3d {
+	template<typename T>
+	class Mesh
+	{
+	private:
+		std::vector<T> Vertices;
+	public:
+	};
+}
+/////////////////////////////////////////////////////////////////
