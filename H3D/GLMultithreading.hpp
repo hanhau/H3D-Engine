@@ -41,7 +41,7 @@ namespace h3d {
 				m_mutex_queue.lock();
 				m_queue.push_back(h3d::GL::Packages::ALL_PACKAGES());
 				m_mutex_queue.unlock();
-				return (T*)m_queue[m_queue.size() - 1];
+				return &m_queue[m_queue.size() - 1];
 			}
 		public:
 			~globalCallWorkerThread();

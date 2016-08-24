@@ -20,7 +20,7 @@
 namespace h3d { // Part of H3D
 	namespace PE {
 		class Emitter;			// Emmits particles
-		class Particle;			// Base class of a particle
+		class ParticleBase;			// Base class of a particle
 		class ParticleLib;		// 
 		class ParticleUpdater;  // Updates Particles provided by Emitters
 		class ParticleRenderer;	// For effective rendering
