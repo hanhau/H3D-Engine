@@ -8,6 +8,7 @@
 #include "Light.hpp"
 #include "Vector.hpp"
 #include <GL/glew.h>
+#include <mutex>
 /////////////////////////////////////////////////////////////////
 //	GBuffer Class
 /////////////////////////////////////////////////////////////////
@@ -41,7 +42,7 @@ namespace h3d {
 		};
 
 		// Operations
-		void H3D_API setup(h3d::Vec2<unsigned int> size);
+		void H3D_API setup(h3d::Vec2<unsigned int> size,unsigned int bitmask);
 		
 		void H3D_API bindBuffer(int stage);
 		void H3D_API clear(int stage = 0);

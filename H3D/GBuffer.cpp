@@ -11,7 +11,7 @@ h3d::GeometryBuffer::~GeometryBuffer()
 	glDeleteBuffers(1, &m_albedoGL);
 }
 /////////////////////////////////////////////////////////////////
-void h3d::GeometryBuffer::setup(h3d::Vec2<unsigned int> size)
+void h3d::GeometryBuffer::setup(h3d::Vec2<unsigned int> size, unsigned int bitmask)
 {
 	m_size = std::move(size);
 
