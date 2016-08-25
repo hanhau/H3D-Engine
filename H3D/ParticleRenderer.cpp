@@ -4,8 +4,6 @@
 /////////////////////////////////////////////////////////////////
 h3d::PE::ParticleRenderer::ParticleRenderer()
 {
-			
-
 	GLchar vertexCode[] = {
 		"#version 330 core\n"
 		""

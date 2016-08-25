@@ -1,5 +1,5 @@
 #pragma once
-#include "GLMultithreading.hpp"
+
 #include <gl\glew.h>
 /////////////////////////////////////////////////////////////////
 // Packages to send off in h3d::GL::packet_stream

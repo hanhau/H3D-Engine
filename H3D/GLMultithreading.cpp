@@ -12,7 +12,7 @@ namespace h3d {
 
 		}
 
-		void globalCallWorkerThread::startup()
+		void globalCallWorkerThread::startup(GLContext const &context)
 		{
 
 		}

@@ -91,13 +91,28 @@ namespace h3d { // Part of H3D
 		}
 		/////////////////////////////////////////////////////////
 		// Contains every avaliable Particle (wich is not a point)
-		class ParticleLib
+		class tagParticleLib
 		{
 		private:
-			
+			tagParticleLib();
 		public:
-			
+			~tagParticleLib();
+
+			static tagParticleLib& GetInstance()
+			{
+			#ifdef DLL_EXPORT
+				typedef tagParticleLib* (*GetPLibFn)();
+				HMODULE mod = GetModuleHandle(NULL);
+				GetPLibFn getPLib = (GetPLibFn)::GetProcAddress(mod, "GetPLib");
+				tagParticleLib* Instance = getPLib();
+				return *Instance;
+			#else
+				static tagParticleLib Instance;
+				return Instance;
+			#endif
+			}
 		};
+		#define ParticleLib tagParticleLib::GetInstance()
 		/////////////////////////////////////////////////////////
 		// Updates Particles efficently
 		class ParticleUpdater
@@ -123,7 +138,7 @@ namespace h3d { // Part of H3D
 			H3D_API ~ParticleUpdater();
 
 			// Add Emitter to the queue
-			void H3D_API addToQueue(const h3d::PE::Emitter& emitter);
+			void H3D_API addToQueue(h3d::PE::Emitter& emitter);
 
 			// Clear the update queue
 			void H3D_API clearQueue();
@@ -143,9 +158,6 @@ namespace h3d { // Part of H3D
 
 			// Queue of Emitters
 			std::queue<Emitter> m_emitterQueue;
-
-			// Reference to ParticleLib
-			ParticleLib &m_particleLib;
 		public:
 			// Setup
 			H3D_API ParticleRenderer();

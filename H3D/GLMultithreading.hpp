@@ -6,6 +6,7 @@
 #endif
 
 #include "GLMultithreadingPackages.hpp"
+#include "OpenGLContext.hpp"
 #include <Windows.h>
 #include <thread>
 #include <list>
@@ -36,32 +37,32 @@ namespace h3d {
 				GLboolean depth_clamp;
 			}m_state;
 
-			std::list<h3d::GL::Packages::ALL_PACKAGES> m_queue;
+			std::list<Packages::ALL_PACKAGES> m_queue;
 			template<typename T> T* __restrict m_nextPacket(){
 				m_mutex_queue.lock();
-				m_queue.push_back(h3d::GL::Packages::ALL_PACKAGES());
+				m_queue.push_back(Packages::ALL_PACKAGES());
 				m_mutex_queue.unlock();
-				return &m_queue[m_queue.size() - 1];
+				return reinterpret_cast<T*>(&m_queue.end());
 			}
 		public:
 			~globalCallWorkerThread();
 
 			static globalCallWorkerThread& GetInstance()
 			{
-			#ifdef _USRDLL
-				typedef globalCallWorkerThread* (*GetLoggerFn)();
+			#ifdef DLL_EXPORT
+				typedef globalCallWorkerThread* (*GetCWTFn)();
 				HMODULE mod = GetModuleHandle(NULL);
-				GetLoggerFn getLogger = (GetLoggerFn)::GetProcAddress(mod, "GetLogger");
-				globalCallWorkerThread* Instance = getLogger();
+				GetCWTFn GetCWT = (GetCWTFn)::GetProcAddress(mod, "GetCWT");
+				globalCallWorkerThread* Instance = GetCWT();
 				return *Instance;
 			#else
-				static Log Instance;
+				static globalCallWorkerThread Instance;
 				return Instance;
 			#endif
 			}
 			
 			// Startup and shutdown OpenGL call thread
-			void startup();
+			void startup(GLContext const &context);
 			void shutdown();
 			
 			// Feed Package Buffer
@@ -69,6 +70,6 @@ namespace h3d {
 			void setState(GLenum cap,GLboolean value);
 		};
 	}
-#define CallWorkerThread globalCallWorkerThread::getInstance()
+	#define CallWorkerThread globalCallWorkerThread::getInstance()
 }
 /////////////////////////////////////////////////////////////////

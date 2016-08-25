@@ -70,9 +70,9 @@ h3d::PE::ParticleUpdater::~ParticleUpdater()
 
 }
 /////////////////////////////////////////////////////////////////
-void h3d::PE::ParticleUpdater::addToQueue(const h3d::PE::Emitter& emitter)
+void h3d::PE::ParticleUpdater::addToQueue(h3d::PE::Emitter& emitter)
 {
-	m_EmitterQueue.push(emitter);
+	//m_EmitterQueue.push(emitter);
 }
 /////////////////////////////////////////////////////////////////
 void h3d::PE::ParticleUpdater::clearQueue()
