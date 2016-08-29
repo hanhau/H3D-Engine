@@ -10,6 +10,9 @@ h3d::GeometryBuffer::~GeometryBuffer()
 /////////////////////////////////////////////////////////////////
 void h3d::GeometryBuffer::setup(h3d::Vec2<unsigned int> size,int bitmask)
 {
+	// Check for valid bitmask
+	if (bitmask > Stage::ALL) return;
+
 	m_size = std::move(size);
 
 	// Clear old contents
@@ -27,36 +30,29 @@ void h3d::GeometryBuffer::setup(h3d::Vec2<unsigned int> size,int bitmask)
 	{
 		if (bitmask & Stage::DEPTH)
 		{
-
+			glBindTexture(GL_TEXTURE_2D, m_oglBuffer[6]);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, size.x, size.y, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_oglBuffer[5], 0);
 			bitmask -= Stage::DEPTH;
 		}
 		else
 		{
 			if (bitmask & Stage::DIFFUSE)
-			{
-
-				bitmask -= Stage::DIFFUSE;
-			}
+				bitmask -= (actualState = Stage::DIFFUSE);
 			if (bitmask & Stage::NORMAL)
-			{
-				bitmask -= Stage::NORMAL;
-			}
+				bitmask -= (actualState = Stage::NORMAL);
 			if (bitmask & Stage::ALBEDO)
-			{
-				bitmask -= Stage::ALBEDO;
-			}
+				bitmask -= (actualState = Stage::ALBEDO);
 			if (bitmask & Stage::POSITION)
-			{
-				bitmask -= Stage::POSITION;
-			}
+				bitmask -= (actualState = Stage::POSITION);
 			if (bitmask & Stage::SPECULAR)
-			{
-				bitmask -= Stage::SPECULAR;
-			}
+				bitmask -= (actualState = Stage::SPECULAR);
 
-			glBindTexture(GL_TEXTURE_2D,);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, WindowWidth, WindowHeight, 0, GL_RGB, GL_FLOAT, NULL);
-			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, m_textures[i], 0);
+			glBindTexture(GL_TEXTURE_2D,m_oglBuffer[actualPos]);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, size.x, size.y, 0, GL_RGB, GL_FLOAT, NULL);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + actualPos, GL_TEXTURE_2D, m_oglBuffer[actualPos], 0);
+
+			actualPos++;
 		}
 	}
 }
