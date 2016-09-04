@@ -25,7 +25,8 @@ namespace h3d {
 			globalCallWorkerThread();
 
 			std::thread m_callThread;
-			void		m_callFunction();
+			void		m_callFunction(GLContext &context,bool* condition);
+			bool        m_callFunctionRunning;
 			std::mutex  m_mutex_setState;
 			std::mutex  m_mutex_queue;
 
@@ -62,7 +63,7 @@ namespace h3d {
 			}
 			
 			// Startup and shutdown OpenGL call thread
-			void startup(GLContext const &context);
+			void startup(GLContext &context);
 			void shutdown();
 			
 			// Feed Package Buffer

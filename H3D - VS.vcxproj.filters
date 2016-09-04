@@ -117,6 +117,9 @@
     <ClCompile Include="H3D\GLMultithreading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\3DModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
