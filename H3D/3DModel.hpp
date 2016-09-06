@@ -16,7 +16,11 @@ namespace h3d {
 	class Model3D
 	{
 	private:
-		
+		union {
+			ModelType::OBJ* obj;
+			ModelType::DAE* dae;
+			ModelType::MD5* md5;
+		}m_rawDataModel;
 	public:
 		// Con-/Destructor
 		Model3D();

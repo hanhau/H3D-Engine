@@ -9,7 +9,7 @@
 #include <Windows.h>
 /////////////////////////////////////////////////////////////////
 //	Include Modules
-#include "H3D\Debug.hpp"
+#include "H3D\Utilities.hpp"
 #include "H3D\Color.hpp"
 #include "H3D\Image.hpp"
 #include "H3D\Texture.hpp"

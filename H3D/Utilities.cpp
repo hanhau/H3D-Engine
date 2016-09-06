@@ -1,4 +1,4 @@
-#include "Debug.hpp"
+#include "Utilities.hpp"
 #include <string>
 /////////////////////////////////////////////////////////////////
 H3D_API h3d::tagDebugstream h3d::Debugstream;

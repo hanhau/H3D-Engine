@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <iostream>
 
-#include "Debug.hpp"
+#include "Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 //	Window Handling Func
 LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)

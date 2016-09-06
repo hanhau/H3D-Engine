@@ -16,6 +16,22 @@
 // global Debug-Mode
 /////////////////////////////////////////////////////////////////
 namespace h3d {
+	class globalLogger
+	{
+	private:
+
+	public:
+		globalLogger();
+		~globalLogger();
+
+		enum Output {
+			CONSOLE, FILE
+		};
+		void setOutputMode(const int mode,char* param = NULL);
+
+		const globalLogger& operator=(const globalLogger&) = delete;
+	};
+
 	class tagDebugstream
 	{
 	private:

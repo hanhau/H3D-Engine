@@ -11,7 +11,7 @@
 #include <fstream>
 #include <hidsdi.h>
 
-#include "Debug.hpp"
+#include "Utilities.hpp"
 #include "Vector.hpp"
 /////////////////////////////////////////////////////////////////
 //	Enumerations

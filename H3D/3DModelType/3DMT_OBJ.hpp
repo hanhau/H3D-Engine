@@ -7,7 +7,7 @@
 /////////////////////////////////////////////////////////////////
 #include <gl\glew.h>
 #include "..\Vector.hpp"
-#include "..\Debug.hpp"
+#include "..\Utilities.hpp"
 #include "../ResourceManager.hpp"
 #include <vector>
 #include <string>
