@@ -7,17 +7,32 @@ namespace h3d {
 		globalCallWorkerThread::globalCallWorkerThread() {}
 		globalCallWorkerThread::~globalCallWorkerThread() {}
 
-		void globalCallWorkerThread::m_callFunction()
+		void globalCallWorkerThread::m_callFunction(GLContext &context,bool* condition)
 		{
+			wglMakeCurrent(context.m_hdc, context.m_hrc);
+			GL::Packages::ALL_PACKAGES* __restrict pPacket;
 
+			bool temp_condition = *condition;
+			while (temp_condition == true)
+			{
+				{
+					std::lock_guard<std::mutex> mut(m_mutex_queue);
+					while (!m_queue.empty()) {
+						m_queue.front().execute((GL::base*)0);
+						m_queue.pop_front();
+					}
+				}
+			}
 		}
 
-		void globalCallWorkerThread::startup(GLContext const &context)
+		void globalCallWorkerThread::startup(GLContext &context)
 		{
-
+			//m_callThread = std::thread(m_callFunction, context,(bool*)&m_callFunctionRunning);
 		}
+
 		void globalCallWorkerThread::shutdown()
 		{
+			m_callThread.join();
 
 		}
 
@@ -25,6 +40,7 @@ namespace h3d {
 		{
 
 		}
+
 		void globalCallWorkerThread::setState(GLenum cap, GLboolean value)
 		{
 			m_mutex_setState.lock();

@@ -203,6 +203,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="H3D - VS.cpp" />
+    <ClCompile Include="H3D\3DModel.cpp" />
     <ClCompile Include="H3D\3DModelType\3DMT_DAE.cpp" />
     <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp" />
     <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp" />

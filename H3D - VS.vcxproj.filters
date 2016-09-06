@@ -63,6 +63,9 @@
     <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="H3D\Network.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,7 +117,7 @@
     <ClCompile Include="H3D\GLMultithreading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\Utilities.cpp">
+    <ClCompile Include="H3D\3DModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,6 +176,9 @@
     <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="H3D\Debug.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="H3D\Audio.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -219,9 +225,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\GLMultithreadingPackages.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Utilities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
