@@ -7,6 +7,8 @@
 /////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <Windows.h>
 /////////////////////////////////////////////////////////////////
 //	global Log File Names
 /////////////////////////////////////////////////////////////////
@@ -19,18 +21,47 @@ namespace h3d {
 	class globalLogger
 	{
 	private:
+		int m_currentType;
+		std::string m_actualLogPath;
+		std::fstream m_dataStream;
 
 	public:
-		globalLogger();
-		~globalLogger();
+		// Constructor/Destructor
+		H3D_API globalLogger();
+		H3D_API ~globalLogger();
 
-		enum Output {
-			CONSOLE, FILE
+		// Log function
+		struct None {};
+		template<typename T>
+		struct LogData
+		{
+			typedef T type;
+			type list;
 		};
-		void setOutputMode(const int mode,char* param = NULL);
+		void H3D_API log(LogData<None>());
 
-		const globalLogger& operator=(const globalLogger&) = delete;
+		// Setting outputstream
+		enum H3D_API Output {
+			CONSOLE, FILE
+		};											   
+		bool H3D_API setOutputMode(const int mode,char* param = NULL);
+
+		// Singleton stuff
+		static globalLogger& GetInstance()
+		{
+			#ifdef DLL_EXPORT
+				typedef globalLogger* (*GetGLFn)();
+				HMODULE mod = GetModuleHandle(NULL);
+				GetGLFn GetGL = (GetGLFn)::GetProcAddress(mod, "GetGL");
+				globalLogger* Instance = GetGL();
+				return *Instance;
+			#else
+				static globalLogger Instance;
+				return Instance;
+			#endif
+		}
 	};
+    #define Logger globalLogger.GetInstance()
 
 	class tagDebugstream
 	{
