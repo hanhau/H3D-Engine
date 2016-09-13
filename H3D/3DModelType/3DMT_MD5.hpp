@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include "../../H3D/Vector.hpp"
+
 #include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 // .md5 3D File Format Handling Class

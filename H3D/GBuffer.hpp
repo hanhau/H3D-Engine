@@ -7,6 +7,7 @@
 /////////////////////////////////////////////////////////////////
 #include "Light.hpp"
 #include "Vector.hpp"
+
 #include <GL/glew.h>
 #include <mutex>
 #include <map>

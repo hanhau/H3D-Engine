@@ -6,6 +6,7 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include <Windows.h>
+
 #include <GL/glew.h>
 #include "Color.hpp"
 #include "Vector.hpp"

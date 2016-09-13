@@ -137,13 +137,14 @@ h3d::mat4x4& h3d::mat4x4::operator*=(h3d::mat4x4 &mat)
 h3d::mat4x4& h3d::mat4x4::operator+(const float val)
 {
 	mat4x4 temp_mat;
-	
+	for (int i = 0;i < 4;i++)
+		m_column[i] = _mm_addsub_ps(m_column[i], _mm_set_ss(val));
 	return temp_mat;
 }
 h3d::mat4x4& h3d::mat4x4::operator+(const h3d::mat4x4 &mat)
 {
 	mat4x4 temp_mat;
-
+	
 	return temp_mat;
 }
 /////////////////////////////////////////////////////////////////

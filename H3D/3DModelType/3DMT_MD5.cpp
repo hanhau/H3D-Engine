@@ -4,7 +4,8 @@
 #include <cstring>
 #include <math.h>
 #include <cassert>
-#include <GL/glew.h>
+
+#include <gl/glew.h>
 
 #undef max
 /////////////////////////////////////////////////////////////////

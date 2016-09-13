@@ -18,7 +18,7 @@ namespace h3d {
 				{
 					std::lock_guard<std::mutex> mut(m_mutex_queue);
 					while (!m_queue.empty()) {
-						m_queue.front().execute((GL::base*)0);
+						//m_queue.front().execute((GL::base*)0);
 						m_queue.pop_front();
 					}
 				}
