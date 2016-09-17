@@ -20,6 +20,7 @@
 
 #include "Utilities.hpp"
 #include "Vector.hpp"
+#include "AudioAccessories.hpp"
 /////////////////////////////////////////////////////////////////
 // Audio Module
 /////////////////////////////////////////////////////////////////
@@ -41,17 +42,17 @@ namespace h3d{
 			std::map<std::string, float> g_volumeGroupMap;
 
 			// Functions
-			void _declspec(dllexport) setVolumeArea(char area[],float val);
-			bool _declspec(dllexport) getVolumeArea(char area[], float *val);
-			void _declspec(dllexport) setSpeakerChannelMask(char config[]);
-			void _declspec(dllexport) setSpeedOfSound(float val);
+			void H3D_API setVolumeArea(char area[],float val);
+			bool H3D_API getVolumeArea(char area[], float *val);
+			void H3D_API setSpeakerChannelMask(char config[]);
+			void H3D_API setSpeedOfSound(float val);
 
 			// Save and load from a File (txt or binary)
-			bool _declspec(dllexport) loadFromFile(char path[]);
-			bool _declspec(dllexport) saveToFile  (char path[]);
+			bool H3D_API loadFromFile(char path[]);
+			bool H3D_API saveToFile  (char path[]);
 		}
-		bool _declspec(dllexport) init();
-		bool _declspec(dllexport) shutdown();
+		bool H3D_API init();
+		bool H3D_API shutdown();
 
 		/////////////////////////////////////////////////////////
 		// Class Effect
@@ -87,6 +88,11 @@ namespace h3d{
 			
 			// Sound Volume
 			std::string m_volumegroup;
+
+		    // Different Audio File Types
+			union {
+				h3d::Audio::WaveFile *ptr_Wave;
+			}m_rawData;
 		public:
 			// Con-/Destructor
 			Sound();

@@ -243,6 +243,7 @@
     <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp" />
     <ClInclude Include="H3D\3DModelType\3DMT_OBJ.hpp" />
     <ClInclude Include="H3D\Audio.hpp" />
+    <ClInclude Include="H3D\AudioAccessories.hpp" />
     <ClInclude Include="H3D\Camera.hpp" />
     <ClInclude Include="H3D\Clock.hpp" />
     <ClInclude Include="H3D\Color.hpp" />

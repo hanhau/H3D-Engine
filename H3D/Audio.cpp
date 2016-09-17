@@ -4,10 +4,10 @@
 /////////////////////////////////////////////////////////////////
 //	Implementations of Audio Lib
 /////////////////////////////////////////////////////////////////
-void _declspec(dllexport) h3d::Audio::Settings::setVolumeArea(char area[], float val) {
+void h3d::Audio::Settings::setVolumeArea(char area[], float val) {
 	g_volumeGroupMap[area] = val;
 }
-bool _declspec(dllexport) h3d::Audio::Settings::getVolumeArea(char area[], float *val) {
+bool h3d::Audio::Settings::getVolumeArea(char area[], float *val) {
 	auto iter = g_volumeGroupMap.find(area);
 	if (iter != g_volumeGroupMap.end()) {
 		*val = g_volumeGroupMap[area];
@@ -15,7 +15,7 @@ bool _declspec(dllexport) h3d::Audio::Settings::getVolumeArea(char area[], float
 	}
 	else return false;
 }
-void _declspec(dllexport) h3d::Audio::Settings::setSpeakerChannelMask(char config[]) {
+void h3d::Audio::Settings::setSpeakerChannelMask(char config[]) {
 	if (config == "7.1")
 		g_speakerMask = SPEAKER_7POINT1;
 	if (config == "7.1 suround")
@@ -32,11 +32,11 @@ void _declspec(dllexport) h3d::Audio::Settings::setSpeakerChannelMask(char confi
 	else if (config == "2.0")
 		g_speakerMask = SPEAKER_FRONT_LEFT | SPEAKER_FRONT_RIGHT;
 }
-void _declspec(dllexport) h3d::Audio::Settings::setSpeedOfSound(float val) {
+void h3d::Audio::Settings::setSpeedOfSound(float val) {
 	g_speedOfSound = val;
 }
 /////////////////////////////////////////////////////////////////
-bool _declspec(dllexport) h3d::Audio::Settings::loadFromFile(char path[])
+bool h3d::Audio::Settings::loadFromFile(char path[])
 {
 	// binary = 0/text = 1
 	char mode;
@@ -115,7 +115,7 @@ bool _declspec(dllexport) h3d::Audio::Settings::loadFromFile(char path[])
 	return true;
 }
 /////////////////////////////////////////////////////////////////
-bool _declspec(dllexport) h3d::Audio::Settings::saveToFile(char path[])
+bool h3d::Audio::Settings::saveToFile(char path[])
 {
 	// binary = 0/text = 1
 	char mode;
@@ -171,7 +171,14 @@ bool _declspec(dllexport) h3d::Audio::Settings::saveToFile(char path[])
 bool h3d::Audio::init()
 {
 	// Call for COM
-	CoInitializeEx(NULL, COINIT_MULTITHREADED);
+	if (CoInitializeEx(NULL, COINIT_MULTITHREADED) != S_OK) {
+		if(h3d::DebugMode){
+			h3d::Debugstream.open("audio_log.txt");
+			h3d::Debugstream << "Failed to init COM!\n";
+			h3d::Debugstream.close();
+		}
+		return false;
+	}
 
 	// Create Engine
 	if (FAILED(XAudio2Create(&h3d::Audio::g_engine))) {

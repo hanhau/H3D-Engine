@@ -61,21 +61,21 @@ namespace h3d {
 		std::thread m_readThread;
 	public:
 		// Con-/Destructor
-		_declspec(dllexport) FileHandle();
-		_declspec(dllexport) FileHandle(std::string path,int param);
-		_declspec(dllexport) ~FileHandle();
+		H3D_API FileHandle();
+		H3D_API FileHandle(std::string path,int param);
+		H3D_API ~FileHandle();
 
 		// Create/Destroy Handle to File
-		bool _declspec(dllexport) open(std::string path,int param);
-		bool _declspec(dllexport) close();
+		bool H3D_API open(std::string path,int param);
+		bool H3D_API close();
 
 		// File Operations
-		int _declspec(dllexport) read(char* dst,size_t size);
-		int _declspec(dllexport) write(char* src, size_t size);
+		int H3D_API read(char* dst,size_t size);
+		int H3D_API write(char* src, size_t size);
 
 		// File Operations in Threads
-		bool _declspec(dllexport) addToWriteQueue(char *buffer,size_t size);
-		bool _declspec(dllexport) addToReadQueue(char *buffer,size_t size);
+		bool H3D_API addToWriteQueue(char *buffer,size_t size);
+		bool H3D_API addToReadQueue(char *buffer,size_t size);
 	};
 }
 /////////////////////////////////////////////////////////////////

@@ -74,6 +74,7 @@ h3d::Vec4& h3d::Vec4::operator/=(Vec4 &obj) {
 // Mathematical Operations
 h3d::Vec4 h3d::Vec4::asAppliedWith(h3d::mat4x4 &mat)
 {
+
 	return Vec4();
 }
 /////////////////////////////////////////////////////////////////

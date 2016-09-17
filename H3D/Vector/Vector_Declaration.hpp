@@ -110,7 +110,7 @@ public:
 	Vec4& operator/=(Vec4 &obj);
 
 	// Mathematical Operations
-	h3d::Vec4 asAppliedWith(h3d::mat4x4 &mat);
+	virtual h3d::Vec4 asAppliedWith(h3d::mat4x4 &mat);
 };
 /////////////////////////////////////////////////////////////////
 //	Math Operations

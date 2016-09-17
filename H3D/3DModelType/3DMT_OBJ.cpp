@@ -75,27 +75,20 @@ void h3d::ModelType::OBJ::Mesh::render()
 /////////////////////////////////////////////////////////////////
 bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 {
-	std::cout << "entering" << std::endl;
 	std::fstream file_stream;
 	file_stream.open(Path, std::ios::in);
 	if (!file_stream.good()) return false;
-
-	std::cout << "opened" << std::endl;
 
 	std::string			param;
 	int					temp_i;
 	GLuint				temp_ui;
 	GLfloat				temp_f;
 	std::string			temp_s;
-	std::stringstream   temp_sstream;
 	h3d::Vec2<GLfloat>  temp_vec2f;
 	h3d::Vec3<GLfloat>  temp_vec3f;
 	h3d::Vec3<GLuint>   temp_vec3i;
 	Mesh				*temp_mesh = nullptr;
-
 	int face_type = 0;
-
-	std::cout << "before while" << std::endl;
 
 	while(!file_stream.eof())
 	{
@@ -127,6 +120,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			file_stream >> temp_vec3f.y;
 			file_stream >> temp_vec3f.z;
 			temp_mesh->m_vertices.push_back(temp_vec3f);
+			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 		else if (param == "vn")
 		{
@@ -135,6 +129,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			file_stream >> temp_vec3f.y;
 			file_stream >> temp_vec3f.z;
 			temp_mesh->m_normals.push_back(temp_vec3f);
+			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 		else if (param == "vt")
 		{
@@ -146,80 +141,31 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 		}
 		else if (param == "f")
 		{
-			// Get rest of line
-			temp_sstream.clear();
-			for (int i = 0;i < 3;i++) {
+			for (int i = 0;i < 3;i++)
+			{
 				file_stream >> temp_s;
-				temp_sstream << " " << temp_s;
-			}
-			temp_s = temp_sstream.str();
-			
-			// Get Facetype (how data is organized)
-			// 1 = f x x x 
-			// 2 = f x/x x/x x/x
-			// 3 = f x//x x//x x//x
-			// 4 = f x/x/x x/x/x x/x/x
-			// 5 = error, check File
-			if (std::count(temp_s.begin(), temp_s.end(), '/') == 0)
-				face_type = 1;
-			else if (std::count(temp_s.begin(), temp_s.end(), '/') == 3)
-				face_type = 2;
-			else if (std::count(temp_s.begin(), temp_s.end(), '/') == 6)
-			{
-				if (temp_s.find("//") != std::string::npos)
-					face_type = 3;
-				else
-					face_type = 4;
-			}
-			else
-			{
-				if (h3d::DebugMode){
-					h3d::Debugstream.open("OBJ_log.txt");
-					h3d::Debugstream << "Cant get Faces from " << Path << "\n";
-					h3d::Debugstream.close();
-				}
-				return false;
-			}
+				std::stringstream temp_sstream(temp_s);
 
-			// Remove all "/"
-			std::replace(temp_s.begin(), temp_s.end(), '/', ' ');
-			temp_sstream.clear();
-			temp_sstream << temp_s;
-			
-			// Fill Vectors
-			switch (face_type)
-			{
-				// Facetype 1
-			case 1:
-				temp_sstream >> temp_vec3i.x >> temp_vec3i.y >> temp_vec3i.z;
-				temp_mesh->m_indicesVertices.push_back(temp_vec3i.x);
-				temp_mesh->m_indicesVertices.push_back(temp_vec3i.y);
-				temp_mesh->m_indicesVertices.push_back(temp_vec3i.z);
-				break;
-				// Facetype 2
-			case 2:
-				for (int i = 0;i < 3;i++)
+				if (std::count(temp_s.begin(), temp_s.end(), '/') == 0)
 				{
-					temp_sstream >> temp_vec3i.x >> temp_vec3i.y;
-					temp_mesh->m_indicesVertices.push_back(temp_vec3i.x);
-					temp_mesh->m_indicesTexCoords.push_back(temp_vec3i.y);
+					file_stream >> temp_i;
+					temp_mesh->m_indicesVertices.push_back(temp_i);
 				}
-				break;
-				// Facetype 3
-			case 3:
+				else if (std::count(temp_s.begin(), temp_s.end(), '/') == 1)
+				{
+					std::replace(temp_s.begin(), temp_s.end(), '/', ' ');
+					temp_sstream.clear();
+					temp_sstream << temp_s;
 
-				break;
-				// Facetype 4
-			case 4:
-				for (int i = 0;i < 3;i++)
-				{
-					temp_sstream >> temp_vec3i.x >> temp_vec3i.y >> temp_vec3i.z;
-					temp_mesh->m_indicesVertices.push_back(temp_vec3i.x);
-					temp_mesh->m_indicesTexCoords.push_back(temp_vec3i.y);
-					temp_mesh->m_indicesNormals.push_back(temp_vec3i.z);
+					temp_sstream >> temp_i; 
+						temp_mesh->m_indicesVertices.push_back(temp_i);
+					temp_sstream >> temp_i;
+						temp_mesh->m_indicesNormals.push_back(temp_i);
 				}
-				break;
-			default: break;
+				else if (std::count(temp_s.begin(), temp_s.end(), '/') == 2)
+				{
+					
+				}
 			}
 
 			// Ignore rest of line
