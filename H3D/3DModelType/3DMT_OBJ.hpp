@@ -9,6 +9,7 @@
 #include "..\Vector.hpp"
 #include "..\Utilities.hpp"
 #include "../ResourceManager.hpp"
+#include "../Vertex.hpp"
 #include <vector>
 #include <string>
 /////////////////////////////////////////////////////////////////
@@ -23,15 +24,16 @@ namespace h3d {
 			{
 				// Name of the Mesh
 				char m_meshname[40];
+				char m_meshContentTags;
 
 				// MaterialID
 				std::string m_textureID;
 				
 				// OpenGL Stuff
-				GLuint m_vbo_buffer;
 				GLuint m_vba_object;
 				GLuint m_element_buffer;
-				
+				GLuint m_verticesBufferOGL;
+
 				// Buffer Data
 				std::vector<h3d::Vec3<GLfloat>> m_vertices;
 				std::vector<h3d::Vec3<GLfloat>> m_normals;
@@ -40,12 +42,21 @@ namespace h3d {
 				std::vector<GLuint>				m_indicesNormals;
 				std::vector<GLuint>				m_indicesTexCoords;
 				
+				// final Vertices
+				std::vector<h3d::Vertex> m_verticesVec;
+
+				// Tag for content
+				enum {
+					VERTICES=0,NORMALS=1,TEXCOORDS=2
+				};
+
 				// Con-/Destructor
 				Mesh();
 				~Mesh();
 				void clearUp();
 
 				// Rendering
+				void correctIndices();
 				void prepareRendering();
 				void render();
 			};

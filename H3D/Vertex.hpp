@@ -13,13 +13,10 @@
 namespace h3d {
 class H3D_API Vertex
 {
-public:
-	char bone_bindings;
-	char *bones;								 
-
-	h3d::Vec3<float>  Position;
-	h3d::Vec2<float>  TexCoord;
-	h3d::Color<float> Color;
+public:				 
+	h3d::Vec3<GLfloat>  position;
+	h3d::Vec2<GLfloat>  texCoord;
+	h3d::Vec3<GLfloat>  normal;
 };
 }
 /////////////////////////////////////////////////////////////////

@@ -12,7 +12,8 @@
 /////////////////////////////////////////////////////////////////
 h3d::ModelType::OBJ::Mesh::Mesh() 
 {
-	glGenBuffers(1, &m_vbo_buffer);
+	clearUp();
+
 	glGenBuffers(1, &m_element_buffer);
 	glCreateVertexArrays(1, &m_vba_object);
 }
@@ -23,7 +24,6 @@ void h3d::ModelType::OBJ::Mesh::clearUp()
 	memset(&m_meshname, 0, sizeof(char) * 40);
 	m_textureID.clear();
 
-	glDeleteBuffers(1, &m_vbo_buffer);
 	glDeleteBuffers(1, &m_element_buffer);
 	glDeleteVertexArrays(1, &m_vba_object);
 
@@ -35,23 +35,77 @@ void h3d::ModelType::OBJ::Mesh::clearUp()
 	m_indicesTexCoords.clear();
 }
 /////////////////////////////////////////////////////////////////
+void h3d::ModelType::OBJ::Mesh::correctIndices()
+{
+	if (m_indicesVertices.size() != 0)
+		for (auto &iter : m_indicesVertices)
+			iter--;
+	if (m_indicesNormals.size() != 0)
+		for (auto &iter : m_indicesNormals)
+			iter--;
+	if (m_indicesTexCoords.size() != 0)
+		for (auto &iter : m_indicesTexCoords)
+			iter--;
+}
+/////////////////////////////////////////////////////////////////
 void h3d::ModelType::OBJ::Mesh::prepareRendering()
 {
-	// Generate required Buffers
-	glGenBuffers(1, &m_vbo_buffer);
-	glGenBuffers(1, &m_element_buffer);
+	std::cout << "before correct: " << m_indicesVertices.size() << std::endl;
+
+	// Correct the Indices
+	correctIndices();
+
+	std::cout << "after correct: " << m_indicesVertices.size() << std::endl;
+
+	// Setup Vertices in the Vec
+	m_verticesVec.clear();
+	for (int i = 0;i < m_vertices.size();i++)
+	{
+		h3d::Vertex vert;
+
+		if(m_vertices.size() != 0)
+			vert.position = m_vertices[i];
+		else vert.position = h3d::Vec3<GLfloat>(0.0, 0.0, 0.0);
+
+		if(m_normals.size() != 0)
+			vert.normal   = m_normals[i];
+		else vert.normal = h3d::Vec3<GLfloat>(1.0,0.0,0.0);
+
+		if(m_texCoords.size() != 0)
+			vert.texCoord = m_texCoords[i];
+		else vert.texCoord = h3d::Vec2<GLfloat>(0.0,0.0);
 		
+		m_verticesVec.push_back(vert);
+	}
+
+	std::cout << "after vert setup: " << m_indicesVertices.size() << std::endl;
+
+	// Generate required Buffers
+	glGenBuffers(1, &m_element_buffer);
+	glGenBuffers(1 ,&m_verticesBufferOGL);
+
 	// Create the VertexArray (VBA)
 	glGenVertexArrays(1, &m_vba_object);
 	glBindVertexArray(m_vba_object);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo_buffer);
-	glBufferData(GL_ARRAY_BUFFER, m_vertices.size(),
-				 m_vertices.data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_element_buffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indicesVertices.size(),
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indicesVertices.size()*sizeof(GLuint),
 				 m_indicesVertices.data(), GL_STATIC_DRAW);
-	
+	glBindBuffer(GL_ARRAY_BUFFER, m_verticesBufferOGL);
+	glBufferData(GL_ARRAY_BUFFER, m_verticesVec.size() * sizeof(h3d::Vertex),
+				 m_verticesVec.data(), GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(h3d::Vertex), (GLvoid*)0);
+	glEnableVertexAttribArray(0); // position
+
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(h3d::Vertex), (GLvoid*)(sizeof(h3d::Vec3<GLfloat>)));
+	glEnableVertexAttribArray(1); // texCoords
+
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(h3d::Vertex), (GLvoid*)(sizeof(h3d::Vec3<GLfloat>)+sizeof(h3d::Vec2<GLfloat>)));
+	glEnableVertexAttribArray(2); // normals
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 /////////////////////////////////////////////////////////////////
@@ -63,13 +117,16 @@ void h3d::ModelType::OBJ::Mesh::render()
 {
 	glBindVertexArray(m_vba_object);
 	
-	glBindBuffer(GL_ARRAY_BUFFER,m_vbo_buffer);
+	glBindBuffer(GL_ARRAY_BUFFER,m_verticesBufferOGL);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_element_buffer);
 
-	glDrawArrays(GL_TRIANGLES, 0, m_indicesVertices.size() / 3);
-	
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glDrawElements(GL_TRIANGLES, m_indicesVertices.size(), GL_UNSIGNED_INT, 0);
+
+	std::cout << "Vertex  Count   : " << m_verticesVec.size() << std::endl;
+	std::cout << "Indices Vertices: " << m_indicesVertices.size() << std::endl;
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
 /////////////////////////////////////////////////////////////////
@@ -160,11 +217,34 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 					temp_sstream >> temp_i; 
 						temp_mesh->m_indicesVertices.push_back(temp_i);
 					temp_sstream >> temp_i;
-						temp_mesh->m_indicesNormals.push_back(temp_i);
+						temp_mesh->m_indicesTexCoords.push_back(temp_i);
 				}
 				else if (std::count(temp_s.begin(), temp_s.end(), '/') == 2)
 				{
-					
+					if (temp_s.find("//") != std::string::npos)
+					{
+						std::replace(temp_s.begin(), temp_s.end(), '/', ' ');
+						temp_sstream.clear();
+						temp_sstream << temp_s;
+
+						temp_sstream >> temp_i;
+							temp_mesh->m_indicesVertices.push_back(temp_i);
+						temp_sstream >> temp_i;
+							temp_mesh->m_indicesNormals.push_back(temp_i);
+					}
+					else
+					{
+						std::replace(temp_s.begin(), temp_s.end(), '/', ' ');
+						temp_sstream.clear();
+						temp_sstream << temp_s;
+
+						temp_sstream >> temp_i;
+							temp_mesh->m_indicesVertices.push_back(temp_i);
+						temp_sstream >> temp_i;
+							temp_mesh->m_indicesTexCoords.push_back(temp_i);
+						temp_sstream >> temp_i;
+							temp_mesh->m_indicesNormals.push_back(temp_i);
+					}
 				}
 			}
 
@@ -175,6 +255,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	m_meshes.push_back(*temp_mesh);
+	m_meshes.erase(m_meshes.begin());
 	delete temp_mesh;
 
 	for (auto &iter : m_meshes)

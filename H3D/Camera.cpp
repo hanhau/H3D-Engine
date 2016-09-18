@@ -41,10 +41,14 @@ void h3d::Camera::setViewportSize(h3d::Vec2<unsigned short> size)
 void h3d::Camera::setProjectionMatrix(h3d::mat4x4 &mat) {
 	m_projectionMatrix = mat;
 }
+void h3d::Camera::setOrthogonalMatrix(h3d::mat4x4 &mat) {
+	m_projectionMatrix = mat;
+}
 /////////////////////////////////////////////////////////////////
 //	Get-Methods
 h3d::Vec3<float> h3d::Camera::getPos()       { return m_pos; }
 h3d::Vec3<float> h3d::Camera::getTarget()    { return m_target; };
+h3d::Vec3<float> h3d::Camera::getDirection() { return m_target - m_pos; }
 /////////////////////////////////////////////////////////////////
 // Set Shader Values for the Camera
 bool h3d::Camera::setShaderValues(h3d::Program &program,
