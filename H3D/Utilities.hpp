@@ -8,7 +8,15 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include <Windows.h>
+#include "Color.hpp"
+#include "Vector.hpp"
+#include "Texture.hpp"
+#include "Program.hpp"
+#include <gl/glew.h>
+#include <atomic>
+#include <mutex>
 /////////////////////////////////////////////////////////////////
 //	global Log File Names
 /////////////////////////////////////////////////////////////////
@@ -18,6 +26,8 @@
 // global Debug-Mode
 /////////////////////////////////////////////////////////////////
 namespace h3d {
+	template<typename T> class Color;
+
 	class globalLogger
 	{
 	private:
@@ -78,5 +88,35 @@ namespace h3d {
 	};
 	H3D_API extern tagDebugstream Debugstream;
 	H3D_API extern bool DebugMode;
+
+	class DebugGraphicalText
+	{
+	private:
+		// Edges from Textbox
+		h3d::Vec2<GLfloat> m_vertices[4];
+
+		static h3d::Texture m_fontTexture;
+		static std::mutex   m_texMutex;
+		static h3d::Program m_programOGL;
+		static std::mutex   m_programMutex;
+		static bool m_programConfigured;
+
+		h3d::Color<float>  m_color;
+		h3d::Vec2<GLuint>  m_fontSize;
+		h3d::Vec2<GLfloat> m_position;
+		h3d::Vec2<GLfloat> m_size;
+
+		char* m_content;
+	public:
+		// Con-/Destructor
+		H3D_API DebugGraphicalText();
+		H3D_API ~DebugGraphicalText();
+
+		// Set Content of String
+		void H3D_API operator<<(char * content);
+
+		void H3D_API render();
+		void H3D_API setBitmapFontTexture(const h3d::Texture& tex);
+	};
 }
 /////////////////////////////////////////////////////////////////

@@ -109,8 +109,13 @@ namespace h3d {
 		H3D_API tagKeyboard();
 		H3D_API ~tagKeyboard();
 
+		// Keys
+		enum Key {
+			
+		};
+
 		// Check Buttons
-		bool H3D_API isPressed();
+		bool H3D_API isPressed(int keyID);
 	};
 	H3D_API extern tagKeyboard Keyboard; // global Class
 /////////////////////////////////////////////////////////////////

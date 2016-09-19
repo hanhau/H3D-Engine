@@ -8,7 +8,7 @@ h3d::tagMouse::~tagMouse() {}
 void h3d::tagMouse::setupRID(HWND win)
 {
 	m_rid.usUsagePage = 1;
-	m_rid.usUsage = 4; // Joystick
+	m_rid.usUsage = 4;
 	m_rid.dwFlags = 0;
 	m_rid.hwndTarget = win;
 	
@@ -24,5 +24,16 @@ void h3d::tagMouse::setupRID(HWND win)
 			h3d::Debugstream.close();
 		}
 	}
+}
+/////////////////////////////////////////////////////////////////
+h3d::Vec2<LONG> h3d::tagMouse::getPosition(HWND window)
+{
+	static LPPOINT lp = new POINT();
+	GetCursorPos(lp);
+	return h3d::Vec2<LONG>((*lp).x,(*lp).y);
+}
+h3d::Vec2<LONG> h3d::tagMouse::getOffsetFromLastPos()
+{
+	return h3d::Vec2<LONG>();
 }
 /////////////////////////////////////////////////////////////////

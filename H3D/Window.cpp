@@ -57,6 +57,46 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_styl
 	Appname = Title;
 	h_Instance = GetModuleHandle(NULL);
 	/////////////////////////////////////////////////////////////
+	// Check for Window Style
+	m_dwExStyle = WS_EX_OVERLAPPEDWINDOW;
+	m_dwStyle = WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+
+	WindowRect.left = 0;
+	WindowRect.right = Size.x;
+	WindowRect.top = 0;
+	WindowRect.bottom = Size.y;
+
+	if (Style == Style::Fullscreen)
+	{
+		DEVMODE dmScreenSettings;
+		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
+		dmScreenSettings.dmSize = sizeof(dmScreenSettings);
+		dmScreenSettings.dmPelsWidth = Size.x;         
+		dmScreenSettings.dmPelsHeight = Size.y;
+		dmScreenSettings.dmBitsPerPel = 32;        
+		dmScreenSettings.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
+
+		if (ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
+		{
+			// setting display mode failed, switch to windowed
+			MessageBox(NULL,L"Fatal Error: Cannot open window in fullscreen mode !", NULL, MB_OK);
+			Style = Style::Default;
+		}
+	}
+	if (Style == Style::Fullscreen)
+	{
+		m_dwExStyle = WS_EX_APPWINDOW;                  // Window Extended Style
+		m_dwStyle = WS_POPUP;                       // Windows Style
+	}
+	else
+	{
+		m_dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;   // Window Extended Style
+		m_dwStyle = WS_OVERLAPPEDWINDOW;
+	}
+
+	AdjustWindowRectEx(&WindowRect,m_dwStyle, FALSE , m_dwExStyle);
+
+	/////////////////////////////////////////////////////////////
 	//	Window Creation			
 	h_WinClass = { 0 };
 	h_WinClass.cbSize = sizeof(WNDCLASSEX);
@@ -85,13 +125,10 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_styl
 		h3d::Debugstream << "Registered WindowClass\n";
 	}
 	// Create h_Win
-	DWORD dwExStyle = m_dwExStyle = WS_EX_OVERLAPPEDWINDOW;
-	DWORD dwStyle = m_dwStyle = WS_OVERLAPPEDWINDOW |WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
-
 	h_Win = CreateWindowEx(
-		dwExStyle,
+		m_dwExStyle,
 		Appname, Title,
-		dwStyle,
+		m_dwStyle | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		Size.x, Size.y,
 		NULL, NULL,
@@ -145,7 +182,11 @@ h3d::Window::~Window()
 }
 /////////////////////////////////////////////////////////////////
 void h3d::Window::close()
-{		   
+{	
+	if (Style == Style::Fullscreen)
+	{
+		ChangeDisplaySettings(NULL, 0);          // If So Switch Back To The Desktop
+	}
 	ShowCursor(TRUE);
 	setActive();
 	opened = false;

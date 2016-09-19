@@ -57,3 +57,56 @@ void h3d::tagDebugstream::close()
 	file_stream.close();
 }
 /////////////////////////////////////////////////////////////////
+// DebugGraphicalText
+/////////////////////////////////////////////////////////////////
+// Static variables
+h3d::Texture    h3d::DebugGraphicalText::m_fontTexture;
+std::mutex      h3d::DebugGraphicalText::m_texMutex;
+h3d::Program    h3d::DebugGraphicalText::m_programOGL;
+std::mutex      h3d::DebugGraphicalText::m_programMutex;
+bool			h3d::DebugGraphicalText::m_programConfigured = false;
+/////////////////////////////////////////////////////////////////
+h3d::DebugGraphicalText::DebugGraphicalText()
+{
+	std::lock_guard<std::mutex> lock(m_programMutex);
+	if (!m_programConfigured)
+	{
+		GLchar vertexCode[] =
+			"#version 330 core			\n"
+			""
+			""
+			""
+			"void main(){				\n"
+			""
+			""
+			"}";
+
+		GLchar fragmentCode[] =
+			"#version 330 core\n"
+			""
+			"";
+
+		h3d::Shader vertexShader  (GL_VERTEX_SHADER  , vertexCode), 
+					fragmentShader(GL_FRAGMENT_SHADER, fragmentCode);
+
+		m_programOGL.attachShader(vertexShader);
+		m_programOGL.attachShader(fragmentShader);
+		m_programOGL.link();
+	}
+}
+h3d::DebugGraphicalText::~DebugGraphicalText() {}
+/////////////////////////////////////////////////////////////////
+void h3d::DebugGraphicalText::render()
+{
+	std::lock_guard<std::mutex> lock(m_texMutex);
+	m_fontTexture.setActive(true);
+
+	
+}
+/////////////////////////////////////////////////////////////////
+void h3d::DebugGraphicalText::setBitmapFontTexture(const h3d::Texture& tex)
+{
+	std::lock_guard<std::mutex> lock(m_texMutex);
+	m_fontTexture = tex;
+}
+/////////////////////////////////////////////////////////////////

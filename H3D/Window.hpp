@@ -66,18 +66,18 @@ private:
 public:
 
 	// Window Creation and Destruction
-	 _declspec(dllexport) Window(h3d::Vec2<unsigned int> p_size,wchar_t* p_title,char p_style);
-	 _declspec(dllexport) ~Window();
-	void  _declspec(dllexport) close();
+	H3D_API Window(h3d::Vec2<unsigned int> p_size,wchar_t* p_title,char p_style);
+	H3D_API ~Window();
+	void  H3D_API close();
 
 	// Get-Methods
-	Vec2<unsigned int> _declspec(dllexport) getSize();
-	_declspec(dllexport)           wchar_t* getTitle();
-	char               _declspec(dllexport) getStyle();
-	std::string		   _declspec(dllexport) getContextVer();
-	_declspec(dllexport) MSG*               getMessage();
-	_declspec(dllexport) HWND*			    getHandle();
-	bool			   _declspec(dllexport) isOpen();
+	Vec2<unsigned int> H3D_API getSize();
+	H3D_API           wchar_t* getTitle();
+	char               H3D_API getStyle();
+	std::string		   H3D_API getContextVer();
+	H3D_API MSG*               getMessage();
+	H3D_API HWND*			   getHandle();
+	bool			   H3D_API isOpen();
 
 	// Framebuffer Operations
 	void H3D_API clear(GLbitfield mask);
@@ -90,12 +90,13 @@ public:
 	bool H3D_API isFullscreen();
 	void H3D_API resize();
 	void H3D_API allowResize(bool val);
+	void H3D_API showCursor(bool val);
 
 	// Set OpenGL Context as current
-	bool _declspec(dllexport) setActive();
+	bool H3D_API setActive();
 
 	// Update Window Events
-	void _declspec(dllexport) update();
+	void H3D_API update();
 };
 /////////////////////////////////////////////////////////////////
 }
