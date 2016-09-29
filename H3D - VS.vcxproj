@@ -248,6 +248,7 @@
     <ClInclude Include="H3D\Camera.hpp" />
     <ClInclude Include="H3D\Clock.hpp" />
     <ClInclude Include="H3D\Color.hpp" />
+    <ClInclude Include="H3D\GUI.hpp" />
     <ClInclude Include="H3D\Quaternion.hpp" />
     <ClInclude Include="H3D\Utilities.hpp" />
     <ClInclude Include="H3D\Event.hpp" />
