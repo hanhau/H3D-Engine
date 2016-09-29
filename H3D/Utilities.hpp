@@ -9,11 +9,13 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <Windows.h>
 #include "Color.hpp"
 #include "Vector.hpp"
 #include "Texture.hpp"
 #include "Program.hpp"
+#include "Vertex.hpp"
 #include <gl/glew.h>
 #include <atomic>
 #include <mutex>
@@ -52,7 +54,7 @@ namespace h3d {
 
 		// Setting outputstream
 		enum H3D_API Output {
-			CONSOLE, FILE
+			CONSOLE, FILE, BITMAPFONT
 		};											   
 		bool H3D_API setOutputMode(const int mode,char* param = NULL);
 
@@ -88,35 +90,52 @@ namespace h3d {
 	};
 	H3D_API extern tagDebugstream Debugstream;
 	H3D_API extern bool DebugMode;
-
+	/////////////////////////////////////////////////////////////
+	// Class for outputíng Bitmapfonts on the screen
+	/////////////////////////////////////////////////////////////
 	class DebugGraphicalText
 	{
 	private:
-		// Edges from Textbox
-		h3d::Vec2<GLfloat> m_vertices[4];
-
 		static h3d::Texture m_fontTexture;
 		static std::mutex   m_texMutex;
+		static GLuint m_texture3DBuffer;
+		static GLuint m_vertexBuffer;
+
 		static h3d::Program m_programOGL;
 		static std::mutex   m_programMutex;
+
 		static bool m_programConfigured;
+		
+		h3d::Color<GLfloat> m_textColor;
+		h3d::Vec2<GLfloat>  m_position;
+		h3d::Vec2<GLfloat>  m_size;
+		h3d::Vec2<GLuint>   m_grid;
 
-		h3d::Color<float>  m_color;
-		h3d::Vec2<GLuint>  m_fontSize;
-		h3d::Vec2<GLfloat> m_position;
-		h3d::Vec2<GLfloat> m_size;
-
-		char* m_content;
+		std::string       m_content;
+		std::stringstream m_stringStream;
 	public:
 		// Con-/Destructor
 		H3D_API DebugGraphicalText();
 		H3D_API ~DebugGraphicalText();
 
-		// Set Content of String
-		void H3D_API operator<<(char * content);
+		// Setup Textwindow
+		void H3D_API setup(h3d::Vec2<GLfloat> size,
+						   h3d::Vec2<GLfloat> pos,
+						   h3d::Vec2<GLuint>  grid,
+						   h3d::Color<GLfloat> col = h3d::Color<GLfloat>(0.0,0.0,0.0,1.0));
 
+		// Set Content of String
+		template<typename T>             
+		void H3D_API operator<<(T data) {
+			m_stringStream << data;      
+		}								 
+		void H3D_API clear();
+
+		// Operations
+		void H3D_API setColor(h3d::Color<GLfloat> col_val);
+		void H3D_API update();
 		void H3D_API render();
-		void H3D_API setBitmapFontTexture(const h3d::Texture& tex);
+		bool H3D_API setBitmapFontTexture(const h3d::Texture& tex);
 	};
 }
 /////////////////////////////////////////////////////////////////

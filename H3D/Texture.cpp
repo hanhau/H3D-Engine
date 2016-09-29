@@ -227,3 +227,6 @@ bool h3d::Texture::destroyTexture()
 	return true;
 }
 /////////////////////////////////////////////////////////////////
+GLenum h3d::Texture::getColorFormat() { return m_colormode; }
+h3d::Vec2<unsigned int> h3d::Texture::getSize() { return m_measurements; }
+/////////////////////////////////////////////////////////////////

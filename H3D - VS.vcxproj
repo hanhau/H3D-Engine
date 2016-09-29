@@ -211,6 +211,7 @@
     <ClCompile Include="H3D\Camera.cpp" />
     <ClCompile Include="H3D\Clock.cpp" />
     <ClCompile Include="H3D\Color.cpp" />
+    <ClCompile Include="H3D\Quaternion.cpp" />
     <ClCompile Include="H3D\Utilities.cpp" />
     <ClCompile Include="H3D\Emitter.cpp" />
     <ClCompile Include="H3D\GBuffer.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="H3D\Camera.hpp" />
     <ClInclude Include="H3D\Clock.hpp" />
     <ClInclude Include="H3D\Color.hpp" />
+    <ClInclude Include="H3D\Quaternion.hpp" />
     <ClInclude Include="H3D\Utilities.hpp" />
     <ClInclude Include="H3D\Event.hpp" />
     <ClInclude Include="H3D\FileDataStructures.hpp" />

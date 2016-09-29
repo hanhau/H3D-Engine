@@ -40,7 +40,7 @@ namespace h3d {
 	public:
 		// Format Flags
 		struct H3D_API Format {
-			static const int PNG;
+			static const int PNG; 
 			static const int KTX;
 			static const int BMP;
 			static const int TGA;
@@ -61,7 +61,6 @@ namespace h3d {
 		// Get information
 		H3D_API GLenum                  getColorFormat();
 		H3D_API h3d::Vec2<unsigned int> getSize();
-		H3D_API unsigned long			getBufferSize();
 
 		// Handling Texture			
 		H3D_API GLuint getTextureIndex();

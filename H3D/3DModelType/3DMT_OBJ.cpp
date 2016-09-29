@@ -59,7 +59,7 @@ void h3d::ModelType::OBJ::Mesh::prepareRendering()
 
 	// Setup Vertices in the Vec
 	m_verticesVec.clear();
-	for (int i = 0;i < m_vertices.size();i++)
+	for (unsigned int i = 0;i < m_vertices.size();i++)
 	{
 		h3d::Vertex vert;
 
@@ -138,7 +138,6 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 
 	std::string			param;
 	int					temp_i;
-	GLuint				temp_ui;
 	GLfloat				temp_f;
 	std::string			temp_s;
 	h3d::Vec2<GLfloat>  temp_vec2f;

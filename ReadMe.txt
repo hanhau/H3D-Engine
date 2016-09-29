@@ -1,8 +1,20 @@
 /////////////////////////////////////////////////////////////////
-// 	        	Hero 3D Game Engine 		       //
+//        	      	Hero 3D Game Engine 	     	           //
 /////////////////////////////////////////////////////////////////
-        Features:
-              -> Audio Engine    based on XAudio2
-              -> Graphics Engine based on OpenGL with GLEW
-              -> Network System  based on Winsock
-              -> Window Creation based on Winapi
+					READY 2 GO FEATURES
+/////////////////////////////////////////////////////////////////
+	-> Window creation with winapi
+	-> Shader and program objects with limited functions
+	-> Color, Vectors, Matrices and soon Quanternions classes
+	-> Math for creating matrices
+	-> Clock
+	-> Logging (very soon finished)
+/////////////////////////////////////////////////////////////////
+					 UNDER DEVELOPMENT
+/////////////////////////////////////////////////////////////////
+	-> Object loading
+	-> Audio
+	-> ParticleEngine
+	-> Supporting more file formats
+	-> cleaning up
+/////////////////////////////////////////////////////////////////

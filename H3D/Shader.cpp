@@ -16,11 +16,13 @@ h3d::Shader::~Shader()
 /////////////////////////////////////////////////////////////////
 bool h3d::Shader::setCode(GLchar acode[])
 {
+	if (sizeof(*acode) == 0) return false;
 	if (acode[0] == '#')
 	{
 		sourcecode_length = strlen(acode);
 		sourcecode = new char[sourcecode_length];
 		memcpy(sourcecode, acode, sourcecode_length);
+		return true;
 	}
 	else
 	{
@@ -30,8 +32,11 @@ bool h3d::Shader::setCode(GLchar acode[])
 		if (!file.is_open()) return false;
 
 		file_size = file.tellg();
+		sourcecode_length = file_size;
+		sourcecode = new char[sourcecode_length];
+
 		file.seekg(std::ios::beg, 0);
-		file.read((char*)&sourcecode,sourcecode_length = file_size);
+		file.read((char*)&sourcecode,sourcecode_length);
 
 		file.close();
 		return true;

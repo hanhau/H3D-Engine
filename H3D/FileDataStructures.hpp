@@ -17,14 +17,14 @@ namespace h3d {
 		// WAV File Format Structures ///////////////////////////
 		namespace WAV {
 			#pragma pack(push,WAV_HEADER,1)
-			struct _declspec(dllexport) Header {
+			struct H3D_API Header {
 				char     chunkID[4];
 				uint32_t ChunkSize;
 				char     riffType[4];
 			};
 			#pragma pack(pop,WAV_HEADER)
 			#pragma pack(push,WAV_FMT,1)
-			struct _declspec(dllexport) FMT {
+			struct H3D_API FMT {
 				char     wSignature[4];
 				uint32_t wFmtLength;
 				uint16_t wFormatTag;
@@ -39,7 +39,7 @@ namespace h3d {
 		// OFF File Format Structures ///////////////////////////
 		namespace OGG {
 			#pragma pack(push,OGG_HEADER,1)
-			struct _declspec(dllexport) Header {
+			struct H3D_API Header {
 
 			};
 			#pragma pack(pop,OGG_HEADER)
@@ -50,7 +50,7 @@ namespace h3d {
 		// BMP File Format Structures ///////////////////////////
 		namespace BMP {
 			#pragma pack(push,BMP_HEADER,1)
-			struct _declspec(dllexport) Header {
+			struct H3D_API Header {
 				uint16_t bfType;
 				uint32_t bfsize;
 				uint32_t bfReserved;
@@ -58,7 +58,7 @@ namespace h3d {
 			};
 			#pragma pack(pop,BMP_HEADER)
 			#pragma pack(push,BMP_BODY,1)
-			struct _declspec(dllexport) Body {
+			struct H3D_API Body {
 				uint32_t biSize;
 				int32_t  biWidth;
 				int32_t  biHeight;
@@ -76,7 +76,7 @@ namespace h3d {
 		// KTX File Format Structures ///////////////////////////
 		namespace KTX {
 			#pragma pack(push,KTX_HEADER,1)
-			struct _declspec(dllexport) Header {
+			struct H3D_API Header {
 				char     identifier[12];
 				uint32_t endianness;
 				uint32_t glType;
@@ -97,26 +97,24 @@ namespace h3d {
 		// TGA File Format Structures ///////////////////////////
 		namespace TGA {
 			#pragma pack(push,TGA_HEADER,1)
-			struct _declspec(dllexport) Header {
-				uint8_t  lengthPicID;
-				int8_t   colorTableType;
-				int8_t   picType;
-				int16_t  tableBegin;
-				int16_t  tableLength;
-				int8_t   tableEntryBits;
-				int16_t  XzeroPoint;
-				int16_t  YzeroPoint;
-				int16_t  picWidth;
-				int16_t  picHeight;
-				int8_t   bitCount;
-				int8_t   picAtribByte;
+			struct H3D_API Header {
+				uint8_t IDlength;
+				uint8_t colorMapType;
+				uint8_t imageType;
+
+
 			};
 			#pragma pack(pop,TGA_HEADER)
 			#pragma pack(push,TGA_HEADER_EXTENSION,1)
-			struct __declspec(dllexport) HeaderExtension {
+			struct H3D_API HeaderExtension {
 
 			};
 			#pragma pack(pop,TGA_HEADER_EXTENSION)
+			#pragma pack(push,TGA_FOOT,1)
+			struct H3D_API Foot {
+
+			};
+			#pragma pack(pop,TGA_FOOT)
 		}
 		/////////////////////////////////////////////////////////
 	}

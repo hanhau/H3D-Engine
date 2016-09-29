@@ -9,9 +9,16 @@ h3d::globalLogger::~globalLogger() {}
 bool h3d::globalLogger::setOutputMode(const int mode, char* param)
 {
 	if ((m_currentType = mode) == Output::FILE)
+	{
 		m_dataStream.open(param);
-	if (!m_dataStream.is_open()) return false;
-	else return true;
+		if (!m_dataStream.is_open()) return false;
+	}
+	else if (m_currentType == Output::BITMAPFONT)
+	{
+
+	}
+	else 
+		return false;
 }
 /////////////////////////////////////////////////////////////////
 
@@ -61,6 +68,7 @@ void h3d::tagDebugstream::close()
 /////////////////////////////////////////////////////////////////
 // Static variables
 h3d::Texture    h3d::DebugGraphicalText::m_fontTexture;
+GLuint			h3d::DebugGraphicalText::m_texture3DBuffer;
 std::mutex      h3d::DebugGraphicalText::m_texMutex;
 h3d::Program    h3d::DebugGraphicalText::m_programOGL;
 std::mutex      h3d::DebugGraphicalText::m_programMutex;
@@ -68,23 +76,40 @@ bool			h3d::DebugGraphicalText::m_programConfigured = false;
 /////////////////////////////////////////////////////////////////
 h3d::DebugGraphicalText::DebugGraphicalText()
 {
-	std::lock_guard<std::mutex> lock(m_programMutex);
 	if (!m_programConfigured)
 	{
+		std::lock_guard<std::mutex> lock(m_programMutex);
+
 		GLchar vertexCode[] =
-			"#version 330 core			\n"
-			""
-			""
-			""
-			"void main(){				\n"
-			""
-			""
-			"}";
+			"#version 330 core									\n"
+			"layout(location=0) in vec2 position;				\n"
+			"layout(location=1) in vec2 UV;						\n"
+			"													\n"
+			"uniform vec4 col = vec4(0.0,0.0,0.0,1.0);			\n"
+			"													\n"
+			"out vec4 col_in;									\n"
+			"													\n"
+			"void main(){										\n"
+			"													\n"
+			"	col_in = col;									\n"
+			"}\n";
 
 		GLchar fragmentCode[] =
-			"#version 330 core\n"
-			""
-			"";
+			"#version 330 core									\n"
+			"													\n"
+			"uniform isampler2DArray bitmap_font;               \n"
+			"uniform isampler2D      string_array;              \n"
+			"													\n"
+			"in vec4 col_in;									\n"
+			"out vec4 col_out;									\n"
+			"													\n"
+			"void main()										\n"
+			"{													\n"
+			"													\n"
+			"													\n"
+			"   												\n"
+			"	col_out = col_in;								\n"
+			"}";
 
 		h3d::Shader vertexShader  (GL_VERTEX_SHADER  , vertexCode), 
 					fragmentShader(GL_FRAGMENT_SHADER, fragmentCode);
@@ -93,20 +118,57 @@ h3d::DebugGraphicalText::DebugGraphicalText()
 		m_programOGL.attachShader(fragmentShader);
 		m_programOGL.link();
 	}
+
 }
 h3d::DebugGraphicalText::~DebugGraphicalText() {}
 /////////////////////////////////////////////////////////////////
-void h3d::DebugGraphicalText::render()
+void h3d::DebugGraphicalText::setup(h3d::Vec2<GLfloat> size,
+									h3d::Vec2<GLfloat> pos,
+									h3d::Vec2<GLuint>  grid,
+									h3d::Color<GLfloat> col)
 {
-	std::lock_guard<std::mutex> lock(m_texMutex);
-	m_fontTexture.setActive(true);
-
+	m_size =     size;
+	m_grid =     grid;
+	m_position = pos;
+	m_textColor = col;
 	
 }
 /////////////////////////////////////////////////////////////////
-void h3d::DebugGraphicalText::setBitmapFontTexture(const h3d::Texture& tex)
+void h3d::DebugGraphicalText::setColor(h3d::Color<GLfloat> col)
+{
+	m_textColor = col;
+}
+/////////////////////////////////////////////////////////////////
+void h3d::DebugGraphicalText::update()
+{
+	m_content = m_stringStream.str();
+	m_content.resize(m_grid.x*m_grid.y);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+/////////////////////////////////////////////////////////////////
+void h3d::DebugGraphicalText::render()
+{	
+	m_programOGL.use(true);
+		
+	m_programOGL.use(false);
+}
+/////////////////////////////////////////////////////////////////
+bool h3d::DebugGraphicalText::setBitmapFontTexture(const h3d::Texture& tex)
 {
 	std::lock_guard<std::mutex> lock(m_texMutex);
 	m_fontTexture = tex;
+	if (m_fontTexture.getSize().x % 16 == 0 &&
+		m_fontTexture.getSize().y % 16 == 0)
+	{
+		glCreateTextures(GL_TEXTURE_2D_ARRAY, 1, &m_texture3DBuffer);
+		glBindTexture(GL_TEXTURE_2D_ARRAY, m_texture3DBuffer);
+		
+		
+
+		return true;
+	}
+	else
+		return false;
 }
 /////////////////////////////////////////////////////////////////

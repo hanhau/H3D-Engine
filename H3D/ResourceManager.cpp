@@ -15,7 +15,7 @@ uint32_t h3d::ResourceHashID::calcHashID(unsigned char* data, size_t size)
 	unsigned int byte, mask;
 
 	uint32_t m_ID = 0xFFFFFFFF;
-	for (int i=0;i<size;i++)
+	for (unsigned int i=0;i<size;i++)
 	{
 		byte = data[i];            // Get next byte.
 		m_ID = m_ID ^ byte;

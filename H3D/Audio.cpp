@@ -1,6 +1,7 @@
 #include "Audio.hpp"
 #include <fstream>
 #include <algorithm>
+#pragma warning(disable:4018)
 /////////////////////////////////////////////////////////////////
 //	Implementations of Audio Lib
 /////////////////////////////////////////////////////////////////
@@ -61,7 +62,8 @@ bool h3d::Audio::Settings::loadFromFile(char path[])
 	}
 
 	// Reset Current Settings
-	g_speakerMask = g_speedOfSound = 0;
+	g_speakerMask = 0;
+	g_speedOfSound = 0.0f;
 	g_volumeGroupMap.clear();
 
 	// Loading

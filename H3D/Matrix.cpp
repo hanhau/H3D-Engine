@@ -112,7 +112,7 @@ h3d::mat4x4& h3d::mat4x4::operator*=(h3d::mat4x4 &mat)
 {
 	const float *A = getRowWiseValues();
 	const float *B = mat.getRowWiseValues();
-	float *C;
+	float *C = nullptr;
 	__m128 row1 = _mm_load_ps(&B[0]);
 	__m128 row2 = _mm_load_ps(&B[4]);
 	__m128 row3 = _mm_load_ps(&B[8]);
@@ -178,9 +178,9 @@ h3d::mat4x4& h3d::mat4x4::operator*(const h3d::mat4x4 &mat)
 /////////////////////////////////////////////////////////////////
 h3d::mat4x4 h3d::Math::rotate(float deg_x = 0.0f, float deg_y = 0.0f, float deg_z = 0.0f)
 {
-	deg_x *= M_PI / 180.0f;
-	deg_y *= M_PI / 180.0f;
-	deg_z *= M_PI / 180.0f;
+	deg_x *= (float)M_PI / 180.0f;
+	deg_y *= (float)M_PI / 180.0f;
+	deg_z *= (float)M_PI / 180.0f;
 	float values[16] = {cosf(deg_y)*cosf(deg_z),		// 1st row
 						cosf(deg_x)*sinf(deg_z)+sinf(deg_x)*sinf(deg_y)*cosf(deg_z),
 						sinf(deg_x)*sinf(deg_z)-cosf(deg_x)*sinf(deg_y)*cosf(deg_z),0.0,

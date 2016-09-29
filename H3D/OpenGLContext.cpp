@@ -26,7 +26,7 @@ bool h3d::GLContext::createContext(HWND hwnd)
 		return false;
 	}
 
-	bool bResult = SetPixelFormat(m_hdc, nPixelFormat, &pfd);
+	BOOL bResult = SetPixelFormat(m_hdc, nPixelFormat, &pfd);
 	if (!bResult)
 	{
 		return false;
