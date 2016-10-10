@@ -126,7 +126,7 @@ namespace h3d {
 
 		// Set Content of String
 		template<typename T>             
-		void H3D_API operator<<(T data) {
+		void operator<<(T data) {
 			m_stringStream << data;      
 		}								 
 		void H3D_API clear();

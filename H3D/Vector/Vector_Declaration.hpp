@@ -15,7 +15,7 @@ namespace h3d{
 //	Vector2<class T> 
 /////////////////////////////////////////////////////////////////
 template<typename T>
-class H3D_API Vec2
+class Vec2
 {
 public:
 	// Values
@@ -47,7 +47,7 @@ public:
 //	Vector3<class T> 
 /////////////////////////////////////////////////////////////////
 template<typename T>
-class H3D_API Vec3
+class Vec3
 {
 public:
 	// values
