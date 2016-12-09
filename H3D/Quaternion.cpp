@@ -12,9 +12,9 @@ h3d::mat4x4 h3d::Quaternion::toMat4x4()
 	return h3d::mat4x4();
 }
 /////////////////////////////////////////////////////////////////
-void h3d::Quaternion::fromMat4x4(const mat4x4& mat)
+h3d::Quaternion h3d::Quaternion::fromMat4x4(const mat4x4& mat)
 {
-
+	return h3d::Quaternion();
 }
 /////////////////////////////////////////////////////////////////
 const h3d::Quaternion & h3d::Quaternion::operator=(const mat4x4 & mat)

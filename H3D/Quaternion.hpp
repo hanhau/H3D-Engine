@@ -22,8 +22,8 @@ namespace h3d {
 		double x, i, j, k;
 
 		// Transformations
-		mat4x4 H3D_API toMat4x4();
-		void   H3D_API fromMat4x4(const mat4x4& mat);
+		mat4x4       H3D_API toMat4x4();
+		Quaternion   H3D_API fromMat4x4(const mat4x4& mat);
 
 		// Operators
 		const Quaternion& operator= (const mat4x4& mat); 

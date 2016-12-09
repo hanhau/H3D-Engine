@@ -52,7 +52,7 @@ void gui::Element::render()
 	switch (m_elementType)
 	{
 	case VAR_TYPE_BUTTON:
-		m_elementUnion.button.render();
+		m_elementUnion.button->render();
 	default:
 		break;
 	}
@@ -62,7 +62,7 @@ void gui::Element::update()
 	switch (m_elementType)
 	{
 	case VAR_TYPE_BUTTON:
-		m_elementUnion.button.update();
+		m_elementUnion.button->update();
 	default:
 		break;
 	}
@@ -81,7 +81,8 @@ template<typename T> const gui::Element gui::newElement(T data)
 	// Switch through all cases and setup Union in element
 	if (std::is_same<T, gui::Button>::value)
 	{
-		temp_element.m_elementUnion.button = data;
+		temp_element.m_elementUnion.button = new gui::Button();
+		*temp_element.m_elementUnion.button = data;
 		temp_element.m_elementType = 0b0000'0001;
 	}
 	else
@@ -91,6 +92,9 @@ template<typename T> const gui::Element gui::newElement(T data)
 template H3D_API const gui::Element gui::newElement(gui::Button);
 /////////////////////////////////////////////////////////////////
 // Implementations of Panel
+/////////////////////////////////////////////////////////////////
+gui::Panel::Panel() { m_needsUpdate = true; }
+gui::Panel::~Panel() {}
 /////////////////////////////////////////////////////////////////
 void gui::Panel::addElement(const gui::Element element)
 {
@@ -103,7 +107,7 @@ bool gui::Panel::isVisible() { return m_visible; }
 /////////////////////////////////////////////////////////////////
 void gui::Panel::prepareRendering()
 {
-
+	
 }
 /////////////////////////////////////////////////////////////////
 void gui::Panel::update()

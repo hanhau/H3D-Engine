@@ -23,20 +23,23 @@
 namespace gui {
 	// Needed Init function to setup OpenGL stuff
 	bool H3D_API init();
+
 	// Global OpenGL/Freetype Stuff
 	static h3d::Program g_programOGL;
 	static FT_Library g_ft_lib;
+
 	// Initialisation function
 	class Element;
 	template<typename T> const Element newElement(T data);
+
 	// Base GUI Element class
 	class Element
 	{
 		template<typename T> friend const Element newElement(T data);
 	private:
-		union _t_{
-			Button button;
-			Text   text;
+		union _unionMember{
+			Button *button;
+			Text   *text;
 		}m_elementUnion;
 		int m_elementType;
 
@@ -45,7 +48,7 @@ namespace gui {
 	public:
 		H3D_API Element(const Element &element);
 		H3D_API ~Element();
-		Element();
+		H3D_API Element();
 		void H3D_API operator=(const Element& element);
 
 		void H3D_API render();
@@ -54,11 +57,21 @@ namespace gui {
 	// Holds Elements together in groups
 	class Panel
 	{
+		friend Button;
 	private:
+		// Managing contained elements
 		std::vector<gui::Element> m_elementVec;
+		bool					  m_needsUpdate;
 
+		// OpenGL batched data
+		std::vector<h3d::Vertex> m_batchedVertices;
+
+		// visibility
 		bool m_visible;
 	public:
+		H3D_API Panel();
+		H3D_API ~Panel();
+
 		void H3D_API addElement(const gui::Element element);
 
 		void H3D_API show();

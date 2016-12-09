@@ -17,7 +17,7 @@ namespace h3d {
 		private:
 
 		public:
-			bool _declspec(dllexport) loadFromFile(char Path[]);
+			bool H3D_API loadFromFile(char Path[]);
 		};
 	}
 }

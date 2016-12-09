@@ -23,18 +23,24 @@ namespace h3d {
 				char     riffType[4];
 			};
 			#pragma pack(pop,WAV_HEADER)
-			#pragma pack(push,WAV_FMT,1)
-			struct H3D_API FMT {
-				char     wSignature[4];
-				uint32_t wFmtLength;
-				uint16_t wFormatTag;
-				uint16_t wChannels;
-				uint32_t dwSamplesPerSec;
-				uint32_t dwAvgBytesPerSec;
-				uint16_t wBlockAllign;
-				uint16_t wBitsPerSample;
+			#pragma pack(push,WAV_FORMAT,1)
+			struct H3D_API Format {
+				char subChunkID[4];
+				long subChunkSize;
+				short audioFormat;
+				short numChannels;
+				long sampleRate;
+				long byteRate;
+				short blockAlign;
+				short bitsPerSample;
 			};
-			#pragma pack(pop,WAV_FMT)
+			#pragma pack(pop,WAV_FORMAT)
+			#pragma pack(push,WAV_DATA,1)
+			struct H3D_API Data {
+				char subChunkID[4];
+				long subChunk2Size;
+			};
+			#pragma pack(pop,WAV_DATA)
 		}
 		// OFF File Format Structures ///////////////////////////
 		namespace OGG {

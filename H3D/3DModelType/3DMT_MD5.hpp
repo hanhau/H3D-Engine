@@ -155,16 +155,10 @@ namespace h3d {
 			// Rendering single Mesh
 			void renderMesh(const Mesh &mesh);
 		public:
-			_declspec(dllexport) MD5();
-			_declspec(dllexport)~MD5();
+			H3D_API MD5();
+			H3D_API ~MD5();
 			
-			bool _declspec(dllexport) loadFromFile(const char path[]);
-			bool _declspec(dllexport) checkAnimations();
-
-			bool _declspec(dllexport) addAnimation(char Path[]);
-			
-			bool _declspec(dllexport) setCurrentAnimation(char name[]);
-			bool _declspec(dllexport) playAnimation();
+			bool H3D_API loadFromFile(const char path[]);
 		};
 	}
 }

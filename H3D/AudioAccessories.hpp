@@ -17,7 +17,6 @@ namespace h3d{
 		{
 		private:
 			WAVEFORMATEX   m_waveFormatEx;
-			XAUDIO2_BUFFER m_xa2Buffer;
 			char*          m_buffer;
 		public:
 		   // Constructor/Destructor

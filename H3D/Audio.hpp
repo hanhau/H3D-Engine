@@ -5,19 +5,20 @@
 #define H3D_API _declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-// Taking XAudio2 Version
-/////////////////////////////////////////////////////////////////
-#include <xaudio2.h>
-#include <xaudio2fx.h>
-#include <x3daudio.h>
-#include <xapofx.h>
-#pragma comment(lib,"xaudio2.lib")
-/////////////////////////////////////////////////////////////////
+// external
+#include <al.h>
+#include <alc.h>
+#include <vorbisenc.h>
+#include <vorbisfile.h>
+// cpp headers
 #include <stdint.h>
 #include <string>
 #include <map>
 #include <vector>
-
+#include <algorithm>
+#include <fstream>
+#include <string>
+// internal 
 #include "Utilities.hpp"
 #include "Vector.hpp"
 #include "AudioAccessories.hpp"
@@ -27,122 +28,71 @@
 namespace h3d{
 	namespace Audio {
 		/////////////////////////////////////////////////////////
-		//	Global Stuff		
+		// Audio Engine Functions
 		/////////////////////////////////////////////////////////
-		IXAudio2*				g_engine;
-		IXAudio2MasteringVoice* g_master;
-		X3DAUDIO_HANDLE*        g_x3dAudioHandle;
-		/////////////////////////////////////////////////////////
-		// Audiomanagment and Settings
-		/////////////////////////////////////////////////////////
-		namespace Settings {
-			// Values
-			uint32_t					 g_speakerMask;
-			float						 g_speedOfSound;
-			std::map<std::string, float> g_volumeGroupMap;
-
-			// Functions
-			void H3D_API setVolumeArea(char area[],float val);
-			bool H3D_API getVolumeArea(char area[], float *val);
-			void H3D_API setSpeakerChannelMask(char config[]);
-			void H3D_API setSpeedOfSound(float val);
-
-			// Save and load from a File (txt or binary)
-			bool H3D_API loadFromFile(char path[]);
-			bool H3D_API saveToFile  (char path[]);
-		}
-		bool H3D_API init();
+		bool H3D_API initialize(char* default_device = NULL);
 		bool H3D_API shutdown();
-
 		/////////////////////////////////////////////////////////
-		// Class Effect
+		// global Listener Class
 		/////////////////////////////////////////////////////////
-		class Effect
+		class tagListener 
 		{
 		private:
-			IXAudio2SubmixVoice *m_subMix;
 			
 		public:
-			// Con-/Destructor
-			Effect();
-			~Effect();
+			void setMasterGain(float gain);
+			void setPosition(h3d::Vec3<float> pos);
+			void setVelocity(h3d::Vec3<float> vel);
+			void setOrientation(h3d::Vec3<float>at,h3d::Vec3<float>up);
 		};
+		const H3D_API tagListener Listener;
 		/////////////////////////////////////////////////////////
-		// Class EffectChain
+		// Audio Scene
 		/////////////////////////////////////////////////////////
-		class EffectChain
+		class Scene
 		{
-		private:
-			std::vector<Effect> m_effectVec;
 		public:
-			bool addEffect(h3d::Audio::Effect &effect);
-		};
-		/////////////////////////////////////////////////////////
-		// Class Sound
-		/////////////////////////////////////////////////////////
-		class Sound
-		{
+
 		private:
-			// XAudio2 Stuff
-			IXAudio2SourceVoice* m_voice;
-			
-			// Sound Volume
-			std::string m_volumegroup;
-
-		    // Different Audio File Types
-			union {
-				h3d::Audio::WaveFile *ptr_Wave;
-			}m_rawData;
-		public:
-			// Con-/Destructor
-			Sound();
-			~Sound();
-
-			// Loading and Streaming
-			bool loadFromFile(char Path[]);
-
-			// Effect Handling
-			void addEffect(h3d::Audio::Effect effect);
-			
-		};
-		/////////////////////////////////////////////////////////
-		//	Class Audio Stream
-		/////////////////////////////////////////////////////////
-		class AudioStream
-		{
-		private:
-
-		public:
-			
-		};
-		/////////////////////////////////////////////////////////
-		// Class AudioObject
-		/////////////////////////////////////////////////////////
-		class tag3DAudioObject
-		{
-		private:
-			X3DAUDIO_EMITTER m_x3daudioEmitter;
-			X3DAUDIO_CONE    m_x3daudioCone;
-		public:
-			// Updating the Emitter
-			void updatePos(h3d::Vec3<float> Pos);
-			void update();
-
-			// get Information
 
 		};
 		/////////////////////////////////////////////////////////
-		// Class Listener
+		// Audio Buffer Classes
 		/////////////////////////////////////////////////////////
-		class Listener
+		// static Audio Object
+		class AudioBuffer
 		{
 		private:
-			// XAudio2 Stuff
-			X3DAUDIO_LISTENER m_x3daudioListener;
-			
+			ALuint m_bufferID;
 		public:
-			void updatePos(h3d::Vec3<float> Pos);
+			H3D_API AudioBuffer();
+			H3D_API ~AudioBuffer();
+
+			bool H3D_API loadFromFile(char path[]);
+		};
+		/////////////////////////////////////////////////////////
+		// streamed Audio Object
+		class AudioBufferStream
+		{
+		private:
+
+		public:
+			H3D_API AudioBufferStream();
+			H3D_API ~AudioBufferStream();
+
+			bool H3D_API open(char Path[]);
+		};
+		/////////////////////////////////////////////////////////
+		// Audio Sources
+		/////////////////////////////////////////////////////////
+		class AudioSource
+		{
+		private:
+
+		public:
+
 		};
 		/////////////////////////////////////////////////////////
 	}
+	
 }
