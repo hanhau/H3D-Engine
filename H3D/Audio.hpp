@@ -6,10 +6,10 @@
 #endif
 /////////////////////////////////////////////////////////////////
 // external
-#include "Audio\al.h"
-#include "Audio\alc.h"
-#include "Audio\vorbisenc.h"
-#include "Audio\vorbisfile.h"
+#include <al.h>
+#include <alc.h>
+#include <vorbisenc.h>
+#include <vorbisfile.h>
 // cpp headers
 #include <stdint.h>
 #include <string>
@@ -101,8 +101,32 @@ namespace h3d{
 		class AudioSource
 		{
 		private:
-
+			ALuint m_sourceID;
 		public:
+			// Con-/Destructor
+			H3D_API AudioSource();
+			H3D_API ~AudioSource();
+
+			// Add Buffers to queue
+			bool queueBuffer(const AudioBuffer& ab_static);
+			bool queueBuffer(const AudioBufferStream& ab_stream);
+			bool unqueueBuffer(const AudioBuffer& ab_static);
+			bool unqueueBuffer(const AudioBufferStream& ab_stream);
+
+			// Actions
+			void play();
+			void pause();
+			void stop();
+			void rewind();
+
+			// Set Properties
+			void setPosition(h3d::Vec3<float> pos);
+			void setVelocity(h3d::Vec3<float> vel);
+			void setDirection(h3d::Vec3<float> dir);
+
+			void setPitch(float val);
+			void setGain(float val);
+			
 
 		};
 		/////////////////////////////////////////////////////////

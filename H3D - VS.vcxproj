@@ -210,6 +210,7 @@
     <ClCompile Include="H3D\Audio.cpp" />
     <ClCompile Include="H3D\Audio\AudioBufferClasses.cpp" />
     <ClCompile Include="H3D\Audio\AudioLoader.cpp" />
+    <ClCompile Include="H3D\Audio\AudioSource.cpp" />
     <ClCompile Include="H3D\Camera.cpp" />
     <ClCompile Include="H3D\Clock.cpp" />
     <ClCompile Include="H3D\Color.cpp" />
@@ -251,10 +252,6 @@
     <ClInclude Include="H3D\3DModelType\3DMT_OBJ.hpp" />
     <ClInclude Include="H3D\Audio.hpp" />
     <ClInclude Include="H3D\AudioAccessories.hpp" />
-    <ClInclude Include="H3D\Audio\al.h" />
-    <ClInclude Include="H3D\Audio\alc.h" />
-    <ClInclude Include="H3D\Audio\vorbisenc.h" />
-    <ClInclude Include="H3D\Audio\vorbisfile.h" />
     <ClInclude Include="H3D\Camera.hpp" />
     <ClInclude Include="H3D\Clock.hpp" />
     <ClInclude Include="H3D\Color.hpp" />

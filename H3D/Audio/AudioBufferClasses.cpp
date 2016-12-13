@@ -27,21 +27,21 @@ bool h3d::Audio::AudioBuffer::loadFromFile(char path[])
 {
 	// Check if file extension is supported
 	std::string fileExtension(path);
-	fileExtension.erase(0, fileExtension.find_last_of('.'));
-	if (fileExtension != "wav" && fileExtension != "ogg") return false;
+	fileExtension.erase(fileExtension.begin(), std::find(fileExtension.begin(),fileExtension.end(),'.'));
+	if (fileExtension != ".wav" && fileExtension != ".ogg") return false;
 	
 	// Open filestream
 	std::ifstream file_stream(path,std::ios::in|std::ios::binary);
 	if (!file_stream.is_open()) return false;
 	
 	// Individual loading functions
-	bool loadState = false;
-	if (fileExtension == "wav")
+	bool loadState;
+	if (fileExtension == ".wav")
 	{
 		m_fileType = Type::WAV;
 		loadState = loadWAV(path, m_bufferID, m_size, m_frequency, m_format);
 	}
-	else if (fileExtension == "ogg")
+	else if (fileExtension == ".ogg")
 	{
 		m_fileType = Type::OGG;
 		loadState = loadOGG(path, m_bufferID, m_size, m_frequency, m_format);

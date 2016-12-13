@@ -12,8 +12,6 @@ static bool gInitialized = false;
 static ALCdevice* gDevice;
 static ALCcontext* gContext;
 static bool gEAX20Support;
-
-static vorbis_info* vorbisInfo;
 /////////////////////////////////////////////////////////////////
 bool h3d::Audio::initialize(char* default_device)
 {
@@ -29,9 +27,6 @@ bool h3d::Audio::initialize(char* default_device)
 	else return false;
 	gEAX20Support = alIsExtensionPresent("EAX2.0");
 
-	// libvorbis
-	vorbis_info_init(vorbisInfo);
-
 	return gInitialized = true;
 }
 bool h3d::Audio::shutdown()
@@ -41,7 +36,7 @@ bool h3d::Audio::shutdown()
 	alcMakeContextCurrent(NULL);
 	alcDestroyContext(gContext);
 	alcCloseDevice(gDevice);
-
+	
 	gInitialized = false;
 	return true;
 }

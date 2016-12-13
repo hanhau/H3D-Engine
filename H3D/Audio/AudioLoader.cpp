@@ -1,9 +1,9 @@
 #include "../FileDataStructures.hpp"
 #include "../Utilities.hpp"
-#include "al.h"
-#include "alc.h"
-#include "vorbisfile.h"
-#include "vorbisenc.h"
+#include <al.h>
+#include <alc.h>
+#include <vorbisfile.h>
+#include <vorbisenc.h>
 #include <fstream>
 #include <cstdio>
 #include <iostream>
