@@ -1,6 +1,18 @@
 #include "..\Audio.hpp"
 /////////////////////////////////////////////////////////////////
+// Loader Prototypes
+bool loadWAV(char path[],
+			 ALuint& buffer, ALsizei& size, ALsizei& frequency,
+			 ALenum& format);
+bool loadOGG(char path[],
+			 ALuint& buffer, ALsizei& size, ALsizei& frequency,
+			 ALenum& format);
+/////////////////////////////////////////////////////////////////
 // Implementation of AudioBuffer
+/////////////////////////////////////////////////////////////////
+const int h3d::Audio::AudioBuffer::Type::WAV = 1;
+const int h3d::Audio::AudioBuffer::Type::OGG = 2;
+int h3d::Audio::AudioBuffer::getType() { return m_fileType; }
 /////////////////////////////////////////////////////////////////
 h3d::Audio::AudioBuffer::AudioBuffer()
 {
@@ -24,7 +36,17 @@ bool h3d::Audio::AudioBuffer::loadFromFile(char path[])
 	
 	// Individual loading functions
 	bool loadState = false;
-	
+	if (fileExtension == "wav")
+	{
+		m_fileType = Type::WAV;
+		loadState = loadWAV(path, m_bufferID, m_size, m_frequency, m_format);
+	}
+	else if (fileExtension == "ogg")
+	{
+		m_fileType = Type::OGG;
+		loadState = loadOGG(path, m_bufferID, m_size, m_frequency, m_format);
+	}
+	else return false;
 
 	return loadState;
 }

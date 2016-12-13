@@ -6,10 +6,10 @@
 #endif
 /////////////////////////////////////////////////////////////////
 // external
-#include <al.h>
-#include <alc.h>
-#include <vorbisenc.h>
-#include <vorbisfile.h>
+#include "Audio\al.h"
+#include "Audio\alc.h"
+#include "Audio\vorbisenc.h"
+#include "Audio\vorbisfile.h"
 // cpp headers
 #include <stdint.h>
 #include <string>
@@ -63,11 +63,24 @@ namespace h3d{
 		class AudioBuffer
 		{
 		private:
-			ALuint m_bufferID;
+			ALuint  m_bufferID;
+			ALsizei m_size;
+			ALsizei m_frequency;
+			ALenum  m_format;
+			int     m_fileType;
 		public:
+			// Con-/Destructor
 			H3D_API AudioBuffer();
 			H3D_API ~AudioBuffer();
+			
+			// Identify Type
+			struct Type{
+				static const int WAV;
+				static const int OGG;
+			};
+			int H3D_API getType();
 
+			// File Loading
 			bool H3D_API loadFromFile(char path[]);
 		};
 		/////////////////////////////////////////////////////////

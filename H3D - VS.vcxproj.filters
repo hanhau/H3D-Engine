@@ -9,6 +9,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="extern Header Files">
+      <UniqueIdentifier>{ab5580fa-2175-401e-9aab-fd326fa3bcb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -265,8 +268,26 @@
     <ClInclude Include="H3D\GUI\Text.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Audio\al.h">
+      <Filter>extern Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Audio\alc.h">
+      <Filter>extern Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Audio\vorbisfile.h">
+      <Filter>extern Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Audio\vorbisenc.h">
+      <Filter>extern Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="H3D - VS.rc" />
   </ItemGroup>
 </Project>

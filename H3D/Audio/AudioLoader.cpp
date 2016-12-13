@@ -1,8 +1,11 @@
 #include "../FileDataStructures.hpp"
 #include "../Utilities.hpp"
-#include <al.h>
-#include <alc.h>
+#include "al.h"
+#include "alc.h"
+#include "vorbisfile.h"
+#include "vorbisenc.h"
 #include <fstream>
+#include <cstdio>
 #include <iostream>
 /////////////////////////////////////////////////////////////////
 // .wav Loading
@@ -33,10 +36,13 @@ extern bool loadWAV(char path[],
 		file_stream.read((char*)&wavFormat, sizeof(wavFormat));
 		if (wavFormat.subChunkID != "fmt ")
 			throw("Invalid wavFormat");
+		
+
 
 		file_stream.read((char*)&wavData, sizeof(wavData));
 
 		// Loading final Data
+		audioData = new unsigned char[1];
 	}
 	catch (std::string error) {
 		std::cout << error << " : trying to load " << path << std::endl;
@@ -48,7 +54,73 @@ extern bool loadWAV(char path[],
 /////////////////////////////////////////////////////////////////
 // .ogg Loading	
 /////////////////////////////////////////////////////////////////
-extern bool loadOGG()
+#define CHUNK_SIZE 4096
+extern bool loadOGG(char path[],
+					ALuint& buffer, ALsizei& size, ALsizei& frequency,
+					ALenum& format)
+{
+	// Temporary variables
+	OggVorbis_File oggFile;
+	vorbis_info    vorbisInfo;
+	FILE* file_stream;
+	std::vector<char> audioBuffer;
+	std::vector<char> finalAudio;
+	long bytes_read = 0;
+
+	try {
+		// Open file_stream
+		file_stream = fopen(path, "br");
+		if (file_stream == NULL)
+			throw("Unable to open File");
+		
+		// Start vorbis encoding for this file
+		ov_fopen(path, &oggFile);
+		vorbis_info_init(&vorbisInfo);
+
+		// Prepare Buffers
+		audioBuffer.clear();
+		audioBuffer.resize(CHUNK_SIZE);
+		finalAudio.clear();
+		
+		// Read complete file
+		do {
+			bytes_read = ov_read(&oggFile, audioBuffer.data(), CHUNK_SIZE, 0, 2, 1, NULL);
+			finalAudio.insert(std::end(finalAudio),
+							  std::begin(audioBuffer),
+							  std::end(audioBuffer));
+			
+		} while (bytes_read != 0);
+		
+		// Set Information for OpenAL
+		size = finalAudio.size();
+		frequency = vorbisInfo.rate;
+		if (vorbisInfo.channels == 1)
+		{
+			format = AL_FORMAT_MONO16;
+		}
+		else if (vorbisInfo.channels == 2)
+		{
+			format = AL_FORMAT_STEREO16;
+		}
+		else throw ("Error detecting channel count");
+
+		// Fill OpenAL Buffers
+		alBufferData(buffer, format, (ALvoid*)finalAudio.data(), finalAudio.size(), frequency);
+
+		// Clear up variables
+		ov_clear(&oggFile);
+		return true;
+	}
+	catch (std::string error)
+	{
+		std::cout << error << " : trying to load " << path << std::endl;
+		return false;
+	}
+}
+/////////////////////////////////////////////////////////////////
+// .ogg Streaming
+/////////////////////////////////////////////////////////////////
+extern bool openStreamOGG()
 {
 
 }
