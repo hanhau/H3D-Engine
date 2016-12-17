@@ -7,6 +7,7 @@
 #include <fstream>
 #include <cstdio>
 #include <iostream>
+#include <vector>
 /////////////////////////////////////////////////////////////////
 // .wav Loading
 /////////////////////////////////////////////////////////////////
@@ -21,34 +22,53 @@ extern bool loadWAV(char path[],
 	unsigned char*			   audioData;
 	std::ifstream file_stream;
 
-	try {
-		// Open Filestream
-		file_stream.open(path, std::ios::in | std::ios::binary);
-		if (!file_stream.is_open())
-			throw("Couldn´t open File");
+	
+	// Open Filestream
+	file_stream.open(path, std::ios::in | std::ios::binary);
+	if (!file_stream.is_open())
+		return false;
 
-		// Check wavHeader
-		file_stream.read((char*)&wavHeader, sizeof(wavHeader));
-		if (wavHeader.chunkID != "RIFF" || wavHeader.riffType != "WAVE")
-			throw("Invalid Header");
+	// Check wavHeader
+	file_stream.read((char*)&wavHeader, sizeof(wavHeader));
+	if (wavHeader.chunkID != "RIFF" || wavHeader.riffType != "WAVE")
+		return false;
 		
 		// Check wavFormat
-		file_stream.read((char*)&wavFormat, sizeof(wavFormat));
-		if (wavFormat.subChunkID != "fmt ")
-			throw("Invalid wavFormat");
+	file_stream.read((char*)&wavFormat, sizeof(wavFormat));
+	if (wavFormat.subChunkID != "fmt ")
+		return false;
 		
 
 
-		file_stream.read((char*)&wavData, sizeof(wavData));
+	file_stream.read((char*)&wavData, sizeof(wavData));
 
-		// Loading final Data
-		audioData = new unsigned char[1];
+	// Loading final Data
+	audioData = new unsigned char[1];
+		
+	// Set OpenAL Properties
+	frequency = wavFormat.sampleRate;
+
+	if (wavFormat.numChannels == 1)
+	{
+		if (wavFormat.bitsPerSample == 8)
+			format = AL_FORMAT_MONO8;
+		else if (wavFormat.bitsPerSample == 16)
+			format = AL_FORMAT_MONO16;
+		else return false;
 	}
-	catch (std::string error) {
-		std::cout << error << " : trying to load " << path << std::endl;
-		file_stream.close();
-		return false;
+	else if (wavFormat.numChannels == 2)
+	{
+		if (wavFormat.bitsPerSample == 8)
+			format = AL_FORMAT_STEREO8;
+		else if (wavFormat.bitsPerSample == 16)
+			format = AL_FORMAT_STEREO16;
+		else return false;
 	}
+	return false;
+
+	// Free resources
+	delete audioData;
+	file_stream.close();
 	return true;
 }
 /////////////////////////////////////////////////////////////////

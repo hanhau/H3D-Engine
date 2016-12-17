@@ -1,6 +1,7 @@
 /////////////////////////////////////////////////////////////////
 #include "Texture.hpp"
 #include "FileDataStructures.hpp"
+#include <fstream>
 #include <type_traits>
 #include <string>
 #include <algorithm>

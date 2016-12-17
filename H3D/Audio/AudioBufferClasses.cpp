@@ -46,7 +46,7 @@ bool h3d::Audio::AudioBuffer::loadFromFile(char path[])
 		m_fileType = Type::OGG;
 		loadState = loadOGG(path, m_bufferID, m_size, m_frequency, m_format);
 	}
-	else return false;
+	else loadState = false;
 
 	return loadState;
 }
