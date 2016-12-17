@@ -1,4 +1,5 @@
 #include "InputManager.hpp"
+#include "Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 //	Joystick Implementations
 /////////////////////////////////////////////////////////////////
@@ -12,9 +13,7 @@ bool _declspec(dllexport) h3d::Joystick::setupJoystick()
 
 	if (joyGetDevCaps(m_ID, &m_joycaps, sizeof(JOYCAPS)) != JOYERR_NOERROR) {
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("joystick_log.txt");
-			h3d::Debugstream << "Failed to detect Joystick @ID " << m_ID << "\n";
-			h3d::Debugstream.close();
+			Log.error("Failed to detect Joystick ID");
 		}
 		return false;
 	}

@@ -6,12 +6,14 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include <iostream>
+#include <string>
 #include <cstdio>
 #include <mutex>
 /////////////////////////////////////////////////////////////////
 // global Logger
 /////////////////////////////////////////////////////////////////
 namespace h3d {
+	static bool DebugMode;
 	class __Logger
 	{
 	private:
@@ -49,6 +51,76 @@ namespace h3d {
 		// Get global Instance
 		static __Logger& GetInstance();
 	};
-	#define Log __Logger::GetInstance()
+#define Log __Logger::GetInstance()
+#define LOG_ERROR(x) __Logger::GetInstance().error(x)
 }
 /////////////////////////////////////////////////////////////////
+// Log Functions
+template<typename... Args>
+void h3d::__Logger::error(char* msg, Args... args)
+{
+	std::string logString(getCurrentTime());
+	logString.append(" [ERROR]: ");
+	logString.append(msg);
+	logString.append("\n");
+	if (m_currentLogType == LogTypes::CONSOLE)
+	{
+		printf(logString.c_str(), args...);
+	}
+	else if (m_currentLogType == LogTypes::FILE)
+	{
+		std::lock_guard<std::mutex> lock(m_fileMutex);
+		fprintf(m_logFile, logString.c_str(), args...);
+	}
+}
+template<typename... Args>
+void h3d::__Logger::debug(char* msg, Args... args)
+{
+	std::string logString(getCurrentTime());
+	logString.append(" [DEBUG]: ");
+	logString.append(msg);
+	logString.append("\n");
+	if (m_currentLogType == LogTypes::CONSOLE)
+	{
+		printf(logString.c_str(), args...);
+	}
+	else if (m_currentLogType == LogTypes::FILE)
+	{
+		std::lock_guard<std::mutex> lock(m_fileMutex);
+		fprintf(m_logFile, logString.c_str(), args...);
+	}
+}
+template<typename... Args>
+void h3d::__Logger::info(char* msg, Args... args)
+{
+	std::string logString(getCurrentTime());
+	logString.append(" [INFO]: ");
+	logString.append(msg);
+	logString.append("\n");
+	if (m_currentLogType == LogTypes::CONSOLE)
+	{
+		printf(logString.c_str(), args...);
+	}
+	else if (m_currentLogType == LogTypes::FILE)
+	{
+		std::lock_guard<std::mutex> lock(m_fileMutex);
+		fprintf(m_logFile, logString.c_str(), args...);
+	}
+}
+template<typename... Args>
+void h3d::__Logger::alarm(char* msg, Args... args)
+{
+	std::string logString(getCurrentTime());
+	logString.append(" [ALARM]: ");
+	logString.append(msg);
+	logString.append("\n");
+	if (m_currentLogType == LogTypes::CONSOLE)
+	{
+		printf(logString.c_str(), args...);
+	}
+	else if (m_currentLogType == LogTypes::FILE)
+	{
+		std::lock_guard<std::mutex> lock(m_fileMutex);
+		fprintf(m_logFile, logString.c_str(), args...);
+	}
+}

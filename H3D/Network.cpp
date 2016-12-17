@@ -8,8 +8,7 @@
 bool h3d::Network::Startup(char version[2] = "20")
 {
 	if (h3d::DebugMode) {
-		h3d::Debugstream.open("networklog.txt");
-		h3d::Debugstream << "h3d::Network::Startup(" << version << ")\n";
+		Log.info("h3d::Network::Startup(version=%s)");
 	}
 
 	WSAData wsd;
@@ -18,7 +17,7 @@ bool h3d::Network::Startup(char version[2] = "20")
 	if (result != 0)
 	{
 		if (h3d::DebugMode)
-			h3d::Debugstream << "h3d::Network::Startup Fail !\n";
+			Log.error("h3d::Network::Startup(...) failed !");
 		return false;
 	}
 	else
@@ -52,8 +51,7 @@ h3d::Network::TCP_Socket::TCP_Socket(int af   = AF_INET,
 	if (m_socket == INVALID_SOCKET)
 	{
 		if (h3d::DebugMode){
-			h3d::Debugstream.open("tcp_socket_log.txt");
-			h3d::Debugstream << "Couldnt create Socket ! \n";
+			Log.error("Unable to create socket");
 		}
 		this->~TCP_Socket();
 	}
@@ -89,8 +87,7 @@ bool h3d::Network::TCP_Socket::connect(const char aIP[], const char aPort[])
 	if (debug == SOCKET_ERROR)
 	{
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("tcp_socket_log.txt");
-			h3d::Debugstream << "Fails to connect to: "<< aIP << ":" << aPort<<"\n";
+			Log.error("Failed to connect Socket to %s : %s",aIP,aPort);
 		}
 		return false;
 	}
@@ -102,8 +99,7 @@ bool h3d::Network::TCP_Socket::close()
 	if (::closesocket(m_socket) == SOCKET_ERROR)
 	{
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("tcp_socket_log.txt");
-			h3d::Debugstream << "Failed to close socket! \n";
+			Log.error("Unable to close a socket");
 		}
 		return false;
 	}
@@ -193,8 +189,7 @@ bool h3d::Network::TCP_Server::tagTCP_ServerSocket::bind
 	if (debug == SOCKET_ERROR)
 	{
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("tcp_server_log.txt");
-			h3d::Debugstream << "Bind Error!\n";
+			Log.error("TCP_Server failed to bind to a port");
 		}
 		return false;
 	}
@@ -213,8 +208,7 @@ void h3d::Network::TCP_Server::handleIncomingConnections(bool* yn)
 		if ((debug = ::listen(m_ListeningSocket.m_socket, 10)) == SOCKET_ERROR)
 		{
 			if (h3d::DebugMode) {
-				h3d::Debugstream.open("tcp_server_log.txt");
-				h3d::Debugstream << "Listen Error!\n";
+				Log.error("Listen error");
 			}
 		}
 		else

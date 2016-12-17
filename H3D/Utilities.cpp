@@ -15,18 +15,10 @@ std::string h3d::__Logger::getCurrentTime()
 	return currTime;
 }
 /////////////////////////////////////////////////////////////////
-// Log Functions
-template<typename... Args>
-	void h3d::__Logger::error(char* msg,Args... args)
+// Static global Instance
+h3d::__Logger& h3d::__Logger::GetInstance()
 {
-	if (m_currentLogType == LogTypes::CONSOLE)
-	{
-
-	}
-	else if (m_currentLogType == LogTypes::FILE)
-	{
-		std::lock_guard<std::mutex> lock(m_fileMutex);
-		fprintf(m_logFile, msg,ap);
-	}
+	static __Logger instance;
+	return instance;
 }
 /////////////////////////////////////////////////////////////////

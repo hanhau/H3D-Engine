@@ -121,8 +121,7 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_styl
 	}
 	if (h3d::DebugMode)
 	{
-		h3d::Debugstream.open("Window_Log.txt");
-		h3d::Debugstream << "Registered WindowClass\n";
+		Log.info("Registered WindowClass");
 	}
 	// Create h_Win
 	h_Win = CreateWindowEx(
@@ -134,20 +133,20 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_styl
 		NULL, NULL,
 		h_Instance,
 		NULL);
-	if (h_Win == NULL) std::cout << GetLastError() << std::endl;
-	if (h3d::DebugMode)
-		h3d::Debugstream << "Created Window\n";
+	if (h_Win == NULL)
+		if (h3d::DebugMode)
+			Log.info("Created Window");
 
 	// create Context
 	if (!GLContext.createContext(h_Win) && h3d::DebugMode)
-		h3d::Debugstream << "Failed to create OGL Context\n";
+		Log.error("Failed to create OpenGL context");
 
 	// Update Window
 	ShowWindow(h_Win, SW_SHOW);
 	UpdateWindow(h_Win);
 	SetFocus(h_Win);
 	if (h3d::DebugMode)
-		h3d::Debugstream << "Finished creating window\n";
+		Log.info("Finished createing Window");
 }
 /////////////////////////////////////////////////////////////////
 //	Get-Methods
@@ -171,7 +170,7 @@ void h3d::Window::clear(GLbitfield mask)
 }
 /////////////////////////////////////////////////////////////////
 bool h3d::Window::swapBuffers(){
-	return SwapBuffers(GLContext.m_hdc);
+	return static_cast<bool>(SwapBuffers(GLContext.m_hdc));
 }
 /////////////////////////////////////////////////////////////////
 h3d::Window::~Window()

@@ -31,7 +31,7 @@ bool h3d::Shader::setCode(GLchar acode[])
 		file.open(acode,std::ios::in|std::ios::ate);
 		if (!file.is_open()) return false;
 
-		file_size = file.tellg();
+		file_size = (int)file.tellg();
 		sourcecode_length = file_size;
 		sourcecode = new char[sourcecode_length];
 

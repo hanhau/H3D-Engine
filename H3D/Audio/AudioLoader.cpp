@@ -87,55 +87,48 @@ extern bool loadOGG(char path[],
 	std::vector<char> finalAudio;
 	long bytes_read = 0;
 
-	try {
-		// Open file_stream
-		file_stream = fopen(path, "br");
-		if (file_stream == NULL)
-			throw("Unable to open File");
+	// Open file_stream
+	file_stream = fopen(path, "br");
+	if (file_stream == NULL)
+		throw("Unable to open File");
 		
-		// Start vorbis encoding for this file
-		ov_fopen(path, &oggFile);
-		vorbis_info_init(&vorbisInfo);
+	// Start vorbis encoding for this file
+	ov_fopen(path, &oggFile);
+	vorbis_info_init(&vorbisInfo);
 
-		// Prepare Buffers
-		audioBuffer.clear();
-		audioBuffer.resize(CHUNK_SIZE);
-		finalAudio.clear();
+	// Prepare Buffers
+	audioBuffer.clear();
+	audioBuffer.resize(CHUNK_SIZE);
+	finalAudio.clear();
 		
-		// Read complete file
-		do {
-			bytes_read = ov_read(&oggFile, audioBuffer.data(), CHUNK_SIZE, 0, 2, 1, NULL);
-			finalAudio.insert(std::end(finalAudio),
-							  std::begin(audioBuffer),
-							  std::end(audioBuffer));
-			
-		} while (bytes_read != 0);
+	// Read complete file
+	do {
+		bytes_read = ov_read(&oggFile, audioBuffer.data(), CHUNK_SIZE, 0, 2, 1, NULL);
+		finalAudio.insert(std::end(finalAudio),
+						  std::begin(audioBuffer),
+						  std::end(audioBuffer));
 		
-		// Set Information for OpenAL
-		size = finalAudio.size();
-		frequency = vorbisInfo.rate;
-		if (vorbisInfo.channels == 1)
-		{
-			format = AL_FORMAT_MONO16;
-		}
-		else if (vorbisInfo.channels == 2)
-		{
-			format = AL_FORMAT_STEREO16;
-		}
-		else throw ("Error detecting channel count");
-
-		// Fill OpenAL Buffers
-		alBufferData(buffer, format, (ALvoid*)finalAudio.data(), finalAudio.size(), frequency);
-
-		// Clear up variables
-		ov_clear(&oggFile);
-		return true;
-	}
-	catch (std::string error)
+	} while (bytes_read != 0);
+	
+	// Set Information for OpenAL
+	size = finalAudio.size();
+	frequency = vorbisInfo.rate;
+	if (vorbisInfo.channels == 1)
 	{
-		std::cout << error << " : trying to load " << path << std::endl;
-		return false;
+		format = AL_FORMAT_MONO16;
 	}
+	else if (vorbisInfo.channels == 2)
+	{
+		format = AL_FORMAT_STEREO16;
+	}
+	else throw ("Error detecting channel count");
+
+	// Fill OpenAL Buffers
+	alBufferData(buffer, format, (ALvoid*)finalAudio.data(), finalAudio.size(), frequency);
+
+	// Clear up variables
+	ov_clear(&oggFile);
+	return true;
 }
 /////////////////////////////////////////////////////////////////
 // .ogg Streaming

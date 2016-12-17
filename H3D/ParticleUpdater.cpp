@@ -85,7 +85,7 @@ void h3d::PE::ParticleUpdater::update()
 	// Compute Shader Updating
 	if (m_computingType == 0x0)
 	{
-		for (int i = 0;i < m_EmitterQueue.size();i++)
+		for (unsigned i = 0;i < m_EmitterQueue.size();i++)
 		{
 
 		}

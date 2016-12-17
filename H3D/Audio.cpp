@@ -11,7 +11,7 @@ static bool gInitialized = false;
 
 static ALCdevice* gDevice;
 static ALCcontext* gContext;
-static bool gEAX20Support;
+static ALboolean gEAX20Support;
 /////////////////////////////////////////////////////////////////
 bool h3d::Audio::initialize(char* default_device)
 {

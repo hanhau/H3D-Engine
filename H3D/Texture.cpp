@@ -35,9 +35,7 @@ bool h3d::Texture::loadFromFile(char Path[])
 	else if (file_extension == "tga") m_format = Format::TGA;
 	else {
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("TextureLog.txt");
-			h3d::Debugstream << "Error: " << Path << " is a not supported format!\n";
-			h3d::Debugstream.close();
+			Log.error("%s is not a supported format!",Path);
 		}
 		return false;
 	}
@@ -84,9 +82,7 @@ bool h3d::Texture::loadBMP(char Path[])
 	file_stream.open(Path,std::ios::in | std::ios::binary);
 	if (!file_stream.good()) {
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("TextureLog.txt");
-			h3d::Debugstream << "Unable to open " << Path << " \n";
-			h3d::Debugstream.close();
+			Log.error("Unable to open %s",Path);
 		}
 		return false;
 	}
@@ -100,9 +96,7 @@ bool h3d::Texture::loadBMP(char Path[])
 	file_stream.read((char*)&t_header,sizeof(t_header));
 	if (t_header.bfType != 19778) {
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("TextureLog.txt");
-			h3d::Debugstream << "Error:" << Path << "is corrupted! \n";
-			h3d::Debugstream.close();
+			Log.error("%s is corrupted!",Path);
 		}
 		return false;
 	}
@@ -131,9 +125,7 @@ bool h3d::Texture::loadPNG(char Path[])
 	file_stream.open(Path, std::ios::binary);
 	if (file_stream.bad()) {
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("TextureLog.txt");
-			h3d::Debugstream << "Unable to open " << Path << " \n";
-			h3d::Debugstream.close();
+			Log.error("Unable to open %s",Path);
 		}
 		return false;
 	}
@@ -149,9 +141,7 @@ bool h3d::Texture::loadKTX(char Path[])
 	file_stream.open(Path, std::ios::binary);
 	if (file_stream.bad()) {
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("TextureLog.txt");
-			h3d::Debugstream << "Unable to open " << Path << " \n";
-			h3d::Debugstream.close();
+			Log.error("Unable to open %s",Path);
 		}
 		return false;
 	}
@@ -175,9 +165,7 @@ bool h3d::Texture::loadTGA(char Path[])
 	file_stream.open(Path, std::ios::binary);
 	if (file_stream.bad()) {
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("TextureLog.txt");
-			h3d::Debugstream << "Unable to open " << Path << " \n";
-			h3d::Debugstream.close();
+			Log.error("Unable to open %s", Path);
 		}
 		return false;
 	}

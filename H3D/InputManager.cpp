@@ -36,9 +36,7 @@ bool h3d::tagInputManager::setupHardware(HWND win)
 		 ) != (UINT)-1)
 	{
 		if (h3d::DebugMode) {
-			h3d::Debugstream.open("input_log.txt");
-			h3d::Debugstream << "Failed to get DevList: " << GetLastError() << "\n";
-			h3d::Debugstream.close();
+			Log.error("Failed to get Device List %d",GetLastError());
 		}
 		return false;
 	}
