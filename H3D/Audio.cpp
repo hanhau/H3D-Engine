@@ -43,5 +43,20 @@ bool h3d::Audio::shutdown()
 /////////////////////////////////////////////////////////////////
 // Listener Implementations
 /////////////////////////////////////////////////////////////////
-
+h3d::Audio::tagListener::tagListener() {}
+h3d::Audio::tagListener::~tagListener() {}
+/////////////////////////////////////////////////////////////////
+void h3d::Audio::tagListener::setMasterGain(float gain) {
+	alListenerf(AL_GAIN, gain);
+}
+void h3d::Audio::tagListener::setPosition(h3d::Vec3<float> pos) {
+	alListener3f(AL_POSITION,pos.x,pos.y,pos.z);
+}
+void h3d::Audio::tagListener::setVelocity(h3d::Vec3<float> vel) {
+	alListener3f(AL_VELOCITY,vel.x,vel.y,vel.z);
+}
+void h3d::Audio::tagListener::setOrientation(h3d::Vec3<float>at, h3d::Vec3<float>up) {
+	float vals[] = { at.x, at.y, at.y,up.x, up.y, up.z };
+	alListenerfv(AL_ORIENTATION,vals);
+}
 /////////////////////////////////////////////////////////////////

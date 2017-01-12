@@ -13,7 +13,7 @@
 // global Logger
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	static bool DebugMode;
+	extern bool H3D_API DebugMode;
 	class __Logger
 	{
 	private:
@@ -36,7 +36,7 @@ namespace h3d {
 		}LogTypes;
 
 		// Set Logger Properties
-		void H3D_API setLogType();
+		void H3D_API setLogType(int type);
 
 		// Log Functions
 		template<typename... Args>
@@ -51,8 +51,7 @@ namespace h3d {
 		// Get global Instance
 		static __Logger& GetInstance();
 	};
-#define Log __Logger::GetInstance()
-#define LOG_ERROR(x) __Logger::GetInstance().error(x)
+	#define Log __Logger::GetInstance()
 }
 /////////////////////////////////////////////////////////////////
 // Log Functions
@@ -60,6 +59,7 @@ template<typename... Args>
 void h3d::__Logger::error(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
+	logString.erase(std::end(logString) - 1);
 	logString.append(" [ERROR]: ");
 	logString.append(msg);
 	logString.append("\n");
@@ -77,6 +77,7 @@ template<typename... Args>
 void h3d::__Logger::debug(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
+	logString.erase(std::end(logString) - 1);
 	logString.append(" [DEBUG]: ");
 	logString.append(msg);
 	logString.append("\n");
@@ -94,6 +95,7 @@ template<typename... Args>
 void h3d::__Logger::info(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
+	logString.erase(std::end(logString) - 1);
 	logString.append(" [INFO]: ");
 	logString.append(msg);
 	logString.append("\n");
@@ -111,6 +113,7 @@ template<typename... Args>
 void h3d::__Logger::alarm(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
+	logString.erase(std::end(logString)-1);
 	logString.append(" [ALARM]: ");
 	logString.append(msg);
 	logString.append("\n");

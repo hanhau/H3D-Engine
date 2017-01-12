@@ -15,26 +15,6 @@
 namespace h3d {
 	namespace File {
 	/////////////////////////////////////////////////////////////
-	//	Checksum Class
-	/////////////////////////////////////////////////////////////
-		class Checksum
-		{
-			uint64_t m_key;
-		public:
-			// Con-/Destructor
-			H3D_API Checksum();
-			H3D_API Checksum();
-			H3D_API ~Checksum();
-
-			// Create Checksum 
-			void H3D_API create(std::string path);
-			void H3D_API create(void* buffer,uint64_t buffer_size);
-
-			// Key Operations
-			uint64_t H3D_API getKey();
-			bool     H3D_API compareKey(uint64_t key);
-		};
-	/////////////////////////////////////////////////////////////
 	// Encryption Class
 	/////////////////////////////////////////////////////////////
 		class Crypter
@@ -53,7 +33,7 @@ namespace h3d {
 		char *m_buffer;
 
 		// File Techniques
-		h3d::File::Checksum *m_checksum;
+		h3d::File::CRC32Sum *m_checksum;
 		h3d::File::Crypter  *m_crypter;
 
 		// Read/Write Treads

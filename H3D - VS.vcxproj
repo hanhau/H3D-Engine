@@ -214,10 +214,13 @@
     <ClCompile Include="H3D\Camera.cpp" />
     <ClCompile Include="H3D\Clock.cpp" />
     <ClCompile Include="H3D\Color.cpp" />
+    <ClCompile Include="H3D\FileSystem.cpp" />
     <ClCompile Include="H3D\GUI.cpp" />
     <ClCompile Include="H3D\GUI\Button.cpp" />
     <ClCompile Include="H3D\GUI\Font.cpp" />
     <ClCompile Include="H3D\GUI\Text.cpp" />
+    <ClCompile Include="H3D\hashing\CRC32.cpp" />
+    <ClCompile Include="H3D\hashing\SHA256.cpp" />
     <ClCompile Include="H3D\Quaternion.cpp" />
     <ClCompile Include="H3D\Utilities.cpp" />
     <ClCompile Include="H3D\Emitter.cpp" />
@@ -260,6 +263,8 @@
     <ClInclude Include="H3D\GUI\Font.hpp" />
     <ClInclude Include="H3D\GUI\Stylesheet.hpp" />
     <ClInclude Include="H3D\GUI\Text.hpp" />
+    <ClInclude Include="H3D\hashing\CRC32.hpp" />
+    <ClInclude Include="H3D\hashing\SHA256.hpp" />
     <ClInclude Include="H3D\Quaternion.hpp" />
     <ClInclude Include="H3D\Utilities.hpp" />
     <ClInclude Include="H3D\Event.hpp" />

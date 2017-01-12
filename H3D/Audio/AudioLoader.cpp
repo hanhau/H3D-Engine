@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <iostream>
 #include <vector>
+#include "..\Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // .wav Loading
 /////////////////////////////////////////////////////////////////
@@ -15,60 +16,28 @@ extern bool loadWAV(char path[],
 					ALuint& buffer,ALsizei& size,ALsizei& frequency,
 					ALenum& format)
 {
-	// Temporary values
-	h3d::FileType::WAV::Header wavHeader;
-	h3d::FileType::WAV::Format wavFormat;
-	h3d::FileType::WAV::Data   wavData;
-	unsigned char*			   audioData;
-	std::ifstream file_stream;
+	// Info Log
+	h3d::Log.info("Loading %s now ...",path);
 
-	
-	// Open Filestream
-	file_stream.open(path, std::ios::in | std::ios::binary);
-	if (!file_stream.is_open())
-		return false;
+	// Temporary buffers
+	char *fileBuffer;
 
-	// Check wavHeader
-	file_stream.read((char*)&wavHeader, sizeof(wavHeader));
-	if (wavHeader.chunkID != "RIFF" || wavHeader.riffType != "WAVE")
-		return false;
-		
-		// Check wavFormat
-	file_stream.read((char*)&wavFormat, sizeof(wavFormat));
-	if (wavFormat.subChunkID != "fmt ")
-		return false;
-		
-
-
-	file_stream.read((char*)&wavData, sizeof(wavData));
-
-	// Loading final Data
-	audioData = new unsigned char[1];
-		
-	// Set OpenAL Properties
-	frequency = wavFormat.sampleRate;
-
-	if (wavFormat.numChannels == 1)
-	{
-		if (wavFormat.bitsPerSample == 8)
-			format = AL_FORMAT_MONO8;
-		else if (wavFormat.bitsPerSample == 16)
-			format = AL_FORMAT_MONO16;
-		else return false;
-	}
-	else if (wavFormat.numChannels == 2)
-	{
-		if (wavFormat.bitsPerSample == 8)
-			format = AL_FORMAT_STEREO8;
-		else if (wavFormat.bitsPerSample == 16)
-			format = AL_FORMAT_STEREO16;
-		else return false;
-	}
-	return false;
-
-	// Free resources
-	delete audioData;
+	// Loading whole file into a temporary buffer
+	std::ifstream file_stream(path,std::ios::binary|std::ios::in|std::ios::ate);
+	unsigned fileSize = file_stream.tellg();
+	file_stream.seekg(0, file_stream.beg);
+	fileBuffer = new char[fileSize];
+	file_stream.read((char*)fileBuffer,fileSize);
 	file_stream.close();
+
+	/////////////////////////////////////////////////////////////
+	// Actual file loading
+	
+
+	/////////////////////////////////////////////////////////////
+	// Return
+	if (h3d::DebugMode)
+		h3d::Log.info("Finished loading %s.",path);
 	return true;
 }
 /////////////////////////////////////////////////////////////////

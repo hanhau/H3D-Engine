@@ -37,15 +37,16 @@ namespace h3d{
 		/////////////////////////////////////////////////////////
 		class tagListener 
 		{
-		private:
-			
 		public:
+			tagListener();
+			~tagListener();
+
 			void setMasterGain(float gain);
 			void setPosition(h3d::Vec3<float> pos);
 			void setVelocity(h3d::Vec3<float> vel);
 			void setOrientation(h3d::Vec3<float>at,h3d::Vec3<float>up);
 		};
-		const H3D_API tagListener Listener;
+		extern tagListener H3D_API Listener;
 		/////////////////////////////////////////////////////////
 		// Audio Scene
 		/////////////////////////////////////////////////////////

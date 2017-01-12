@@ -9,6 +9,15 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{44d06b3d-d96c-467a-a0a2-17f637911820}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hashing">
+      <UniqueIdentifier>{31502358-e376-42f7-98c3-d95f41baf217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL Shader">
+      <UniqueIdentifier>{597c47ea-1a31-4cc2-8d3b-32f67998a1d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -47,12 +56,6 @@
     <ClCompile Include="H3D\OpenGLContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Program.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,9 +69,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Clock.cpp">
@@ -131,14 +131,32 @@
     <ClCompile Include="H3D\GUI\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\Audio.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
     <ClCompile Include="H3D\Audio\AudioBufferClasses.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Audio\AudioLoader.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Audio</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Audio\AudioSource.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\FileSystem.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\hashing\CRC32.cpp">
+      <Filter>Hashing</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\hashing\SHA256.cpp">
+      <Filter>Hashing</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Shader.cpp">
+      <Filter>OpenGL Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Program.cpp">
+      <Filter>OpenGL Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,12 +199,6 @@
     <ClInclude Include="H3D\OpenGLContext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\Program.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Shader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\ResourceManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -194,9 +206,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Audio.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Network.hpp">
@@ -247,9 +256,6 @@
     <ClInclude Include="H3D\Utilities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\AudioAccessories.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\Quaternion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -270,6 +276,24 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Audio.hpp">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\AudioAccessories.hpp">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\hashing\CRC32.hpp">
+      <Filter>Hashing</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\hashing\SHA256.hpp">
+      <Filter>Hashing</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Shader.hpp">
+      <Filter>OpenGL Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Program.hpp">
+      <Filter>OpenGL Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
