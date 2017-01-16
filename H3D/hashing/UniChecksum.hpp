@@ -10,22 +10,21 @@
 // SHA256
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	class SHA256Sum
-	{
+	class Checksum {
 	private:
 		std::string m_key;
 	public:
 		// Con-/Destructor
-		H3D_API SHA256Sum();
-		H3D_API ~SHA256Sum();
+		H3D_API Checksum();
+		H3D_API ~Checksum();
 
 		// Create Checksum
 		std::string H3D_API create(std::string path);
-		std::string H3D_API create(const unsigned char* buffer,std::size_t buffer_size);
+		std::string H3D_API create(const unsigned char* buffer, uint64_t buffer_size);
 
 		// Key Operations
 		std::string H3D_API getKey();
-		bool  H3D_API operator==(const SHA256Sum& sum);
+		bool        H3D_API operator==(const Checksum& sum);
 	};
 }
 /////////////////////////////////////////////////////////////////

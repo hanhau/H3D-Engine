@@ -18,6 +18,9 @@
     <Filter Include="OpenGL Shader">
       <UniqueIdentifier>{597c47ea-1a31-4cc2-8d3b-32f67998a1d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model Loader">
+      <UniqueIdentifier>{cfd358ae-15a0-4bf9-a743-1e0458fb123c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -59,16 +62,7 @@
     <ClCompile Include="H3D\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\Network.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DMT_DAE.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Clock.cpp">
@@ -110,9 +104,6 @@
     <ClCompile Include="H3D\GLMultithreading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\3DModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -149,14 +140,26 @@
     <ClCompile Include="H3D\hashing\CRC32.cpp">
       <Filter>Hashing</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\hashing\SHA256.cpp">
-      <Filter>Hashing</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\Shader.cpp">
       <Filter>OpenGL Shader</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Program.cpp">
       <Filter>OpenGL Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\3DModel.cpp">
+      <Filter>Model Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\3DModelType\3DMT_DAE.cpp">
+      <Filter>Model Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp">
+      <Filter>Model Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp">
+      <Filter>Model Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\hashing\UniChecksum.cpp">
+      <Filter>Hashing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -202,19 +205,7 @@
     <ClInclude Include="H3D\ResourceManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\3DModel.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\Network.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_DAE.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_OBJ.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Clock.hpp">
@@ -286,14 +277,26 @@
     <ClInclude Include="H3D\hashing\CRC32.hpp">
       <Filter>Hashing</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\hashing\SHA256.hpp">
-      <Filter>Hashing</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\Shader.hpp">
       <Filter>OpenGL Shader</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Program.hpp">
       <Filter>OpenGL Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\3DModel.hpp">
+      <Filter>Model Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\3DModelType\3DMT_DAE.hpp">
+      <Filter>Model Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp">
+      <Filter>Model Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\3DModelType\3DMT_OBJ.hpp">
+      <Filter>Model Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\hashing\UniChecksum.hpp">
+      <Filter>Hashing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

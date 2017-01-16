@@ -20,19 +20,22 @@ extern bool loadWAV(char path[],
 	h3d::Log.info("Loading %s now ...",path);
 
 	// Temporary buffers
-	char *fileBuffer;
+	std::vector<char> fileBuffer;
 
 	// Loading whole file into a temporary buffer
 	std::ifstream file_stream(path,std::ios::binary|std::ios::in|std::ios::ate);
 	unsigned fileSize = file_stream.tellg();
 	file_stream.seekg(0, file_stream.beg);
-	fileBuffer = new char[fileSize];
-	file_stream.read((char*)fileBuffer,fileSize);
+	file_stream.read(fileBuffer.data(), fileSize);
 	file_stream.close();
 
 	/////////////////////////////////////////////////////////////
 	// Actual file loading
+	h3d::FileType::WAV::Header header;
+	h3d::FileType::WAV::Format format;
+	h3d::FileType::WAV::Data   data;
 	
+	header = std::move(fileBuffer.begin(), fileBuffer.begin() + sizeof(header), header);
 
 	/////////////////////////////////////////////////////////////
 	// Return
@@ -45,7 +48,8 @@ extern bool loadWAV(char path[],
 /////////////////////////////////////////////////////////////////
 #define CHUNK_SIZE 4096
 extern bool loadOGG(char path[],
-					ALuint& buffer, ALsizei& size, ALsizei& frequency,
+					ALuint& buffer, ALsizei& size, 
+					ALsizei& frequency,
 					ALenum& format)
 {
 	// Temporary variables

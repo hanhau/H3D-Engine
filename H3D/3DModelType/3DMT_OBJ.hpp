@@ -63,11 +63,16 @@ namespace h3d {
 			std::vector<Mesh> m_meshes;
 
 		public:
+			// Con-/Destructor
 			H3D_API OBJ();
 			H3D_API ~OBJ();
 
+			// Model Methods
 			bool H3D_API loadFromFile(char Path[]);
 			void H3D_API render();
+
+			// universal Logging
+			void H3D_API logModelData();
 		};
 	}
 }

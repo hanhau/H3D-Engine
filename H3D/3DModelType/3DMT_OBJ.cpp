@@ -50,12 +50,8 @@ void h3d::ModelType::OBJ::Mesh::correctIndices()
 /////////////////////////////////////////////////////////////////
 void h3d::ModelType::OBJ::Mesh::prepareRendering()
 {
-	std::cout << "before correct: " << m_indicesVertices.size() << std::endl;
-
 	// Correct the Indices
 	correctIndices();
-
-	std::cout << "after correct: " << m_indicesVertices.size() << std::endl;
 
 	// Setup Vertices in the Vec
 	m_verticesVec.clear();
@@ -77,8 +73,6 @@ void h3d::ModelType::OBJ::Mesh::prepareRendering()
 		
 		m_verticesVec.push_back(vert);
 	}
-
-	std::cout << "after vert setup: " << m_indicesVertices.size() << std::endl;
 
 	// Generate required Buffers
 	glGenBuffers(1, &m_element_buffer);
@@ -122,9 +116,6 @@ void h3d::ModelType::OBJ::Mesh::render()
 
 	glDrawElements(GL_TRIANGLES, m_indicesVertices.size(), GL_UNSIGNED_INT, 0);
 
-	std::cout << "Vertex  Count   : " << m_verticesVec.size() << std::endl;
-	std::cout << "Indices Vertices: " << m_indicesVertices.size() << std::endl;
-
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
@@ -132,10 +123,14 @@ void h3d::ModelType::OBJ::Mesh::render()
 /////////////////////////////////////////////////////////////////
 bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 {
+	Log.info("Loading %s now ...", Path);
+
+	// Opening fstream
 	std::fstream file_stream;
 	file_stream.open(Path, std::ios::in);
 	if (!file_stream.good()) return false;
 
+	// Temporary variables
 	std::string			param;
 	int					temp_i;
 	GLfloat				temp_f;
@@ -146,14 +141,16 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 	Mesh				*temp_mesh = nullptr;
 	int face_type = 0;
 
+	// Catch lines
 	while(!file_stream.eof())
 	{
 		file_stream >> param;
+		// comments
 		if (param == "#")
 			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		// meshes
 		else if (param == "g")
 		{	
-			std::cout << "g" << std::endl;
 			if (temp_mesh == nullptr)
 				temp_mesh = new Mesh;
 			if (temp_mesh != nullptr)
@@ -163,38 +160,39 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			file_stream >> temp_mesh->m_meshname;
 			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
+		// materials
 		else if (param == "usemtl")
 		{
-			std::cout << "usemtl" << std::endl;
 			file_stream >> temp_mesh->m_textureID;
 			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
+		// vertices
 		else if (param == "v")
 		{
-			std::cout << "v" << std::endl;
 			file_stream >> temp_vec3f.x;
 			file_stream >> temp_vec3f.y;
 			file_stream >> temp_vec3f.z;
 			temp_mesh->m_vertices.push_back(temp_vec3f);
 			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
+		// normals
 		else if (param == "vn")
 		{
-			std::cout << "vn" << std::endl;
 			file_stream >> temp_vec3f.x;
 			file_stream >> temp_vec3f.y;
 			file_stream >> temp_vec3f.z;
 			temp_mesh->m_normals.push_back(temp_vec3f);
 			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
+		// UV coords
 		else if (param == "vt")
 		{
-			std::cout << "vt" << std::endl;
 			file_stream >> temp_f; temp_vec2f.x = temp_f;
 			file_stream >> temp_f; temp_vec2f.y = temp_f;
 			temp_mesh->m_texCoords.push_back(temp_vec2f);
 			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
+		// faces (currently only triangles)
 		else if (param == "f")
 		{
 			for (int i = 0;i < 3;i++)
@@ -260,6 +258,8 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 	for (auto &iter : m_meshes)
 		iter.prepareRendering();
 
+	// return successfully
+	Log.info("Sucessfully loaded %s !",Path);
 	return true;
 }
 /////////////////////////////////////////////////////////////////
@@ -268,6 +268,25 @@ void h3d::ModelType::OBJ::render()
 	for (auto &iter : m_meshes)
 	{
 		iter.render();
+	}
+}
+/////////////////////////////////////////////////////////////////
+void h3d::ModelType::OBJ::logModelData()
+{
+	Log.debug("mesh count: %d \n",m_meshes.size());
+	
+	// Iterate through every mesh and list Intel
+	for(auto &iter : m_meshes)
+	{
+		Log.debug("Meshname  : %s", iter.m_meshname);
+		Log.debug("TextureID : %s",iter.m_textureID);
+		Log.debug("Vertexcount : %d",iter.m_vertices.size());
+		Log.debug("Normalcount : %d",iter.m_normals.size());
+		Log.debug("texCoords   : %d",iter.m_texCoords.size());
+		Log.debug("IndicesVertices  : %d",iter.m_indicesVertices.size());
+		Log.debug("IndicesNormals   : %d",iter.m_indicesNormals.size());
+		Log.debug("IndicesTexCoords : %d", iter.m_indicesTexCoords.size());
+		Log.debug("Size in bytes (full struct): %d",sizeof(iter));
 	}
 }
 /////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@ namespace h3d {
 		FILE*      m_logFile;
 		int        m_currentLogType;
 
-		std::string getCurrentTime();
+		std::string H3D_API getCurrentTime();
 	public:
 		__Logger();
 		~__Logger();
