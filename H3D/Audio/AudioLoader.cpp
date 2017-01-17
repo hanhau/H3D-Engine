@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include "..\Utilities.hpp"
+#include "..\FileSystem.hpp"
 /////////////////////////////////////////////////////////////////
 // .wav Loading
 /////////////////////////////////////////////////////////////////
@@ -23,19 +24,21 @@ extern bool loadWAV(char path[],
 	std::vector<char> fileBuffer;
 
 	// Loading whole file into a temporary buffer
-	std::ifstream file_stream(path,std::ios::binary|std::ios::in|std::ios::ate);
-	unsigned fileSize = file_stream.tellg();
-	file_stream.seekg(0, file_stream.beg);
-	file_stream.read(fileBuffer.data(), fileSize);
-	file_stream.close();
+	h3d::FileHandle fileHandle;
+	fileHandle.open(path, h3d::FileHandle::Params.LoadIntoMemory |
+	                      h3d::FileHandle::Params.ExclusiveAccess);
 
 	/////////////////////////////////////////////////////////////
 	// Actual file loading
-	h3d::FileType::WAV::Header header;
-	h3d::FileType::WAV::Format format;
-	h3d::FileType::WAV::Data   data;
+	h3d::FileType::WAV::Header wavHeader;
+	h3d::FileType::WAV::Format wavFormat;
+	h3d::FileType::WAV::Data   wavData;
 	
-	header = std::move(fileBuffer.begin(), fileBuffer.begin() + sizeof(header), header);
+	h3d::setObjectFromFileHandle(wavHeader, fileHandle);
+	h3d::setObjectFromFileHandle(wavFormat, fileHandle);
+	h3d::setObjectFromFileHandle(wavData, fileHandle);
+	
+	fileHandle.close();
 
 	/////////////////////////////////////////////////////////////
 	// Return

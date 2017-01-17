@@ -5,11 +5,13 @@
 #define H3D_API _declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
+#include <vector>
 #include <string>
 #include <fstream>
 #include <cstdint>
 #include <thread>
 #include "hashing\UniChecksum.hpp"
+#include <windows.h>
 /////////////////////////////////////////////////////////////////
 //	FileSystem
 /////////////////////////////////////////////////////////////////
@@ -42,8 +44,24 @@ namespace h3d {
 		void H3D_API close();
 
 		// Read bytes
-		char* H3D_API read(unsigned long bytes);
+		H3D_API char* read(unsigned long bytes);
 	};
+	/////////////////////////////////////////////////////////////
+	// Template function to set struct from buffer
+	/////////////////////////////////////////////////////////////
+	class FileHandle;
+	template<typename T> 
+	unsigned long setObjectFromFileHandle(T& object,h3d::FileHandle& fh) 
+	{
+		return fh.read((char*)&object, sizeof(object));
+	}
+	template<typename T>
+	unsigned long setObjectFromMemory(T& object, const void* buffer)
+	{
+		unsigned long objectSize = sizeof(object);
+		memcpy((char*)&object,buffer,objectSize);
+		return objectSize;
+	}
 	/////////////////////////////////////////////////////////////
 	//	Class for File handling and loading
 	/////////////////////////////////////////////////////////////
@@ -52,7 +70,7 @@ namespace h3d {
 		// File relevant stuff
 		std::string m_path;
 		std::fstream m_fileStream;
-		char *m_buffer;
+		std::vector<unsigned char> m_buffer;
 
 		// File Techniques
 		h3d::Checksum        m_checksum;
@@ -76,10 +94,10 @@ namespace h3d {
 	public:
 		// setable Parameters for opening
 		struct s{
-			const int LoadIntoMemory  = 0b0001;
-			const int ExclusiveAccess = 0b0010;
+			static const int LoadIntoMemory;
+			static const int ExclusiveAccess;
 		};
-		static s H3D_API Parameters;
+		static s H3D_API Params;
 
 		// Con-/Destructor
 		H3D_API FileHandle();
@@ -89,6 +107,10 @@ namespace h3d {
 		// Create/Destroy Handle to File
 		bool H3D_API open(std::string path,int param=0);
 		bool H3D_API close();
+
+		// Checksum operations
+		h3d::Checksum H3D_API calcChecksum();
+		h3d::Checksum H3D_API getChecksum();
 
 		// File Operations
 		unsigned long H3D_API read (char* dst, size_t size);

@@ -6,7 +6,7 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include "3DModelType\3DMT_MD5.hpp"
-#include "3DModelType\3DMT_DAE.hpp"
+#include "3DModelType\3DMT_X.hpp"
 #include "3DModelType\3DMT_OBJ.hpp"
 
 #include <string>
@@ -25,7 +25,7 @@ namespace h3d {
 		union {
 			ModelType::OBJ *obj;
 			ModelType::MD5 *md5;
-			ModelType::DAE *dae;
+			ModelType::X   *x;
 		}m_rawModels;
 		unsigned int m_modelTypeEnum;
 	public:

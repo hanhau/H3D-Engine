@@ -149,9 +149,6 @@
     <ClCompile Include="H3D\3DModel.cpp">
       <Filter>Model Loader</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DMT_DAE.cpp">
-      <Filter>Model Loader</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp">
       <Filter>Model Loader</Filter>
     </ClCompile>
@@ -160,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="H3D\hashing\UniChecksum.cpp">
       <Filter>Hashing</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\3DModelType\3DMT_X.cpp">
+      <Filter>Model Loader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -286,9 +286,6 @@
     <ClInclude Include="H3D\3DModel.hpp">
       <Filter>Model Loader</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_DAE.hpp">
-      <Filter>Model Loader</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp">
       <Filter>Model Loader</Filter>
     </ClInclude>
@@ -297,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="H3D\hashing\UniChecksum.hpp">
       <Filter>Hashing</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\3DModelType\3DMT_X.hpp">
+      <Filter>Model Loader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
