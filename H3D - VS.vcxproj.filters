@@ -21,6 +21,9 @@
     <Filter Include="Model Loader">
       <UniqueIdentifier>{cfd358ae-15a0-4bf9-a743-1e0458fb123c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{93798bb1-204e-4e86-9b03-27915ddf659b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,9 +63,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Network.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Clock.cpp">
@@ -161,6 +161,12 @@
     <ClCompile Include="H3D\3DModelType\3DMT_X.cpp">
       <Filter>Model Loader</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\Network.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\network\Socket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -203,9 +209,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\ResourceManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Network.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Clock.hpp">
@@ -297,6 +300,15 @@
     </ClInclude>
     <ClInclude Include="H3D\3DModelType\3DMT_X.hpp">
       <Filter>Model Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Network.hpp">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\network\Socket.hpp">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\network\Package.hpp">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

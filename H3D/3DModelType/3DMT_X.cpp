@@ -29,6 +29,7 @@ bool h3d::ModelType::X::loadFromFile(char Path[])
 
 	// Temp values
 	std::string param;
+	std::string temp_s;
 
 	// Actual file loading
 	while (!file_stream.eof())
@@ -50,7 +51,9 @@ bool h3d::ModelType::X::loadFromFile(char Path[])
 			// Add new Mesh
 			m_meshes.push_back(Mesh());
 
-			
+			// Name of Mesh
+			file_stream >> temp_s;
+			m_meshes.back().m_name = temp_s;
 		}
 	}
 

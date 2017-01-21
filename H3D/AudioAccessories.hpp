@@ -8,6 +8,7 @@
 #include "Audio.hpp"
 #include <fstream>
 #include <Windows.h>
+#include "FileDataStructures.hpp"
 /////////////////////////////////////////////////////////////////
 // AudioAccessories
 /////////////////////////////////////////////////////////////////
@@ -19,14 +20,26 @@ namespace h3d{
 			WAVEFORMATEX   m_waveFormatEx;
 			char*          m_buffer;
 		public:
-		   // Constructor/Destructor
+			// Con-/Destructor
 			H3D_API WaveFile();
 			H3D_API WaveFile(char Path[]);
 			H3D_API ~WaveFile();
 
 			// File operations
 			bool H3D_API loadFromFile(char Path[]);
-			bool H3D_API saveToFile(char Path[]);
+		};
+		class OggFile
+		{
+		private:
+			
+		public:
+			// Con-/Destructor
+			H3D_API OggFile();
+			H3D_API OggFile(char Path[]);
+			H3D_API ~OggFile();
+
+			// File operations
+			bool H3D_API loadFromFile(char Path[]);
 		};
 }}
 /////////////////////////////////////////////////////////////////
