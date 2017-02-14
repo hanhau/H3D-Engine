@@ -24,6 +24,9 @@
     <Filter Include="Network">
       <UniqueIdentifier>{93798bb1-204e-4e86-9b03-27915ddf659b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LuaScript">
+      <UniqueIdentifier>{6e14e085-d900-4738-aacc-03bc9ee5bfdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -167,6 +170,9 @@
     <ClCompile Include="H3D\network\Socket.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\LuaScript\LuaScript.cpp">
+      <Filter>LuaScript</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -309,6 +315,9 @@
     </ClInclude>
     <ClInclude Include="H3D\network\Package.hpp">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\LuaScript\LuaScript.hpp">
+      <Filter>LuaScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

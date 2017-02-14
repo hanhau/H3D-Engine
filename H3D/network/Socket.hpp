@@ -25,8 +25,8 @@ namespace h3d {
 			SOCKET    m_thisSocket;
 			addrinfo *m_thisAddrInfo;
 		public:
-			Socket();
-			~Socket();
+			H3D_API Socket();
+			H3D_API ~Socket();
 
 			bool H3D_API create(const char* node,
 								const char *service,

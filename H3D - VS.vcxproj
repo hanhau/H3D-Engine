@@ -71,8 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);$(DXSDK_DIR)Include;C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis</IncludePath>
-    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug</LibraryPath>
+    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);$(DXSDK_DIR)Include;C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include</IncludePath>
+    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -83,8 +83,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);$(DXSDK_DIR)Include;C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis</IncludePath>
-    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug</LibraryPath>
+    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);$(DXSDK_DIR)Include;C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include</IncludePath>
+    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -109,7 +109,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glew32.lib;glu32.lib;freetype27MT.lib;OpenAL32.lib;libvorbis_static.lib;libvorbisfile_static.lib;libogg_static.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glew32.lib;glu32.lib;freetype27MT.lib;OpenAL32.lib;libvorbis_static.lib;libvorbisfile_static.lib;libogg_static.lib;lua 5.3.4.lib;Winmm.lib</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -154,7 +154,7 @@
       <GenerateDebugInformation>No</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glew32.lib;glu32.lib;freetype27MT.lib;OpenAL32.lib;libvorbis_static.lib;libvorbisfile_static.lib;libogg_static.lib;ws2_32.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glew32.lib;glu32.lib;freetype27MT.lib;OpenAL32.lib;libvorbis_static.lib;libvorbisfile_static.lib;libogg_static.lib;lua 5.3.4.lib;ws2_32.lib;Winmm.lib</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalOptions>/DLL %(AdditionalOptions)</AdditionalOptions>
@@ -221,6 +221,7 @@
     <ClCompile Include="H3D\GUI\Text.cpp" />
     <ClCompile Include="H3D\hashing\CRC32.cpp" />
     <ClCompile Include="H3D\hashing\UniChecksum.cpp" />
+    <ClCompile Include="H3D\LuaScript\LuaScript.cpp" />
     <ClCompile Include="H3D\network\Socket.cpp" />
     <ClCompile Include="H3D\Quaternion.cpp" />
     <ClCompile Include="H3D\Utilities.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="H3D\GUI\Text.hpp" />
     <ClInclude Include="H3D\hashing\CRC32.hpp" />
     <ClInclude Include="H3D\hashing\UniChecksum.hpp" />
+    <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
     <ClInclude Include="H3D\network\Package.hpp" />
     <ClInclude Include="H3D\network\Socket.hpp" />
     <ClInclude Include="H3D\Quaternion.hpp" />

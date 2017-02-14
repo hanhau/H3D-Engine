@@ -19,7 +19,7 @@ namespace h3d {
 			uint64_t          buffersize;
 		public:
 			template<typename T>
-				void H3D_API operator=(T data){
+				void operator=(T data){
 					buffersize = sizeof(data);
 					buffer = new unsigned char[buffersize];
 					memcpy(buffer, data, buffersize);
@@ -28,12 +28,12 @@ namespace h3d {
 			H3D_API unsigned char* data() const { return buffer; }
 
 			template<typename T>
-			T H3D_API size() const {
+			T size() const {
 				return static_cast<T>(buffersize);
 				}
 
 			template<typename checksumtype>
-			checksumtype H3D_API checksum(){
+			checksumtype checksum(){
 				checksumtype checksum;
 				checksum.create(buffer,buffersize);
 				return checksum;

@@ -9,6 +9,8 @@
 #include <string>
 #include <cstdio>
 #include <mutex>
+// Lua
+#include <lua.hpp>
 /////////////////////////////////////////////////////////////////
 // global Logger
 /////////////////////////////////////////////////////////////////
@@ -52,6 +54,14 @@ namespace h3d {
 		static __Logger& GetInstance();
 	};
 	#define Log __Logger::GetInstance()
+}
+/////////////////////////////////////////////////////////////////
+// Lua Log functions
+extern "C" {
+	int H3D_API luaLog_error(lua_State *lua);
+	int H3D_API luaLog_debug(lua_State *lua);
+	int H3D_API luaLog_info(lua_State *lua);
+	int H3D_API luaLog_alarm(lua_State *lua);
 }
 /////////////////////////////////////////////////////////////////
 // Log Functions
