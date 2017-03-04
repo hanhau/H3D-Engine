@@ -71,7 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);$(DXSDK_DIR)Include;C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include</IncludePath>
+    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include</IncludePath>
     <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
@@ -83,7 +83,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);$(DXSDK_DIR)Include;C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include</IncludePath>
+    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include</IncludePath>
     <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
@@ -298,12 +298,6 @@
     <ClInclude Include="H3D\Vertex.hpp" />
     <ClInclude Include="H3D\Window.hpp" />
     <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="H3D - VS.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

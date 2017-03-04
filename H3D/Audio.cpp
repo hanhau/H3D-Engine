@@ -8,7 +8,6 @@
 /////////////////////////////////////////////////////////////////
 // Hidden global data
 static bool gInitialized = false;
-
 static ALCdevice* gDevice;
 static ALCcontext* gContext;
 static ALboolean gEAX20Support;

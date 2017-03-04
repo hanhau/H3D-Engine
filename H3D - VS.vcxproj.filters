@@ -320,10 +320,4 @@
       <Filter>LuaScript</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="H3D - VS.rc" />
-  </ItemGroup>
 </Project>
