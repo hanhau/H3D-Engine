@@ -8,12 +8,40 @@
 // Implementation of Socket class
 /////////////////////////////////////////////////////////////////
 h3d::Network::Socket::Socket() {}
+h3d::Network::Socket::Socket(int ai_family,
+							 int ai_socktype,
+							 int ai_protocol,
+							 const char* port, const char* address) {
+	this->create(ai_family,
+				 ai_socktype,
+				 ai_protocol,
+				 port,address);
+}
 h3d::Network::Socket::~Socket() {}
 /////////////////////////////////////////////////////////////////
-bool h3d::Network::Socket::create(const char *node,
-								  const char *service,
-								  const char* socket_type)
+bool h3d::Network::Socket::create(int ai_family,
+								  int ai_socktype,
+								  int ai_protocol,
+								  const char* port, 
+								  const char* address)
 {
+	ZeroMemory(&hints, sizeof(hints));
+	hints.ai_family = AF_UNSPEC;
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_protocol = IPPROTO_TCP;
+
+	// Resolve the server address and port
+	int iResult = getaddrinfo(address, port, &hints, &result);
+	if (iResult != 0) {
+		Log.error("Socket: getaddrinfo(..) failed in create(...);");
+		return false;
+	}
+	
+	m_thisSocket = INVALID_SOCKET;
+	ptr = result;
+
+	m_thisSocket = socket(ptr->ai_family, ptr->ai_socktype,
+						  ptr->ai_protocol);
 	
 	return true;
 }
@@ -32,7 +60,17 @@ bool h3d::Network::Socket::bind()
 /////////////////////////////////////////////////////////////////
 bool h3d::Network::Socket::connect()
 {
-	return 0;
+	// Connect to server.
+	int iResult = ::connect(m_thisSocket,ptr->ai_addr, (int)ptr->ai_addrlen);
+	if (iResult == SOCKET_ERROR) {
+		Log.error("Unable to connect socket to destination");
+		closesocket(m_thisSocket);
+		m_thisSocket = INVALID_SOCKET;
+		return false;
+	}
+	
+	freeaddrinfo(result);
+	return true;
 }
 /////////////////////////////////////////////////////////////////
 bool h3d::Network::Socket::listen()
@@ -74,6 +112,7 @@ bool h3d::Network::Socket::send(const h3d::Network::Package& pkg)
 /////////////////////////////////////////////////////////////////
 bool h3d::Network::Socket::recv(const h3d::Network::Package& pkg)
 {
+
 	return 0;
 }
 /////////////////////////////////////////////////////////////////

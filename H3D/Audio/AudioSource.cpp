@@ -13,20 +13,35 @@ h3d::Audio::AudioSource::~AudioSource()
 /////////////////////////////////////////////////////////////////
 bool h3d::Audio::AudioSource::queueBuffer(const h3d::Audio::AudioBuffer& ab_static)
 {
-	
+	alSourceQueueBuffers(m_sourceID, 1, &ab_static.m_bufferID);
+	return true;
 }
 bool h3d::Audio::AudioSource::queueBuffer(const h3d::Audio::AudioBufferStream& ab_stream)
 {
-
+	return false;
 }
 /////////////////////////////////////////////////////////////////
 bool h3d::Audio::AudioSource::unqueueBuffer(const h3d::Audio::AudioBuffer& ab_static)
 {
-
+	return false;
 }
 bool h3d::Audio::AudioSource::unqueueBuffer(const h3d::Audio::AudioBufferStream& ab_stream)
 {
-
+	return false;
+}
+/////////////////////////////////////////////////////////////////
+// Actions
+void h3d::Audio::AudioSource::play() {
+	alSourcePlay(m_sourceID);
+}
+void h3d::Audio::AudioSource::pause() {
+	alSourcePause(m_sourceID);
+}
+void h3d::Audio::AudioSource::stop() {
+	alSourceStop(m_sourceID);
+}
+void h3d::Audio::AudioSource::rewind() {
+	alSourceRewind(m_sourceID);
 }
 /////////////////////////////////////////////////////////////////
 void h3d::Audio::AudioSource::setPosition(h3d::Vec3<float> pos) {

@@ -61,8 +61,10 @@ namespace h3d{
 		// Audio Buffer Classes
 		/////////////////////////////////////////////////////////
 		// static Audio Object
+		class AudioSource;
 		class AudioBuffer
 		{
+			friend AudioSource;
 		private:
 			ALuint  m_bufferID;
 			ALsizei m_size;
@@ -109,26 +111,24 @@ namespace h3d{
 			H3D_API ~AudioSource();
 
 			// Add Buffers to queue
-			bool queueBuffer(const AudioBuffer& ab_static);
-			bool queueBuffer(const AudioBufferStream& ab_stream);
-			bool unqueueBuffer(const AudioBuffer& ab_static);
-			bool unqueueBuffer(const AudioBufferStream& ab_stream);
+			bool H3D_API queueBuffer(const AudioBuffer& ab_static);
+			bool H3D_API queueBuffer(const AudioBufferStream& ab_stream);
+			bool H3D_API unqueueBuffer(const AudioBuffer& ab_static);
+			bool H3D_API unqueueBuffer(const AudioBufferStream& ab_stream);
 
 			// Actions
-			void play();
-			void pause();
-			void stop();
-			void rewind();
+			void H3D_API play();
+			void H3D_API pause();
+			void H3D_API stop();
+			void H3D_API rewind();
 
 			// Set Properties
-			void setPosition(h3d::Vec3<float> pos);
-			void setVelocity(h3d::Vec3<float> vel);
-			void setDirection(h3d::Vec3<float> dir);
+			void H3D_API setPosition(h3d::Vec3<float> pos);
+			void H3D_API setVelocity(h3d::Vec3<float> vel);
+			void H3D_API setDirection(h3d::Vec3<float> dir);
 
-			void setPitch(float val);
-			void setGain(float val);
-			
-
+			void H3D_API setPitch(float val);
+			void H3D_API setGain(float val);
 		};
 		/////////////////////////////////////////////////////////
 	}

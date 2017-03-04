@@ -6,27 +6,41 @@
 #endif
 // Lua Headers
 #include <lua.hpp>
+#include <sol.hpp>
 // Cpp Headers
 #include <fstream>
 #include <string>
+#include <map>
 // additional Stuff
 #include "..\Utilities.hpp"
-using h3d::__Logger;
 /////////////////////////////////////////////////////////////////
 // LuaScript Class
 /////////////////////////////////////////////////////////////////
 namespace lua {
 	class Script final {
 	private:
-		lua_State   *m_luaState;
-		std::string  m_Path;
-
+		// Lua
+		sol::state       m_lua;
+		sol::load_result m_loadResult;
+		std::string      m_Path;
+		
+		// Managing "Namespaces" in Lua
+		std::map<const char*,sol::table>  m_tableMap;
+		
+		// Internal
 		void init();
 	public:
+		// Con-/Destructor
 		H3D_API Script();
 		H3D_API Script(char path[]);
 		H3D_API ~Script();
 
+		// Direct Access to sol2
+		H3D_API sol::table& getTable(const char* name);
+		H3D_API sol::state& getState();
+		using m = sol::state[];
+		// Script Operations
+		bool H3D_API loadFromMemory(char* mem);
 		bool H3D_API loadFromFile(char path[]);
 		bool H3D_API execute();
 	};

@@ -36,7 +36,7 @@ bool h3d::ModelType::X::loadFromFile(char Path[])
 	{
 		file_stream >> param;
 		if (param == "//" || param == "#") {
-			char* str;
+			char* str = nullptr;
 			file_stream.getline(str, 128);
 			m_comments += str;
 			m_comments += '\n';

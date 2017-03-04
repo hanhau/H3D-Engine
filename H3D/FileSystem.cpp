@@ -59,13 +59,13 @@ bool h3d::FileHandle::open(std::string path, int param)
 {
 	//  Parameter checking
 	DWORD dwShareMode;
-	if (param & Params.ExclusiveAccess == Params.ExclusiveAccess)
+	if ((param & Params.ExclusiveAccess) == Params.ExclusiveAccess)
 		dwShareMode = 0;
 	else
 		dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 
 	// Create Handle
-	m_fileHandle = CreateFile((LPWSTR)path.c_str(),
+	m_fileHandle = CreateFileA(path.c_str(),
 							  GENERIC_READ | GENERIC_WRITE,
 							  dwShareMode,
 							  NULL,
@@ -78,14 +78,14 @@ bool h3d::FileHandle::open(std::string path, int param)
 		Log.error("Unable to open %s",path.c_str());
 		return false;
 	}
-
+	
 	// Save Intel about opened File
 	m_fileSizeBytes = GetFileSize(m_fileHandle, NULL);
 	m_isOpen = true;
 	m_filePath = path;
 
 	// Load into Memory if desired
-	if (param & Params.LoadIntoMemory == Params.LoadIntoMemory)
+	if ((param & Params.LoadIntoMemory) == Params.LoadIntoMemory)
 	{
 		ReadFile(m_fileHandle, m_buffer.data(), m_fileSizeBytes, NULL, NULL);
 		m_inMemory = true;
@@ -96,7 +96,8 @@ bool h3d::FileHandle::open(std::string path, int param)
 }
 bool h3d::FileHandle::close()
 {
-	return CloseHandle(m_fileHandle);
+	if (CloseHandle(m_fileHandle)) return true;
+	else return false;
 }
 /////////////////////////////////////////////////////////////////
 // Checksum Operations
@@ -114,11 +115,19 @@ h3d::Checksum h3d::FileHandle::getChecksum()  {
 /////////////////////////////////////////////////////////////////
 unsigned long h3d::FileHandle::read(char* dst, size_t size)
 {
-	return 0;
+	unsigned long readbytes = 0;
+	ReadFile(m_fileHandle,
+			 dst,size,
+			 &readbytes,NULL);
+	return readbytes;
 }
 unsigned long h3d::FileHandle::write(char* src, size_t size)
 {
-	return 0;
+	unsigned long writtenbytes = 0;
+	WriteFile(m_fileHandle,
+			  src, size,
+			  &writtenbytes, NULL);
+	return writtenbytes;
 }
 /////////////////////////////////////////////////////////////////
 unsigned long h3d::FileHandle::getIterPos()

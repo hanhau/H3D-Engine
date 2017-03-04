@@ -42,7 +42,7 @@ bool h3d::tagInputManager::setupHardware(HWND win)
 	}
 
 	// Initialize those devices
-
+	return true;
 }
 /////////////////////////////////////////////////////////////////
 //	Updating RAW Mouse Data

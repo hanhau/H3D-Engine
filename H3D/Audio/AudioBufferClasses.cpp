@@ -1,4 +1,5 @@
 #include "..\Audio.hpp"
+#include <algorithm>
 /////////////////////////////////////////////////////////////////
 // Loader Prototypes
 bool loadWAV(char path[],
@@ -14,12 +15,10 @@ const int h3d::Audio::AudioBuffer::Type::WAV = 1;
 const int h3d::Audio::AudioBuffer::Type::OGG = 2;
 int h3d::Audio::AudioBuffer::getType() { return m_fileType; }
 /////////////////////////////////////////////////////////////////
-h3d::Audio::AudioBuffer::AudioBuffer()
-{
+h3d::Audio::AudioBuffer::AudioBuffer(){
 	alGenBuffers(1, &m_bufferID);
 }
-h3d::Audio::AudioBuffer::~AudioBuffer() 
-{
+h3d::Audio::AudioBuffer::~AudioBuffer() {
 	alDeleteBuffers(1, &m_bufferID);
 }
 /////////////////////////////////////////////////////////////////
@@ -27,21 +26,19 @@ bool h3d::Audio::AudioBuffer::loadFromFile(char path[])
 {
 	// Check if file extension is supported
 	std::string fileExtension(path);
-	fileExtension.erase(fileExtension.begin(), std::find(fileExtension.begin(),fileExtension.end(),'.'));
-	if (fileExtension != ".wav" && fileExtension != ".ogg") return false;
-	
-	// Open filestream
-	std::ifstream file_stream(path,std::ios::in|std::ios::binary);
-	if (!file_stream.is_open()) return false;
+
+	fileExtension.erase(fileExtension.begin(),
+						std::find(fileExtension.begin(),fileExtension.end(),'.')+1);
+	if (fileExtension != "wav" && fileExtension != "ogg") return false;
 	
 	// Individual loading functions
 	bool loadState;
-	if (fileExtension == ".wav")
+	if (fileExtension == "wav")
 	{
 		m_fileType = Type::WAV;
 		loadState = loadWAV(path, m_bufferID, m_size, m_frequency, m_format);
 	}
-	else if (fileExtension == ".ogg")
+	else if (fileExtension == "ogg")
 	{
 		m_fileType = Type::OGG;
 		loadState = loadOGG(path, m_bufferID, m_size, m_frequency, m_format);

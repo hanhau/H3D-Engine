@@ -22,15 +22,24 @@ namespace h3d {
 		{
 		private:
 			// Winsock stuff
+			addrinfo *result = NULL,
+					 *ptr = NULL,
+					 hints;
+
 			SOCKET    m_thisSocket;
 			addrinfo *m_thisAddrInfo;
 		public:
 			H3D_API Socket();
+			H3D_API Socket(int ai_family,
+						   int ai_socktype,
+						   int ai_protocol,
+						   const char* port, const char* address);
 			H3D_API ~Socket();
 
-			bool H3D_API create(const char* node,
-								const char *service,
-								const char* socket_type);
+			bool H3D_API create(int ai_family,
+								int ai_socktype,
+								int ai_protocol,
+								const char* port,const char* address);
 			bool H3D_API bind();
 
 			bool H3D_API connect();

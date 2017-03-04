@@ -53,8 +53,8 @@ namespace h3d {
 		// Get global Instance
 		static __Logger& GetInstance();
 	};
-	#define Log __Logger::GetInstance()
 }
+#define Log h3d::__Logger::GetInstance()
 /////////////////////////////////////////////////////////////////
 // Lua Log functions
 extern "C" {

@@ -18,15 +18,17 @@ extern bool loadWAV(char path[],
 					ALenum& format)
 {
 	// Info Log
-	h3d::Log.info("Loading %s now ...",path);
+	Log.info("Loading %s now ...",path);
 
 	// Temporary buffers
 	std::vector<char> fileBuffer;
 
 	// Loading whole file into a temporary buffer
 	h3d::FileHandle fileHandle;
-	fileHandle.open(path, h3d::FileHandle::Params.LoadIntoMemory |
-	                      h3d::FileHandle::Params.ExclusiveAccess);
+	if (!fileHandle.open(path, 0)) {
+		Log.error("Unable to open h3d::FileHandle for %s", path);
+		return false;
+	}
 
 	/////////////////////////////////////////////////////////////
 	// Actual file loading
@@ -38,12 +40,53 @@ extern bool loadWAV(char path[],
 	h3d::setObjectFromFileHandle(wavFormat, fileHandle);
 	h3d::setObjectFromFileHandle(wavData, fileHandle);
 	
-	fileHandle.close();
+	// Validate file contents
+		if (0 != memcmp(wavHeader.chunkID,new char[4]{'R','I','F','F'},4) ||
+			0 != memcmp(wavHeader.riffType, new char[4]{ 'W','A','V','E' }, 4) ||
+			0 != memcmp(wavFormat.subChunkID, new char[4]{ 'f','m','t',' ' }, 4))
+	{
+		Log.error("%s is probably a invalid format",path);
+	}
+	if (wavFormat.audioFormat != 1) { // Check for PCM
+		Log.error("%s is not PCM audio data !",path);
+		return false;
+	}
 
-	/////////////////////////////////////////////////////////////
+	// Load PCM from file
+	auto *pcmdata = new char[wavData.subChunk2Size];
+	fileHandle.read(pcmdata, wavData.subChunk2Size);
+	
+	// Set OpenAL format
+	if (wavFormat.numChannels == 1)
+	{
+		if (wavFormat.bitsPerSample == 8)
+			format = AL_FORMAT_MONO8;
+		else if (wavFormat.bitsPerSample == 16)
+			format = AL_FORMAT_MONO16;
+	}
+	else if (wavFormat.numChannels == 2)
+	{
+		if (wavFormat.bitsPerSample == 8)
+			format = AL_FORMAT_STEREO8;
+		else if (wavFormat.bitsPerSample == 16)
+			format = AL_FORMAT_STEREO16;
+	}
+	else{
+		Log.error("%s has a unsupported amount of channels (%d)", path, wavFormat.numChannels);
+		return  false;
+	}
+
+	// Set OpenAL Buffer accordingly
+	alBufferData(buffer, format, pcmdata, size = wavData.subChunk2Size,
+				 frequency = wavFormat.sampleRate);
+
+	// cleanup
+	fileHandle.close();
+	delete[] pcmdata;
+
 	// Return
 	if (h3d::DebugMode)
-		h3d::Log.info("Finished loading %s.",path);
+		Log.info("Finished loading %s.",path);
 	return true;
 }
 /////////////////////////////////////////////////////////////////

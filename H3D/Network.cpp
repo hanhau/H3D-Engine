@@ -24,6 +24,8 @@ bool h3d::Network::Startup(char version[2])
 }
 bool h3d::Network::Shutdown()
 {
+	if (h3d::DebugMode)
+		Log.info("Shutdown Network (WSA Cleanup)");
 	return (WSACleanup()) ? true : false;	
 }
 /////////////////////////////////////////////////////////////////

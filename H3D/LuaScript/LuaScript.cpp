@@ -3,15 +3,15 @@
 // Implementation of LuaScript Class
 /////////////////////////////////////////////////////////////////
 void lua::Script::init() {
-	m_luaState = luaL_newstate();
-    luaL_openlibs(m_luaState);
-
+	m_lua.open_libraries();
+	
 	// Load Lua Log functions
-	lua_register(m_luaState, "log_error", luaLog_error);
-	lua_register(m_luaState, "log_debug", luaLog_debug);
-	lua_register(m_luaState, "log_info", luaLog_info);
-	lua_register(m_luaState, "log_alarm", luaLog_alarm);
+	m_lua.set_function("log_error", luaLog_error);
+	m_lua.set_function("log_debug", luaLog_debug);
+	m_lua.set_function("log_info" , luaLog_info);
+	m_lua.set_function("log_alarm", luaLog_alarm);
 }
+/////////////////////////////////////////////////////////////////
 lua::Script::Script(){
 	init();
 }
@@ -20,26 +20,33 @@ lua::Script::Script(char path[]){
 	loadFromFile(path);
 }
 lua::Script::~Script(){
-	lua_close(m_luaState);
+	m_lua.~state();
 }
 /////////////////////////////////////////////////////////////////
+sol::table& lua::Script::getTable(const char* name){
+	return m_tableMap.at(name);	
+}
+sol::state& lua::Script::getState(){
+	return m_lua;
+}
+/////////////////////////////////////////////////////////////////
+bool lua::Script::loadFromMemory(char *mem)
+{
+	m_loadResult = m_lua.load_buffer(mem, sizeof(mem), "script");
+	if (m_loadResult.valid()) return true;
+	else return false;
+}
 bool lua::Script::loadFromFile(char path[]) 
 {
 	m_Path = path;
-	if (luaL_loadfile(m_luaState, path)) {
-		Log.error("Unable to open Scriptfile located %s",path);
-		return false;
-	}
-	// Return successfully
-	return true;
+	m_loadResult = m_lua.load_file(path);
+	if (m_loadResult.valid()) return true;
+	else return false;
 }
 /////////////////////////////////////////////////////////////////
 bool lua::Script::execute()
 {
-	if (lua_pcall(m_luaState, 0, LUA_MULTRET, 0)) {
-		Log.error("Unable to execute Lua Script %s",m_Path.c_str());
-		return false;
-	}
+	auto err = m_loadResult();
 	return true;
 }
 /////////////////////////////////////////////////////////////////
