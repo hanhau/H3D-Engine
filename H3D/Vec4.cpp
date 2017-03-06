@@ -1,4 +1,5 @@
 #include "Vector/Vector_Declaration.hpp"
+#include <utility>
 /////////////////////////////////////////////////////////////////
 //	Vec4 Implementations
 /////////////////////////////////////////////////////////////////
@@ -23,8 +24,7 @@ h3d::Vec4::~Vec4() {}
 /////////////////////////////////////////////////////////////////
 // Operators
 h3d::Vec4& h3d::Vec4::operator= (Vec4 &obj) {
-	this->m_vec = obj.m_vec;
-	return *this;
+	return *this = std::move(obj);
 }
 h3d::Vec4& h3d::Vec4::operator= (float val) {
 	_mm_set_ps(val, val, val, val);
@@ -74,7 +74,7 @@ h3d::Vec4& h3d::Vec4::operator/=(Vec4 &obj) {
 // Mathematical Operations
 h3d::Vec4 h3d::Vec4::asAppliedWith(h3d::mat4x4 &mat)
 {
-
+	
 	return Vec4();
 }
 /////////////////////////////////////////////////////////////////

@@ -55,8 +55,11 @@ h3d::FileHandle::~FileHandle()
 
 }
 /////////////////////////////////////////////////////////////////
+#define H3D_DEBUG
 bool h3d::FileHandle::open(std::string path, int param)
 {
+	h3dverify(path.size() == 0);
+
 	//  Parameter checking
 	DWORD dwShareMode;
 	if ((param & Params.ExclusiveAccess) == Params.ExclusiveAccess)

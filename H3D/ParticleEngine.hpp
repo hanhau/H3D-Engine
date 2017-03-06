@@ -5,11 +5,11 @@
 #define H3D_API _declspec(dllimport)
 #endif
 
-#include <..\H3D\Vector.hpp>
-#include <..\H3D\Color.hpp>
-#include <..\H3D\Texture.hpp>
-#include <..\H3D\Shader.hpp>
-#include <..\H3D\Program.hpp>
+#include "Vector.hpp"
+#include "Color.hpp"
+#include "Texture.hpp"
+#include "Shader.hpp"
+#include "Program.hpp"
 #include <gl\glew.h>
 #include <vector>
 #include <queue>

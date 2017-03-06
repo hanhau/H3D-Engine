@@ -11,9 +11,17 @@ LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	switch (msg)
 	{
 	// Resize Event
-	case WM_RESIZE:
-		
-		break;
+	case WM_SIZE:
+	{
+		// break if winapi message
+		if (lparam == 0 || wparam == 0) break;
+
+		h3d::Vec2<unsigned int> *newsize = new h3d::Vec2<unsigned int>();
+			newsize = (h3d::Vec2<unsigned int>*)lparam;
+
+		SetWindowPos(hwnd, 0, 1, 1, newsize->x, newsize->y, SWP_NOMOVE);
+	}
+	break;
 	// Input Handling
 	case WM_INPUT:
 		if (h3d::InputManager.isInputActive(DEVICE_TYPE_KEYBOARD)){
@@ -197,7 +205,8 @@ void h3d::Window::close()
 // Editing Window
 void h3d::Window::setSize(h3d::Vec2<unsigned int> size)
 {
-	
+	Size = size;
+	this->resize();
 }
 void h3d::Window::setTitle(std::wstring title)
 {
@@ -205,7 +214,7 @@ void h3d::Window::setTitle(std::wstring title)
 }
 void h3d::Window::setFullscreen(bool val)
 {
-	
+		
 }
 bool h3d::Window::isFullscreen()
 {
@@ -213,22 +222,7 @@ bool h3d::Window::isFullscreen()
 }
 void h3d::Window::resize()
 {
-	SendMessage(h_Win, WM_RESIZE,0,*reinterpret_cast<LONG*>(this));
-	if(m_allowResize)
-	{
-		RECT rect;
-		rect.left = 0;
-		rect.right = Size.x;
-		rect.top = 0;
-		rect.bottom = Size.y;
-
-		AdjustWindowRectEx(
-			(LPRECT)&rect,
-			m_dwStyle,
-			FALSE,
-			m_dwExStyle);
-	}
-
+	SendMessage(h_Win, WM_SIZE,0,(LPARAM)&Size);
 }
 void h3d::Window::allowResize(bool val)
 {

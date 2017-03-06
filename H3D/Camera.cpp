@@ -1,6 +1,7 @@
 #include "Camera.hpp"
 #include <GL\glew.h>
 #include "Vector/Vector_Implementation.hpp"
+#include "Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // Camera Implementations
 /////////////////////////////////////////////////////////////////
@@ -41,9 +42,6 @@ void h3d::Camera::setViewportSize(h3d::Vec2<unsigned short> size)
 void h3d::Camera::setProjectionMatrix(h3d::mat4x4 &mat) {
 	m_projectionMatrix = mat;
 }
-void h3d::Camera::setOrthogonalMatrix(h3d::mat4x4 &mat) {
-	m_projectionMatrix = mat;
-}
 /////////////////////////////////////////////////////////////////
 //	Get-Methods
 h3d::Vec3<float> h3d::Camera::getPos()       { return m_pos; }
@@ -57,8 +55,10 @@ bool h3d::Camera::setShaderValues(h3d::Program &program,
 	GLint location_proj,location_view;
 	location_proj = glGetUniformLocation(program.getID_GL(), name_proj);
 	location_view = glGetUniformLocation(program.getID_GL(), name_view);
-	if (location_proj == -1 && location_view == -1)
+	if (location_proj == -1 || location_view == -1) {
+		Log.error("h3d::Camera Instance: Error setting variables in shader");
 		return false;
+	}
 	glUniformMatrix4fv(location_proj, 1, GL_TRUE, m_projectionMatrix.getRowWiseValues());
 	glUniformMatrix4fv(location_view, 1, GL_TRUE, m_view.getRowWiseValues());	
 	return true;

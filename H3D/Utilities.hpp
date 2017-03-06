@@ -9,8 +9,21 @@
 #include <string>
 #include <cstdio>
 #include <mutex>
+#include <cstdint>
 // Lua
 #include <lua.hpp>
+/////////////////////////////////////////////////////////////////
+// h3dassert(x) only in debug mode
+#ifdef H3D_DEBUG
+#define h3dassert(x) {if(!!(x)) VerifyFailed( __FILE__, std::to_string(__LINE__).c_str(),#x);}
+#else
+#define h3dassert(x) (x)
+#endif
+// h3dverify in release and debug mode
+#define h3dverify(x) {if(!!(x)) VerifyFailed( __FILE__, std::to_string(__LINE__).c_str(),#x);}
+// Functions to show Assert/Verify
+void AssertFailed(const char* file, const char* line, const char* expr);
+void VerifyFailed(const char* file, const char* line, const char* expr);
 /////////////////////////////////////////////////////////////////
 // global Logger
 /////////////////////////////////////////////////////////////////
@@ -49,6 +62,9 @@ namespace h3d {
 		void info (char *msg, Args...args);
 		template<typename... Args>
 		void alarm(char *msg, Args...args);
+
+		// costum tag log
+		void costum(const char* tag,const char* str);
 
 		// Get global Instance
 		static __Logger& GetInstance();

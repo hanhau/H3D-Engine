@@ -27,6 +27,12 @@
     <Filter Include="LuaScript">
       <UniqueIdentifier>{6e14e085-d900-4738-aacc-03bc9ee5bfdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="memmng">
+      <UniqueIdentifier>{2d95cf78-7a52-4a07-aff5-6da1d9619ebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{fc61880b-a8b2-4e8e-9d2c-5ed4a9f3b854}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -113,18 +119,6 @@
     <ClCompile Include="H3D\Quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\GUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GUI\Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GUI\Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GUI\Text.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\Audio.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
@@ -172,6 +166,18 @@
     </ClCompile>
     <ClCompile Include="H3D\LuaScript\LuaScript.cpp">
       <Filter>LuaScript</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\GUI\Text.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\GUI\Button.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\GUI\Font.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\GUI.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,21 +265,6 @@
     <ClInclude Include="H3D\Quaternion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\GUI.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Button.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Stylesheet.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Font.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Text.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -318,6 +309,30 @@
     </ClInclude>
     <ClInclude Include="H3D\LuaScript\LuaScript.hpp">
       <Filter>LuaScript</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\memmng\base_alloc.hpp">
+      <Filter>memmng</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\GUI.hpp">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\GUI\Button.hpp">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\GUI\Font.hpp">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\GUI\Text.hpp">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\GUI\Stylesheet.hpp">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\memmng\pool_alloc.hpp">
+      <Filter>memmng</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\memmng\linear_alloc.hpp">
+      <Filter>memmng</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

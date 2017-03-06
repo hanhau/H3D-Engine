@@ -41,9 +41,9 @@ extern bool loadWAV(char path[],
 	h3d::setObjectFromFileHandle(wavData, fileHandle);
 	
 	// Validate file contents
-		if (0 != memcmp(wavHeader.chunkID,new char[4]{'R','I','F','F'},4) ||
-			0 != memcmp(wavHeader.riffType, new char[4]{ 'W','A','V','E' }, 4) ||
-			0 != memcmp(wavFormat.subChunkID, new char[4]{ 'f','m','t',' ' }, 4))
+		if (0 != memcmp(wavHeader.chunkID,"RIFF",4) ||
+			0 != memcmp(wavHeader.riffType, "WAVE", 4) ||
+			0 != memcmp(wavFormat.subChunkID, "fmt ", 4))
 	{
 		Log.error("%s is probably a invalid format",path);
 	}
@@ -108,11 +108,15 @@ extern bool loadOGG(char path[],
 
 	// Open file_stream
 	file_stream = fopen(path, "br");
-	if (file_stream == NULL)
-		throw("Unable to open File");
+	if (file_stream == NULL){
+		Log.error("Unable to open %s", path);
+		return false;
+	}
 		
 	// Start vorbis encoding for this file
-	ov_fopen(path, &oggFile);
+	if (ov_fopen(path, &oggFile) == 0) {
+
+	}
 	vorbis_info_init(&vorbisInfo);
 
 	// Prepare Buffers

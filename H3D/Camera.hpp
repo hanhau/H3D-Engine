@@ -49,7 +49,6 @@ public:
 
 	// Set ProjectionMatrices
 	void H3D_API setProjectionMatrix(h3d::mat4x4 &mat);
-	void H3D_API setOrthogonalMatrix(h3d::mat4x4 &mat);
 
 	// Get Data
 	h3d::Vec3<float> H3D_API getPos();
@@ -64,7 +63,6 @@ public:
 	// Get View Matrices
 	h3d::mat4x4 H3D_API getViewMatrix();
 	h3d::mat4x4 H3D_API getProjectionMatrix();
-	h3d::mat4x4 H3D_API getOrthogonalMatrix();
 };
 }
 /////////////////////////////////////////////////////////////////

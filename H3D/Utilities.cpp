@@ -1,6 +1,22 @@
 #include "Utilities.hpp"
 #include <time.h>
 #include <cassert>
+#include <stdlib.h>
+/////////////////////////////////////////////////////////////////
+// Assertion 
+void AssertFailed(const char* file, const char* line, const char* expr)
+{
+	std::string str("accured at: " + std::string(line) + 
+					" with the expression: " + std::string(expr));
+	Log.costum("H3D-ASSERT", str.c_str());
+}
+// Verify
+void VerifyFailed(const char* file, const char* line, const char* expr)
+{
+	std::string str("accured at: " + std::string(line) +
+					" with the expression: " + std::string(expr));
+	Log.costum("H3D-VERIFY", str.c_str());
+}
 /////////////////////////////////////////////////////////////////
 // Implementation of Logger
 /////////////////////////////////////////////////////////////////
@@ -20,6 +36,25 @@ std::string h3d::__Logger::getCurrentTime()
 	currTime.assign(ctime(&now));
 	currTime.erase(std::end(currTime));
 	return currTime;
+}
+/////////////////////////////////////////////////////////////////
+// costum tag log
+void h3d::__Logger::costum(const char* tag, const char* str)
+{
+	std::string logString(getCurrentTime());
+	logString.erase(std::end(logString) - 1);
+	logString.append(" [" + std::string(tag) + "]: ");
+	logString.append(str);
+	logString.append("\n");
+	if (m_currentLogType == LogTypes::CONSOLE)
+	{
+		printf(logString.c_str());
+	}
+	else if (m_currentLogType == LogTypes::FILE)
+	{
+		std::lock_guard<std::mutex> lock(m_fileMutex);
+		fprintf(m_logFile, logString.c_str());
+	}
 }
 /////////////////////////////////////////////////////////////////
 // Static global Instance
