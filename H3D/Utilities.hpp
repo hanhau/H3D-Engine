@@ -5,6 +5,23 @@
 #define H3D_API _declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
+// h3dassert(x) only in debug mode
+/////////////////////////////////////////////////////////////////
+#ifdef H3D_DEBUG
+#define h3dassert(x) {if(!!(x)) AssertFailed( __FILE__, std::to_string(__LINE__).c_str(),#x);}
+#else
+#define h3dassert(x) (x)
+#endif
+/////////////////////////////////////////////////////////////////
+// h3dverify in release and debug mode
+/////////////////////////////////////////////////////////////////
+#define h3dverify(x) {if(!!(x)) VerifyFailed( __FILE__, std::to_string(__LINE__).c_str(),#x);}
+/////////////////////////////////////////////////////////////////
+// Functions to show Assert/Verify
+/////////////////////////////////////////////////////////////////
+void H3D_API AssertFailed(const char* file, const char* line, const char* expr);
+void H3D_API VerifyFailed(const char* file, const char* line, const char* expr);
+/////////////////////////////////////////////////////////////////
 #include <iostream>
 #include <string>
 #include <cstdio>
@@ -12,18 +29,6 @@
 #include <cstdint>
 // Lua
 #include <lua.hpp>
-/////////////////////////////////////////////////////////////////
-// h3dassert(x) only in debug mode
-#ifdef H3D_DEBUG
-#define h3dassert(x) {if(!!(x)) VerifyFailed( __FILE__, std::to_string(__LINE__).c_str(),#x);}
-#else
-#define h3dassert(x) (x)
-#endif
-// h3dverify in release and debug mode
-#define h3dverify(x) {if(!!(x)) VerifyFailed( __FILE__, std::to_string(__LINE__).c_str(),#x);}
-// Functions to show Assert/Verify
-void AssertFailed(const char* file, const char* line, const char* expr);
-void VerifyFailed(const char* file, const char* line, const char* expr);
 /////////////////////////////////////////////////////////////////
 // global Logger
 /////////////////////////////////////////////////////////////////

@@ -1,20 +1,10 @@
-/////////////////////////////////////////////////////////////////
-//        	      	Hero 3D Game Engine 	     	           //
-/////////////////////////////////////////////////////////////////
-					READY 2 GO FEATURES
-/////////////////////////////////////////////////////////////////
-	-> Window creation with winapi
-	-> Shader and program objects with limited functions
-	-> Color, Vectors, Matrices and soon Quanternions classes
-	-> Math for creating matrices
-	-> Clock
-	-> Logging (very soon finished)
-/////////////////////////////////////////////////////////////////
-					 UNDER DEVELOPMENT
-/////////////////////////////////////////////////////////////////
-	-> Object loading
-	-> Audio
-	-> ParticleEngine
-	-> Supporting more file formats
-	-> cleaning up
-/////////////////////////////////////////////////////////////////
+# Hero 3D Engine
+
+### Hero 3D is a engine written in C++ with the use of OpenGL/Winapi
+
+## Featurelist:
+### Window Creation and handling
+### InputManager Class
+### OpenGL Shader/Program Creation
+### Light and fast Allocators
+### Lua Scripting support

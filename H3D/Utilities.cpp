@@ -6,15 +6,17 @@
 // Assertion 
 void AssertFailed(const char* file, const char* line, const char* expr)
 {
-	std::string str("accured at: " + std::string(line) + 
-					" with the expression: " + std::string(expr));
+	std::string str("accured at: " + std::string(line) +
+					" in file '" + std::string(file) + 
+					"' with the expression: " + std::string(expr));
 	Log.costum("H3D-ASSERT", str.c_str());
 }
 // Verify
 void VerifyFailed(const char* file, const char* line, const char* expr)
 {
 	std::string str("accured at: " + std::string(line) +
-					" with the expression: " + std::string(expr));
+					" in file '" + std::string(file) +
+					"' with the expression: " + std::string(expr));
 	Log.costum("H3D-VERIFY", str.c_str());
 }
 /////////////////////////////////////////////////////////////////

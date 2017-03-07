@@ -179,6 +179,9 @@
     <ClCompile Include="H3D\GUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\memmng\linear_alloc.cpp">
+      <Filter>memmng</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
