@@ -1,10 +1,12 @@
-# Hero 3D Engine
+Will become a heading
+==============
 
-### Hero 3D is a engine written in C++ with the use of OpenGL/Winapi
+Will become a sub heading
+--------------
 
-## Featurelist:
-### Window Creation and handling
-### InputManager Class
-### OpenGL Shader/Program Creation
-### Light and fast Allocators
-### Lua Scripting support
+*This will be Italic*
+
+**This will be Bold**
+
+- This will be a list item
+- This will be a list item
