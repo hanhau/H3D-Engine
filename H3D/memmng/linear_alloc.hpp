@@ -7,6 +7,9 @@ namespace h3d {
 	class linear_allocator : public base_alloc
 	{
 	private:
+		linear_allocator(const linear_allocator&) = delete;
+		linear_allocator& operator=(const linear_allocator&) = delete;
+
 		void* _currentPos;
 	public:
 		inline linear_allocator(size_t size, void* start);

@@ -38,7 +38,7 @@ namespace lua {
 		// Direct Access to sol2
 		H3D_API sol::table& getTable(const char* name);
 		H3D_API sol::state& getState();
-		using m = sol::state[];
+
 		// Script Operations
 		bool H3D_API loadFromMemory(char* mem);
 		bool H3D_API loadFromFile(char path[]);

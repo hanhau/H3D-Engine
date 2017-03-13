@@ -135,11 +135,18 @@ unsigned long h3d::FileHandle::write(char* src, size_t size)
 /////////////////////////////////////////////////////////////////
 unsigned long h3d::FileHandle::getIterPos()
 {
+
 	return 0;
 }
 unsigned long h3d::FileHandle::setIterPos(unsigned long val)
 {
-	return 0;
+	if (!SetFilePointerEx(m_fileHandle, LARGE_INTEGER{ val },
+						  nullptr, FILE_BEGIN))
+	{
+		Log.info("Unable to set filepointer.");
+		return 0;
+	}
+	return val;
 }
 /////////////////////////////////////////////////////////////////
 unsigned long h3d::FileHandle::getFileSize() {

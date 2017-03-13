@@ -78,24 +78,17 @@ inline uint8_t alignBackwardAdjustment(const void* address, uint8_t alignment)
 {
 	
 }
-
-inline void* add(void* p, size_t x)
-{
-	
+/////////////////////////////////////////////////////////////////
+inline void* add(void* p, size_t x){
+	return (void*)(reinterpret_cast<uintptr_t>(p) + x);
 }
-
-inline const void* add(const void* p, size_t x)
-{
-	
+inline const void* add(const void* p, size_t x){
+	return (const void*)(reinterpret_cast<uintptr_t>(p) + x);
 }
-
-inline void* subtract(void* p, size_t x)
-{
-	
+inline void* subtract(void* p, size_t x){
+	return (void*)(reinterpret_cast<uintptr_t>(p) - x);
 }
-
-inline const void* subtract(const void* p, size_t x)
-{
-	
+inline const void* subtract(const void* p, size_t x){
+	return (const void*)(reinterpret_cast<uintptr_t>(p) - x);
 }
 /////////////////////////////////////////////////////////////////

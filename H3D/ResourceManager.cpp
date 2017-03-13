@@ -4,33 +4,28 @@
 #include <climits>
 #include <algorithm>
 /////////////////////////////////////////////////////////////////
-//  Implementation for ResourceHashID
+// Implementation of Resource Base class
 /////////////////////////////////////////////////////////////////
-h3d::ResourceHashID::ResourceHashID() {}
-h3d::ResourceHashID::~ResourceHashID() {}
-/////////////////////////////////////////////////////////////////
-uint32_t h3d::ResourceHashID::getID() { return m_ID; }
-uint32_t h3d::ResourceHashID::calcHashID(unsigned char* data, size_t size)
-{
-	unsigned int byte, mask;
-
-	uint32_t m_ID = 0xFFFFFFFF;
-	for (unsigned int i=0;i<size;i++)
+namespace h3d {
+	Resource::Resource(std::string name,std::string path) :
+		m_name(name) , m_refCount(0) , m_path(path)
 	{
-		byte = data[i];            // Get next byte.
-		m_ID = m_ID ^ byte;
-		for (int j = 7; j >= 0; j--) {    // Do eight times.
-			mask = -(m_ID & 1);
-			m_ID = (m_ID >> 1) ^ (0xEDB88320 & mask);
-		}
-		i = i + 1;
+		std::string tmp = path;
+		tmp.replace(tmp.begin(),tmp.end(),'\\', '/');
+		m_filename = std::string(tmp.begin()+tmp.rfind('/')+1,
+								 tmp.end());
 	}
-	return ~m_ID;
+	Resource::~Resource() {
+		
+	}
+	// Getter
+	std::string Resource::getPath()		{ return m_path; }
+	std::string Resource::getFilename() { return m_filename; }
+	std::string Resource::getName()		{ return m_name; }
+	uint64_t Resource::getUniqueID()	{ return m_uniqueID; }
+	
+	// Reference Counter functions
+	void Resource::increaseRefCount() { m_refCount++; }
+	void Resource::decreaseRefCount() { if (m_refCount - 1 >= 0) m_refCount--; }
 }
-/////////////////////////////////////////////////////////////////
-//	Implementation for ResourceManager
-/////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////
-
 /////////////////////////////////////////////////////////////////

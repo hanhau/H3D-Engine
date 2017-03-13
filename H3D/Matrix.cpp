@@ -151,7 +151,7 @@ h3d::mat4x4& h3d::mat4x4::operator+(const h3d::mat4x4 &mat)
 h3d::mat4x4& h3d::mat4x4::operator-(const float val)
 {
 	mat4x4 temp_mat;
-
+	
 	return temp_mat;
 }
 h3d::mat4x4& h3d::mat4x4::operator-(const h3d::mat4x4 &mat)

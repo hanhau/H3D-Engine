@@ -9,55 +9,105 @@
 #include <map>
 #include <type_traits>
 #include <cstdint>
+
+#include "hashing\UniChecksum.hpp"
 /////////////////////////////////////////////////////////////////
-//	ResourceManager
+//	Resource Base class
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	// ResourceHashID
-	class ResourceHashID final {
-	private:
-		uint32_t m_ID;
-	public: 
-		// Con-/Destructor
-		H3D_API ResourceHashID();
-		H3D_API ~ResourceHashID();
-
-		// Operations
-		uint32_t H3D_API getID();
-		uint32_t H3D_API calcHashID(unsigned char* data, size_t size);
-	};
-	// Lookup table for Hashes
-	
-	// ResourceBase
-	class ResourceBase
-	{
-	public:
-		// Con-/Destructor
-		H3D_API ResourceBase();
-		H3D_API ~ResourceBase();
-
-		// Loading Operations
-		virtual bool H3D_API loadFromFile(char Path[]);
-		virtual bool H3D_API process();
-		virtual bool H3D_API update();
-		// Free Memory
-		virtual bool H3D_API freeMemory();
-	};
-	// ResourceManager
-	template<class T>
-	class ResourceManager
+	class Resource
 	{
 	private:
-		// ResourceMap
-		std::map<ResourceHashID, T> m_resourceMap;
+		// Unique handle
+		uint64_t m_uniqueID;
+		
+		// Reference count
+		uint64_t m_refCount;
 
+		// Path 
+		std::string m_path;
+		std::string m_filename;
+		std::string m_name;
 	public:
-		// Constructor/Deconstructor
-		H3D_API ResourceManager();
-		H3D_API ~ResourceManager();
+		// Con-/Destructor
+		Resource(std::string name, std::string path);
+		~Resource();
 
-		const T& getResource(char Path[]);
-		const T& getResource();
+		// Getter
+		std::string   getPath();
+		std::string   getFilename();
+		std::string	  getName();
+		uint64_t      getUniqueID();
+
+		// Reference counter
+		void increaseRefCount();
+		void decreaseRefCount();
 	};
 }
 /////////////////////////////////////////////////////////////////
+// ResourceManager
+/////////////////////////////////////////////////////////////////
+namespace h3d {
+	template<typename T>
+		class ResourceManager
+		{
+		private:
+			std::map<uint64_t, T> m_resourceMap;
+		public:
+			// Con-/Destructor
+			ResourceManager();
+			~ResourceManager();
+			
+			// Utilities
+			void clearMap();
+			void remove(uint64_t id);
+			
+			// Add Resource
+			uint64_t add(std::string name,std::string path);
+
+			// Get Resource
+			T* getElement(uint64_t ID);
+			T* getElement(const std::string& name,const std::string& path);
+			T* operator[](uint64_t ID);
+		};
+}
+/////////////////////////////////////////////////////////////////
+// Implementaion of ResourceManager
+/////////////////////////////////////////////////////////////////
+namespace h3d {
+	// Con-/Destructor
+	template<typename T> 
+	ResourceManager<T>::ResourceManager() {}
+	template<typename T> 
+	ResourceManager<T>::~ResourceManager() {}
+	// Utilities
+	template<typename T>
+	void ResourceManager<T>::clearMap() 
+	{
+		m_resourceMap.clear();
+	}
+	template<typename T>
+	void ResourceManager<T>::remove(uint64_t ID) 
+	{
+		this->m_resourcemap.erase(ID);
+	}
+	// Add Resource
+	template<typename T>
+	uint64_t ResourceManager<T>::add(std::string name, std::string path) {
+		this->m_resourceMap.emplace(name, path);
+	}
+	// Get Resources
+	template<typename T>
+	T* ResourceManager<T>::getElement(uint64_t ID) {
+		return m_resourceMap[ID];
+	}
+	template<typename T>
+	T* ResourceManager<T>::getElement(const std::string& name,
+									  const std::string& path){
+		return 
+	}
+	template<typename T>
+	T* ResourceManager<T>::operator[](uint64_t ID) {
+
+	}
+}

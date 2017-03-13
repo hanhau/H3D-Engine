@@ -33,6 +33,9 @@
     <Filter Include="GUI">
       <UniqueIdentifier>{fc61880b-a8b2-4e8e-9d2c-5ed4a9f3b854}</UniqueIdentifier>
     </Filter>
+    <Filter Include="files">
+      <UniqueIdentifier>{85295442-4109-4285-8e32-d36924362d29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -131,9 +134,6 @@
     <ClCompile Include="H3D\Audio\AudioSource.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\FileSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\hashing\CRC32.cpp">
       <Filter>Hashing</Filter>
     </ClCompile>
@@ -181,6 +181,15 @@
     </ClCompile>
     <ClCompile Include="H3D\memmng\linear_alloc.cpp">
       <Filter>memmng</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\hashing\SHA256.cpp">
+      <Filter>Hashing</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\FileSystem.cpp">
+      <Filter>files</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\ContainerFile.cpp">
+      <Filter>files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,13 +241,7 @@
     <ClInclude Include="H3D\Matrix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\FileDataStructures.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\InputManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\FileSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Scenegraph.hpp">
@@ -336,6 +339,18 @@
     </ClInclude>
     <ClInclude Include="H3D\memmng\linear_alloc.hpp">
       <Filter>memmng</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\hashing\SHA256.hpp">
+      <Filter>Hashing</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\FileDataStructures.hpp">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\FileSystem.hpp">
+      <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\ContainerFile.hpp">
+      <Filter>files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

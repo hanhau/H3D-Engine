@@ -19,7 +19,25 @@ namespace h3d {
 	// allocate
 	void* linear_allocator::allocate(size_t size, uint8_t alignment)
 	{
+		// Check for size
+		h3dassert(size != 0);
+
+		// Get adjustment
+		uint8_t adjustment;
+
+		// return mullptr when no space left
+		if (_usedMemory + alignment + size > _size)
+			return nullptr;
+
+		uintptr_t aligned_address = (uintptr_t)_currentPos + adjustment;
 		
+		_currentPos = (void*)(aligned_address + size);
+		
+		_usedMemory += size + alignment;
+		_allocationCount++;
+
+		// return address
+		return (void*)aligned_address;
 	}
 	// deallocate
 	void linear_allocator::deallocate(void* data){
