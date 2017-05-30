@@ -36,6 +36,9 @@
     <Filter Include="files">
       <UniqueIdentifier>{85295442-4109-4285-8e32-d36924362d29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Texture">
+      <UniqueIdentifier>{aa8a711d-5667-4ad8-b1dd-fb697c39d603}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,9 +60,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Image.cpp">
@@ -191,6 +191,15 @@
     <ClCompile Include="H3D\ContainerFile.cpp">
       <Filter>files</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\Texture.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\TextureLoader.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\AudioBufferStream.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -203,9 +212,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Color.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Image.hpp">
@@ -351,6 +357,9 @@
     </ClInclude>
     <ClInclude Include="H3D\ContainerFile.hpp">
       <Filter>files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Texture.hpp">
+      <Filter>Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,7 +7,10 @@
 #include <fstream>
 #include <cstdio>
 #include <iostream>
+
 #include <vector>
+#include <algorithm>
+
 #include "..\Utilities.hpp"
 #include "..\FileSystem.hpp"
 /////////////////////////////////////////////////////////////////
@@ -99,58 +102,71 @@ extern bool loadOGG(char path[],
 					ALenum& format)
 {
 	// Temporary variables
-	OggVorbis_File oggFile;
-	vorbis_info    vorbisInfo;
-	FILE* file_stream;
-	std::vector<char> audioBuffer;
-	std::vector<char> finalAudio;
-	long bytes_read = 0;
+	h3d::FileHandle filehandle;
+	char* file_data = NULL;
+
+	OggVorbis_File *oggfile;
+	ov_callbacks oggcallbacks = OV_CALLBACKS_DEFAULT;
 
 	// Open file_stream
-	file_stream = fopen(path, "br");
-	if (file_stream == NULL){
-		Log.error("Unable to open %s", path);
+	filehandle.open(path);
+	if (FALSE == filehandle.isOpen()) {
+		if (h3d::DebugMode) Log.error("Unable to loadOgg(%s)",path);
 		return false;
 	}
-		
-	// Start vorbis encoding for this file
-	if (ov_fopen(path, &oggFile) == 0) {
-
-	}
-	vorbis_info_init(&vorbisInfo);
-
-	// Prepare Buffers
-	audioBuffer.clear();
-	audioBuffer.resize(CHUNK_SIZE);
-	finalAudio.clear();
-		
-	// Read complete file
-	do {
-		bytes_read = ov_read(&oggFile, audioBuffer.data(), CHUNK_SIZE, 0, 2, 1, NULL);
-		finalAudio.insert(std::end(finalAudio),
-						  std::begin(audioBuffer),
-						  std::end(audioBuffer));
-		
-	} while (bytes_read != 0);
 	
-	// Set Information for OpenAL
-	size = finalAudio.size();
-	frequency = vorbisInfo.rate;
-	if (vorbisInfo.channels == 1)
+	// Get entire file
+	file_data = new char[filehandle.getFileSize()];
+	filehandle.read(file_data, filehandle.getFileSize());
+	
+	// OGG specific loading
+	if (0 > ov_open_callbacks(file_data,
+							  oggfile, NULL, 0,
+							  oggcallbacks)) {
+		if (h3d::DebugMode) Log.error("%s is not a OGG File",path);
+		return false;
+	}
+
+	// Get OGG Info
+	vorbis_info *vi = ov_info(oggfile,-1);
+
+	// Decode Data
+	bool eof = false;
+	char pcmdata[4096];
+	int curr;
+	std::vector<char> finalpcm;
+
+	while (!eof)
 	{
+		long ret = ov_read(oggfile,
+						   pcmdata,
+						   sizeof(pcmdata),
+						   0, 2, 1, &curr);
+		if (ret == 0) eof = true;
+		else if (ret < 0);
+
+		// give pcm further
+		std::move(pcmdata,pcmdata+ret,finalpcm.end());
+	}
+
+	// Set OpenAL param settings
+	frequency = vi->rate;
+	if (vi->channels == 1)
 		format = AL_FORMAT_MONO16;
-	}
-	else if (vorbisInfo.channels == 2)
-	{
+	else if (vi->channels == 2)
 		format = AL_FORMAT_STEREO16;
+	else {
+		if (h3d::DebugMode) Log.error("Unsupported channel count in %s",path);
+		return false;
 	}
-	else throw ("Error detecting channel count");
+	size = finalpcm.size();
 
-	// Fill OpenAL Buffers
-	alBufferData(buffer, format, (ALvoid*)finalAudio.data(), finalAudio.size(), frequency);
+	// Set OpenAL buffer
+	alBufferData(buffer, format, finalpcm.data(), size, frequency);
 
-	// Clear up variables
-	ov_clear(&oggFile);
+	// Exit successful
+	ov_clear(oggfile);
+	filehandle.close();
 	return true;
 }
 /////////////////////////////////////////////////////////////////

@@ -91,7 +91,7 @@ namespace h3d{
 		class AudioBufferStream
 		{
 		private:
-
+			
 		public:
 			H3D_API AudioBufferStream();
 			H3D_API ~AudioBufferStream();

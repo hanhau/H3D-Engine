@@ -58,7 +58,7 @@ namespace h3d {
 		bool H3D_API openContainerFile(std::string path);
 		bool H3D_API close();
 
-		h3d::FileHandle& H3D_API getFileHandle(char filename[48]);
+		H3D_API h3d::FileHandle& getFileHandle(char filename[48]);
 	};
 }
 /////////////////////////////////////////////////////////////////

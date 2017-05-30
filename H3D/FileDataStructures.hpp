@@ -79,6 +79,14 @@ namespace h3d {
 			};
 			#pragma pack(pop,BMP_BODY)
 		}
+		// PNG File Format Structures ///////////////////////////
+		namespace PNG {
+			#pragma pack(push,PNG_HEADER,1)
+			struct H3D_API Header {
+
+			};
+			#pragma pack(pop,PNG_HEADER)
+		}
 		// KTX File Format Structures ///////////////////////////
 		namespace KTX {
 			#pragma pack(push,KTX_HEADER,1)
@@ -107,8 +115,6 @@ namespace h3d {
 				uint8_t IDlength;
 				uint8_t colorMapType;
 				uint8_t imageType;
-
-
 			};
 			#pragma pack(pop,TGA_HEADER)
 			#pragma pack(push,TGA_HEADER_EXTENSION,1)

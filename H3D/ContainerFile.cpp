@@ -40,8 +40,8 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 		tempItem.end      = tempListing.end;
 		tempItem.filesize = tempListing.filesize;
 
-		m_items.emplace(tempItem.filename,tempItem);
-		m_items[tempItem.filename].filehandle.open(path);
+		//m_items[tempItem.filename] = tempItem;
+		//m_items[tempItem.filename].filehandle.open(path);
 	}
 
 	// Clean up
@@ -58,7 +58,7 @@ bool h3d::ContainerFile::close()
 /////////////////////////////////////////////////////////////////
 h3d::FileHandle& h3d::ContainerFile::getFileHandle(char filename[48])
 {
-
+	
 
 	return h3d::FileHandle();
 }

@@ -14,8 +14,12 @@
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	class Texture 
-	{
-	private:
+	{	
+		bool loadPNG(char[], h3d::Texture&);
+		bool loadKTX(char[], h3d::Texture&);
+		bool loadBMP(char[], h3d::Texture&);
+		bool loadTGA(char[], h3d::Texture&);
+
 		// OpenGL Stuff
 		GLuint m_texid;
 		GLuint m_colormode;
@@ -26,12 +30,6 @@ namespace h3d {
 		// Format of the Image loaded
 		int m_format;
 		GLenum m_colorFormat;
-
-		// Load each individual format
-		bool loadPNG(char Path[]);
-		bool loadKTX(char Path[]);
-		bool loadBMP(char Path[]);
-		bool loadTGA(char Path[]);
 
 		// Advanced Intel
 		h3d::Vec2<unsigned int> m_measurements;

@@ -273,20 +273,21 @@ void h3d::ModelType::OBJ::render()
 /////////////////////////////////////////////////////////////////
 void h3d::ModelType::OBJ::logModelData()
 {
+	Log.debug("///////////////////////////////////////////////");
 	Log.debug("mesh count: %d \n",m_meshes.size());
 	
 	// Iterate through every mesh and list Intel
 	for(auto &iter : m_meshes)
 	{
 		Log.debug("Meshname  : %s", iter.m_meshname);
-		Log.debug("TextureID : %s",iter.m_textureID);
+		Log.debug("TextureID : %s",iter.m_textureID.c_str());
 		Log.debug("Vertexcount : %d",iter.m_vertices.size());
 		Log.debug("Normalcount : %d",iter.m_normals.size());
 		Log.debug("texCoords   : %d",iter.m_texCoords.size());
 		Log.debug("IndicesVertices  : %d",iter.m_indicesVertices.size());
 		Log.debug("IndicesNormals   : %d",iter.m_indicesNormals.size());
 		Log.debug("IndicesTexCoords : %d", iter.m_indicesTexCoords.size());
-		Log.debug("Size in bytes (full struct): %d",sizeof(iter));
 	}
+	Log.debug("///////////////////////////////////////////////");
 }
 /////////////////////////////////////////////////////////////////

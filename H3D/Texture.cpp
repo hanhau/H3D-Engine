@@ -45,16 +45,16 @@ bool h3d::Texture::loadFromFile(char Path[])
 	{
 		// PNG
 		case Format::PNG:
-			return loadPNG(Path); break;
+			return loadPNG(Path, *this); break;
 		// KTX
 		case Format::KTX:
-			return loadKTX(Path); break;
+			return loadKTX(Path, *this); break;
 		// BMP
 		case Format::BMP:
-			return loadBMP(Path); break;
+			return loadBMP(Path, *this); break;
 		// TGA
 		case Format::TGA:
-			return loadTGA(Path); break;
+			return loadTGA(Path, *this); break;
 		default: return false; break;
 	}
 
@@ -70,114 +70,6 @@ bool h3d::Texture::setActive(bool val)
 		glBindTexture(GL_TEXTURE_2D, m_texid);
 	else
 		glBindTexture(GL_TEXTURE_2D, 0);
-	return true;
-}
-/////////////////////////////////////////////////////////////////
-// Loading individual formats
-/////////////////////////////////////////////////////////////////
-bool h3d::Texture::loadBMP(char Path[])
-{
-	// Opening unbuffered filestream
-	std::ifstream file_stream;
-	file_stream.open(Path,std::ios::in | std::ios::binary);
-	if (!file_stream.good()) {
-		if (h3d::DebugMode) {
-			Log.error("Unable to open %s",Path);
-		}
-		return false;
-	}
-	
-	// Temporarly variables
-	h3d::FileType::BMP::Header t_header;
-	h3d::FileType::BMP::Body   t_body;
-
-	// Reading ////////////////////////////////////////////////////
-	// Header (12 bytes)
-	file_stream.read((char*)&t_header,sizeof(t_header));
-	if (t_header.bfType != 19778) {
-		if (h3d::DebugMode) {
-			Log.error("%s is corrupted!",Path);
-		}
-		return false;
-	}
-	
-	// Informationblock (40 bytes+t_bfOffBits/8)
-	file_stream.read((char*)&t_body,sizeof(t_body));
-	
-	// Set format intel
-	m_measurements = h3d::Vec2<unsigned int>(t_body.biWidth,abs(t_body.biHeight));
-	m_format = GL_BGR;
-
-	// Picturedatablock
-	unsigned long imageSize = t_body.biWidth*t_body.biHeight*t_body.biBitCount / 8;
-	m_buffer = new unsigned char[imageSize];
-	file_stream.read((char*)m_buffer, imageSize);
-	
-	// Return successful
-	file_stream.close();
-	return true;
-}
-/////////////////////////////////////////////////////////////////
-bool h3d::Texture::loadPNG(char Path[])
-{
-	std::ifstream file_stream;
-	file_stream.rdbuf()->pubsetbuf(0, 0);
-	file_stream.open(Path, std::ios::binary);
-	if (file_stream.bad()) {
-		if (h3d::DebugMode) {
-			Log.error("Unable to open %s",Path);
-		}
-		return false;
-	}
-
-	return true;
-}
-/////////////////////////////////////////////////////////////////
-bool h3d::Texture::loadKTX(char Path[])
-{
-	// Opening unbuffered filestream
-	std::ifstream file_stream;
-	file_stream.rdbuf()->pubsetbuf(0, 0);
-	file_stream.open(Path, std::ios::binary);
-	if (file_stream.bad()) {
-		if (h3d::DebugMode) {
-			Log.error("Unable to open %s",Path);
-		}
-		return false;
-	}
-	// Temporarly variables
-	h3d::FileType::KTX::Header t_header;
-	
-	// Reading
-	file_stream.read((char*)&t_header,sizeof(t_header));
-
-
-
-	// Return
-	file_stream.close();
-	return true;
-}
-/////////////////////////////////////////////////////////////////
-bool h3d::Texture::loadTGA(char Path[])
-{
-	std::ifstream file_stream;
-	file_stream.rdbuf()->pubsetbuf(0, 0);
-	file_stream.open(Path, std::ios::binary);
-	if (file_stream.bad()) {
-		if (h3d::DebugMode) {
-			Log.error("Unable to open %s", Path);
-		}
-		return false;
-	}
-	// Temporary Variables
-	h3d::FileType::TGA::Header t_header;
-	
-	// Read Header (18 bytes)
-	file_stream.read((char*)&t_header,sizeof(t_header));
-
-
-	// Close and return
-	file_stream.close();
 	return true;
 }
 /////////////////////////////////////////////////////////////////

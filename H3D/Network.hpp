@@ -6,7 +6,6 @@
 #endif
 
 #include "Utilities.hpp"
-#include <WinSock2.h>
 #include <cstring>
 #include <string>
 #include <queue>
