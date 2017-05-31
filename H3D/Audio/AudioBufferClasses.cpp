@@ -12,9 +12,7 @@ bool loadOGG(char path[],
 /////////////////////////////////////////////////////////////////
 // Implementation of AudioBuffer
 /////////////////////////////////////////////////////////////////
-const int h3d::Audio::AudioBuffer::Type::WAV = 1;
-const int h3d::Audio::AudioBuffer::Type::OGG = 2;
-int h3d::Audio::AudioBuffer::getType() { return m_fileType; }
+h3d::Audio::FileType h3d::Audio::AudioBuffer::getType() { return m_fileType; }
 /////////////////////////////////////////////////////////////////
 h3d::Audio::AudioBuffer::AudioBuffer(){
 	alGenBuffers(1, &m_bufferID);
@@ -36,12 +34,12 @@ bool h3d::Audio::AudioBuffer::loadFromFile(char path[])
 	bool loadState;
 	if (fileExtension == "wav")
 	{
-		m_fileType = Type::WAV;
+		m_fileType = FileType::WAV;
 		loadState = loadWAV(path, m_bufferID, m_size, m_frequency, m_format);
 	}
 	else if (fileExtension == "ogg")
 	{
-		m_fileType = Type::OGG;
+		m_fileType = FileType::OGG;
 		loadState = loadOGG(path, m_bufferID, m_size, m_frequency, m_format);
 	}
 	else loadState = false;

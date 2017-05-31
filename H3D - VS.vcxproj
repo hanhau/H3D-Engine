@@ -188,7 +188,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Audio\AudioBufferStream.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -210,6 +209,8 @@
     <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp" />
     <ClCompile Include="H3D\Audio.cpp" />
     <ClCompile Include="H3D\Audio\AudioBufferClasses.cpp" />
+    <ClCompile Include="H3D\Audio\AudioBufferStream.cpp" />
+    <ClCompile Include="H3D\Audio\AudioBufferStreamer.cpp" />
     <ClCompile Include="H3D\Audio\AudioLoader.cpp" />
     <ClCompile Include="H3D\Audio\AudioSource.cpp" />
     <ClCompile Include="H3D\Camera.cpp" />

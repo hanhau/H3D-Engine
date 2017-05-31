@@ -132,7 +132,7 @@ extern bool loadOGG(char path[],
 
 	// Decode Data
 	bool eof = false;
-	char pcmdata[4096];
+	char pcmdata[CHUNK_SIZE];
 	int curr;
 	std::vector<char> finalpcm;
 
@@ -169,11 +169,3 @@ extern bool loadOGG(char path[],
 	filehandle.close();
 	return true;
 }
-/////////////////////////////////////////////////////////////////
-// .ogg Streaming
-/////////////////////////////////////////////////////////////////
-extern bool openStreamOGG()
-{
-
-}
-/////////////////////////////////////////////////////////////////

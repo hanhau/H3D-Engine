@@ -33,6 +33,10 @@ namespace h3d{
 		bool H3D_API initialize(char* default_device = NULL);
 		bool H3D_API shutdown();
 		/////////////////////////////////////////////////////////
+		enum class FileType {
+			OGG, WAV
+		};
+		/////////////////////////////////////////////////////////
 		// global Listener Class
 		/////////////////////////////////////////////////////////
 		class tagListener 
@@ -66,22 +70,21 @@ namespace h3d{
 		{
 			friend AudioSource;
 		private:
+			// OpenAL Params
 			ALuint  m_bufferID;
 			ALsizei m_size;
 			ALsizei m_frequency;
 			ALenum  m_format;
-			int     m_fileType;
+
+			// FileType
+			FileType m_fileType;
 		public:
 			// Con-/Destructor
 			H3D_API AudioBuffer();
 			H3D_API ~AudioBuffer();
 			
 			// Identify Type
-			struct Type{
-				static const int WAV;
-				static const int OGG;
-			};
-			int H3D_API getType();
+			FileType H3D_API getType();
 
 			// File Loading
 			bool H3D_API loadFromFile(char path[]);
@@ -91,7 +94,17 @@ namespace h3d{
 		class AudioBufferStream
 		{
 		private:
-			
+			// OpenAL Params
+			ALuint  m_bufferID;
+			ALsizei m_size;
+			ALsizei m_frequency;
+			ALenum  m_format;
+
+			// FileType
+			FileType m_fileType;
+
+			// Polls new chunks for this object
+			std::thread m_fishingThread;
 		public:
 			H3D_API AudioBufferStream();
 			H3D_API ~AudioBufferStream();

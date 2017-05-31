@@ -39,6 +39,18 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{aa8a711d-5667-4ad8-b1dd-fb697c39d603}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dependencies">
+      <UniqueIdentifier>{63928155-f7ae-4590-892d-86d6b09c868a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\lua">
+      <UniqueIdentifier>{4d9114e6-c2ff-4897-8200-3f3862019f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\glew">
+      <UniqueIdentifier>{d2e2274b-896f-4414-bb06-9a1e259ace7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\vorbis">
+      <UniqueIdentifier>{25be20d0-170f-44d2-aa50-40fa5e41fc57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -197,7 +209,10 @@
     <ClCompile Include="H3D\TextureLoader.cpp">
       <Filter>Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Audio\AudioBufferStream.cpp">
+    <ClCompile Include="H3D\Audio\AudioBufferStream.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Audio\AudioBufferStreamer.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
   </ItemGroup>
