@@ -292,9 +292,6 @@
     <ClInclude Include="H3D\Quaternion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\Audio.hpp">
       <Filter>Audio</Filter>
     </ClInclude>

@@ -84,7 +84,11 @@ void ABfishingThread(thread_action &ta,
 		// open
 		openWAVStream(input_file, path, freq, form);
 
+		// processing
 
+
+		// clean up
+		closeWAVStream(input_file);
 		break;
 	}
 }

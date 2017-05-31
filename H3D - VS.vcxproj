@@ -308,7 +308,6 @@
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
     <ClInclude Include="H3D\Vertex.hpp" />
     <ClInclude Include="H3D\Window.hpp" />
-    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
