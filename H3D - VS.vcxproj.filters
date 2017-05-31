@@ -51,6 +51,15 @@
     <Filter Include="dependencies\vorbis">
       <UniqueIdentifier>{25be20d0-170f-44d2-aa50-40fa5e41fc57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="doc">
+      <UniqueIdentifier>{f492c252-be7f-4210-b348-4f70fbda2033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\freetype">
+      <UniqueIdentifier>{6141ed2b-0a03-4722-a26f-75aa75350953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\OpenAL">
+      <UniqueIdentifier>{7bc8012a-e364-47b7-9311-ef7f33e2666b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -373,5 +382,318 @@
     <ClInclude Include="H3D\Texture.hpp">
       <Filter>Texture</Filter>
     </ClInclude>
+    <ClInclude Include="H3D\Keyboard.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Mouse.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\glew\gl\eglew.h">
+      <Filter>dependencies\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\glew\gl\glew.h">
+      <Filter>dependencies\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\glew\gl\glxew.h">
+      <Filter>dependencies\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\glew\gl\wglew.h">
+      <Filter>dependencies\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lapi.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lauxlib.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lcode.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lctype.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\ldebug.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\ldo.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lfunc.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lgc.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\llex.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\llimits.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lmem.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lobject.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lopcodes.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lparser.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lprefix.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lstate.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lstring.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\ltable.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\ltm.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lua.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lua.hpp">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\luaconf.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lualib.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lundump.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lvm.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\lua\lzio.h">
+      <Filter>dependencies\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\ft2build.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\freetype.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftadvanc.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftautoh.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftbbox.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftbdf.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftbitmap.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftbzip2.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftcache.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftcffdrv.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftchapters.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftcid.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\fterrdef.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\fterrors.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftfntfmt.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftgasp.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftglyph.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftgxval.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftgzip.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftimage.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftincrem.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftlcdfil.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftlist.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftlzw.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftmac.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftmm.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftmodapi.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftmoderr.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftotval.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftoutln.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftpfr.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftrender.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftsizes.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftsnames.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftstroke.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftsynth.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftsystem.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\fttrigon.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftttdrv.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\fttypes.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ftwinfnt.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\t1tables.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ttnameid.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\tttables.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\tttags.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\freetype\freetype\ttunpat.h">
+      <Filter>dependencies\freetype</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\OpenAL\al.h">
+      <Filter>dependencies\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\OpenAL\alc.h">
+      <Filter>dependencies\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\OpenAL\efx.h">
+      <Filter>dependencies\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\OpenAL\efx-creative.h">
+      <Filter>dependencies\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\OpenAL\EFX-Util.h">
+      <Filter>dependencies\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\OpenAL\xram.h">
+      <Filter>dependencies\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\vorbis\vorbis\codec.h">
+      <Filter>dependencies\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\vorbis\vorbis\ogg.h">
+      <Filter>dependencies\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\vorbis\vorbis\os_types.h">
+      <Filter>dependencies\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\vorbis\vorbis\vorbisenc.h">
+      <Filter>dependencies\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\vorbis\vorbis\vorbisfile.h">
+      <Filter>dependencies\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\vorbis\vorbis\ogg\ogg.h">
+      <Filter>dependencies\vorbis</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\vorbis\vorbis\ogg\os_types.h">
+      <Filter>dependencies\vorbis</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dependencies\glew\glew32.dll">
+      <Filter>dependencies\glew</Filter>
+    </None>
+    <None Include="dependencies\vorbis\vorbis\Makefile.am">
+      <Filter>dependencies\vorbis</Filter>
+    </None>
+    <None Include="dependencies\vorbis\vorbis\Makefile.in">
+      <Filter>dependencies\vorbis</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dependencies\glew\glew32.lib">
+      <Filter>dependencies\glew</Filter>
+    </Library>
+    <Library Include="dependencies\lua\lua 5.3.4.lib">
+      <Filter>dependencies\lua</Filter>
+    </Library>
+    <Library Include="dependencies\freetype\freetype27MT.lib">
+      <Filter>dependencies\freetype</Filter>
+    </Library>
+    <Library Include="dependencies\freetype\freetype27ST.lib">
+      <Filter>dependencies\freetype</Filter>
+    </Library>
+    <Library Include="dependencies\OpenAL\OpenAL32.lib">
+      <Filter>dependencies\OpenAL</Filter>
+    </Library>
+    <Library Include="dependencies\vorbis\vorbis\libvorbis_static.lib">
+      <Filter>dependencies\vorbis</Filter>
+    </Library>
+    <Library Include="dependencies\vorbis\vorbis\libvorbisfile_static.lib">
+      <Filter>dependencies\vorbis</Filter>
+    </Library>
+    <Library Include="dependencies\vorbis\vorbis\vorbisdec.lib">
+      <Filter>dependencies\vorbis</Filter>
+    </Library>
+    <Library Include="dependencies\vorbis\vorbis\vorbisenc.lib">
+      <Filter>dependencies\vorbis</Filter>
+    </Library>
   </ItemGroup>
 </Project>

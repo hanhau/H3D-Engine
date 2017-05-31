@@ -9,16 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-  $(document).ready(initResizable);
-</script>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/searchdata.js"></script>
-<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -37,67 +27,87 @@
 </div>
 <!-- end header part -->
 <!-- Erzeugt von Doxygen 1.8.13 -->
-<script type="text/javascript">
-var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
-</script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
 $(function() {
-  initMenu('',true,false,'search.php','Suchen');
-  $(document).ready(function() { init_search(); });
+  initMenu('',false,false,'search.php','Suchen');
 });
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function(){initNavTree('functions_func.html','');});
-</script>
-<div id="doc-content">
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-</div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
 <div class="contents">
-&#160;
-
-<h3><a id="index__"></a>- _ -</h3><ul>
-<li>_cimg_iskey_def()
-: <a class="el" href="df/d75/structcimg__library__suffixed_1_1_c_img_display.html#ab9275de6b6ba9ecdf03a5547d571fcc6">cimg_library_suffixed::CImgDisplay</a>
+&#160;<ul>
+<li>allowResize()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#acc7b85375e1fa2771715a159498b7e1f">h3d::Window</a>
 </li>
-<li>_cimglist_def_is_same3()
-: <a class="el" href="d1/dbb/structcimg__library__suffixed_1_1_c_img_list.html#af0433cdef08d554b33c9a541cebd8593">cimg_library_suffixed::CImgList&lt; T &gt;</a>
+<li>clear()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a05bff7a865080cb80870a622d47528bc">h3d::Window</a>
+</li>
+<li>close()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a8a11cbff3c221fcb5dfd3010187904cd">h3d::Window</a>
+</li>
+<li>getContextVer()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a55e08fd6bd2899bae96cbf19f0cd333b">h3d::Window</a>
+</li>
+<li>getHandle()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#ab98e5a18fe081b2226818cab9d68a629">h3d::Window</a>
+</li>
+<li>getMessage()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a22d42fa07abf084095637c16990cbfe3">h3d::Window</a>
+</li>
+<li>getSize()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a9696aca63f297ab2299691b79eca6f9c">h3d::Window</a>
+</li>
+<li>getStyle()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a0b0f500e9f8f67c9cb80b6ceae568141">h3d::Window</a>
+</li>
+<li>getTitle()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a1ec3205b48a1886526896d515472c217">h3d::Window</a>
+</li>
+<li>isFullscreen()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a16aa8050627a7cffbafd1b9d04b689ea">h3d::Window</a>
+</li>
+<li>isOpen()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#aa1587d061c0ca0b82e3262ca08441b31">h3d::Window</a>
+</li>
+<li>resize()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#ada417321067a2e746eddc97b027b1359">h3d::Window</a>
+</li>
+<li>setActive()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#ae1570ce5df6defe8049b3986c0422349">h3d::Window</a>
+</li>
+<li>setFullscreen()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#ae7d43f8c767fac263e865c106687e361">h3d::Window</a>
+</li>
+<li>setSize()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a879a6a666b6e2a24a9a84419b548ed63">h3d::Window</a>
+</li>
+<li>setTitle()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a919607f2b91ae0f9d915aa7375f979ba">h3d::Window</a>
+</li>
+<li>showCursor()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a75dc2e21722d48394806b607126751d8">h3d::Window</a>
+</li>
+<li>swapBuffers()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a1b0f5151a064eb4dba3b21db81d50c5b">h3d::Window</a>
+</li>
+<li>update()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#ac03f88fab6914a4bff4c69475b382dee">h3d::Window</a>
+</li>
+<li>Window()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#a9a6bf3dd6afdccb16c840c4e0dedc128">h3d::Window</a>
+</li>
+<li>~Window()
+: <a class="el" href="dd/dee/classh3d_1_1_window.html#af046ce744bcfe3461be6393f81bc380a">h3d::Window</a>
 </li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Erzeugt von
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Erzeugt von &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
 </body>
 </html>

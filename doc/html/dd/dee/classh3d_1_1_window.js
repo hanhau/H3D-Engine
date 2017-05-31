@@ -9,7 +9,7 @@ var classh3d_1_1_window =
     [ "getHandle", "dd/dee/classh3d_1_1_window.html#ab98e5a18fe081b2226818cab9d68a629", null ],
     [ "getMessage", "dd/dee/classh3d_1_1_window.html#a22d42fa07abf084095637c16990cbfe3", null ],
     [ "getSize", "dd/dee/classh3d_1_1_window.html#a9696aca63f297ab2299691b79eca6f9c", null ],
-    [ "getStyle", "dd/dee/classh3d_1_1_window.html#a68768821f74706b4c99261719e18113c", null ],
+    [ "getStyle", "dd/dee/classh3d_1_1_window.html#a0b0f500e9f8f67c9cb80b6ceae568141", null ],
     [ "getTitle", "dd/dee/classh3d_1_1_window.html#a1ec3205b48a1886526896d515472c217", null ],
     [ "isFullscreen", "dd/dee/classh3d_1_1_window.html#a16aa8050627a7cffbafd1b9d04b689ea", null ],
     [ "isOpen", "dd/dee/classh3d_1_1_window.html#aa1587d061c0ca0b82e3262ca08441b31", null ],

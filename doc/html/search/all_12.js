@@ -6,10 +6,16 @@ var searchData=
   ['scenegraph',['Scenegraph',['../d9/d08/classh3d_1_1_scenegraph.html',1,'h3d']]],
   ['scenegraphnodebase',['ScenegraphNodeBase',['../da/d95/classh3d_1_1_scenegraph_node_base.html',1,'h3d']]],
   ['script',['Script',['../dd/d28/classlua_1_1_script.html',1,'lua']]],
+  ['setactive',['setActive',['../dd/dee/classh3d_1_1_window.html#ae1570ce5df6defe8049b3986c0422349',1,'h3d::Window']]],
+  ['setfullscreen',['setFullscreen',['../dd/dee/classh3d_1_1_window.html#ae7d43f8c767fac263e865c106687e361',1,'h3d::Window']]],
+  ['setsize',['setSize',['../dd/dee/classh3d_1_1_window.html#a879a6a666b6e2a24a9a84419b548ed63',1,'h3d::Window']]],
+  ['settitle',['setTitle',['../dd/dee/classh3d_1_1_window.html#a919607f2b91ae0f9d915aa7375f979ba',1,'h3d::Window']]],
   ['sha256sum',['SHA256Sum',['../db/d5f/classh3d_1_1_s_h_a256_sum.html',1,'h3d']]],
   ['shader',['Shader',['../d8/d80/classh3d_1_1_shader.html',1,'h3d']]],
+  ['showcursor',['showCursor',['../dd/dee/classh3d_1_1_window.html#a75dc2e21722d48394806b607126751d8',1,'h3d::Window']]],
   ['socket',['Socket',['../d2/d3b/classh3d_1_1_network_1_1_socket.html',1,'h3d::Network']]],
   ['stage',['Stage',['../dd/d47/structh3d_1_1_geometry_buffer_1_1_stage.html',1,'h3d::GeometryBuffer']]],
   ['stylesheet',['Stylesheet',['../dd/dc3/classgui_1_1_stylesheet.html',1,'gui']]],
+  ['swapbuffers',['swapBuffers',['../dd/dee/classh3d_1_1_window.html#a1b0f5151a064eb4dba3b21db81d50c5b',1,'h3d::Window']]],
   ['switch',['Switch',['../dd/de7/classh3d_1_1_scenegraph_node_1_1_switch.html',1,'h3d::ScenegraphNode']]]
 ];

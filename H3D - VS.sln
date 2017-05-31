@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "H3D - VS", "H3D - VS.vcxproj", "{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "H3D Testing App", "demo_app\H3D Testing App\H3D Testing App.vcxproj", "{2C389484-3CBA-414E-BBA8-D5CA936ACC89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -28,6 +30,18 @@ Global
 		{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}.Release|x86.ActiveCfg = Release|Win32
 		{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}.Release|x86.Build.0 = Release|Win32
 		{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}.Release|x86.Deploy.0 = Release|Win32
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Debug|x64.ActiveCfg = Debug|x64
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Debug|x64.Build.0 = Debug|x64
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Debug|x86.ActiveCfg = Debug|Win32
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Debug|x86.Build.0 = Debug|Win32
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.DLL_LIB|x64.ActiveCfg = Debug|x64
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.DLL_LIB|x64.Build.0 = Debug|x64
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.DLL_LIB|x86.ActiveCfg = Debug|Win32
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.DLL_LIB|x86.Build.0 = Debug|Win32
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Release|x64.ActiveCfg = Release|x64
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Release|x64.Build.0 = Release|x64
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Release|x86.ActiveCfg = Release|Win32
+		{2C389484-3CBA-414E-BBA8-D5CA936ACC89}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

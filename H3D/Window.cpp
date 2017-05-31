@@ -58,7 +58,7 @@ h3d::ContextSettings::ContextSettings(BYTE bits_fb, BYTE bits_db,
 	bits_stencilbuffer(bits_sb),count_auxbuffers(c_aux){}
 /////////////////////////////////////////////////////////////////
 //	Constructor
-h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_style)
+h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,h3d::WindowStyle p_style)
 {
 	opened = true;
 	Size = p_size; Title = p_title; Style = p_style;
@@ -74,7 +74,7 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_styl
 	WindowRect.top = 0;
 	WindowRect.bottom = Size.y;
 
-	if (Style == Style::Fullscreen)
+	if (Style == WindowStyle::Fullscreen)
 	{
 		DEVMODE dmScreenSettings;
 		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
@@ -88,10 +88,10 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_styl
 		{
 			// setting display mode failed, switch to windowed
 			MessageBox(NULL,L"Fatal Error: Cannot open window in fullscreen mode !", NULL, MB_OK);
-			Style = Style::Default;
+			Style = WindowStyle::Default;
 		}
 	}
-	if (Style == Style::Fullscreen)
+	if (Style == WindowStyle::Fullscreen)
 	{
 		m_dwExStyle = WS_EX_APPWINDOW;                  // Window Extended Style
 		m_dwStyle = WS_POPUP;                       // Windows Style
@@ -160,11 +160,10 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,char p_styl
 //	Get-Methods
 h3d::Vec2<unsigned int> h3d::Window::getSize()  { return Size;  }
 wchar_t*				h3d::Window::getTitle() { return Title; }
-char					h3d::Window::getStyle() { return Style; }
+h3d::WindowStyle		h3d::Window::getStyle() { return Style; }
 MSG*                    h3d::Window::getMessage(){return &h_Msg;}
 HWND*					h3d::Window::getHandle() {return &h_Win;}
 bool					h3d::Window::isOpen() {  return opened; }
-/////////////////////////////////////////////////////////////////
 std::string h3d::Window::getContextVer()
 {
 	return std::string((char*)glGetString(GL_VERSION));
@@ -190,7 +189,7 @@ h3d::Window::~Window()
 /////////////////////////////////////////////////////////////////
 void h3d::Window::close()
 {	
-	if (Style == Style::Fullscreen)
+	if (Style == WindowStyle::Fullscreen)
 	{
 		ChangeDisplaySettings(NULL, 0);          // If So Switch Back To The Desktop
 	}
