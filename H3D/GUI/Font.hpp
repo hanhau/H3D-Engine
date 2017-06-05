@@ -7,9 +7,9 @@
 /////////////////////////////////////////////////////////////
 #include "../Texture.hpp"
 #include "../Vector.hpp"
-#include <gl/glew.h>
-#include <ft2build.h>
-#include FT_FREETYPE_H
+#include "..\opengl\ogl_util.h"
+#include "..\..\dependencies\freetype\ft2build.h"
+#include "..\..\dependencies\freetype\freetype\freetype.h"
 #define  FT_STATIC
 /////////////////////////////////////////////////////////////
 // Font class basing of freetype (wrapper class)

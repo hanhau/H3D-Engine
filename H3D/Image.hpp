@@ -7,7 +7,7 @@
 /////////////////////////////////////////////////////////////////
 #include <Windows.h>
 
-#include <GL/glew.h>
+#include "opengl\ogl_util.h"
 #include "Color.hpp"
 #include "Vector.hpp"
 #include <string>

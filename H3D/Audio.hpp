@@ -6,10 +6,10 @@
 #endif
 /////////////////////////////////////////////////////////////////
 // external
-#include <al.h>
-#include <alc.h>
-#include <vorbisenc.h>
-#include <vorbisfile.h>
+#include "../dependencies/OpenAL/al.h"
+#include "../dependencies/OpenAL/alc.h"
+#include "../dependencies/vorbis/vorbis/vorbisenc.h"
+#include "../dependencies/vorbis/vorbis/vorbisfile.h"
 // cpp headers
 #include <stdint.h>
 #include <string>

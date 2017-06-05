@@ -5,7 +5,7 @@
 #define H3D_API _declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include <gl\glew.h>
+#include "..\opengl\ogl_util.h"
 #include "..\Vector.hpp"
 #include "..\Utilities.hpp"
 #include "../ResourceManager.hpp"

@@ -11,7 +11,7 @@
 #include <thread>
 #include <list>
 
-#include <GL/glew.h>
+#include "opengl\ogl_util.h"
 #include <mutex>
 /////////////////////////////////////////////////////////////////
 // Package for sending off a call from a different thread

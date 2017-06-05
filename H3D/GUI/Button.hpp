@@ -6,7 +6,7 @@
 #endif // DLL_EXPORT
 #include "Stylesheet.hpp"
 #include "../Vector.hpp"
-#include <gl/glew.h>
+#include "..\opengl\ogl_util.h"
 #include "../Vertex.hpp"
 #include "../Texture.hpp"
 /////////////////////////////////////////////////////////////////
