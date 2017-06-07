@@ -39,12 +39,6 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{aa8a711d-5667-4ad8-b1dd-fb697c39d603}</UniqueIdentifier>
     </Filter>
-    <Filter Include="doc">
-      <UniqueIdentifier>{f492c252-be7f-4210-b348-4f70fbda2033}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OpenGL Util">
-      <UniqueIdentifier>{792762e1-c548-4464-ab25-b42afaca95ea}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -373,8 +367,8 @@
     <ClInclude Include="H3D\Mouse.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\opengl\ogl_util.h">
-      <Filter>OpenGL Util</Filter>
+    <ClInclude Include="H3D\externals.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

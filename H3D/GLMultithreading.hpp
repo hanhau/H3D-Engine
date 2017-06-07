@@ -10,9 +10,10 @@
 #include <Windows.h>
 #include <thread>
 #include <list>
-
-#include "opengl\ogl_util.h"
 #include <mutex>
+
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Package for sending off a call from a different thread
 /////////////////////////////////////////////////////////////////

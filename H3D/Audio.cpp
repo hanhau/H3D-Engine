@@ -1,8 +1,10 @@
 #include "Audio.hpp"
 #include <fstream>
 #include <algorithm>
-#include <vorbisenc.h>
-#include <vorbisfile.h>
+
+#include "externals.h"
+#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisenc.h)
+#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
 /////////////////////////////////////////////////////////////////
 // Implementation of Audio Engine Functions
 /////////////////////////////////////////////////////////////////

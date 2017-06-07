@@ -4,11 +4,14 @@
 #else
 #define H3D_API __declspec(dllimport)
 #endif // DLL_EXPORT
+
 #include "Stylesheet.hpp"
 #include "../Vector.hpp"
-#include "..\opengl\ogl_util.h"
 #include "../Vertex.hpp"
 #include "../Texture.hpp"
+
+#include "../externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // GUI Button
 /////////////////////////////////////////////////////////////////

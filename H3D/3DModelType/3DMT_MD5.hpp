@@ -10,7 +10,8 @@
 #include <string>
 #include "../../H3D/Vector.hpp"
 
-#include "..\opengl\ogl_util.h"
+#include "../externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // .md5 3D File Format Handling Class
 /////////////////////////////////////////////////////////////////

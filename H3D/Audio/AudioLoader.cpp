@@ -1,18 +1,20 @@
+#include "..\Utilities.hpp"
+#include "..\FileSystem.hpp"
 #include "../FileDataStructures.hpp"
 #include "../Utilities.hpp"
-#include <al.h>
-#include <alc.h>
-#include <vorbisfile.h>
-#include <vorbisenc.h>
+
+#include "../externals.h"
+#include STR(OPENAL_INCLUDE/al.h)
+#include STR(OPENAL_INCLUDE/alc.h)
+#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
+#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisenc.h)
+
+
 #include <fstream>
 #include <cstdio>
 #include <iostream>
-
 #include <vector>
 #include <algorithm>
-
-#include "..\Utilities.hpp"
-#include "..\FileSystem.hpp"
 /////////////////////////////////////////////////////////////////
 // .wav Loading
 /////////////////////////////////////////////////////////////////

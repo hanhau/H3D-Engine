@@ -3,7 +3,9 @@
 #include "Utilities.hpp"
 #include "Vector.hpp"
 #include "Texture.hpp"
-#include <gl\glew.h>
+
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Loading individual formats
 /////////////////////////////////////////////////////////////////

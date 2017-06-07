@@ -11,10 +11,12 @@
 #include <thread>
 #include "Vector.hpp"
 #include "Color.hpp"
-#include "opengl\ogl_util.h"
-#include "..\dependencies\glew\gl\wglew.h"
 #include "OpenGLContext.hpp"
 #include "InputManager.hpp"
+
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
+#include STR(GLEW_INCLUDE/gl/wglew.h) 
 
 #define WM_RESIZE (WM_USER + 0x0001)
 /////////////////////////////////////////////////////////////////

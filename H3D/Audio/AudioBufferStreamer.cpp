@@ -1,8 +1,10 @@
 #include "..\FileSystem.hpp"
 #include "..\FileDataStructures.hpp"
 #include "..\Utilities.hpp"
-#include <al.h>
-#include <vorbisfile.h>
+
+#include "..\externals.h"
+#include STR(OPENAL_INCLUDE/al.h)
+#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
 /////////////////////////////////////////////////////////////////
 // OGG Streaming Utils
 /////////////////////////////////////////////////////////////////

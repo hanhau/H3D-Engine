@@ -5,13 +5,15 @@
 #define H3D_API _declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include "..\opengl\ogl_util.h"
 #include "..\Vector.hpp"
 #include "..\Utilities.hpp"
 #include "../ResourceManager.hpp"
 #include "../Vertex.hpp"
 #include <vector>
 #include <string>
+
+#include "../externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // .obj 3D File Format Handling Class
 /////////////////////////////////////////////////////////////////

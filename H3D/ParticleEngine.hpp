@@ -10,10 +10,12 @@
 #include "Texture.hpp"
 #include "Shader.hpp"
 #include "Program.hpp"
-#include <gl\glew.h>
 #include <vector>
 #include <queue>
 #include <math.h>
+
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Particle System for Particle Simulation
 /////////////////////////////////////////////////////////////////

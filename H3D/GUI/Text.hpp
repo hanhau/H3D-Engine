@@ -8,7 +8,9 @@
 #include <string>
 #include "Font.hpp"
 #include "../Color.hpp"
-#include "..\opengl\ogl_util.h"
+
+#include "../externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////
 // Text class
 /////////////////////////////////////////////////////////////

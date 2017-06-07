@@ -105,11 +105,12 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/DLL %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glew32.lib;glu32.lib;freetype27MT.lib;OpenAL32.lib;libvorbis_static.lib;libvorbisfile_static.lib;libogg_static.lib;lua 5.3.4.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;Winmm.lib</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -148,13 +149,14 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <AdditionalOptions>/DLL %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>No</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glew32.lib;glu32.lib;freetype27MT.lib;OpenAL32.lib;libvorbis_static.lib;libvorbisfile_static.lib;libogg_static.lib;lua 5.3.4.lib;ws2_32.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;ws2_32.lib;Winmm.lib</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalOptions>/DLL %(AdditionalOptions)</AdditionalOptions>
@@ -275,6 +277,7 @@
     <ClInclude Include="H3D\hashing\CRC32.hpp" />
     <ClInclude Include="H3D\hashing\SHA256.hpp" />
     <ClInclude Include="H3D\hashing\UniChecksum.hpp" />
+    <ClInclude Include="H3D\externals.h" />
     <ClInclude Include="H3D\Keyboard.hpp" />
     <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
     <ClInclude Include="H3D\memmng\base_alloc.hpp" />
@@ -283,7 +286,6 @@
     <ClInclude Include="H3D\Mouse.hpp" />
     <ClInclude Include="H3D\network\Package.hpp" />
     <ClInclude Include="H3D\network\Socket.hpp" />
-    <ClInclude Include="H3D\opengl\ogl_util.h" />
     <ClInclude Include="H3D\Quaternion.hpp" />
     <ClInclude Include="H3D\Utilities.hpp" />
     <ClInclude Include="H3D\Event.hpp" />

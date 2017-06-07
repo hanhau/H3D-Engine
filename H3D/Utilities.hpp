@@ -28,7 +28,8 @@ void H3D_API VerifyFailed(const char* file, const char* line, const char* expr);
 #include <mutex>
 #include <cstdint>
 // Lua
-#include "..\dependencies\lua\lua.hpp"
+#include "externals.h"
+#include STR(LUA_INCLUDE/lua.hpp)
 /////////////////////////////////////////////////////////////////
 // global Logger
 /////////////////////////////////////////////////////////////////

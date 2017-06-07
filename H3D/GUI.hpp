@@ -10,13 +10,15 @@
 #include <sstream>
 #include "Vector.hpp"
 #include "Program.hpp"
-#include "opengl\ogl_util.h"
 #include <assert.h>
 /////////////////////////////////////////////////////////////////
 #include "GUI\Button.hpp"
 #include "GUI\Text.hpp"
-#include "..\dependencies\freetype\ft2build.h"
-#include "..\dependencies\freetype\freetype\freetype.h"
+
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
+#include STR(FREETYPE_INCLUDE/ft2build.h)
+#include STR(FREETYPE_INCLUDE/freetype/freetype.h)
 /////////////////////////////////////////////////////////////////
 // Graphical User Interface
 /////////////////////////////////////////////////////////////////

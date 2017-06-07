@@ -5,7 +5,8 @@
 #include <math.h>
 #include <cassert>
 
-#include <gl/glew.h>
+#include "..\externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 
 #undef max
 /////////////////////////////////////////////////////////////////

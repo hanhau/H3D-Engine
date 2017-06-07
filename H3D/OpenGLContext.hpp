@@ -1,12 +1,19 @@
 #pragma once
+#ifdef DLL_EXPORT
+#define H3D_API __declspec(dllexport)
+#else
+#define H3D_API __declspec(dllimport)
+#endif // DLL_EXPORT
+
 #include <Windows.h>
-#include "opengl\ogl_util.h"
-#include "..\dependencies\glew\gl\wglew.h"
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
+#include STR(GLEW_INCLUDE/gl/wglew.h)
 /////////////////////////////////////////////////////////////////
 //	Contextsettings
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	struct _declspec(dllexport) ContextSettings
+	struct H3D_API ContextSettings
 	{
 		ContextSettings(BYTE, BYTE, BYTE, BYTE);
 

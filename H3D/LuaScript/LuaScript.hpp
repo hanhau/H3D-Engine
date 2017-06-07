@@ -5,8 +5,9 @@
 #define H3D_API _declspec(dllimport)
 #endif
 // Lua Headers
-#include <lua.hpp>
-#include <sol.hpp>
+#include "..\externals.h"
+#include STR(LUA_INCLUDE/lua.hpp)
+#include STR(SOL2_INCLUDE/sol/sol.hpp)
 // Cpp Headers
 #include <fstream>
 #include <string>

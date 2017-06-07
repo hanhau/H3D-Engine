@@ -1,7 +1,9 @@
 #include "Camera.hpp"
-#include <GL\glew.h>
 #include "Vector/Vector_Implementation.hpp"
 #include "Utilities.hpp"
+
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Camera Implementations
 /////////////////////////////////////////////////////////////////

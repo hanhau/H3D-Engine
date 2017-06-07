@@ -8,9 +8,11 @@
 #include "Light.hpp"
 #include "Vector.hpp"
 
-#include <GL/glew.h>
 #include <mutex>
 #include <map>
+
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 //	GBuffer Class
 /////////////////////////////////////////////////////////////////
