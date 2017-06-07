@@ -35,6 +35,9 @@ void H3D_API VerifyFailed(const char* file, const char* line, const char* expr);
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	extern bool H3D_API DebugMode;
+	enum class LogType {
+		CONSOLE,FILE
+	};
 	class __Logger
 	{
 	private:
@@ -42,22 +45,15 @@ namespace h3d {
 
 		std::mutex m_fileMutex;
 		FILE*      m_logFile;
-		int        m_currentLogType;
+		LogType    m_currentLogType;
 
 		std::string H3D_API getCurrentTime();
 	public:
 		__Logger();
 		~__Logger();
-		
-		// Log Types
-		typedef enum LOG_TYPES
-		{
-			CONSOLE = 1,
-			FILE    = 2
-		}LogTypes;
 
 		// Set Logger Properties
-		void H3D_API setLogType(int type);
+		void H3D_API setLogType(h3d::LogType type);
 
 		// Log Functions
 		template<typename... Args>
@@ -95,11 +91,11 @@ void h3d::__Logger::error(char* msg, Args... args)
 	logString.append(" [ERROR]: ");
 	logString.append(msg);
 	logString.append("\n");
-	if (m_currentLogType == LogTypes::CONSOLE)
+	if (m_currentLogType == LogType::CONSOLE)
 	{
 		printf(logString.c_str(), args...);
 	}
-	else if (m_currentLogType == LogTypes::FILE)
+	else if (m_currentLogType == LogType::FILE)
 	{
 		std::lock_guard<std::mutex> lock(m_fileMutex);
 		fprintf(m_logFile, logString.c_str(), args...);
@@ -113,11 +109,11 @@ void h3d::__Logger::debug(char* msg, Args... args)
 	logString.append(" [DEBUG]: ");
 	logString.append(msg);
 	logString.append("\n");
-	if (m_currentLogType == LogTypes::CONSOLE)
+	if (m_currentLogType == LogType::CONSOLE)
 	{
 		printf(logString.c_str(), args...);
 	}
-	else if (m_currentLogType == LogTypes::FILE)
+	else if (m_currentLogType == LogType::FILE)
 	{
 		std::lock_guard<std::mutex> lock(m_fileMutex);
 		fprintf(m_logFile, logString.c_str(), args...);
@@ -131,11 +127,11 @@ void h3d::__Logger::info(char* msg, Args... args)
 	logString.append(" [INFO]: ");
 	logString.append(msg);
 	logString.append("\n");
-	if (m_currentLogType == LogTypes::CONSOLE)
+	if (m_currentLogType == LogType::CONSOLE)
 	{
 		printf(logString.c_str(), args...);
 	}
-	else if (m_currentLogType == LogTypes::FILE)
+	else if (m_currentLogType == LogType::FILE)
 	{
 		std::lock_guard<std::mutex> lock(m_fileMutex);
 		fprintf(m_logFile, logString.c_str(), args...);
@@ -149,11 +145,11 @@ void h3d::__Logger::alarm(char* msg, Args... args)
 	logString.append(" [ALARM]: ");
 	logString.append(msg);
 	logString.append("\n");
-	if (m_currentLogType == LogTypes::CONSOLE)
+	if (m_currentLogType == LogType::CONSOLE)
 	{
 		printf(logString.c_str(), args...);
 	}
-	else if (m_currentLogType == LogTypes::FILE)
+	else if (m_currentLogType == LogType::FILE)
 	{
 		std::lock_guard<std::mutex> lock(m_fileMutex);
 		fprintf(m_logFile, logString.c_str(), args...);

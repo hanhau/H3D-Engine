@@ -170,9 +170,10 @@ std::string h3d::Window::getContextVer()
 }
 /////////////////////////////////////////////////////////////////
 //	Framebuffer Operations
-void h3d::Window::clear(GLbitfield mask)
+void h3d::Window::clear(GLbitfield mask, 
+						h3d::Color<GLfloat> col = {0,0,0,1})
 {
-	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClearColor(col.r,col.g,col.b,col.a);
 	glClear(mask);
 }
 /////////////////////////////////////////////////////////////////

@@ -7,6 +7,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
                        LPVOID lpReserved
 					 )
 {
+	#define GLEW_STATIC
 	#pragma comment(lib, STR(LUA_PATH/lib/lua 5.3.4.lib)) 
 	#pragma comment(lib, STR(OPENAL_PATH/libs/Win32/OpenAL32.lib)) 
 	#pragma comment(lib, STR(OGG_PATH/win32/VS2010/Win32/Debug/libogg_static.lib))

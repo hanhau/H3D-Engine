@@ -105,7 +105,7 @@ public:
 	/////////////////////////////////////////////////////////////
 	/// \brief Clears the backside framebuffer content
 	/// \param mask Decide what gets cleared. Same params as glClear(...)
-	void H3D_API clear(GLbitfield mask);
+	void H3D_API clear(GLbitfield mask,h3d::Color<GLfloat> col);
 	/// \brief Swap backside and frontend framebuffer
 	/// \return True, if successful
 	bool H3D_API swapBuffers();

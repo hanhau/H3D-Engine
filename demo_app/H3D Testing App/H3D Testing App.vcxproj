@@ -69,10 +69,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\H3D - VS\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\H3D - VS\;C:\Users\hanne\Documents\GitHub\H3D - VS;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)\H3D - VS\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\H3D - VS\;C:\Users\hanne\Documents\GitHub\H3D - VS;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

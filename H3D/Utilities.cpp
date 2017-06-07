@@ -24,10 +24,10 @@ void VerifyFailed(const char* file, const char* line, const char* expr)
 /////////////////////////////////////////////////////////////////
 bool h3d::DebugMode;
 /////////////////////////////////////////////////////////////////
-h3d::__Logger::__Logger() :m_currentLogType(1) {}
+h3d::__Logger::__Logger() :m_currentLogType(h3d::LogType::CONSOLE) {}
 h3d::__Logger::~__Logger() {}
 /////////////////////////////////////////////////////////////////
-void h3d::__Logger::setLogType(int type) {
+void h3d::__Logger::setLogType(h3d::LogType type) {
 	m_currentLogType = type;
 }
 /////////////////////////////////////////////////////////////////
@@ -48,11 +48,11 @@ void h3d::__Logger::costum(const char* tag, const char* str)
 	logString.append(" [" + std::string(tag) + "]: ");
 	logString.append(str);
 	logString.append("\n");
-	if (m_currentLogType == LogTypes::CONSOLE)
+	if (m_currentLogType == LogType::CONSOLE)
 	{
 		printf(logString.c_str());
 	}
-	else if (m_currentLogType == LogTypes::FILE)
+	else if (m_currentLogType == LogType::FILE)
 	{
 		std::lock_guard<std::mutex> lock(m_fileMutex);
 		fprintf(m_logFile, logString.c_str());

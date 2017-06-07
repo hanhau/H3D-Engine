@@ -1,4 +1,9 @@
 #pragma once
+#if defined DLL_EXPORT
+#define H3D_API _declspec(dllexport)
+#else
+#define H3D_API _declspec(dllimport)
+#endif
 
 #include "Vector.hpp"
 #include "Window.hpp"
@@ -9,16 +14,19 @@ namespace h3d{
 static class Mouse
 {	
 public:
-	_declspec(dllexport) Mouse();
-	_declspec(dllexport) ~Mouse();
+	Mouse();
+	~Mouse();
 
-	enum class _declspec(dllexport) Button
-	{Left = WM_LBUTTONDOWN,Middle=WM_MBUTTONDOWN,Right =WM_RBUTTONDOWN};
+	enum class H3D_API Button{
+		Left = WM_LBUTTONDOWN,
+		Middle=WM_MBUTTONDOWN,
+		Right =WM_RBUTTONDOWN
+	};
 
-	template<typename T>
-	static Vec2<T>   getPosition(h3d::Window *win);
-	static bool      _declspec(dllexport) isButtonPressed(int bud_id);
-	static void		 _declspec(dllexport) setCursorHide(bool val);
+	template<typename T>																																	 
+	static Vec2<T>   H3D_API getPosition(h3d::Window *win);
+	static bool      H3D_API isButtonPressed(int bud_id);
+	static void		 H3D_API setCursorHide(bool val);
 }Mouse;
 /////////////////////////////////////////////////////////////////
 }
