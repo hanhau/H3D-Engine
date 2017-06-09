@@ -1,14 +1,22 @@
 #pragma comment(lib,"../../Release/H3D.lib")
+
 #include <H3D\externals.h>
 #pragma comment(lib,STR(GLEW_PATH/lib/Release/Win32/glew32.lib))
 #pragma comment(lib,"opengl32.lib")
 
 #include <H3D\Window.hpp>
+#include <H3D\3DModel.hpp>
 #include <H3D\LuaScript\LuaScript.hpp>
+#include <H3D\Program.hpp>
 
 int main()
 {	
 	h3d::Window app(h3d::Vec2<unsigned int>(800,600),L"Test",h3d::WindowStyle::Default);
+
+	h3d::Model3D demoModel;
+	demoModel.loadFromFile("demo.obj");
+	
+	
 
 	bool running = true;
 	while (running)

@@ -14,11 +14,11 @@
 /////////////////////////////////////////////////////////////////
 //	Universal 3D Model Class
 /////////////////////////////////////////////////////////////////
-const unsigned int MT3D_OBJ = 0b0000'0001;
-const unsigned int MT3D_MD5 = 0b0000'0010;
-const unsigned int MT3D_DAE = 0b0000'0011;
-/////////////////////////////////////////////////////////////////
 namespace h3d {
+	enum class Model3DFormat {
+		OBJ,MD5,DAE
+	};
+/////////////////////////////////////////////////////////////////
 	class Model3D
 	{
 	private:
@@ -27,7 +27,7 @@ namespace h3d {
 			ModelType::MD5 *md5;
 			ModelType::X   *x;
 		}m_rawModels;
-		unsigned int m_modelTypeEnum;
+		Model3DFormat m_modelTypeEnum;
 	public:
 		// Con-/Destructor
 		H3D_API Model3D();
