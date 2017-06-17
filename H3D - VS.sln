@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "H3D - VS", "H3D - VS.vcxproj", "{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "H3D Testing App", "demo_app\H3D Testing App\H3D Testing App.vcxproj", "{2C389484-3CBA-414E-BBA8-D5CA936ACC89}"
+	ProjectSection(ProjectDependencies) = postProject
+		{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB} = {996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,11 +1,10 @@
 #pragma once
 #if defined DLL_EXPORT
-#define H3D_API _declspec(dllexport)
+#define H3D_API __declspec(dllexport)
 #else
-#define H3D_API _declspec(dllimport)
+#define H3D_API __declspec(dllimport)
 #endif
 
-#include <Windows.h>
 #include <string>
 #include <vector>
 #include <thread>
@@ -14,14 +13,23 @@
 #include "OpenGLContext.hpp"
 #include "InputManager.hpp"
 
+#ifdef _WIN32 || _WIN64
+
+// Windows specific
+#include <Windows.h>
+#include STR(GLEW_INCLUDE/gl/wglew.h) 
+LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
+#define WM_RESIZE (WM_USER + 0x0001)
+
+#elif defined __linux__
+
+// Linux specific
+#include <gl\glx.h>
+
+#endif
+
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
-#include STR(GLEW_INCLUDE/gl/wglew.h) 
-
-#define WM_RESIZE (WM_USER + 0x0001)
-/////////////////////////////////////////////////////////////////
-//	_H3D_WndProc
-LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 namespace h3d{
 /////////////////////////////////////////////////////////////////
 /// \enum Window styles for creating a window
@@ -49,6 +57,18 @@ private:
 	int minorOpenGL;
 	int majorOpenGL;
 	
+#ifdef __linux__
+	Display				 *dpy;
+	Window				 root;
+	GLint				 *att;
+	XVisualInfo			 *vi;
+	Colormap			 cmap;
+	XSetWindowAttributes swa;
+	::Window			 win;
+	GLXContext			 glc;
+	XWindowAttributes    gwa;
+	XEvent				 xev;
+#elif defined _WIN32 || _WIN64
 	// Winapi Styles
 	DWORD m_dwExStyle;
 	DWORD m_dwStyle;
@@ -59,6 +79,7 @@ private:
 	HWND h_Win;
 	MSG h_Msg;
 	WNDCLASSEX h_WinClass;
+#endif 
 
 	// Eventhandling
 	bool startUpdateThread();

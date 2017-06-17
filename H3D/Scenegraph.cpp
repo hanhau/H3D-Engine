@@ -1,8 +1,8 @@
 #include "Scenegraph.hpp"
 #if defined DLL_EXPORT
-#define H3D_API _declspec(dllexport)
+#define H3D_API __declspec(dllexport)
 #else
-#define H3D_API _declspec(dllimport)
+#define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
 // Implementaion of Scenegraph functions

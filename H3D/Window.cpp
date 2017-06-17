@@ -63,11 +63,56 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,h3d::Window
 	opened = true;
 	Size = p_size; Title = p_title; Style = p_style;
 	Appname = Title;
-	h_Instance = GetModuleHandle(NULL);
+	
+#ifdef __linux__
 	/////////////////////////////////////////////////////////////
+	// Linux Window Creation
+	/////////////////////////////////////////////////////////////
+	
+	dpy = XOpenDisplay(NULL);
+	if (dpy == NULL) {
+		if (h3d::DebugMode) 
+			Log.error("Failed to connect to X Server!");
+		return false;
+	}
+
+	root = DefaultRootWindow(dpy);
+
+	vi = glXChooseVisual(dpy, 0, att);
+	if (vi == NULL) {
+		if (h3d::DebugMode)
+			Log.error("Xlib: Not correct visual found");
+		return false;
+	}
+
+	cmap = XCreateColormap(dpy,root,vi->visual,AllocNone);
+	swa.colormap = cmap;
+	swa.event_mask = ExposureMask | KeyPressMask;
+
+	win = XCreateWindow(dpy, root, 0, 0, 
+						Size.x,Size.y
+						0, 
+						vi->depth, InputOutput, 
+						vi->visual, CWColormap | CWEventMask, &swa);
+
+	XMapWindow(dpy, win);
+	XStoreName(dpy, win, (char*)Title);
+
+	glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);
+	glXMakeCurrent(dpy, win, glc);
+
+	glEnable(GL_DEPTH_TEST);
+
+#elif defined _WIN32 ||_WIN64
+	/////////////////////////////////////////////////////////////
+	// Windows Window Creation
+	/////////////////////////////////////////////////////////////
+
 	// Check for Window Style
 	m_dwExStyle = WS_EX_OVERLAPPEDWINDOW;
 	m_dwStyle = WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+
+	h_Instance = GetModuleHandle(NULL);
 
 	WindowRect.left = 0;
 	WindowRect.right = Size.x;
@@ -79,15 +124,15 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,h3d::Window
 		DEVMODE dmScreenSettings;
 		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
 		dmScreenSettings.dmSize = sizeof(dmScreenSettings);
-		dmScreenSettings.dmPelsWidth = Size.x;         
+		dmScreenSettings.dmPelsWidth = Size.x;
 		dmScreenSettings.dmPelsHeight = Size.y;
-		dmScreenSettings.dmBitsPerPel = 32;        
+		dmScreenSettings.dmBitsPerPel = 32;
 		dmScreenSettings.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 
 		if (ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
 		{
 			// setting display mode failed, switch to windowed
-			MessageBox(NULL,L"Fatal Error: Cannot open window in fullscreen mode !", NULL, MB_OK);
+			MessageBox(NULL, L"Fatal Error: Cannot open window in fullscreen mode !", NULL, MB_OK);
 			Style = WindowStyle::Default;
 		}
 	}
@@ -102,7 +147,7 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,h3d::Window
 		m_dwStyle = WS_OVERLAPPEDWINDOW;
 	}
 
-	AdjustWindowRectEx(&WindowRect,m_dwStyle, FALSE , m_dwExStyle);
+	AdjustWindowRectEx(&WindowRect, m_dwStyle, FALSE, m_dwExStyle);
 
 	/////////////////////////////////////////////////////////////
 	//	Window Creation			
@@ -155,6 +200,7 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,h3d::Window
 	SetFocus(h_Win);
 	if (h3d::DebugMode)
 		Log.info("Finished createing Window");
+#endif	
 }
 /////////////////////////////////////////////////////////////////
 //	Get-Methods

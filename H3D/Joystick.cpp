@@ -6,7 +6,7 @@
 h3d::Joystick::Joystick()  : _gch3d_HIDBaseClass(0x04) {}
 h3d::Joystick::~Joystick() {}
 /////////////////////////////////////////////////////////////////
-bool _declspec(dllexport) h3d::Joystick::setupJoystick()
+bool __declspec(dllexport) h3d::Joystick::setupJoystick()
 {
 	m_joyinfoex.dwSize = sizeof(JOYINFOEX);
 	m_joyinfoex.dwFlags = JOY_RETURNALL;
