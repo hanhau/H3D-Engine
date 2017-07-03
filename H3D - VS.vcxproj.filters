@@ -39,6 +39,12 @@
     <Filter Include="Texture">
       <UniqueIdentifier>{aa8a711d-5667-4ad8-b1dd-fb697c39d603}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physic">
+      <UniqueIdentifier>{f382b414-19c2-4d95-b5ea-7155da59e9f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{1d1e6ed9-65f7-4fa8-abf2-7ca82cfef9ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -99,12 +105,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ParticleRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ParticleUpdater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Emitter.cpp">
@@ -203,6 +203,15 @@
     <ClCompile Include="H3D\Audio\AudioBufferStreamer.cpp">
       <Filter>Audio</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\ParticleUpdater.cpp">
+      <Filter>Physic</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\ParticleRenderer.cpp">
+      <Filter>Physic</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -263,9 +272,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\GBuffer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ParticleEngine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\GLMultithreading.hpp">
@@ -369,6 +375,18 @@
     </ClInclude>
     <ClInclude Include="H3D\externals.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\ParticleEngine.hpp">
+      <Filter>Physic</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Physic\Physic.hpp">
+      <Filter>Physic</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\ShaderManager.hpp">
+      <Filter>OpenGL Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Renderer.hpp">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

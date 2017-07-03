@@ -1,5 +1,4 @@
 #include "FileSystem.hpp"
-#include <Windows.h>
 #include "Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // Implementation of MemoryStream
@@ -39,37 +38,33 @@ char* h3d::MemoryStream::read(unsigned long bytes)
 /////////////////////////////////////////////////////////////////
 // Implementations for FileHandle
 /////////////////////////////////////////////////////////////////
-const int h3d::FileHandle::s::LoadIntoMemory  = 0b0001;
-const int h3d::FileHandle::s::ExclusiveAccess = 0b0010;
-/////////////////////////////////////////////////////////////////
 h3d::FileHandle::FileHandle() 
 {
 	
 }
-h3d::FileHandle::FileHandle(std::string path, int param)
-{
-
+h3d::FileHandle::FileHandle(std::string path, bool filemapping){
+	open(path, filemapping);
 }
 h3d::FileHandle::~FileHandle() 
 {
 
 }
 /////////////////////////////////////////////////////////////////
-#define H3D_DEBUG
-bool h3d::FileHandle::open(std::string path, int param)
+bool h3d::FileHandle::open(std::string path, bool filemapping)
 {
 	h3dverify(path.size() == 0);
 
+#ifdef __linux__
+	mmap
+#elif defined _WIN32 || _WIN64
+		
 	//  Parameter checking
-	DWORD dwShareMode;
-	if ((param & Params.ExclusiveAccess) == Params.ExclusiveAccess)
-		dwShareMode = 0;
-	else
-		dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
+	
+	DWORD dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 
 	// Create Handle
 	m_fileHandle = CreateFileA(path.c_str(),
-							  GENERIC_READ | GENERIC_WRITE,
+							  GENERIC_READ | GENERIC_WRITE | GENERIC_EXECUTE,
 							  dwShareMode,
 							  NULL,
 							  OPEN_EXISTING,
@@ -86,19 +81,45 @@ bool h3d::FileHandle::open(std::string path, int param)
 	m_fileSizeBytes = GetFileSize(m_fileHandle, NULL);
 	m_isOpen = true;
 	m_filePath = path;
-
-	// Load into Memory if desired
-	if ((param & Params.LoadIntoMemory) == Params.LoadIntoMemory)
+	
+	if (filemapping)
 	{
-		ReadFile(m_fileHandle, m_buffer.data(), m_fileSizeBytes, NULL, NULL);
-		m_inMemory = true;
+		m_mappedFileHandle = CreateFileMapping(m_fileHandle,
+											   NULL,
+											   PAGE_EXECUTE_READWRITE,
+											   0, 0,
+											   NULL);
+		if (m_mappedFileHandle == NULL) {
+			if (h3d::DebugMode)
+				Log.error("Error @ CreateFileMapping");
+			return false;
+		}
+
+		m_mappedData = std::make_shared<void*>(
+								MapViewOfFileEx(m_mappedFileHandle,
+												FILE_MAP_ALL_ACCESS,
+												0, 0,
+												0,
+												NULL)
+											   );
+		if (m_mappedData.get() == NULL) {
+			if (h3d::DebugMode)
+				Log.error("Error @ MapViewOfFileEx");
+			return false;
+		}
+
+		m_isMapped = true;
 	}
+#endif
 
 	// Return successfully
 	return true;
 }
 bool h3d::FileHandle::close()
 {
+	if (m_isMapped)
+		UnmapViewOfFile(m_mappedData.get());
+
 	if (CloseHandle(m_fileHandle)) return true;
 	else return false;
 }

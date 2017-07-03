@@ -58,8 +58,8 @@ extern bool loadWAV(char path[],
 	}
 
 	// Load PCM from file
-	auto *pcmdata = new char[wavData.subChunk2Size];
-	fileHandle.read(pcmdata, wavData.subChunk2Size);
+	std::auto_ptr<char> pcmdata(new char[wavData.subChunk2Size]);
+	fileHandle.read(pcmdata.get(), wavData.subChunk2Size);
 	
 	// Set OpenAL format
 	if (wavFormat.numChannels == 1)
@@ -82,12 +82,11 @@ extern bool loadWAV(char path[],
 	}
 
 	// Set OpenAL Buffer accordingly
-	alBufferData(buffer, format, pcmdata, size = wavData.subChunk2Size,
+	alBufferData(buffer, format, pcmdata.get(), size = wavData.subChunk2Size,
 				 frequency = wavFormat.sampleRate);
 
 	// cleanup
 	fileHandle.close();
-	delete[] pcmdata;
 
 	// Return
 	if (h3d::DebugMode)

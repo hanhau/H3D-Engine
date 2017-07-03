@@ -138,7 +138,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 	h3d::Vec2<GLfloat>  temp_vec2f;
 	h3d::Vec3<GLfloat>  temp_vec3f;
 	h3d::Vec3<GLuint>   temp_vec3i;
-	Mesh				*temp_mesh = nullptr;
+	std::auto_ptr<Mesh> temp_mesh(nullptr);
 	int face_type = 0;
 
 	// Catch lines
@@ -151,10 +151,10 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 		// meshes
 		else if (param == "g")
 		{	
-			if (temp_mesh == nullptr)
-				temp_mesh = new Mesh;
-			if (temp_mesh != nullptr)
-				m_meshes.push_back(*temp_mesh);
+			if (temp_mesh.get() == nullptr)
+				temp_mesh = std::auto_ptr<Mesh>();
+			if (temp_mesh.get() != nullptr)
+				m_meshes.push_back(*temp_mesh.release());
 			temp_mesh->clearUp();
 
 			file_stream >> temp_mesh->m_meshname;
@@ -253,7 +253,6 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 	}
 	m_meshes.push_back(*temp_mesh);
 	m_meshes.erase(m_meshes.begin());
-	delete temp_mesh;
 
 	for (auto &iter : m_meshes)
 		iter.prepareRendering();

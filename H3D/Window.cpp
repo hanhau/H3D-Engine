@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "Utilities.hpp"
+
+#ifdef _WIN32 || _WIN64
 /////////////////////////////////////////////////////////////////
 //	Window Handling Func
 LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
@@ -50,6 +52,7 @@ LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	}
 	return 0;
 }
+#endif
 /////////////////////////////////////////////////////////////////
 //	ContextSettings
 h3d::ContextSettings::ContextSettings(BYTE bits_fb, BYTE bits_db,

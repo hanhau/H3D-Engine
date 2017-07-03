@@ -17,11 +17,11 @@ bool h3d::Model3D::loadFromFile(char Path[])
 
 	// Define this models 3d model format type
 	temp_path.erase(0,iter);
-	if (temp_path == "md5mesh") m_modelTypeEnum = 
+	if (temp_path == ".md5mesh") m_modelTypeEnum = 
 									h3d::Model3DFormat::MD5;
-	else if (temp_path == "dae") m_modelTypeEnum = 
+	else if (temp_path == ".dae") m_modelTypeEnum = 
 									h3d::Model3DFormat::DAE;
-	else if (temp_path == "obj") m_modelTypeEnum = 
+	else if (temp_path == ".obj") m_modelTypeEnum = 
 									h3d::Model3DFormat::OBJ;
 	else return false;
 

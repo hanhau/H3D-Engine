@@ -6,7 +6,7 @@
 /////////////////////////////////////////////////////////////////
 //	Shader Implementation
 /////////////////////////////////////////////////////////////////
-h3d::Shader::Shader() :created(false),shadertype(0){}
+h3d::Shader::Shader() :created(false),shadertype(0){}			   
 h3d::Shader::Shader(GLenum type,GLchar code_path[]) :
 	created(false),shadertype(0)
 {
@@ -29,6 +29,9 @@ bool h3d::Shader::setCode(GLchar acode[])
 	}
 	else
 	{
+		if (h3d::DebugMode)
+			Log.info("Loading Shader from File ...");
+
 		h3d::FileHandle fh;
 		fh.open(acode);
 		std::ifstream file;
@@ -49,12 +52,12 @@ bool h3d::Shader::setCode(GLchar acode[])
 }
 void h3d::Shader::setType(GLenum atype) 
 { 
-	h3dverify(atype == GL_VERTEX_SHADER ||
+	/*h3dverify(atype == GL_VERTEX_SHADER ||
 			  atype == GL_FRAGMENT_SHADER ||
 			  atype == GL_GEOMETRY_SHADER ||
 			  atype == GL_COMPUTE_SHADER ||
 			  atype == GL_TESS_CONTROL_SHADER ||
-			  atype == GL_TESS_EVALUATION_SHADER);
+			  atype == GL_TESS_EVALUATION_SHADER); */
 	shadertype = atype; 
 }
 /////////////////////////////////////////////////////////////////

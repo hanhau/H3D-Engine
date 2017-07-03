@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -28,26 +28,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -231,6 +231,7 @@
     <ClCompile Include="H3D\memmng\linear_alloc.cpp" />
     <ClCompile Include="H3D\network\Socket.cpp" />
     <ClCompile Include="H3D\Quaternion.cpp" />
+    <ClCompile Include="H3D\Renderer.cpp" />
     <ClCompile Include="H3D\TextureLoader.cpp" />
     <ClCompile Include="H3D\Utilities.cpp" />
     <ClCompile Include="H3D\Emitter.cpp" />
@@ -286,7 +287,10 @@
     <ClInclude Include="H3D\Mouse.hpp" />
     <ClInclude Include="H3D\network\Package.hpp" />
     <ClInclude Include="H3D\network\Socket.hpp" />
+    <ClInclude Include="H3D\Physic\Physic.hpp" />
     <ClInclude Include="H3D\Quaternion.hpp" />
+    <ClInclude Include="H3D\Renderer.hpp" />
+    <ClInclude Include="H3D\ShaderManager.hpp" />
     <ClInclude Include="H3D\Utilities.hpp" />
     <ClInclude Include="H3D\Event.hpp" />
     <ClInclude Include="H3D\FileDataStructures.hpp" />

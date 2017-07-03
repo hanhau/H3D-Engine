@@ -11,7 +11,12 @@
 #include <cstdint>
 #include <thread>
 #include "hashing\UniChecksum.hpp"
+
+#ifdef _WIN32 || _WIN64
 #include <windows.h>
+#elif defined __linux__
+#include <sys\mman.h>
+#endif
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	class FileHandle;
@@ -82,8 +87,17 @@ namespace h3d {
 		h3d::Checksum        m_checksum;
 		h3d::File::Crypter  *m_crypter;
 		
+#ifdef _WIN32 || _WIN64
 		// winapi stuff
-		HANDLE m_fileHandle;
+		HANDLE		 m_fileHandle;
+		HANDLE		 m_mappedFileHandle;
+#elif defined __linux__
+		// linux stuff
+		std::fstream m_fileHandle;
+#endif
+		// FileMapping Pointer
+		std::shared_ptr<void*> m_mappedData;
+		bool				   m_isMapped;
 
 		// Read/Write Treads
 		std::thread m_writeThread;
@@ -98,20 +112,13 @@ namespace h3d {
 		MemoryStream  m_memoryStream;
 		unsigned long m_actualIterPos;
 	public:
-		// setable Parameters for opening
-		struct s{
-			static const int LoadIntoMemory;
-			static const int ExclusiveAccess;
-		};
-		static s H3D_API Params;
-
 		// Con-/Destructor
 		H3D_API FileHandle();
-		H3D_API FileHandle(std::string path,int param=0);
+		H3D_API FileHandle(std::string path, bool filemapping = false);
 		H3D_API ~FileHandle();
 
 		// Create/Destroy Handle to File
-		bool H3D_API open(std::string path,int param=0);
+		bool H3D_API open(std::string path,bool filemapping=false);
 		bool H3D_API close();
 
 		// Checksum operations
@@ -130,6 +137,12 @@ namespace h3d {
 		unsigned long getFileSize();
 		std::string   getFilePath();
 		bool          isOpen();
+
+		// Operations when File is mapped
+		template<typename T> 
+			T getMappingPtr() {
+				return reinterpret_cast<T*>(m_mappedData.get())[0];
+			}
 	};
 }
 /////////////////////////////////////////////////////////////////
