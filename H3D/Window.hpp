@@ -8,17 +8,20 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <queue>
+
 #include "Vector.hpp"
 #include "Color.hpp"
 #include "OpenGLContext.hpp"
 #include "InputManager.hpp"
+#include "Event.hpp"
 
 #ifdef _WIN32 || _WIN64
 
 // Windows specific
 #include <Windows.h>
 #include STR(GLEW_INCLUDE/gl/wglew.h) 
-LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
+LRESULT CALLBACK _H3D_WndProc(HWND,UINT,WPARAM,LPARAM);
 #define WM_RESIZE (WM_USER + 0x0001)
 
 #elif defined __linux__
@@ -31,6 +34,7 @@ LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 namespace h3d{
+	class Event;
 /////////////////////////////////////////////////////////////////
 /// \enum Window styles for creating a window
 enum class WindowStyle {
@@ -42,6 +46,9 @@ enum class WindowStyle {
 /////////////////////////////////////////////////////////////////
 class Window
 {
+#ifdef _WIN32 || _WIN64
+	friend LRESULT CALLBACK ::_H3D_WndProc(HWND,UINT,WPARAM,LPARAM);
+#endif
 private:
 	// Data
 	Vec2<unsigned int> Size;
@@ -56,7 +63,19 @@ private:
 	h3d::GLContext GLContext;
 	int minorOpenGL;
 	int majorOpenGL;
-	
+
+	// To make ptrs
+	Window() = default;
+
+	// Event Queue
+	std::queue<Event> m_EventQueue;
+
+	// Eventhandling
+	bool startUpdateThread();
+	bool stopUpdateThread();
+	std::vector<MSG> m_msgQueue;
+	void m_UpdateThread();
+
 #ifdef __linux__
 	Display				 *dpy;
 	Window				 root;
@@ -80,12 +99,6 @@ private:
 	MSG h_Msg;
 	WNDCLASSEX h_WinClass;
 #endif 
-
-	// Eventhandling
-	bool startUpdateThread();
-	bool stopUpdateThread();
-	std::vector<MSG> m_msgQueue;
-	void m_UpdateThread();
 public:
 	/////////////////////////////////////////////////////////////
 	/// \brief Construct a new window and open it.
@@ -155,8 +168,8 @@ public:
 	bool H3D_API setActive();
 
 	// Update Window Events
-	/// \brief NOT FINAL YET
-	void H3D_API update();
+	/// \brief Get next Event since last frame
+	bool H3D_API pollEvent(h3d::Event &event);
 };
 /////////////////////////////////////////////////////////////////
 }

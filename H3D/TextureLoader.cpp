@@ -38,7 +38,6 @@ bool h3d::Texture::loadBMP(char Path[],h3d::Texture& ref)
 
 	// Set format intel
 	ref.m_measurements = h3d::Vec2<unsigned int>(t_body.biWidth, abs(t_body.biHeight));
-	ref.m_format = GL_BGR;
 
 	// Picturedatablock
 	unsigned long imageSize = t_body.biWidth*t_body.biHeight*t_body.biBitCount / 8;

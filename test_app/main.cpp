@@ -1,4 +1,4 @@
-#pragma comment(lib,"../../Release/H3D.lib")
+#pragma comment(lib,"../Release/H3D.lib")
 
 #include <H3D\externals.h>
 #pragma comment(lib,STR(GLEW_PATH/lib/Release/Win32/glew32.lib))
@@ -13,14 +13,20 @@
 
 #include <iostream>
 
+class a {};
+class b : public a{};
+
 int main()
 {	
-	h3d::Window app(h3d::Vec2<unsigned int>(1280,720),L"Test",h3d::WindowStyle::Default);
+	a A;
+	b B;
+
+	a C = B;
+
+	h3d::Window app(h3d::Vec2<unsigned int>(1280,720),L"Test",
+					h3d::WindowStyle::Default);
 	
 	h3d::DebugMode = true;
-
-	h3d::Model3D obj;
-	obj.loadFromFile("demoobj.obj");
 
 	GLchar* strvert = { "#version 330\n"
 
@@ -47,11 +53,6 @@ int main()
 
 	std::cout << gl_program.link() << std::endl;
 	gl_program.use(true);
-
-	h3d::FileHandle fh;
-	std::cout << fh.open("demoobj.obj", true) << std::endl;	
-	std::cout << fh.getMappingPtr<char*>() << std::endl;	
-	fh.close();
 	
 	glViewport(0, 0, 1920, 1080);
 
@@ -69,31 +70,28 @@ int main()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9,
 				 &polygons, GL_STREAM_READ);
 
-	bool running = true;
-	while (running)
+	while (app.isOpen())
 	{
-		if (::PeekMessage(app.getMessage(), 0, 0, 0, PM_REMOVE))
+		
+		h3d::Event event;
+		while(app.pollEvent(event))
 		{
-			if (app.getMessage()->message == WM_QUIT ||
-				app.getMessage()->message == WM_CLOSE ||
-				app.getMessage()->message == WM_DESTROY)
+			if (event.type == h3d::EventType::Closed) {
 				app.close();
-
-			::TranslateMessage(app.getMessage());
-			::DispatchMessage(app.getMessage());
-		}
+				return 0;
+			}
+		}		
 
 		app.clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT,
 				  h3d::Color<GLfloat>(1.0,0.5,0.25,1.0));
-
-		obj.render();
 		
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
 		glDrawArrays(GL_LINE_LOOP, 0, 9);
 
+		std::cout << "frame" << std::endl;
+
 		app.swapBuffers();
 	}
 
-	app.close();
 	return 0;
 }

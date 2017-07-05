@@ -8,9 +8,16 @@
 //	class Event
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-class Event 
-{
-	
-};
+	enum class EventType {
+		Closed, Resized, LostFocus, GainedFocus,
+		KeyDown, KeyUp
+	};
+
+	class Event 
+	{
+		
+	public:
+		EventType type;
+	};
 }
 /////////////////////////////////////////////////////////////////

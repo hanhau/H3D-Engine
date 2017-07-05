@@ -4,12 +4,25 @@
 #include <iostream>
 
 #include "Utilities.hpp"
+#include "Event.hpp"
 
 #ifdef _WIN32 || _WIN64
 /////////////////////////////////////////////////////////////////
 //	Window Handling Func
 LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
+	if (msg == WM_NCCREATE || msg == WM_CREATE) {
+		std::cout << "test1" << std::endl;
+
+		SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)((CREATESTRUCT*)lparam)->lpCreateParams);
+		SetWindowPos(hwnd, 0, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER);
+		
+		return 0;
+	}
+
+	std::cout << "test2" << std::endl;
+	h3d::Window &win = *(h3d::Window*)GetWindowLongPtr(hwnd,GWLP_USERDATA);
+
 	switch (msg)
 	{
 	// Resize Event
@@ -36,15 +49,10 @@ LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 			h3d::InputManager.updateJoystick();
 		}
 		break;
-	// Window Creation
-	case WM_CREATE:
-		// Input Setup for this Window
-		h3d::InputManager.setupHardware(hwnd);
-		break;
 	case WM_PAINT:		
 		break;
 	case WM_CLOSE:
-		PostQuitMessage(0);
+		std::cout << "test" <<std::endl;
 		break;
 	// Default Window Procedure
 	default:
@@ -188,7 +196,7 @@ h3d::Window::Window(h3d::Vec2<unsigned int> p_size, wchar_t* p_title,h3d::Window
 		Size.x, Size.y,
 		NULL, NULL,
 		h_Instance,
-		NULL);
+		this);
 	if (h_Win == NULL)
 		if (h3d::DebugMode)
 			Log.info("Created Window");
@@ -239,16 +247,19 @@ h3d::Window::~Window()
 /////////////////////////////////////////////////////////////////
 void h3d::Window::close()
 {	
+	opened = false;
 	if (Style == WindowStyle::Fullscreen)
 	{
 		ChangeDisplaySettings(NULL, 0);          // If So Switch Back To The Desktop
 	}
-	ShowCursor(TRUE);
-	setActive();
 	opened = false;
-	wglDeleteContext(wglGetCurrentContext());
-	UnregisterClass(Appname, h_Instance);
+	ShowCursor(TRUE);
 	PostQuitMessage(0);
+	setActive();
+	wglDeleteContext(wglGetCurrentContext());
+	PostQuitMessage(0);
+	UnregisterClass(Appname, h_Instance);
+	opened = false;
 }
 /////////////////////////////////////////////////////////////////
 // Editing Window
@@ -286,12 +297,42 @@ bool h3d::Window::setActive()
 }
 /////////////////////////////////////////////////////////////////
 //	Updating and receiving Data for Window
-void h3d::Window::update()
+bool h3d::Window::pollEvent(h3d::Event &event)
 {
-	while (PeekMessage(&h_Msg, 0, 0, 0, PM_REMOVE))
+#ifdef _WIN32 || _WIN64
+	if (!PeekMessage(&h_Msg, h_Win, 
+		0, 0, PM_REMOVE))
+		return false;
+	else
 	{
-		TranslateMessage(&h_Msg);
-		DispatchMessage(&h_Msg);
+		std::cout << "1" << std::endl;
+		if (h_Msg.message == 0){
+			
+		}
+		else if (h_Msg.message == 0) {
+
+		}
+		switch (h_Msg.message)
+		{
+		case WM_QUIT:
+		case WM_CLOSE:
+		case WM_DESTROY:
+			std::cout << "2" << std::endl;
+			event.type = EventType::Closed;
+			break;
+		default:
+			std::cout << "3" << std::endl;
+			break;
+		}
+
+		TranslateMessage(getMessage());
+		DispatchMessage(getMessage());
+
+		return false;
 	}
+#elif defined __linux__
+
+#endif
+	
 }
 /////////////////////////////////////////////////////////////////

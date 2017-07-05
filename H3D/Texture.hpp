@@ -30,7 +30,8 @@ namespace h3d {
 		unsigned char *m_buffer;
 
 		// Format of the Image loaded
-		int m_format;
+		enum class Format;
+		Format m_format;
 		GLenum m_colorFormat;
 
 		// Advanced Intel
@@ -39,11 +40,8 @@ namespace h3d {
 		unsigned long           m_bufferSize;
 	public:
 		// Format Flags
-		struct H3D_API Format {
-			static const int PNG; 
-			static const int KTX;
-			static const int BMP;
-			static const int TGA;
+		enum class H3D_API Format {
+			PNG, KTX, BMP, TGA
 		};
 
 		// Con/De-structor

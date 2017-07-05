@@ -65,8 +65,8 @@ namespace h3d {
 // Create Container File
 /////////////////////////////////////////////////////////////////
 namespace h3d{
-	bool H3D_API createContainerFile(std::string output_file,
-									 std::vector<std::string> input_files)
+	bool createContainerFile(std::string output_file,
+							 std::vector<std::string> input_files)
 	{
 		Log.info("Creating ContainerFile %s",output_file.c_str());
 

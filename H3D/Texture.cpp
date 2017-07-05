@@ -9,11 +9,6 @@
 /////////////////////////////////////////////////////////////////
 //	Texture Function Implementations
 /////////////////////////////////////////////////////////////////
-const int h3d::Texture::Format::PNG = 0;
-const int h3d::Texture::Format::KTX = 1;
-const int h3d::Texture::Format::BMP = 2;
-const int h3d::Texture::Format::TGA = 3;
-/////////////////////////////////////////////////////////////////
 h3d::Texture::Texture(){}
 h3d::Texture::Texture(char Path[]){
 	loadFromFile(Path);
@@ -93,10 +88,17 @@ bool h3d::Texture::createTexture()
 					m_measurements.x, 
 					m_measurements.y, 
 					GL_RGB, GL_UNSIGNED_BYTE, m_buffer);
+
+	int image2dparam_format;
+	if (m_format == Format::BMP)
+		image2dparam_format = GL_BGR;
+	else
+		image2dparam_format = GL_RGB;
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 
 				 m_measurements.x, 
 				 m_measurements.y, 
-				 0, m_format, GL_UNSIGNED_BYTE, m_buffer);
+				 0, image2dparam_format, 
+				 GL_UNSIGNED_BYTE, m_buffer);
 
 	delete []m_buffer;
 	m_buffer = nullptr;

@@ -212,6 +212,9 @@
     <ClCompile Include="H3D\Renderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\Drawable.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -386,6 +389,9 @@
       <Filter>OpenGL Shader</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Renderer.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Drawable.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
