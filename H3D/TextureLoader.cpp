@@ -37,7 +37,7 @@ bool h3d::Texture::loadBMP(char Path[],h3d::Texture& ref)
 	h3d::setObjectFromFileHandle(t_body, filehandle);
 
 	// Set format intel
-	ref.m_measurements = h3d::Vec2<unsigned int>(t_body.biWidth, abs(t_body.biHeight));
+	ref.m_measurements = h3d::Vec2<int>(t_body.biWidth, abs(t_body.biHeight));
 
 	// Picturedatablock
 	unsigned long imageSize = t_body.biWidth*t_body.biHeight*t_body.biBitCount / 8;

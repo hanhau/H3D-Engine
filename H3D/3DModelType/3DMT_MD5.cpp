@@ -73,7 +73,7 @@ bool h3d::ModelType::MD5::prepareNormals(Mesh& mesh)
 	Joint       temp_joint;
 
 	// Loop through triangles and calc normals
-	for (unsigned int i = 0;i < mesh.triangle_vec.size();++i)
+	for (int i = 0;i < mesh.triangle_vec.size();++i)
 	{
 		t_v[0] = mesh.vertex_vec[mesh.triangle_vec[i].x].pos;
 		t_v[1] = mesh.vertex_vec[mesh.triangle_vec[i].y].pos;
@@ -87,7 +87,7 @@ bool h3d::ModelType::MD5::prepareNormals(Mesh& mesh)
 		mesh.vertex_vec[mesh.triangle_vec[i].z].normal += normal;
 	}
 	// Normalize all normals
-	for (unsigned int i = 0;i < mesh.vertex_vec.size();++i)
+	for (int i = 0;i < mesh.vertex_vec.size();++i)
 	{
 		temp_vertex = mesh.vertex_vec[i];
 
@@ -194,7 +194,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 			file_stream >> temp_s; // '{' char
 
 			// Iterate through all joints
-			for (unsigned int i = 0;i < joint_count;i++)
+			for (int i = 0;i < joint_count;i++)
 			{
 				file_stream >> temp_joint.name >> temp_joint.parentIndex >> temp_s >>
 					temp_joint.position.x >> temp_joint.position.y >>
@@ -477,9 +477,9 @@ void h3d::ModelType::MD5::Animation::BuildFrameskeleton(std::vector<FrrameSkelet
 {
 	FrrameSkeleton skeleton;
 
-	for (unsigned int i = 0;i < jointInfos.size(); ++i)
+	for (int i = 0;i < jointInfos.size(); ++i)
 	{
-		unsigned int j = 0;
+		int j = 0;
 
 		const Joint_Info& jointInfo = jointInfos[i];
 		// Start with the base frame position and orientation.

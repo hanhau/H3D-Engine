@@ -1,11 +1,8 @@
 #include "OpenGLContext.hpp"
 /////////////////////////////////////////////////////////////////
-//	GLContext Definitions
+//	GLContextWinapi Definitions
 /////////////////////////////////////////////////////////////////
-h3d::GLContext::GLContext() {}
-h3d::GLContext::~GLContext(){}
-/////////////////////////////////////////////////////////////////
-bool h3d::GLContext::createContext(HWND hwnd)
+bool h3d::GLContextWinapi::createContext(HWND hwnd,ContextSettings cs)
 {
 	this->m_hwnd = hwnd;
 	m_hdc = GetDC(m_hwnd); //Get device context
@@ -13,24 +10,21 @@ bool h3d::GLContext::createContext(HWND hwnd)
 	// set Pixelformatdescriptor
 	PIXELFORMATDESCRIPTOR pfd;
 	memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
-	pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);
-	pfd.dwFlags = PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL | PFD_DRAW_TO_WINDOW;
-	pfd.iPixelType = PFD_TYPE_RGBA;
-	pfd.cColorBits = 32;
-	pfd.cDepthBits = 32;
-	pfd.iLayerType = PFD_MAIN_PLANE;
+	pfd.nSize			= sizeof(PIXELFORMATDESCRIPTOR);
+	pfd.dwFlags			= PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL | 
+						  PFD_DRAW_TO_WINDOW;
+	pfd.iPixelType		= PFD_TYPE_RGBA;
+	pfd.cColorBits		= 32;
+	pfd.cDepthBits		= 32;
+	pfd.iLayerType		= PFD_MAIN_PLANE;
 
 	int nPixelFormat = ChoosePixelFormat(m_hdc, &pfd);
 	if (nPixelFormat == 0)
-	{
 		return false;
-	}
 
 	BOOL bResult = SetPixelFormat(m_hdc, nPixelFormat, &pfd);
-	if (!bResult)
-	{
+	if (!bResult) 
 		return false;
-	}
 
 	HGLRC tempOGLContext = wglCreateContext(m_hdc);
 	wglMakeCurrent(m_hdc, tempOGLContext);
@@ -38,9 +32,7 @@ bool h3d::GLContext::createContext(HWND hwnd)
 	glewExperimental = GL_TRUE;
 	GLenum error = glewInit();
 	if (error != GLEW_OK)
-	{
 		return false;
-	}
 
 	int attributes[] =
 	{
@@ -58,9 +50,7 @@ bool h3d::GLContext::createContext(HWND hwnd)
 		wglMakeCurrent(m_hdc, m_hrc);
 	}
 	else
-	{
 		m_hrc = tempOGLContext;
-	}
 
 	int glVersion[2] = { -1, -1 };
 	glGetIntegerv(GL_MAJOR_VERSION, &glVersion[0]);

@@ -21,7 +21,7 @@ template<typename colT>
 class Image
 {
 private:
-	h3d::Vec2<unsigned int> Size;
+	h3d::Vec2<int> Size;
 
 	char channels;
 	bool has_alpha;

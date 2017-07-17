@@ -13,7 +13,7 @@
 namespace h3d {
 	class CRC32Sum
 	{
-		static unsigned int m_polynominal;
+		static int m_polynominal;
 		static uint8_t* m_crcTable;
 		uint8_t m_key;
 	public:

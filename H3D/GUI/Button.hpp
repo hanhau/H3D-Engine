@@ -20,7 +20,7 @@ namespace gui {
 	{
 	private:
 		// States and Values of the Element
-		unsigned int m_state;
+		int m_state;
 
 		// Positioning (NDC coords)
 		h3d::Vec2<GLfloat> m_size;
@@ -44,13 +44,13 @@ namespace gui {
 		void H3D_API update();
 
 		struct {
-			static const unsigned int normal = 1,
+			static const int normal = 1,
 									  pressed = 2,
 								      hovered = 3,
 								      focused = 4,
 								      disabled = 5;
 		}State;
-		unsigned int H3D_API getState();
+		int H3D_API getState();
 	};
 }
 /////////////////////////////////////////////////////////////////

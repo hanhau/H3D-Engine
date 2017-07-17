@@ -58,7 +58,7 @@ extern bool loadWAV(char path[],
 	}
 
 	// Load PCM from file
-	std::auto_ptr<char> pcmdata(new char[wavData.subChunk2Size]);
+	std::unique_ptr<char> pcmdata(new char[wavData.subChunk2Size]);
 	fileHandle.read(pcmdata.get(), wavData.subChunk2Size);
 	
 	// Set OpenAL format

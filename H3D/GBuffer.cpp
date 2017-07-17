@@ -8,7 +8,7 @@ h3d::GeometryBuffer::~GeometryBuffer()
 
 }
 /////////////////////////////////////////////////////////////////
-void h3d::GeometryBuffer::setup(h3d::Vec2<unsigned int> size,int bitmask)
+void h3d::GeometryBuffer::setup(h3d::Vec2<int> size,int bitmask)
 {
 	// Check for valid bitmask
 	if (bitmask > Stage::ALL) return;

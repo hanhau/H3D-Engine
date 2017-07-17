@@ -21,7 +21,7 @@ namespace h3d {
 	{
 	private:
 		// Pixel Size
-		h3d::Vec2<unsigned int> m_size;
+		h3d::Vec2<int> m_size;
 
 		// OGL Buffer IDs
 		GLuint m_fbo;
@@ -47,7 +47,7 @@ namespace h3d {
 		};
 
 		// Operations
-		void H3D_API setup(h3d::Vec2<unsigned int> size,int bitmask);
+		void H3D_API setup(h3d::Vec2<int> size,int bitmask);
 		
 		void H3D_API bind();
 		void H3D_API clear(int bitmask = Stage::ALL);

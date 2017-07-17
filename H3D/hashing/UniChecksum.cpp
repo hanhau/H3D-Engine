@@ -39,7 +39,7 @@ std::string h3d::Checksum::create(const unsigned char* buffer, uint64_t buffer_s
 
 	for (int i=0;i<buffer_size;i++)
 	{
-		prevBuffer = buffer[(unsigned int)(i-1)];
+		prevBuffer = buffer[(int)(i-1)];
 		currBuffer = buffer[i];
 		tempVal = currBuffer * prevBuffer;
 

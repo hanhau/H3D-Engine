@@ -35,7 +35,7 @@ namespace h3d {
 		GLenum m_colorFormat;
 
 		// Advanced Intel
-		h3d::Vec2<unsigned int> m_measurements;
+		h3d::Vec2<int> m_measurements;
 		unsigned char           m_bits;
 		unsigned long           m_bufferSize;
 	public:
@@ -58,7 +58,7 @@ namespace h3d {
 
 		// Get information
 		H3D_API GLenum                  getColorFormat();
-		H3D_API h3d::Vec2<unsigned int> getSize();
+		H3D_API h3d::Vec2<int> getSize();
 
 		// Handling Texture			
 		H3D_API GLuint getTextureIndex();

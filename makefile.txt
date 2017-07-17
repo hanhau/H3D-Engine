@@ -1,0 +1,13 @@
+# --------------------------------------------------
+#	  This builds H3D Engine on a UNIX System
+# --------------------------------------------------
+
+OBJECTS = H3D.o
+EXEC = H3D.so
+FLAGS = -Wall -std:c++1z -o2
+CC = g++
+
+all: $(OBJECTS)
+	$(CC) $(FLAGS) -o $(EXEC) $(OBJECTS)
+
+# --------------------------------------------------

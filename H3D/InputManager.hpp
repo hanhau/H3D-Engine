@@ -16,6 +16,14 @@
 /////////////////////////////////////////////////////////////////
 //	Enumerations
 /////////////////////////////////////////////////////////////////
+namespace h3d {
+	enum class DeviceType {
+		Keyboard, Mouse, Joystick
+	};
+	enum class InputType {
+		State, Action, Range
+	};
+}
 #define DEVICE_TYPE_KEYBOARD   0b0000'0001
 #define DEVICE_TYPE_MOUSE      0b0000'0010
 #define DEVICE_TYPE_JOYSTICK   0b0000'0100

@@ -45,18 +45,19 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{1d1e6ed9-65f7-4fa8-abf2-7ca82cfef9ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{2771b009-c60e-4157-9b32-70d72f4a2f53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="makefile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="H3D - VS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Mouse.cpp">
@@ -215,15 +216,21 @@
     <ClCompile Include="H3D\Drawable.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Win32Impl.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\X11Impl.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Vector.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Color.hpp">
@@ -393,6 +400,15 @@
     </ClInclude>
     <ClInclude Include="H3D\Drawable.hpp">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Window.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Win32Impl.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\X11Impl.hpp">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

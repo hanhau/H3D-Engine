@@ -18,13 +18,17 @@ class b : public a{};
 
 int main()
 {	
+	
+
 	a A;
 	b B;
 
 	a C = B;
 
-	h3d::Window app(h3d::Vec2<unsigned int>(1280,720),L"Test",
-					h3d::WindowStyle::Default);
+	h3d::Window app(h3d::Vec2<int>(1280,720),
+					"Test",
+					h3d::WindowStyle::Default,
+					h3d::ContextSettings(0,0,0,0));
 	
 	h3d::DebugMode = true;
 
@@ -70,6 +74,8 @@ int main()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9,
 				 &polygons, GL_STREAM_READ);
 
+	std::cout << "test" << std::endl;
+
 	while (app.isOpen())
 	{
 		
@@ -81,7 +87,7 @@ int main()
 				return 0;
 			}
 		}		
-
+		
 		app.clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT,
 				  h3d::Color<GLfloat>(1.0,0.5,0.25,1.0));
 		

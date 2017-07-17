@@ -144,7 +144,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/DLL %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/DLL</AdditionalOptions>
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -188,8 +188,9 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/DLL %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/DLL</AdditionalOptions>
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -222,7 +223,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/DLL %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/DLL</AdditionalOptions>
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -278,6 +279,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="makefile.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -354,7 +356,9 @@
     <ClCompile Include="H3D\Texture.cpp" />
     <ClCompile Include="H3D\Vec4.cpp" />
     <ClCompile Include="H3D\Vector.cpp" />
+    <ClCompile Include="H3D\Win32Impl.cpp" />
     <ClCompile Include="H3D\Window.cpp" />
+    <ClCompile Include="H3D\X11Impl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp" />
@@ -415,7 +419,9 @@
     <ClInclude Include="H3D\Vector\Vector_Declaration.hpp" />
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
     <ClInclude Include="H3D\Vertex.hpp" />
+    <ClInclude Include="H3D\Win32Impl.hpp" />
     <ClInclude Include="H3D\Window.hpp" />
+    <ClInclude Include="H3D\X11Impl.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -55,7 +55,7 @@ void h3d::ModelType::OBJ::Mesh::prepareRendering()
 
 	// Setup Vertices in the Vec
 	m_verticesVec.clear();
-	for (unsigned int i = 0;i < m_vertices.size();i++)
+	for (int i = 0;i < m_vertices.size();i++)
 	{
 		h3d::Vertex vert;
 
@@ -138,7 +138,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 	h3d::Vec2<GLfloat>  temp_vec2f;
 	h3d::Vec3<GLfloat>  temp_vec3f;
 	h3d::Vec3<GLuint>   temp_vec3i;
-	std::auto_ptr<Mesh> temp_mesh(nullptr);
+	std::unique_ptr<Mesh> temp_mesh(nullptr);
 	int face_type = 0;
 
 	// Catch lines
@@ -152,7 +152,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 		else if (param == "g")
 		{	
 			if (temp_mesh.get() == nullptr)
-				temp_mesh = std::auto_ptr<Mesh>();
+				temp_mesh = std::unique_ptr<Mesh>();
 			if (temp_mesh.get() != nullptr)
 				m_meshes.push_back(*temp_mesh.release());
 			temp_mesh->clearUp();

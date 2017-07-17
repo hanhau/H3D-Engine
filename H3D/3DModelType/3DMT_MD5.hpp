@@ -139,10 +139,10 @@ namespace h3d {
 
 			// Container and Data
 			std::vector<Joint>		joint_vec;
-			unsigned int			joint_count;
+			int			joint_count;
 			Joint 				    joint_root;
 			std::vector<Mesh>	    mesh_vec;
-			unsigned int			mesh_count;
+			int			mesh_count;
 			std::vector<Vec3<int>>  triangle_vec;
 
 			// Intel

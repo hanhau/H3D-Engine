@@ -7,7 +7,7 @@ namespace h3d {
 		globalCallWorkerThread::globalCallWorkerThread() {}
 		globalCallWorkerThread::~globalCallWorkerThread() {}
 
-		void globalCallWorkerThread::m_callFunction(GLContext &context,bool* condition)
+		void globalCallWorkerThread::m_callFunction(GLContextWinapi &context,bool* condition)
 		{
 			wglMakeCurrent(context.m_hdc, context.m_hrc);
 			GL::Packages::ALL_PACKAGES* __restrict pPacket;
@@ -25,7 +25,7 @@ namespace h3d {
 			}
 		}
 
-		void globalCallWorkerThread::startup(GLContext &context)
+		void globalCallWorkerThread::startup(GLContextWinapi &context)
 		{
 			//m_callThread = std::thread(m_callFunction, context,(bool*)&m_callFunctionRunning);
 		}
