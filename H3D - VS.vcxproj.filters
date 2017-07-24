@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="makefile.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="H3D - VS.cpp">

@@ -73,8 +73,8 @@ void h3d::Window::close()
 // Editing Window
 void h3d::Window::setSize(h3d::Vec2<int> size)
 {
+	::WindowImpl::setSize(size);
 	m_Size = size;
-	this->resize();
 }
 void h3d::Window::setTitle(std::string title)
 {

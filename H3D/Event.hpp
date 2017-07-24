@@ -8,12 +8,12 @@
 //	class Event
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	enum class EventType {
+	enum class H3D_API EventType {
 		Closed, Resized, LostFocus, GainedFocus,
 		KeyDown, KeyUp
 	};
 
-	class Event 
+	class H3D_API Event 
 	{
 		
 	public:

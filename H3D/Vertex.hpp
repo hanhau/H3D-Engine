@@ -14,7 +14,7 @@
 //	class Vertex
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-class H3D_API Vertex
+class Vertex
 {
 public:				 
 	h3d::Vec3<GLfloat>  position;
