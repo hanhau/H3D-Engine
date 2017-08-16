@@ -16,15 +16,6 @@
 #include "InputManager.hpp"
 #include "Event.hpp"
 
-#include "Win32Impl.hpp"
-#include "X11Impl.hpp"
-
-#ifdef _WIN32 || _WIN64
-typedef h3d::WindowImpls::Winapi WindowImpl;
-#elif defined __linux__
-typedef h3d::WindowImpls::UNIX WindowImpl;
-#endif
-
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 
@@ -38,16 +29,21 @@ enum class WindowStyle {
 /////////////////////////////////////////////////////////////////
 // Portable Window Class for rendering OpenGL
 /////////////////////////////////////////////////////////////////
-class Window : public WindowImpl
+class Window
 {
 private:
+	// Pimp Idiom
+	class WindowImpl;
+	std::unique_ptr<WindowImpl> m_pimpl;
+
+	// Defined different
 	void setupWin(h3d::Vec2<int>size,
 				  std::string title,
 				  h3d::WindowStyle ws,
 				  h3d::ContextSettings cs);
 
 	// Data
-	Vec2<int> m_Size;
+	Vec2<int>		   m_Size;
 	std::string        m_Title;
 	WindowStyle		   m_WindowStyle;
 	ContextSettings    m_ContextSettings;
@@ -56,7 +52,7 @@ private:
 	bool m_isFullscreen;
 	bool m_allowResize;
 
-	// OpenGL Version
+	// OpenGL ContextVersion
 	int minorOpenGL;
 	int majorOpenGL;
 
@@ -83,35 +79,31 @@ public:
 				   ContextSettings contextsettings);
 	H3D_API ~Window();
 
-	// Getter Methods
-	Vec2<int> H3D_API getSize();
+	// OpenGL Operations
+	std::string H3D_API getContextVer();
+	void		H3D_API clear(GLbitfield mask,h3d::Color<GLfloat> col);
+	bool		H3D_API swapBuffers();
+	bool		H3D_API setActive();
+
+	// Getting
+	Vec2<int>		   H3D_API getSize();
 	std::string        H3D_API getTitle();
 	WindowStyle        H3D_API getStyle();
-	std::string		   H3D_API getContextVer();
-
-	
-	H3D_API MSG*               getMessage();
-	H3D_API HWND*			   getHandle();
 	bool			   H3D_API isOpen();
-	bool H3D_API               isFullscreen();
+	bool			   H3D_API isFullscreen();
 
-	// Framebuffer Operations
-	void H3D_API clear(GLbitfield mask,h3d::Color<GLfloat> col);
-	bool H3D_API swapBuffers();
-
-	// Editing Window	
+	// Setting
 	void H3D_API setSize(h3d::Vec2<int>size);	
 	void H3D_API setTitle(std::string title);	
 	void H3D_API setFullscreen(bool val);	
+
+	// Utils
 	void H3D_API resize();	
 	void H3D_API allowResize(bool val);	
 	void H3D_API showCursor(bool val);	
 	void H3D_API close();
 
-	// Set OpenGL Context as current
-	bool H3D_API setActive();
-
-	// Update Window Events
+	// Poll Events
 	bool H3D_API pollEvent(h3d::Event &event);
 };
 /////////////////////////////////////////////////////////////////

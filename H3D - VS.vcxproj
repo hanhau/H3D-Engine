@@ -419,9 +419,7 @@
     <ClInclude Include="H3D\Vector\Vector_Declaration.hpp" />
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
     <ClInclude Include="H3D\Vertex.hpp" />
-    <ClInclude Include="H3D\Win32Impl.hpp" />
     <ClInclude Include="H3D\Window.hpp" />
-    <ClInclude Include="H3D\X11Impl.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

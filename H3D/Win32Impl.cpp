@@ -1,6 +1,37 @@
 /////////////////////////////////////////////////////////////////
 #ifdef _WIN32 || _WIN64
+
+#define pimpl m_pimpl.get()
 #include "Window.hpp"
+
+// PIMPL CLASS
+class h3d::Window::WindowImpl {
+public:
+	GLContextWinapi m_glcontext;
+
+	DWORD m_dwExStyle;
+	DWORD m_dwStyle;
+
+	wchar_t* Appname;
+
+	RECT m_WindowRect;
+	HINSTANCE m_Instance;
+	HWND m_Win;
+	MSG m_Msg;
+	WNDCLASSEX m_WinClass;
+
+	void processEvent(UINT msg, WPARAM wparam,
+		LPARAM lparam);
+
+	// Functions
+	virtual void setSize(h3d::Vec2<int> param);
+	virtual void resize();
+	virtual void setTitle(std::string param);
+	virtual void setFullscreen(bool param);
+	virtual void setVSync(bool param);
+};
+/////////////////////////////////////////////////////////////////
+// System specific setup function
 /////////////////////////////////////////////////////////////////
 void h3d::Window::setupWin(h3d::Vec2<int>size,
 						   std::string title,
@@ -12,17 +43,17 @@ void h3d::Window::setupWin(h3d::Vec2<int>size,
 	m_Title				= title;
 	m_WindowStyle		= ws;
 	m_ContextSettings	= cs;
-	Appname = (wchar_t*)m_Title.c_str();
+	pimpl->Appname = (wchar_t*)m_Title.c_str();
 
 	// Window Style Setup
-	m_dwExStyle = WS_EX_OVERLAPPEDWINDOW;
-	m_dwStyle = WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
-	m_Instance = GetModuleHandle(NULL);
+	pimpl->m_dwExStyle = WS_EX_OVERLAPPEDWINDOW;
+	pimpl->m_dwStyle = WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+	pimpl->m_Instance = GetModuleHandle(NULL);
 	
-	m_WindowRect.left   = 0;
-	m_WindowRect.right  = m_Size.x;
-	m_WindowRect.top    = 0;
-	m_WindowRect.bottom = m_Size.y;
+	pimpl->m_WindowRect.left   = 0;
+	pimpl->m_WindowRect.right  = m_Size.x;
+	pimpl->m_WindowRect.top    = 0;
+	pimpl->m_WindowRect.bottom = m_Size.y;
 
 	if (m_WindowStyle == WindowStyle::Fullscreen)
 	{
@@ -47,35 +78,35 @@ void h3d::Window::setupWin(h3d::Vec2<int>size,
 		}
 	}
 
-	if (m_WindowStyle == WindowStyle::Fullscreen)
-	{
-		m_dwExStyle = WS_EX_APPWINDOW;              
-		m_dwStyle = WS_POPUP;                      
+	if (m_WindowStyle == WindowStyle::Fullscreen){
+		pimpl->m_dwExStyle = WS_EX_APPWINDOW;
+		pimpl->m_dwStyle = WS_POPUP;
 	}
-	else
-	{
-		m_dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;  
-		m_dwStyle = WS_OVERLAPPEDWINDOW;
+	else{
+		pimpl->m_dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
+		pimpl->m_dwStyle = WS_OVERLAPPEDWINDOW;
 	}
 
-	AdjustWindowRectEx(&m_WindowRect, m_dwStyle, FALSE, m_dwExStyle);
+	AdjustWindowRectEx(&pimpl->m_WindowRect, 
+						pimpl->m_dwStyle, FALSE, 
+						pimpl->m_dwExStyle);
 
 	// Register Window Class
-	m_WinClass						= { 0 };
-	m_WinClass.cbSize				= sizeof(WNDCLASSEX);
-	m_WinClass.style				= CS_OWNDC;
-	m_WinClass.lpfnWndProc			= _H3D_WndProc;
-	m_WinClass.cbClsExtra			= 0;
-	m_WinClass.cbWndExtra			= 0;
-	m_WinClass.hInstance			= m_Instance;
-	m_WinClass.hIcon				= LoadIcon(NULL, IDI_APPLICATION);
-	m_WinClass.hCursor				= LoadCursor(NULL, IDC_ARROW);
-	m_WinClass.hbrBackground		= NULL;
-	m_WinClass.lpszMenuName			= NULL;
-	m_WinClass.lpszClassName		= Appname;
-	m_WinClass.hIconSm				= LoadIcon(NULL, IDI_APPLICATION);
+	pimpl->m_WinClass				= { 0 };
+	pimpl->m_WinClass.cbSize		= sizeof(WNDCLASSEX);
+	pimpl->m_WinClass.style			= CS_OWNDC;
+	pimpl->m_WinClass.lpfnWndProc	= _H3D_WndProc;
+	pimpl->m_WinClass.cbClsExtra	= 0;
+	pimpl->m_WinClass.cbWndExtra	= 0;
+	pimpl->m_WinClass.hInstance		= pimpl->m_Instance;
+	pimpl->m_WinClass.hIcon			= LoadIcon(NULL, IDI_APPLICATION);
+	pimpl->m_WinClass.hCursor		= LoadCursor(NULL, IDC_ARROW);
+	pimpl->m_WinClass.hbrBackground	= NULL;
+	pimpl->m_WinClass.lpszMenuName	= NULL;
+	pimpl->m_WinClass.lpszClassName	= pimpl->Appname;
+	pimpl->m_WinClass.hIconSm		= LoadIcon(NULL, IDI_APPLICATION);
 
-	if (!RegisterClassEx(&m_WinClass))
+	if (!RegisterClassEx(&pimpl->m_WinClass))
 	{
 		MessageBoxA(NULL, "Couldn´t register Window!", "FATAL ERROR",
 			MB_ICONEXCLAMATION | MB_OK);
@@ -85,15 +116,14 @@ void h3d::Window::setupWin(h3d::Vec2<int>size,
 		Log.info("Registered Winapi Window class");
 	
 	// Set Window Content
-	m_Win = CreateWindowEx(m_dwExStyle,
-						   Appname, (LPCWSTR)m_Title.c_str(),
-						   m_dwStyle | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
-						   CW_USEDEFAULT, CW_USEDEFAULT,
-						   m_Size.x, m_Size.y,
-						   NULL, NULL,
-						   m_Instance,
-						   this);
-	if (m_Win == NULL) {
+	pimpl->m_Win = CreateWindowEx(pimpl->m_dwExStyle,
+								  pimpl->Appname, (LPCWSTR)m_Title.c_str(),
+								  pimpl->m_dwStyle | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
+								  CW_USEDEFAULT, CW_USEDEFAULT,
+								  m_Size.x, m_Size.y,
+								  NULL, NULL,
+								  pimpl->m_Instance,this);
+	if (pimpl->m_Win == NULL) {
 		Log.error("Unable to CreateWindowEx(..)");
 		this->~Window();
 	}
@@ -101,18 +131,20 @@ void h3d::Window::setupWin(h3d::Vec2<int>size,
 		Log.info("Created Window Handle");
 
 	// Create OpenGL Context
-	if (!m_glcontext.createContext(m_Win,cs))
+	if (!pimpl->m_glcontext.createContext(pimpl->m_Win,cs))
 		Log.error("Unable to create Context in Window");
 	
 	// Make ready for use
-	ShowWindow(m_Win, SW_SHOW);
-	UpdateWindow(m_Win);
-	SetFocus(m_Win);
+	ShowWindow(pimpl->m_Win, SW_SHOW);
+	UpdateWindow(pimpl->m_Win);
+	SetFocus(pimpl->m_Win);
 	if (h3d::DebugMode)
 		Log.info("Finished creating Window");
 }
 /////////////////////////////////////////////////////////////////
-void h3d::WindowImpls::Winapi::processEvent(UINT msg, WPARAM wparam,
+// PIMPL function definitions
+/////////////////////////////////////////////////////////////////
+void h3d::Window::WindowImpl::processEvent(UINT msg, WPARAM wparam,
 											LPARAM lparam)
 {
 	if (!m_Win)
@@ -126,20 +158,21 @@ void h3d::WindowImpls::Winapi::processEvent(UINT msg, WPARAM wparam,
 	}
 }
 /////////////////////////////////////////////////////////////////
-void h3d::WindowImpls::Winapi::setSize(h3d::Vec2<int> param) {
+void h3d::Window::WindowImpl::setSize(h3d::Vec2<int> param) {
 	SetWindowPos(m_Win,HWND_TOP,0,0,
 				 param.x,param.y,SWP_NOMOVE);
 }
-void h3d::WindowImpls::Winapi::setTitle(std::string param) {
+void h3d::Window::WindowImpl::setTitle(std::string param) {
 	SetWindowText(m_Win,(WCHAR*)param.c_str());
 }
-void h3d::WindowImpls::Winapi::setFullscreen(bool param) {
+void h3d::Window::WindowImpl::setFullscreen(bool param) {
 
 }
-void h3d::WindowImpls::Winapi::setVSync(bool param) {
+void h3d::Window::WindowImpl::setVSync(bool param) {
 	wglSwapIntervalEXT(param ? true : false);
 }
 /////////////////////////////////////////////////////////////////
+// Win32 Window Callback func
 LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	if (msg == WM_CREATE) {

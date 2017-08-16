@@ -41,7 +41,7 @@ namespace h3d {
 // OpenGLContext
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-#ifdef _WIN32 || _WIN64
+#ifdef _WIN32 || _WIN64 
 	struct GLContextWinapi
 	{
 		bool createContext(HWND hwnd,ContextSettings cs);

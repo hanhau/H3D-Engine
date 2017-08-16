@@ -26,8 +26,6 @@ h3d::Window::Window(h3d::Vec2<int> p_size,
 h3d::Vec2<int> h3d::Window::getSize()  { return m_Size;  }
 std::string				h3d::Window::getTitle() { return m_Title; }
 h3d::WindowStyle		h3d::Window::getStyle() { return m_WindowStyle; }
-MSG*                    h3d::Window::getMessage(){return &m_Msg;}
-HWND*					h3d::Window::getHandle() {return &m_Win;}
 bool					h3d::Window::isOpen() {  return m_opened; }
 std::string h3d::Window::getContextVer()
 {
@@ -66,7 +64,7 @@ void h3d::Window::close()
 	setActive();
 	wglDeleteContext(wglGetCurrentContext());
 	PostQuitMessage(0);
-	UnregisterClass(Appname, m_Instance);
+	UnregisterClass(Appname, m_Instance); 
 	m_opened = false;
 }
 /////////////////////////////////////////////////////////////////
@@ -78,11 +76,13 @@ void h3d::Window::setSize(h3d::Vec2<int> size)
 }
 void h3d::Window::setTitle(std::string title)
 {
+	::WindowImpl::setTitle(title);
 	m_Title = title;
 }
 void h3d::Window::setFullscreen(bool val)
 {
-		
+	::WindowImpl::setFullscreen(val);
+	m_isFullscreen = val;
 }
 bool h3d::Window::isFullscreen()
 {
@@ -110,7 +110,7 @@ bool h3d::Window::pollEvent(h3d::Event &event)
 #ifdef _WIN32 || _WIN64
 	static MSG msg;
 	
-	if (!PeekMessage(&msg, m_Win, 
+	if (!PeekMessage(&msg,m_Win, 
 		0, 0, PM_NOREMOVE))
 		return false;
 	

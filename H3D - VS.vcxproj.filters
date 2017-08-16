@@ -403,11 +403,5 @@
     <ClInclude Include="H3D\Window.hpp">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\Win32Impl.hpp">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\X11Impl.hpp">
-      <Filter>Window</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
