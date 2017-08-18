@@ -48,6 +48,15 @@
     <Filter Include="Window">
       <UniqueIdentifier>{2771b009-c60e-4157-9b32-70d72f4a2f53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GLContext">
+      <UniqueIdentifier>{aa434728-8c2d-4588-8927-c89f7bf12c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputHandling">
+      <UniqueIdentifier>{cd51efb0-d11f-4387-ad3d-5776cf15e848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{2b590a5a-7a21-432e-a54c-f398706a93ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -59,12 +68,6 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\Mouse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Keyboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,12 +77,6 @@
     <ClCompile Include="H3D\Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\OpenGLContext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,12 +84,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Matrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Joystick.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Vec4.cpp">
@@ -224,6 +215,30 @@
     <ClCompile Include="H3D\X11Impl.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\OpenGLContext.cpp">
+      <Filter>GLContext</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\WglContext.cpp">
+      <Filter>GLContext</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\X11Context.cpp">
+      <Filter>GLContext</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\InputManager.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Joystick.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Keyboard.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Mouse.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Camera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -250,13 +265,7 @@
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\Camera.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\Event.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\OpenGLContext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\ResourceManager.hpp">
@@ -266,9 +275,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Matrix.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\InputManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Scenegraph.hpp">
@@ -376,12 +382,6 @@
     <ClInclude Include="H3D\Texture.hpp">
       <Filter>Texture</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\Keyboard.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Mouse.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\externals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -402,6 +402,36 @@
     </ClInclude>
     <ClInclude Include="H3D\Window.hpp">
       <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\WindowImpl.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\OpenGLContext.hpp">
+      <Filter>GLContext</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\WglContext.hpp">
+      <Filter>GLContext</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\X11Context.hpp">
+      <Filter>GLContext</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Win32WindowImpl.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\X11WindowImpl.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\InputManager.hpp">
+      <Filter>InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Keyboard.hpp">
+      <Filter>InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Mouse.hpp">
+      <Filter>InputHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Camera.hpp">
+      <Filter>Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

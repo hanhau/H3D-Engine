@@ -155,3 +155,12 @@ void h3d::__Logger::alarm(char* msg, Args... args)
 		fprintf(m_logFile, logString.c_str(), args...);
 	}
 }
+/////////////////////////////////////////////////////////////////
+class Uncopyable {
+public:
+	inline Uncopyable() {}
+private:
+	inline Uncopyable(const Uncopyable&) = delete;
+	inline Uncopyable& operator=(const Uncopyable&) = delete;
+};
+/////////////////////////////////////////////////////////////////

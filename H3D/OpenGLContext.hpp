@@ -5,12 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif 
 
-#ifdef _WIN32 || _WIN64
-#include <Windows.h>
-#elif defined __linux__
-
-#endif 
-
+#include "WindowImpl.hpp"
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 #include STR(GLEW_INCLUDE/gl/wglew.h)
@@ -40,23 +35,12 @@ namespace h3d {
 /////////////////////////////////////////////////////////////////
 // OpenGLContext
 /////////////////////////////////////////////////////////////////
+#include <any>
 namespace h3d {
-#ifdef _WIN32 || _WIN64 
-	struct GLContextWinapi
-	{
-		bool createContext(HWND hwnd,ContextSettings cs);
-	
-		HGLRC	m_hrc;	//OpenGL Context
-		HDC		m_hdc;	//Win32 Device Context
-		HWND	m_hwnd;	//Win32 Window identifier
+	class GLContext : Uncopyable{
+	public:
+		inline virtual ~GLContext() {};
+		virtual bool createContext(std::any windowimpl);
 	};
-#elif defined __linux__
-	struct GLContextUNIX
-	{
-		bool createContext();
-
-		// etc ....
-	};
-#endif
 }
 /////////////////////////////////////////////////////////////////

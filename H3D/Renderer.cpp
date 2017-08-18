@@ -10,7 +10,7 @@ namespace h3d {
 		m_win(window){
 			if (m_win.isOpen()) 
 			{
-				m_win.setActive();
+				m_win.setActive(true);
 				m_isWindowActive = true;
 
 

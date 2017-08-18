@@ -9,12 +9,14 @@
 #include <vector>
 #include <thread>
 #include <queue>
+#include <type_traits>
 
 #include "Vector.hpp"
 #include "Color.hpp"
 #include "OpenGLContext.hpp"
 #include "InputManager.hpp"
 #include "Event.hpp"
+#include "WindowImpl.hpp"
 
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
@@ -29,12 +31,12 @@ enum class WindowStyle {
 /////////////////////////////////////////////////////////////////
 // Portable Window Class for rendering OpenGL
 /////////////////////////////////////////////////////////////////
-class Window
+class Window : Uncopyable 
 {
 private:
-	// Pimp Idiom
-	class WindowImpl;
-	std::unique_ptr<WindowImpl> m_pimpl;
+	// Pimpl Idiom
+	std::unique_ptr<h3d::intern::WindowImpl> m_impl;
+	std::unique_ptr<h3d::GLContext>          m_context;
 
 	// Defined different
 	void setupWin(h3d::Vec2<int>size,
@@ -82,8 +84,11 @@ public:
 	// OpenGL Operations
 	std::string H3D_API getContextVer();
 	void		H3D_API clear(GLbitfield mask,h3d::Color<GLfloat> col);
-	bool		H3D_API swapBuffers();
-	bool		H3D_API setActive();
+	
+	// system specific
+	void		H3D_API swapBuffers();
+	void		H3D_API setActive(bool val);
+	void		H3D_API setVSync(bool val);
 
 	// Getting
 	Vec2<int>		   H3D_API getSize();

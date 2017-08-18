@@ -1,13 +1,35 @@
-/////////////////////////////////////////////////////////////////
-						  H3D Engine
-/////////////////////////////////////////////////////////////////
-Featurelist:
-	-> Window Creation and handling
-	-> Memory allocators specially for games
-	-> OpenGL Shader/Program creation
-	-> Camera
-	-> Textureloading
-	-> Soundengine using OpenAL
-	-> *.obj,*.dae,*.md5 model support
-	-> Lua Script support
-/////////////////////////////////////////////////////////////////
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#  _    _ ____  _____    ______             _                #
+# | |  | |___ \|  __ \  |  ____|           (_)               #
+# | |__| | __) | |  | | | |__   _ __   __ _ _ _ __   ___     # 
+# |  __  ||__ <| |  | | |  __| | '_ \ / _` | | '_ \ / _ \    #
+# | |  | |___) | |__| | | |____| | | | (_| | | | | |  __/    #
+# |_|  |_|____/|_____/  |______|_| |_|\__, |_|_| |_|\___|    #
+#                                      __/ |                 #
+#                                     |___/                  #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                         FEATURES
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    This engine is/or will be capable of loading models,
+	handling shaders, load/stream audio, communicate over
+	the network, manage Inputs. There is a math lib, useful
+	structures and a ton of different stuff to explore.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                       Used Libaries
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    freetype-lib, OpenAL, lua-lib, glew and libvorbis
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                     Supported platforms
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Currently, H3D compiles on Windows, but soon a 
+	makefile will be added to compile on Linux.
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+                          TODO
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+    Model Loading
+	Math Lib
+	OpenGL Context (crossplatform)
+	Audio
+	Network
+	Cleanups
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#

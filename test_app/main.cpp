@@ -13,18 +13,8 @@
 
 #include <iostream>
 
-class a {};
-class b : public a{};
-
 int main()
 {	
-	
-
-	a A;
-	b B;
-
-	a C = B;
-
 	h3d::Window app(h3d::Vec2<int>(1280,720),
 					"Test",
 					h3d::WindowStyle::Default,

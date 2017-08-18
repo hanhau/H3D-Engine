@@ -189,7 +189,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/DLL</AdditionalOptions>
+      <AdditionalOptions> /std:c++latest /DLL</AdditionalOptions>
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
@@ -356,8 +356,10 @@
     <ClCompile Include="H3D\Texture.cpp" />
     <ClCompile Include="H3D\Vec4.cpp" />
     <ClCompile Include="H3D\Vector.cpp" />
+    <ClCompile Include="H3D\WglContext.cpp" />
     <ClCompile Include="H3D\Win32Impl.cpp" />
     <ClCompile Include="H3D\Window.cpp" />
+    <ClCompile Include="H3D\X11Context.cpp" />
     <ClCompile Include="H3D\X11Impl.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -419,7 +421,12 @@
     <ClInclude Include="H3D\Vector\Vector_Declaration.hpp" />
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
     <ClInclude Include="H3D\Vertex.hpp" />
+    <ClInclude Include="H3D\WglContext.hpp" />
+    <ClInclude Include="H3D\Win32WindowImpl.hpp" />
     <ClInclude Include="H3D\Window.hpp" />
+    <ClInclude Include="H3D\WindowImpl.hpp" />
+    <ClInclude Include="H3D\X11Context.hpp" />
+    <ClInclude Include="H3D\X11WindowImpl.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

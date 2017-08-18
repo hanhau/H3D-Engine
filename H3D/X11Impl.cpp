@@ -5,6 +5,7 @@
 #include <gl\glx.h>
 #include <X11.h>
 
+h3d::Window::~Window() {}
 class h3d::Window::WindowImpl {
 public:
 	Display				 *dpy;
@@ -19,11 +20,13 @@ public:
 	XEvent				 xev;
 
 	// Functions
-	virtual void setSize(h3d::Vec2<int> param);
-	virtual void resize();
-	virtual void setTitle(std::string param);
-	virtual void setFullscreen(bool param);
-	virtual void setVSync(bool param);
+	void setSize(h3d::Vec2<int> param);
+	void resize();
+	void setTitle(std::string param);
+	void setFullscreen(bool param);
+	void setVSync(bool param);
+	void setActive(bool val);
+	void swapBuffers();
 };
 
 void h3d::Window::setupWin(h3d::Vec2<int>size,
@@ -76,22 +79,30 @@ void h3d::Window::setupWin(h3d::Vec2<int>size,
 	glEnable(GL_DEPTH_TEST);
 }
 /////////////////////////////////////////////////////////////////
-// Virtual Functions
+// Forward Window Functions
 /////////////////////////////////////////////////////////////////
-void h3d::Window::WindowImpl::setSize(h3d::Vec2<int> param) {
-	
+void h3d::Window::swapBuffers() {
 }
-void h3d::Window::WindowImpl::resize() {
+void h3d::Window::setActive(bool val) {
+}
+void h3d::Window::setVSync(bool val) {
+}
 
+void h3d::Window::setSize(h3d::Vec2<int>size) {
 }
-void h3d::Window::WindowImpl::setTitle(std::string param) {
-	XChangeWindowAttributes();
+void h3d::Window::setTitle(std::string title) { 
 }
-void h3d::Window::WindowImpl::setFullscreen(bool param) {
+void h3d::Window::setFullscreen(bool val) { 
+}
 
+void h3d::Window::resize() {
 }
-void h3d::Window::WindowImpl::setVSync(bool param) {
-
+void h3d::Window::allowResize(bool val) { 
+	m_allowResize = val;
+}
+void h3d::Window::showCursor(bool val) { 
+}
+void h3d::Window::close() { 
 }
 /////////////////////////////////////////////////////////////////
 #endif 
