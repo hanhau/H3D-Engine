@@ -7,7 +7,8 @@
 /////////////////////////////////////////////////////////////////
 #include <map>
 #include <vector>
-#include <windows.h>
+#include <Windows.h>
+#include <Mmsystem.h>
 #include <fstream>
 #include <hidsdi.h>
 

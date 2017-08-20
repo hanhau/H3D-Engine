@@ -57,6 +57,9 @@
     <Filter Include="Camera">
       <UniqueIdentifier>{2b590a5a-7a21-432e-a54c-f398706a93ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Clock">
+      <UniqueIdentifier>{223cc98d-d5d4-4212-ad8c-d0a33ca80993}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -78,9 +81,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Clock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Matrix.cpp">
@@ -239,6 +239,15 @@
     <ClCompile Include="H3D\Camera.cpp">
       <Filter>Camera</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\Clock.cpp">
+      <Filter>Clock</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Win32ClockImpl.cpp">
+      <Filter>Clock</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\LinuxClockImpl.cpp">
+      <Filter>Clock</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -269,9 +278,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\ResourceManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Clock.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Matrix.hpp">
@@ -432,6 +438,9 @@
     </ClInclude>
     <ClInclude Include="H3D\Camera.hpp">
       <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Clock.hpp">
+      <Filter>Clock</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

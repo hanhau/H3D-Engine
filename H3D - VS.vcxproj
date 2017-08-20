@@ -327,6 +327,7 @@
     <ClCompile Include="H3D\hashing\CRC32.cpp" />
     <ClCompile Include="H3D\hashing\SHA256.cpp" />
     <ClCompile Include="H3D\hashing\UniChecksum.cpp" />
+    <ClCompile Include="H3D\LinuxClockImpl.cpp" />
     <ClCompile Include="H3D\LuaScript\LuaScript.cpp" />
     <ClCompile Include="H3D\memmng\linear_alloc.cpp" />
     <ClCompile Include="H3D\network\Socket.cpp" />
@@ -357,6 +358,7 @@
     <ClCompile Include="H3D\Vec4.cpp" />
     <ClCompile Include="H3D\Vector.cpp" />
     <ClCompile Include="H3D\WglContext.cpp" />
+    <ClCompile Include="H3D\Win32ClockImpl.cpp" />
     <ClCompile Include="H3D\Win32Impl.cpp" />
     <ClCompile Include="H3D\Window.cpp" />
     <ClCompile Include="H3D\X11Context.cpp" />

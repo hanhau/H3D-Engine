@@ -5,7 +5,7 @@
 
 bool h3d::intern::WglContext::createContext(std::any windowimpl)
 {
-	h3dverify(&windowimpl.type == typeid(h3d::intern::Win32WindowImpl));
+	h3dverify(typeid(windowimpl.type) == typeid(h3d::intern::Win32WindowImpl));
 	
 	const auto &ref = std::any_cast<h3d::intern::Win32WindowImpl>(windowimpl);
 	m_hdc = GetDC(ref.m_Win); //Get device context

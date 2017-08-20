@@ -5,8 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include <Windows.h>
 #include <stdint.h>
+#include <memory>
 
 namespace h3d {
 /////////////////////////////////////////////////////////////////
@@ -24,6 +24,9 @@ namespace h3d {
 /////////////////////////////////////////////////////////////////
 	class Clock
 	{
+		class ClockImpl;
+		std::unique_ptr<ClockImpl> m_impl;
+
 		uint64_t m_actualTick; // actual zero point
 		uint64_t m_newTick;    // new tick
 		uint64_t m_frequency;  // frequency of the clock
