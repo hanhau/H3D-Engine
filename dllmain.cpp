@@ -2,6 +2,7 @@
 #include "H3D.hpp"
 #include "H3D\externals.h"
 
+#ifdef _WIN32 || _WIN64
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
@@ -26,3 +27,4 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	}
 	return TRUE;
 };
+#endif
