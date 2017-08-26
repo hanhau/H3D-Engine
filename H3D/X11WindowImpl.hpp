@@ -17,7 +17,7 @@ namespace h3d {
 			XWindowAttributes    gwa;
 			XEvent				 xev;
 		public:
-			static void create(h3d::Vec2<int>size, std::string title,
+			WindowImpl* create(h3d::Vec2<int>size, std::string title,
 							   h3d::WindowStyle ws, h3d::ContextSettings cs);
 		};
 	}

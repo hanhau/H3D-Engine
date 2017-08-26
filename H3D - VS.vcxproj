@@ -39,6 +39,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -150,8 +151,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;Winmm.lib</AdditionalDependencies>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;ws2_32.lib;Winmm.lib;libvcruntimed.lib</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -359,10 +360,10 @@
     <ClCompile Include="H3D\Vector.cpp" />
     <ClCompile Include="H3D\WglContext.cpp" />
     <ClCompile Include="H3D\Win32ClockImpl.cpp" />
-    <ClCompile Include="H3D\Win32Impl.cpp" />
+    <ClCompile Include="H3D\Win32WindowImpl.cpp" />
     <ClCompile Include="H3D\Window.cpp" />
     <ClCompile Include="H3D\X11Context.cpp" />
-    <ClCompile Include="H3D\X11Impl.cpp" />
+    <ClCompile Include="H3D\X11WindowImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp" />
@@ -375,6 +376,7 @@
     <ClInclude Include="H3D\Camera.hpp" />
     <ClInclude Include="H3D\Clock.hpp" />
     <ClInclude Include="H3D\Color.hpp" />
+    <ClInclude Include="H3D\Config.hpp" />
     <ClInclude Include="H3D\ContainerFile.hpp" />
     <ClInclude Include="H3D\Drawable.hpp" />
     <ClInclude Include="H3D\GUI.hpp" />

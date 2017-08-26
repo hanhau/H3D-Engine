@@ -1,14 +1,13 @@
+#include "Config.hpp"
+
+#ifdef H3D_SYSTEM_WINDOWS
 #include "WglContext.hpp"
 #include "Utilities.hpp"
-#include "Win32WindowImpl.hpp"
-#include <any>
 
-bool h3d::intern::WglContext::createContext(std::any windowimpl)
-{
-	h3dverify(typeid(windowimpl.type) == typeid(h3d::intern::Win32WindowImpl));
-	
-	const auto &ref = std::any_cast<h3d::intern::Win32WindowImpl>(windowimpl);
-	m_hdc = GetDC(ref.m_Win); //Get device context
+bool h3d::intern::WglContext::createContext(std::shared_ptr<h3d::intern::Win32WindowImpl> ptr)
+{	
+
+	m_hdc = GetDC(ptr->m_Win); //Get device context
 
 	// set Pixelformatdescriptor
 	PIXELFORMATDESCRIPTOR pfd;
@@ -61,3 +60,4 @@ bool h3d::intern::WglContext::createContext(std::any windowimpl)
 
 	return true;
 }
+#endif

@@ -75,6 +75,11 @@
     <LibraryPath>C:\Users\hanne\Documents\GitHub\H3D - VS\Release;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x86);../../Release/</ReferencePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>../;$(IncludePath)</IncludePath>
+    <ReferencePath>$(VC_ReferencesPath_x86);../../Debug/</ReferencePath>
+    <LibraryPath>C:\Users\hanne\Documents\GitHub\H3D - VS\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>

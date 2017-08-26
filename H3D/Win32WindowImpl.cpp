@@ -10,9 +10,10 @@ LRESULT CALLBACK _H3D_WndProc(HWND, UINT, WPARAM, LPARAM);
 /////////////////////////////////////////////////////////////////
 // System specific setup function
 /////////////////////////////////////////////////////////////////
-void h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>size,
-										  std::string title,
-										  h3d::WindowStyle ws,
+h3d::intern::WindowImpl* h3d::intern::Win32WindowImpl::create(
+										  h3d::Vec2<int>       size,
+										  std::string          title,
+										  h3d::WindowStyle     ws,
 										  h3d::ContextSettings cs)
 {
 	// Parameter sets
@@ -76,7 +77,7 @@ void h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>size,
 	m_WinClass.hbrBackground= NULL;
 	m_WinClass.lpszMenuName	= NULL;
 	m_WinClass.lpszClassName= Appname;
-	>m_WinClass.hIconSm		= LoadIcon(NULL, IDI_APPLICATION);
+	m_WinClass.hIconSm		= LoadIcon(NULL, IDI_APPLICATION);
 
 	if (!RegisterClassEx(&m_WinClass))
 	{
@@ -106,6 +107,8 @@ void h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>size,
 	SetFocus(m_Win);
 	if (h3d::DebugMode)
 		Log.info("Finished creating Window");
+
+	return nullptr;
 }
 /////////////////////////////////////////////////////////////////
 // System specific OpenGL Functions

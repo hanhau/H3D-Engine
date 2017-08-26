@@ -32,11 +32,11 @@ extern bool openOGGStream(h3d::FileHandle& fh, char path[],
 }
 extern bool closeOGGStream(h3d::FileHandle &fh)
 {
-
+	return false;
 }
 extern unsigned long catchOGGStream(h3d::FileHandle& fh, long size, char* dst)
 {																				 
-	
+	return 0;
 }
 /////////////////////////////////////////////////////////////////
 // WAV Streaming Utils

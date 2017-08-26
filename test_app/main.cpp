@@ -10,11 +10,17 @@
 #include <H3D\Program.hpp>
 #include <H3D\FileSystem.hpp>
 #include <H3D\Matrix.hpp>
+#include <H3D\Audio.hpp>
 
 #include <iostream>
 
 int main()
 {	
+	h3d::Audio::initialize();
+	return 0;
+	h3d::Texture tex;
+	return 0;	
+	
 	h3d::Window app(h3d::Vec2<int>(1280,720),
 					"Test",
 					h3d::WindowStyle::Default,

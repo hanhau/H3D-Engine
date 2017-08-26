@@ -1,8 +1,7 @@
 #pragma once
 #ifdef _WIN32 || _WIN64
 
-#include "Window.hpp"
-
+#include "WindowImpl.hpp"
 namespace h3d {
 	namespace intern {
 		class Win32WindowImpl : public WindowImpl
@@ -32,8 +31,8 @@ namespace h3d {
 			void showCursor(bool val);
 			void close();
 
-			void create(h3d::Vec2<int>size, std::string title,
-					    h3d::WindowStyle ws, h3d::ContextSettings cs);
+			WindowImpl* create(h3d::Vec2<int>size, std::string title,
+							   h3d::WindowStyle ws, h3d::ContextSettings cs);
 		};
 	}
 }

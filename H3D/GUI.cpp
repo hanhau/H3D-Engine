@@ -1,4 +1,5 @@
 #include "GUI.hpp"
+#include "Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 #define VAR_TYPE_BUTTON 0b0000'0001
 #define VAR_TYPE_TEXT   0b0000'0010
@@ -70,10 +71,10 @@ void gui::Element::update()
 /////////////////////////////////////////////////////////////////
 // Creation of an Element
 /////////////////////////////////////////////////////////////////
-template<typename T> const gui::Element gui::newElement(T data)
+template<typename T> const gui::Element gui::newElement(T data) 
 {
-	// Check if Template is used with correct classes
-	assert(!std::is_same<T, Button>::value);
+/*	// Check if Template is used with correct classes
+	h3dassert(!std::is_same<T, Button>::value );
 
 	// Create temporary element
 	static gui::Element temp_element;
@@ -88,6 +89,8 @@ template<typename T> const gui::Element gui::newElement(T data)
 	else
 		temp_element.m_elementType = 0;
 	return temp_element;
+	*/
+	return gui::Element();
 }
 template H3D_API const gui::Element gui::newElement(gui::Button);
 /////////////////////////////////////////////////////////////////

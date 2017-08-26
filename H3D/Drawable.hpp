@@ -14,11 +14,7 @@
 // Drawable
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	struct AABB {
-		Vec2<GLfloat> x_boundaries;
-		Vec2<GLfloat> y_boundaries;
-		Vec2<GLfloat> z_boundaries;
-	};
+	typedef h3d::Vec3<h3d::Vec2<GLfloat>> AABB;
 
 	class Drawable
 	{
@@ -32,5 +28,6 @@ namespace h3d {
 		h3d::Texture &tex;
 		h3d::Model3D &model;
 	public:
+		virtual void draw(h3d::Window &win);
 	};
 }

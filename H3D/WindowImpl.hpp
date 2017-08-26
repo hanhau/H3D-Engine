@@ -13,12 +13,11 @@ namespace h3d {
 			std::string    m_Title;
 			bool           m_isFullscreen;
 
-
 		public:
 			virtual ~WindowImpl() {}
 
-			virtual void create(h3d::Vec2<int>size, std::string title,
-								h3d::WindowStyle ws, h3d::ContextSettings cs) = 0;
+			virtual WindowImpl* create(h3d::Vec2<int>size, std::string title,
+									   h3d::WindowStyle ws, h3d::ContextSettings cs) = 0;
 
 			// Virtual Interface
 			virtual void setSize(h3d::Vec2<int> param) = 0;

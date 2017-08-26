@@ -48,9 +48,6 @@
     <Filter Include="Window">
       <UniqueIdentifier>{2771b009-c60e-4157-9b32-70d72f4a2f53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GLContext">
-      <UniqueIdentifier>{aa434728-8c2d-4588-8927-c89f7bf12c3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="InputHandling">
       <UniqueIdentifier>{cd51efb0-d11f-4387-ad3d-5776cf15e848}</UniqueIdentifier>
     </Filter>
@@ -59,6 +56,12 @@
     </Filter>
     <Filter Include="Clock">
       <UniqueIdentifier>{223cc98d-d5d4-4212-ad8c-d0a33ca80993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL Context">
+      <UniqueIdentifier>{aa434728-8c2d-4588-8927-c89f7bf12c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{34e25e4f-32f0-494e-ad2b-c2cb0a375ee4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -209,20 +212,14 @@
     <ClCompile Include="H3D\Window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\Win32Impl.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\X11Impl.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\OpenGLContext.cpp">
-      <Filter>GLContext</Filter>
+      <Filter>OpenGL Context</Filter>
     </ClCompile>
     <ClCompile Include="H3D\WglContext.cpp">
-      <Filter>GLContext</Filter>
+      <Filter>OpenGL Context</Filter>
     </ClCompile>
     <ClCompile Include="H3D\X11Context.cpp">
-      <Filter>GLContext</Filter>
+      <Filter>OpenGL Context</Filter>
     </ClCompile>
     <ClCompile Include="H3D\InputManager.cpp">
       <Filter>InputHandling</Filter>
@@ -247,6 +244,12 @@
     </ClCompile>
     <ClCompile Include="H3D\LinuxClockImpl.cpp">
       <Filter>Clock</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Win32WindowImpl.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\X11WindowImpl.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -413,13 +416,13 @@
       <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="H3D\OpenGLContext.hpp">
-      <Filter>GLContext</Filter>
+      <Filter>OpenGL Context</Filter>
     </ClInclude>
     <ClInclude Include="H3D\WglContext.hpp">
-      <Filter>GLContext</Filter>
+      <Filter>OpenGL Context</Filter>
     </ClInclude>
     <ClInclude Include="H3D\X11Context.hpp">
-      <Filter>GLContext</Filter>
+      <Filter>OpenGL Context</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Win32WindowImpl.hpp">
       <Filter>Window</Filter>
@@ -441,6 +444,9 @@
     </ClInclude>
     <ClInclude Include="H3D\Clock.hpp">
       <Filter>Clock</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Config.hpp">
+      <Filter>Config</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

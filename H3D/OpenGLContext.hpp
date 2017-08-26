@@ -5,7 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif 
 
-#include "WindowImpl.hpp"
+#include "Utilities.hpp"
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 #include STR(GLEW_INCLUDE/gl/wglew.h)
@@ -31,16 +31,20 @@ namespace h3d {
 		unsigned char bits_stencilbuffer;
 		unsigned char count_auxbuffers;
 	};
+	class Window;
 }
 /////////////////////////////////////////////////////////////////
 // OpenGLContext
 /////////////////////////////////////////////////////////////////
-#include <any>
+#ifdef _WIN32 || _WIN64
+#define WGL_CONTEXT
+#elif defined
+#define X11_CONTEXT
+#endif
 namespace h3d {
 	class GLContext : Uncopyable{
 	public:
 		inline virtual ~GLContext() {};
-		virtual bool createContext(std::any windowimpl);
 	};
 }
 /////////////////////////////////////////////////////////////////
