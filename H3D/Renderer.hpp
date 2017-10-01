@@ -12,22 +12,18 @@
 #include "Window.hpp"
 #include "Drawable.hpp"
 
-const std::string GlobalRenderLogPath = "globalrender.log";
 /////////////////////////////////////////////////////////////////
 // RendererClass
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	class Drawable;
-	class GlobalRendererImpl  
+	class GlobalRenderer 
 	{
 		enum class StartParameter;
-
-		h3d::Window&		   m_win;
-		bool				   m_isWindowActive;
-
+		static std::unique_ptr<h3d::Window>		   m_win;
 	public:
-		GlobalRendererImpl(h3d::Window& window);
-		~GlobalRendererImpl();
+		static bool init(std::unique_ptr<h3d::Window> winptr,
+						 StartParameter				  params[]);
 
 		enum class StartParameter{
 			// Parameter		 // string input
@@ -35,13 +31,14 @@ namespace h3d {
 			LogFPS,				 // -      "         -
 		};
 		
-		
+		// static public Intel
+		static std::string GlobalRendererLogPath;
 
 		// Statistic functions
-		float H3D_API getFPS();
-		float H3D_API getAvgFrametime();
+		static double H3D_API getFPS();
+		static double H3D_API getAvgFrametime();
 
 		// Queing Functions
-		void H3D_API queueDrawable(Drawable &drawobj);
+		static void H3D_API queueDrawable(Drawable &drawobj);
 	};
 }

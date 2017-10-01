@@ -6,18 +6,22 @@
 H3D_API h3d::tagKeyboard     h3d::Keyboard;
 H3D_API h3d::tagMouse        h3d::Mouse;
 H3D_API h3d::tagInputLayout  h3d::InputLayout;
-H3D_API h3d::tagInputManager h3d::InputManager;
-/////////////////////////////////////////////////////////////////
-// Con-/Destructor
-h3d::tagInputManager::tagInputManager() : m_InputLayout(InputLayout) {}
-h3d::tagInputManager::~tagInputManager() {}
 /////////////////////////////////////////////////////////////////
 void _gch3d_HIDBaseClass::setupRID(HWND win) {}
 _gch3d_HIDBaseClass::_gch3d_HIDBaseClass(USHORT usage) {
 	m_rid.usUsage = usage;
 }
 /////////////////////////////////////////////////////////////////
-const bool h3d::tagInputManager::isInputActive(uint8_t devType)
+HWND				h3d::InputManager::m_window;
+RAWINPUTDEVICELIST *h3d::InputManager::m_rawDeviceListPtr;
+uint32_t			h3d::InputManager::m_rawDeviceListSize;
+uint32_t			h3d::InputManager::m_numRawDevices;
+
+bool h3d::InputManager::m_mouseActive;
+bool h3d::InputManager::m_keyboardActive;
+bool h3d::InputManager::m_joystickActive;
+/////////////////////////////////////////////////////////////////
+bool h3d::InputManager::isInputActive(uint8_t devType)
 {
 	switch (devType) {
 		case DEVICE_TYPE_MOUSE: return m_mouseActive; break;
@@ -27,7 +31,7 @@ const bool h3d::tagInputManager::isInputActive(uint8_t devType)
 	}
 }
 /////////////////////////////////////////////////////////////////
-bool h3d::tagInputManager::setupHardware(HWND win)
+bool h3d::InputManager::setupHardware(HWND win)
 {
 	// Enumerate connected RAW Devices
 	if ((m_numRawDevices = GetRawInputDeviceList(m_rawDeviceListPtr,
@@ -47,21 +51,21 @@ bool h3d::tagInputManager::setupHardware(HWND win)
 /////////////////////////////////////////////////////////////////
 //	Updating RAW Mouse Data
 /////////////////////////////////////////////////////////////////
-void h3d::tagInputManager::updateMouse()
+void h3d::InputManager::updateMouse()
 {
 	
 }
 /////////////////////////////////////////////////////////////////
 //	Updating RAW Keyboard Data
 /////////////////////////////////////////////////////////////////
-void h3d::tagInputManager::updateKeyboard()
+void h3d::InputManager::updateKeyboard()
 {
 
 }
 /////////////////////////////////////////////////////////////////
 //	Updating RAW Joystick Data
 /////////////////////////////////////////////////////////////////
-void h3d::tagInputManager::updateJoystick()
+void h3d::InputManager::updateJoystick()
 {
 
 }

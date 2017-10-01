@@ -1,26 +1,50 @@
-#pragma comment(lib,"../Release/H3D.lib")
-
 #include <H3D\externals.h>
+
+#ifdef _DEBUG
+#pragma comment(lib,"../Debug/H3D.lib")
 #pragma comment(lib,STR(GLEW_PATH/lib/Release/Win32/glew32.lib))
+#else 
+#pragma comment(lib,"../Release/H3D.lib")
+#pragma comment(lib,STR(GLEW_PATH/lib/Release/Win32/glew32.lib))
+#endif 
+
 #pragma comment(lib,"opengl32.lib")
 
 #include <H3D\Window.hpp>
 #include <H3D\3DModel.hpp>
 #include <H3D\LuaScript\LuaScript.hpp>
 #include <H3D\Program.hpp>
-#include <H3D\FileSystem.hpp>
-#include <H3D\Matrix.hpp>
 #include <H3D\Audio.hpp>
 
 #include <iostream>
+#include <H3D\Color.hpp>
 
 int main()
-{	
-	h3d::Audio::initialize();
-	return 0;
-	h3d::Texture tex;
-	return 0;	
+{
+	glewExperimental = true;
+	glewInit();
+
+	h3d::DebugMode = true;
+
+	h3d::Window win({ 1920,1080 }, "Title", h3d::WindowStyle::Default, h3d::ContextSettings());
 	
+	while (win.isOpen())
+	{
+		h3d::Event event;
+		while (win.pollEvent(event))
+		{
+
+		}
+
+		win.clear(GL_COLOR_BUFFER_BIT,h3d::Color<GLfloat>(0,0,0,1));
+
+		win.swapBuffers();
+	}
+}
+
+/*
+int main()
+{	
 	h3d::Window app(h3d::Vec2<int>(1280,720),
 					"Test",
 					h3d::WindowStyle::Default,
@@ -97,3 +121,4 @@ int main()
 
 	return 0;
 }
+*/

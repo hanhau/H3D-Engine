@@ -2,24 +2,36 @@
 #include "Utilities.hpp"
 #include "FileSystem.hpp"
 #include <cstdlib>
+
 /////////////////////////////////////////////////////////////////
 // Implementation of GlobalRenderer
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	GlobalRendererImpl::GlobalRendererImpl(h3d::Window& window) :
-		m_win(window){
-			if (m_win.isOpen()) 
-			{
-				m_win.setActive(true);
-				m_isWindowActive = true;
-
-
-			}
-			else 
+	std::string GlobalRenderer::GlobalRendererLogPath = "globalrender.log";
+	std::unique_ptr<h3d::Window> GlobalRenderer::m_win;
+	
+	bool GlobalRenderer::init(std::unique_ptr<h3d::Window> winptr, 
+							  StartParameter			   params[])
+	{
+		if (winptr != nullptr && winptr->isOpen())
+		{
+			winptr->setActive(true);
+			return true;
+		} 
+		else 
 		AssertFailed(__FILE__,std::to_string(__LINE__).c_str(),
 					 "Unable to create GlobalRenderer");
-	}
-	/////////////////////////////////////////////////////////////
+		return false;	}
 	
-/////////////////////////////////////////////////////////////////
+	double GlobalRenderer::getFPS() {
+		return double();
+	}
+
+	double GlobalRenderer::getAvgFrametime() {
+		return double();
+	}
+
+	void GlobalRenderer::queueDrawable(Drawable &drawobj) {
+
+	}
 }

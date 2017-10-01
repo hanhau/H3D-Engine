@@ -55,7 +55,7 @@ namespace h3d{
 			void storeObject(int type);
 		public:
 			// Con-/Destructor
-			H3D_API tagUniformOperations(h3d::Program *prgm);
+			H3D_API tagUniformOperations(h3d::Program &prgm);
 			H3D_API ~tagUniformOperations();
 
 			// Basic Uniform Operations

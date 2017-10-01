@@ -191,48 +191,44 @@ namespace h3d {
 /////////////////////////////////////////////////////////////////
 //	Class InputManager
 /////////////////////////////////////////////////////////////////
-	class tagInputManager
+	class H3D_API InputManager
 	{
 	private:
 		// InputActionVector
-		std::vector<InputAction> m_inputActionVec;
+		static std::vector<InputAction> m_inputActionVec;
 
 		// Input Mapping
-		tagInputLayout &m_InputLayout;
+		//tagInputLayout &m_InputLayout;
 
 		// RAW Input Device Setup Data
-		HWND				m_window;
-		RAWINPUTDEVICELIST *m_rawDeviceListPtr;
-		uint32_t			m_rawDeviceListSize;
-		uint32_t			m_numRawDevices;
+		static HWND				m_window;
+		static RAWINPUTDEVICELIST *m_rawDeviceListPtr;
+		static uint32_t			m_rawDeviceListSize;
+		static uint32_t			m_numRawDevices;
 
 		// Input Activation
-		bool m_mouseActive;
-		bool m_keyboardActive;
-		bool m_joystickActive;
+		static bool m_mouseActive;
+		static bool m_keyboardActive;
+		static bool m_joystickActive;
 
 		// Joystick/Gamepad Handling
-		std::map<unsigned char, Joystick> m_JoystickMap;
-	public:
-		// Con-/Destructor
-		H3D_API tagInputManager();
-		H3D_API ~tagInputManager();
-		
+		static std::map<unsigned char, Joystick> m_JoystickMap;
+	public:		
 		// Add bounded Actions
-		void H3D_API addInputAction(h3d::InputAction &action);
+		static void addInputAction(h3d::InputAction &action);
 
 		// Activate/Deactivate Inputs
-		void H3D_API activateInput(uint8_t devType,bool val);
-		const bool H3D_API isInputActive(uint8_t devType);
+		static void activateInput(uint8_t devType,bool val);
+		static bool isInputActive(uint8_t devType);
 		
 		// Processing Inputs
-		void H3D_API updateMouse();
-		void H3D_API updateKeyboard();
-		void H3D_API updateJoystick();
+		static void updateMouse();
+		static void updateKeyboard();
+		static void updateJoystick();
 
 		// Setup Hardware
-		bool H3D_API setupHardware(HWND win);
+		static bool setupHardware(HWND win);
 	};
-	H3D_API extern tagInputManager InputManager;
+	//H3D_API extern tagInputManager InputManager;
 }
 /////////////////////////////////////////////////////////////////

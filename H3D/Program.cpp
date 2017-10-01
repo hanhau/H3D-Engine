@@ -2,10 +2,10 @@
 /////////////////////////////////////////////////////////////////
 // Program Implementation
 /////////////////////////////////////////////////////////////////
-h3d::Program::tagUniformOperations::tagUniformOperations(h3d::Program *prgm) : m_programRef(*prgm){}
+h3d::Program::tagUniformOperations::tagUniformOperations(h3d::Program &prgm) : m_programRef(prgm){}
 h3d::Program::tagUniformOperations::~tagUniformOperations() {}
 /////////////////////////////////////////////////////////////////
-h3d::Program::Program() : Uniform(this), linked(false) {}
+h3d::Program::Program() : Uniform(*this), linked(false) {}
 h3d::Program::~Program() {}
 /////////////////////////////////////////////////////////////////
 bool h3d::Program::attachShader(h3d::Shader &ashader)

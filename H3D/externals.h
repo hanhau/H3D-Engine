@@ -5,6 +5,12 @@
 
 #define EXTERNAL_PATH C:/C++ Libraries
 
+#ifdef _WIN32 || _WIN64
+
+#elif defined _linux_
+
+#endif
+
 #define LUA_PATH       EXTERNAL_PATH/lua 5.3.4
 #define SOL2_PATH      EXTERNAL_PATH/sol2
 #define OPENAL_PATH	   EXTERNAL_PATH/OpenAL 1.1 SDK

@@ -4,10 +4,9 @@
 #include "WglContext.hpp"
 #include "Utilities.hpp"
 
-bool h3d::intern::WglContext::createContext(std::shared_ptr<h3d::intern::Win32WindowImpl> ptr)
+bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32WindowImpl>& ptr)
 {	
-
-	m_hdc = GetDC(ptr->m_Win); //Get device context
+	m_hdc = GetDC(ptr.get()->m_Win); //Get device context
 
 	// set Pixelformatdescriptor
 	PIXELFORMATDESCRIPTOR pfd;

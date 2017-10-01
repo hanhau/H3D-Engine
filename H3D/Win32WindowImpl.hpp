@@ -3,6 +3,7 @@
 
 #include "WindowImpl.hpp"
 namespace h3d {
+	class Event;
 	namespace intern {
 		class Win32WindowImpl : public WindowImpl
 		{
@@ -30,6 +31,8 @@ namespace h3d {
 			void allowResize(bool val);
 			void showCursor(bool val);
 			void close();
+
+			bool pollEvent(h3d::Event &event);
 
 			WindowImpl* create(h3d::Vec2<int>size, std::string title,
 							   h3d::WindowStyle ws, h3d::ContextSettings cs);

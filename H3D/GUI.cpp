@@ -3,6 +3,14 @@
 /////////////////////////////////////////////////////////////////
 #define VAR_TYPE_BUTTON 0b0000'0001
 #define VAR_TYPE_TEXT   0b0000'0010
+namespace h3d {
+	namespace intern { 
+		namespace gui {
+			static h3d::Program g_programOGL;
+			static FT_Library g_ft_lib;
+		}
+	}
+}
 /////////////////////////////////////////////////////////////////
 // Initialization
 /////////////////////////////////////////////////////////////////
@@ -22,11 +30,11 @@ bool gui::init()
 		"}"
 	};
 	h3d::Shader fragmentShader(GL_FRAGMENT_SHADER, fragmentCode);
-	g_programOGL.attachShader(vertexShader);
-	g_programOGL.attachShader(fragmentShader);
+	h3d::intern::gui::g_programOGL.attachShader(vertexShader);
+	h3d::intern::gui::g_programOGL.attachShader(fragmentShader);
 	
-	status = g_programOGL.link();
-	FT_Error error = FT_Init_FreeType(&gui::g_ft_lib);
+	status = h3d::intern::gui::g_programOGL.link();
+	FT_Error error = FT_Init_FreeType(&h3d::intern::gui::g_ft_lib);
 	if (error) status = false;
 
 	return status;

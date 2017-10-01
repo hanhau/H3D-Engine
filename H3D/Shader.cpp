@@ -3,10 +3,15 @@
 #include <iostream>
 #include <stdlib.h>
 #include "FileSystem.hpp"
+
 /////////////////////////////////////////////////////////////////
 //	Shader Implementation
 /////////////////////////////////////////////////////////////////
-h3d::Shader::Shader() :created(false),shadertype(0){}			   
+h3d::Shader::Shader() :created(false),shadertype(0)
+{
+	glewExperimental = true;
+	glewInit();
+}			   
 h3d::Shader::Shader(GLenum type,GLchar code_path[]) :
 	created(false),shadertype(0)
 {
@@ -14,7 +19,7 @@ h3d::Shader::Shader(GLenum type,GLchar code_path[]) :
 }
 h3d::Shader::~Shader()
 {
-	glDeleteShader(shaderid);
+	//glDeleteShader(shaderid);
 }
 /////////////////////////////////////////////////////////////////
 bool h3d::Shader::setCode(GLchar acode[])

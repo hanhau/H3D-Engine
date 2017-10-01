@@ -26,10 +26,6 @@ namespace gui {
 	// Needed Init function to setup OpenGL stuff
 	bool H3D_API init();
 
-	// Global OpenGL/Freetype Stuff
-	static h3d::Program g_programOGL;
-	static FT_Library g_ft_lib;
-
 	// Initialisation function
 	class Element;
 	template<typename T> const Element newElement(T data);

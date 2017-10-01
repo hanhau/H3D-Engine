@@ -5,6 +5,8 @@
 namespace h3d {
 	enum class WindowStyle;
 	class ContextSettings;
+	class Event;
+
 	namespace intern {
 		class WindowImpl : Uncopyable
 		{
@@ -30,6 +32,8 @@ namespace h3d {
 			virtual void allowResize(bool val) = 0;
 			virtual void showCursor(bool val) = 0;
 			virtual void close() = 0;
+
+			virtual bool pollEvent(h3d::Event &event) = 0;
 		};
 	}
 }

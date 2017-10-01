@@ -1,9 +1,9 @@
 /////////////////////////////////////////////////////////////////
 #ifdef _WIN32 || _WIN64
 
-#define pimpl m_pimpl.get() 
 #include "Window.hpp"
 #include "Win32WindowImpl.hpp"
+#include <wingdi.h>
 
 LRESULT CALLBACK _H3D_WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -113,7 +113,7 @@ h3d::intern::WindowImpl* h3d::intern::Win32WindowImpl::create(
 /////////////////////////////////////////////////////////////////
 // System specific OpenGL Functions
 void h3d::intern::Win32WindowImpl::swapBuffers(){
-
+	::SwapBuffers(0);
 }
 void h3d::intern::Win32WindowImpl::setActive(bool val){
 
@@ -153,7 +153,15 @@ void h3d::intern::Win32WindowImpl::close() {
 }
 /////////////////////////////////////////////////////////////////
 // Poll Events
-bool h3d::Window::pollEvent(h3d::Event &event) {
+bool h3d::intern::Win32WindowImpl::pollEvent(h3d::Event &event) {
+	if (PeekMessage(&m_Msg, NULL, 0, 0, PM_REMOVE)) {
+
+		//! translate and dispatch message to Windows
+		TranslateMessage(&m_Msg);
+		DispatchMessage(&m_Msg);
+
+		return false;
+	}
 	return true;
 }
 /////////////////////////////////////////////////////////////////
@@ -169,11 +177,6 @@ LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 
 	h3d::Window* window = hwnd ? reinterpret_cast<h3d::Window*>(
 		GetWindowLongPtr(hwnd, GWLP_USERDATA)) : NULL;
-
-	if (window)
-	{
-		std::cout << "VALID YESS" << std::endl;
-	}
 
 	switch (msg)
 	{
@@ -191,14 +194,14 @@ LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	break;
 	// Input Handling
 	case WM_INPUT:
-		if (h3d::InputManager.isInputActive(DEVICE_TYPE_KEYBOARD)) {
-			h3d::InputManager.updateKeyboard();
+		if (h3d::InputManager::isInputActive(DEVICE_TYPE_KEYBOARD)) {
+			h3d::InputManager::updateKeyboard();
 		}
-		if (h3d::InputManager.isInputActive(DEVICE_TYPE_MOUSE)) {
-			h3d::InputManager.updateMouse();
+		if (h3d::InputManager::isInputActive(DEVICE_TYPE_MOUSE)) {
+			h3d::InputManager::updateMouse();
 		}
-		if (h3d::InputManager.isInputActive(DEVICE_TYPE_JOYSTICK)) {
-			h3d::InputManager.updateJoystick();
+		if (h3d::InputManager::isInputActive(DEVICE_TYPE_JOYSTICK)) {
+			h3d::InputManager::updateJoystick();
 		}
 		break;
 	case WM_PAINT:

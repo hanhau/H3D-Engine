@@ -44,13 +44,13 @@ class Window : Uncopyable
 	
 	friend h3d::intern::WglContext;
 	std::unique_ptr<h3d::intern::WglContext> m_context;
-	std::shared_ptr<h3d::intern::Win32WindowImpl> m_impl;
+	std::unique_ptr<h3d::intern::Win32WindowImpl> m_impl;
 
 #elif defined H3D_SYSTEM_LINUX
 
 	friend h3d::intern::X11Context;
 	std::unique_ptr<h3d::intern::X11Context> m_context;
-	std::shared_ptr<h3d::intern::X11WindowImpl> m_impl;
+	std::unique_ptr<h3d::intern::X11WindowImpl> m_impl;
 
 #endif
 	// Defined different
