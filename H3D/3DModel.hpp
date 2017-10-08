@@ -8,6 +8,7 @@
 #include "3DModelType\3DMT_MD5.hpp"
 #include "3DModelType\3DMT_X.hpp"
 #include "3DModelType\3DMT_OBJ.hpp"
+#include "Drawable.hpp"
 
 #include <string>
 #include <algorithm>
@@ -19,10 +20,13 @@ namespace h3d {
 		OBJ,MD5,DAE
 	};
 /////////////////////////////////////////////////////////////////
-	class Model3D
+	class Model3D : Drawable
 	{
 	private:
 		union {
+			std::unique_ptr<ModelType::OBJ> model_obj;
+			std::unique_ptr<ModelType::MD5> model_md5;
+			std::unique_ptr<ModelType::X  > model_x;
 			ModelType::OBJ *obj;
 			ModelType::MD5 *md5;
 			ModelType::X   *x;

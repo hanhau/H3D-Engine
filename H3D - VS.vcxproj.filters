@@ -251,6 +251,12 @@
     <ClCompile Include="H3D\X11WindowImpl.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="H3D\WindowImpl.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\PhysicEngine.cpp">
+      <Filter>Physic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp">
@@ -447,6 +453,9 @@
     </ClInclude>
     <ClInclude Include="H3D\Config.hpp">
       <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\PhysicObject.hpp">
+      <Filter>Physic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

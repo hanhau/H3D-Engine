@@ -6,7 +6,7 @@
 
 bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32WindowImpl>& ptr)
 {	
-	m_hdc = GetDC(ptr.get()->m_Win); //Get device context
+	m_hdc = GetDC(ptr->m_Win); //Get device context
 
 	// set Pixelformatdescriptor
 	PIXELFORMATDESCRIPTOR pfd;
@@ -43,19 +43,25 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 		0
 	};
 
-	if (wglewIsSupported("WGL_ARB_create_context") == 1)
+	if (wglewIsSupported("WGL_ARB_create_context") != 0)
 	{
 		m_hrc = wglCreateContextAttribsARB(m_hdc, NULL, attributes);
 		wglMakeCurrent(NULL, NULL);
 		wglDeleteContext(tempOGLContext);
 		wglMakeCurrent(m_hdc, m_hrc);
 	}
-	else
+	else {
 		m_hrc = tempOGLContext;
+		wglMakeCurrent(GetDC(ptr->m_Win),tempOGLContext);
+	}
 
 	int glVersion[2] = { -1, -1 };
 	glGetIntegerv(GL_MAJOR_VERSION, &glVersion[0]);
 	glGetIntegerv(GL_MINOR_VERSION, &glVersion[1]);
+
+	ShowWindow(ptr->m_Win, SW_SHOW);
+	UpdateWindow(ptr->m_Win);
+	SetFocus(ptr->m_Win);
 
 	return true;
 }

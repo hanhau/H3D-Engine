@@ -31,17 +31,23 @@ h3d::Window::Window(h3d::Vec2<int> p_size,
 	m_WindowStyle	= p_style;
 	
 	m_impl = std::unique_ptr<WindowImplType>(new WindowImplType());
-	m_impl.get()->create(p_size, p_title, p_style, contextsettings);
+	if (false == m_impl->create(p_size, p_title, p_style, contextsettings)) {
+		Log.error("Unable to create Window");
+	}
 
 	m_context = std::unique_ptr<h3d::intern::WglContext>(new h3d::intern::WglContext());	
-	if (!m_context.get()->createContext(m_impl) && h3d::DebugMode){
+	if (false == m_context.get()->createContext(m_impl)){
 		Log.error("Unable to create OpenGL Context");
 	}
 }
 /////////////////////////////////////////////////////////////////
 // Message Handling
 bool h3d::Window::pollEvent(h3d::Event& event) {
-	return m_impl->pollEvent(event);
+	if (m_impl != nullptr && m_impl->popEvent(event)) {
+		return true;
+	}
+	else
+		return false;
 }
 /////////////////////////////////////////////////////////////////
 // OpenGL Operations
@@ -55,17 +61,23 @@ void h3d::Window::clear(GLbitfield mask,h3d::Color<GLfloat> col={ 0,0,0,1 })
 }
 /////////////////////////////////////////////////////////////////
 // Setting
-void h3d::Window::setActive(bool val){}
-void h3d::Window::close() {}
+void h3d::Window::setActive(bool val){
+	
+}
+void h3d::Window::close() {
+	m_impl->close();
+}
 void h3d::Window::swapBuffers() {
 	m_impl->swapBuffers();
 }
-h3d::Window::~Window() {}
+h3d::Window::~Window() {
+	
+}
 /////////////////////////////////////////////////////////////////
 // Getting
-h3d::Vec2<int>          h3d::Window::getSize() { return m_Size; }
-std::string				h3d::Window::getTitle() { return m_Title; }
-h3d::WindowStyle		h3d::Window::getStyle() { return m_WindowStyle; }
-bool					h3d::Window::isOpen() { return m_opened; }
-bool					h3d::Window::isFullscreen() { return m_isFullscreen; }
+h3d::Vec2<int>   h3d::Window::getSize() { return m_Size; }
+std::string		 h3d::Window::getTitle() { return m_Title; }
+h3d::WindowStyle h3d::Window::getStyle() { return m_WindowStyle; }
+bool			 h3d::Window::isOpen() { return m_opened = m_impl->isOpen(); }
+bool			 h3d::Window::isFullscreen() { return m_isFullscreen; }
 /////////////////////////////////////////////////////////////////

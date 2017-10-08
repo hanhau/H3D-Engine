@@ -9,6 +9,7 @@
 #include "Vector.hpp"
 #include "Texture.hpp"
 #include "3DModel.hpp"
+#include "Window.hpp"
 
 /////////////////////////////////////////////////////////////////
 // Drawable
@@ -25,9 +26,12 @@ namespace h3d {
 		};
 		Type type;
 
-		h3d::Texture &tex;
-		h3d::Model3D &model;
+		h3d::Texture tex;
+		h3d::Model3D model;
 	public:
-		virtual void draw(h3d::Window &win);
+		Drawable();
+		~Drawable();
+
+		virtual void draw(h3d::Window &win) = 0;
 	};
 }

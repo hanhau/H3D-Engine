@@ -20,10 +20,10 @@ namespace h3d {
 	class GlobalRenderer 
 	{
 		enum class StartParameter;
-		static std::unique_ptr<h3d::Window>		   m_win;
+		static std::unique_ptr<h3d::Window> m_win;
 	public:
-		static bool init(std::unique_ptr<h3d::Window> winptr,
-						 StartParameter				  params[]);
+		static bool H3D_API init(std::unique_ptr<h3d::Window> winptr,
+								 StartParameter				  params[]);
 
 		enum class StartParameter{
 			// Parameter		 // string input
@@ -32,7 +32,7 @@ namespace h3d {
 		};
 		
 		// static public Intel
-		static std::string GlobalRendererLogPath;
+		static std::string H3D_API GlobalRendererLogPath;
 
 		// Statistic functions
 		static double H3D_API getFPS();

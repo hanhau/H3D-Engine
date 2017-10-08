@@ -21,25 +21,29 @@
 
 int main()
 {
-	glewExperimental = true;
-	glewInit();
-
 	h3d::DebugMode = true;
 
-	h3d::Window win({ 1920,1080 }, "Title", h3d::WindowStyle::Default, h3d::ContextSettings());
-	
+	h3d::Window win({ 640,480 }, "Title", h3d::WindowStyle::Default, h3d::ContextSettings());
+	auto contextver = win.getContextVer();
+
 	while (win.isOpen())
 	{
 		h3d::Event event;
 		while (win.pollEvent(event))
 		{
-
+			if (event.type == h3d::EventType::Closed)
+				win.close();
 		}
 
-		win.clear(GL_COLOR_BUFFER_BIT,h3d::Color<GLfloat>(0,0,0,1));
+		win.clear(GL_COLOR_BUFFER_BIT,h3d::Color<GLfloat>(0,1,0,1));
+		glClearColor(0.0, 1.0, 0.0, 1.0);
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+
 
 		win.swapBuffers();
 	}
+	return 0;
 }
 
 /*

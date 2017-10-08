@@ -14,13 +14,21 @@ namespace h3d {
 			wchar_t* Appname;
 			bool m_isFullscreen;
 			bool m_resizeAllowed;
+			bool m_isOpen;
+
+			LONG_PTR m_callback;
 
 			RECT m_WindowRect;
 			HINSTANCE m_Instance;
 			HWND m_Win;
 			MSG m_Msg;
 			WNDCLASSEX m_WinClass;
-		
+
+			void processEvents();
+
+			// Win32 specific
+			void processEvent(UINT msg, WPARAM wparam, LPARAM lparam);
+
 			void setSize(h3d::Vec2<int> param);
 			void resize();
 			void setTitle(std::string param);
@@ -31,10 +39,10 @@ namespace h3d {
 			void allowResize(bool val);
 			void showCursor(bool val);
 			void close();
-
 			bool pollEvent(h3d::Event &event);
+			bool isOpen();
 
-			WindowImpl* create(h3d::Vec2<int>size, std::string title,
+			bool create(h3d::Vec2<int>size, std::string title,
 							   h3d::WindowStyle ws, h3d::ContextSettings cs);
 		};
 	}

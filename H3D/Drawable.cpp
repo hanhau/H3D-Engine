@@ -2,7 +2,13 @@
 /////////////////////////////////////////////////////////////////
 // Implementation of Drawable
 /////////////////////////////////////////////////////////////////
-void draw(h3d::Window &win)
+h3d::Drawable::Drawable() {
+	
+}
+
+h3d::Drawable::~Drawable() {}
+
+void h3d::Drawable::draw(h3d::Window &win)
 {
 
 }

@@ -75,11 +75,6 @@ class Window : Uncopyable
 
 	// To make ptrs
 	Window() = default;
-
-	// Event Queue
-	void  pushEvent(Event);
-	Event popEvent();
-	std::queue<Event> m_EventQueue;
 public:
 	/////////////////////////////////////////////////////////////
 	/// \brief Construct a new window and open it.

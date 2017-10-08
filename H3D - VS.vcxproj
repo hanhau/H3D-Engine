@@ -139,12 +139,12 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;H3DVS_EXPORTS;%(PreprocessorDefinitions);DLL_EXPORT</PreprocessorDefinitions>
       <EnablePREfast>false</EnablePREfast>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/DLL</AdditionalOptions>
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
@@ -336,6 +336,7 @@
     <ClCompile Include="H3D\LuaScript\LuaScript.cpp" />
     <ClCompile Include="H3D\memmng\linear_alloc.cpp" />
     <ClCompile Include="H3D\network\Socket.cpp" />
+    <ClCompile Include="H3D\PhysicEngine.cpp" />
     <ClCompile Include="H3D\Quaternion.cpp" />
     <ClCompile Include="H3D\Renderer.cpp" />
     <ClCompile Include="H3D\TextureLoader.cpp" />
@@ -366,6 +367,7 @@
     <ClCompile Include="H3D\Win32ClockImpl.cpp" />
     <ClCompile Include="H3D\Win32WindowImpl.cpp" />
     <ClCompile Include="H3D\Window.cpp" />
+    <ClCompile Include="H3D\WindowImpl.cpp" />
     <ClCompile Include="H3D\X11Context.cpp" />
     <ClCompile Include="H3D\X11WindowImpl.cpp" />
   </ItemGroup>
@@ -400,6 +402,7 @@
     <ClInclude Include="H3D\Mouse.hpp" />
     <ClInclude Include="H3D\network\Package.hpp" />
     <ClInclude Include="H3D\network\Socket.hpp" />
+    <ClInclude Include="H3D\PhysicObject.hpp" />
     <ClInclude Include="H3D\Physic\Physic.hpp" />
     <ClInclude Include="H3D\Quaternion.hpp" />
     <ClInclude Include="H3D\Renderer.hpp" />

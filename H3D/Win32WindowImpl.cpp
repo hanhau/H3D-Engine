@@ -4,14 +4,15 @@
 #include "Window.hpp"
 #include "Win32WindowImpl.hpp"
 #include <wingdi.h>
+#include <memory>
+#include <string>
 
 LRESULT CALLBACK _H3D_WndProc(HWND, UINT, WPARAM, LPARAM);
 
 /////////////////////////////////////////////////////////////////
 // System specific setup function
 /////////////////////////////////////////////////////////////////
-h3d::intern::WindowImpl* h3d::intern::Win32WindowImpl::create(
-										  h3d::Vec2<int>       size,
+bool h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>       size,
 										  std::string          title,
 										  h3d::WindowStyle     ws,
 										  h3d::ContextSettings cs)
@@ -20,6 +21,11 @@ h3d::intern::WindowImpl* h3d::intern::Win32WindowImpl::create(
 	m_Size				= size;
 	m_Title				= title;
 	Appname = (wchar_t*)m_Title.c_str();
+
+	m_isOpen = true;
+
+	m_callback = SetWindowLongPtrW(m_Win, GWLP_WNDPROC, 
+		reinterpret_cast<LONG_PTR>(&_H3D_WndProc));
 
 	// Window Style Setup
 	m_dwExStyle = WS_EX_OVERLAPPEDWINDOW;
@@ -50,6 +56,7 @@ h3d::intern::WindowImpl* h3d::intern::Win32WindowImpl::create(
 			wchar_t* str = L"Fatal Error: Cannot open window "
 							"in fullscreen mode !";
 			MessageBox(NULL, str, NULL, MB_OK);
+			return false;
 		}
 	}
 
@@ -83,37 +90,44 @@ h3d::intern::WindowImpl* h3d::intern::Win32WindowImpl::create(
 	{
 		MessageBoxA(NULL, "Couldn´t register Window!", "FATAL ERROR",
 			MB_ICONEXCLAMATION | MB_OK);
+		return false;
 	}
 	else if (h3d::DebugMode)
 		Log.info("Registered Winapi Window class");
 	
 	// Set Window Content
+	std::wstring _windowtitle;
+	_windowtitle.assign(title.begin(), title.end());
+
 	m_Win =  CreateWindowEx(m_dwExStyle,
-							Appname, (LPCWSTR)m_Title.c_str(),
+							Appname, 
+							_windowtitle.c_str(),
 							m_dwStyle | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
 							CW_USEDEFAULT, CW_USEDEFAULT,
 							m_Size.x, m_Size.y,
 							NULL, NULL,
-							m_Instance,this);
+							m_Instance,
+							this);
 	if (m_Win == NULL) {
 		Log.error("Unable to CreateWindowEx(..)");
+		return false;
 	}
 	if (h3d::DebugMode)
 		Log.info("Created Window Handle");
 	
+
 	// Make ready for use
 	ShowWindow(m_Win, SW_SHOW);
 	UpdateWindow(m_Win);
-	SetFocus(m_Win);
 	if (h3d::DebugMode)
 		Log.info("Finished creating Window");
 
-	return nullptr;
+	return true;
 }
 /////////////////////////////////////////////////////////////////
 // System specific OpenGL Functions
 void h3d::intern::Win32WindowImpl::swapBuffers(){
-	::SwapBuffers(0);
+	::SwapBuffers(GetDC(m_Win));
 }
 void h3d::intern::Win32WindowImpl::setActive(bool val){
 
@@ -150,19 +164,68 @@ void h3d::intern::Win32WindowImpl::close() {
 	wglDeleteContext(wglGetCurrentContext());
 	PostQuitMessage(0);
 	UnregisterClass(Appname, m_Instance);
+	m_isOpen = false;
+}
+bool h3d::intern::Win32WindowImpl::isOpen() {
+	return m_isOpen;
 }
 /////////////////////////////////////////////////////////////////
-// Poll Events
-bool h3d::intern::Win32WindowImpl::pollEvent(h3d::Event &event) {
-	if (PeekMessage(&m_Msg, NULL, 0, 0, PM_REMOVE)) {
+// Message processing functions
+void h3d::intern::Win32WindowImpl::processEvents() {
+	MSG msg;
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 
 		//! translate and dispatch message to Windows
-		TranslateMessage(&m_Msg);
-		DispatchMessage(&m_Msg);
-
-		return false;
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
 	}
-	return true;
+}
+void h3d::intern::Win32WindowImpl::processEvent(UINT msg, 
+												WPARAM wparam, 
+											    LPARAM lparam) {
+	if (m_Win == nullptr)
+		return;
+
+	switch (msg)
+	{
+		// Resize Event
+	case WM_SIZE:
+	{
+		// break if winapi message
+		if (lparam == 0 || wparam == 0) break;
+
+		/*h3d::Vec2<int> *newsize = new h3d::Vec2<int>;
+		newsize = reinterpret_cast<h3d::Vec2<int>*>(lparam);
+		int x = newsize->x, y = newsize->y;
+		delete newsize;
+
+		SetWindowPos(m_Win, 0, 1, 1, x, y, SWP_NOMOVE);*/
+	}
+	break;
+	// Input Handling
+	case WM_INPUT:
+		/*if (h3d::InputManager::isInputActive(DEVICE_TYPE_KEYBOARD)) {
+			h3d::InputManager::updateKeyboard();
+		}
+		if (h3d::InputManager::isInputActive(DEVICE_TYPE_MOUSE)) {
+			h3d::InputManager::updateMouse();
+		}
+		if (h3d::InputManager::isInputActive(DEVICE_TYPE_JOYSTICK)) {
+			h3d::InputManager::updateJoystick();
+		}*/
+		break;
+	case WM_CLOSE:
+		{
+		h3d::Event e;
+		e.type = h3d::EventType::Closed;
+		pushEvent(e);
+		}
+		break;
+		// Default Window Procedure
+	default:
+		break;
+	}
+	return;
 }
 /////////////////////////////////////////////////////////////////
 // Win32 Window Callback func
@@ -175,43 +238,25 @@ LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 		SetWindowLongPtr(hwnd, GWLP_USERDATA, win);
 	}
 
-	h3d::Window* window = hwnd ? reinterpret_cast<h3d::Window*>(
-		GetWindowLongPtr(hwnd, GWLP_USERDATA)) : NULL;
+	h3d::intern::Win32WindowImpl *window = 
+		hwnd ? reinterpret_cast<h3d::intern::Win32WindowImpl*>(
+				GetWindowLongPtr(hwnd, GWLP_USERDATA)
+		) : nullptr;
 
-	switch (msg)
-	{
-		// Resize Event
-	case WM_SIZE:
-	{
-		// break if winapi message
-		if (lparam == 0 || wparam == 0) break;
-
-		h3d::Vec2<int> *newsize = new h3d::Vec2<int>();
-		newsize = (h3d::Vec2<int>*)lparam;
-
-		SetWindowPos(hwnd, 0, 1, 1, newsize->x, newsize->y, SWP_NOMOVE);
+	if (window != nullptr) {
+		window->processEvent(msg, wparam, lparam);
+		
+		if(window->m_callback)
+			return CallWindowProcW(reinterpret_cast<WNDPROC>(window->m_callback),
+								   hwnd, msg, wparam, lparam);
 	}
-	break;
-	// Input Handling
-	case WM_INPUT:
-		if (h3d::InputManager::isInputActive(DEVICE_TYPE_KEYBOARD)) {
-			h3d::InputManager::updateKeyboard();
-		}
-		if (h3d::InputManager::isInputActive(DEVICE_TYPE_MOUSE)) {
-			h3d::InputManager::updateMouse();
-		}
-		if (h3d::InputManager::isInputActive(DEVICE_TYPE_JOYSTICK)) {
-			h3d::InputManager::updateJoystick();
-		}
-		break;
-	case WM_PAINT:
-		break;
-	case WM_CLOSE:
-		break;
-		// Default Window Procedure
-	default:
-		return DefWindowProc(hwnd, msg, wparam, lparam);
-	}
-	return 0;
+
+	if (msg == WM_CLOSE)
+		return 0;
+
+	if ((msg == WM_SYSCOMMAND) && (wparam == SC_KEYMENU))
+		return 0;
+
+	return DefWindowProc(hwnd, msg, wparam, lparam);
 }
 #endif
