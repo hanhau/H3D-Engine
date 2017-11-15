@@ -24,9 +24,6 @@ void VerifyFailed(const char* file, const char* line, const char* expr)
 /////////////////////////////////////////////////////////////////
 bool h3d::DebugMode;
 /////////////////////////////////////////////////////////////////
-h3d::__Logger::__Logger() :m_currentLogType(h3d::LogType::CONSOLE) {}
-h3d::__Logger::~__Logger() {}
-/////////////////////////////////////////////////////////////////
 void h3d::__Logger::setLogType(h3d::LogType type) {
 	m_currentLogType = type;
 }
@@ -57,13 +54,6 @@ void h3d::__Logger::costum(const char* tag, const char* str)
 		std::lock_guard<std::mutex> lock(m_fileMutex);
 		fprintf(m_logFile, logString.c_str());
 	}
-}
-/////////////////////////////////////////////////////////////////
-// Static global Instance
-h3d::__Logger& h3d::__Logger::GetInstance()
-{
-	static __Logger instance;
-	return instance;
 }
 /////////////////////////////////////////////////////////////////
 // Lua implementation of log functions

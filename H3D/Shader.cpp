@@ -1,7 +1,7 @@
 #include "Shader.hpp"
 #include "Utilities.hpp"
-#include <iostream>
 #include <stdlib.h>
+#include <sstream>
 #include "FileSystem.hpp"
 
 /////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ bool h3d::Shader::printBuildLog()
 	if (buildlog == NULL)
 		return false;
 	else
-		std::cout << buildlog << std::endl;
+		Log.info(buildlog);
 	return true;
 }
 /////////////////////////////////////////////////////////////////

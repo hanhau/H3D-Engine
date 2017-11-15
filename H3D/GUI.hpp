@@ -52,6 +52,7 @@ namespace gui {
 		void H3D_API render();
 		void H3D_API update();
 	};
+
 	// Holds Elements together in groups
 	class Panel
 	{

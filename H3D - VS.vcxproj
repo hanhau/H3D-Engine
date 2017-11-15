@@ -397,7 +397,9 @@
     <ClInclude Include="H3D\Keyboard.hpp" />
     <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
     <ClInclude Include="H3D\memmng\base_alloc.hpp" />
+    <ClInclude Include="H3D\memmng\freelist_alloc.hpp" />
     <ClInclude Include="H3D\memmng\linear_alloc.hpp" />
+    <ClInclude Include="H3D\memmng\memory.hpp" />
     <ClInclude Include="H3D\memmng\pool_alloc.hpp" />
     <ClInclude Include="H3D\Mouse.hpp" />
     <ClInclude Include="H3D\network\Package.hpp" />

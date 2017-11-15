@@ -22,7 +22,7 @@
 void H3D_API AssertFailed(const char* file, const char* line, const char* expr);
 void H3D_API VerifyFailed(const char* file, const char* line, const char* expr);
 /////////////////////////////////////////////////////////////////
-#include <iostream>
+#include <iosfwd>
 #include <string>
 #include <cstdio>
 #include <mutex>
@@ -49,8 +49,8 @@ namespace h3d {
 
 		std::string H3D_API getCurrentTime();
 	public:
-		__Logger();
-		~__Logger();
+		inline __Logger() : m_currentLogType(h3d::LogType::CONSOLE) {};
+		inline ~__Logger() {};
 
 		// Set Logger Properties
 		void H3D_API setLogType(h3d::LogType type);
@@ -69,10 +69,12 @@ namespace h3d {
 		void costum(const char* tag,const char* str);
 
 		// Get global Instance
-		static __Logger& GetInstance();
+		inline static __Logger& GetInstance() {
+			static __Logger instance;
+			return instance;
+		}
 	};
 }
-#define Log h3d::__Logger::GetInstance()
 /////////////////////////////////////////////////////////////////
 // Lua Log functions
 extern "C" {
@@ -164,3 +166,4 @@ private:
 	inline Uncopyable& operator=(const Uncopyable&) = delete;
 };
 /////////////////////////////////////////////////////////////////
+#define Log h3d::__Logger::GetInstance()

@@ -20,13 +20,10 @@ namespace h3d {
 		OBJ,MD5,DAE
 	};
 /////////////////////////////////////////////////////////////////
-	class Model3D : Drawable
+	class Model3D 
 	{
 	private:
 		union {
-			std::unique_ptr<ModelType::OBJ> model_obj;
-			std::unique_ptr<ModelType::MD5> model_md5;
-			std::unique_ptr<ModelType::X  > model_x;
 			ModelType::OBJ *obj;
 			ModelType::MD5 *md5;
 			ModelType::X   *x;

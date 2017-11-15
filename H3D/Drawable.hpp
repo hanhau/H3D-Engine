@@ -26,8 +26,8 @@ namespace h3d {
 		};
 		Type type;
 
-		h3d::Texture tex;
-		h3d::Model3D model;
+		//h3d::Texture tex;
+		//h3d::Model3D model;
 	public:
 		Drawable();
 		~Drawable();

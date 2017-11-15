@@ -457,5 +457,11 @@
     <ClInclude Include="H3D\PhysicObject.hpp">
       <Filter>Physic</Filter>
     </ClInclude>
+    <ClInclude Include="H3D\memmng\memory.hpp">
+      <Filter>memmng</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\memmng\freelist_alloc.hpp">
+      <Filter>memmng</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

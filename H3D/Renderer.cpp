@@ -31,7 +31,7 @@ namespace h3d {
 		return double();
 	}
 
-	void GlobalRenderer::queueDrawable(Drawable &drawobj) {
-
+	uint64_t GlobalRenderer::queueDrawable(Drawable &drawobj) {
+		return 0;
 	}
 }

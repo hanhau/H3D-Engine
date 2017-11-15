@@ -5,12 +5,6 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <exception>
-
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////

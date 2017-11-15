@@ -4,15 +4,15 @@
 #else
 #define H3D_API __declspec(dllimport)
 #endif
-// Lua Headers
+
 #include "..\externals.h"
 #include STR(LUA_INCLUDE/lua.hpp)
 #include STR(SOL2_INCLUDE/sol/sol.hpp)
-// Cpp Headers
+
 #include <fstream>
 #include <string>
 #include <map>
-// additional Stuff
+
 #include "..\Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // LuaScript Class

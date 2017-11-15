@@ -1,5 +1,5 @@
 #include "ResourceManager.hpp"
-#include <iostream>
+#include <string>
 #include <random>
 #include <climits>
 #include <algorithm>
