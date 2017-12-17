@@ -17,6 +17,9 @@
 namespace h3d {
 	class Texture 
 	{	
+	public:
+		enum class Format;
+	private:
 		bool loadPNG(char[], h3d::Texture&);
 		bool loadKTX(char[], h3d::Texture&);
 		bool loadBMP(char[], h3d::Texture&);
@@ -30,7 +33,6 @@ namespace h3d {
 		unsigned char *m_buffer;
 
 		// Format of the Image loaded
-		enum class Format;
 		Format m_format;
 		GLenum m_colorFormat;
 
@@ -51,18 +53,30 @@ namespace h3d {
 
 		// Loading and manipulating
 		H3D_API bool loadFromFile(char Path[]);
+		H3D_API bool loadFromMemory(void * mem);
 
 		// Set up to OpenGL
 		H3D_API bool createTexture();
+		H3D_API void generateMipMaps();
 		H3D_API bool destroyTexture();
 
 		// Get information
-		H3D_API GLenum                  getColorFormat();
+		H3D_API GLenum         getColorFormat();
 		H3D_API h3d::Vec2<int> getSize();
 
 		// Handling Texture			
 		H3D_API GLuint getTextureIndex();
 		H3D_API bool   setActive(bool val);
 	};
+}
+/////////////////////////////////////////////////////////////////
+// Converter
+/////////////////////////////////////////////////////////////////
+namespace h3d {
+	namespace converter {
+		bool H3D_API PNGToKTX(char input[], char output[]);
+		bool H3D_API BMPToKTX(char input[], char output[]);
+		bool H3D_API TGAToKTX(char input[], char output[]);
+	}
 }
 /////////////////////////////////////////////////////////////////

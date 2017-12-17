@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <H3D\externals.h>
 
 #ifdef _DEBUG
@@ -16,6 +17,7 @@
 #include <H3D\Program.hpp>
 #include <H3D\Audio.hpp>
 #include <H3D\Clock.hpp>
+#include <H3D\Camera.hpp>
 
 #include <iostream>
 #include <vector>
@@ -23,99 +25,80 @@
 #include <H3D\Color.hpp>
 
 #include <H3D\hashing\SHA256.hpp>
-
-template <class T>
-struct Mallocator {
-	typedef T value_type;
-
-	Mallocator() = default;
-
-	template <class U> constexpr Mallocator(const Mallocator<U>&) noexcept {}
-
-	T* allocate(std::size_t n) {
-		if (n > std::size_t(-1) / sizeof(T)) throw std::bad_alloc();
-		if (auto p = static_cast<T*>(std::malloc(n * sizeof(T)))) return p;
-		throw std::bad_alloc();
-	}
-
-	void deallocate(T* p, std::size_t) noexcept { std::free(p); }
-};
-template <class T, class U>
-bool operator==(const Mallocator<T>&, const Mallocator<U>&) { return true; }
-template <class T, class U>
-bool operator!=(const Mallocator<T>&, const Mallocator<U>&) { return false; }
-
-std::vector<int, Mallocator<int>> a;
-
 #include <H3D\memmng\memory.hpp>
+
+const h3d::Vec2<int> WINDOW_SIZE(600,400);
+
+#include <H3D\ItemContainer.hpp>
+#include <H3D\Quaternion.hpp>
 
 int main()
 {	
 	h3d::DebugMode = true;
 
-	h3d::GlobalAllocator::allocate(100000);
-	h3d::GlobalAllocator::deallocate();
+	h3d::Log::debug("lewl %s", "lewl");
 
-	a.push_back(1);
-	a.size();
-
-	h3d::DebugMode = true;
-
-	h3d::Window app(h3d::Vec2<int>(1280,720),
-					"Test",
+	h3d::Window app(WINDOW_SIZE,
+					"Damokles Digger",
 					h3d::WindowStyle::Default,
-					h3d::ContextSettings(0,0,0,0));
+					h3d::ContextSettings(0,0,0,0,true));
 
+	GLfloat points[] = {
+		0.0,0.0,0.0,0.0,
+		0.5,0.0,0.0,0.0,
+		0.5,0.5,0.0,0.0,
+		0.0,0.5,0.0,0.0,
+	};
 
-	GLchar* strvert = { "#version 330\n"
+	GLuint vao;
+	glCreateVertexArrays(1, &vao);
+	glBindVertexArray(vao);
 
-						"layout(location=0) in vec3 position;"
-						"out vec3 pos;"
+	GLuint buffer;
+	glCreateBuffers(1, &buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, buffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
 
-						"void main(){"
-						"gl_Position = position;"
-						"}" 
-						};
-	h3d::Shader vertexShader(GL_VERTEX_SHADER, strvert); 
+	glVertexArrayVertexBuffer(vao, 0, buffer, 0, 16);
+	glVertexArrayAttribFormat(vao, 0, 4, GL_FLOAT, GL_FALSE, 0);
+	glEnableVertexArrayAttrib(vao, 0);
 
-	GLchar* strfrag = { "#version 330\n"
-						"out vec4 color;"
-						"void main(){"
-							"color = vec4(0.35,0.35,0.25,0.5);"
-						"}" };
-	h3d::Shader	fragmentShader(GL_FRAGMENT_SHADER, strfrag);
+	h3d::Shader vertexShader(GL_VERTEX_SHADER, "vert_shader.vert"); 
+	h3d::Shader	fragmentShader(GL_FRAGMENT_SHADER,"frag_shader.frag");
 
 	h3d::Program gl_program;
-
 	gl_program.attachShader(vertexShader);
 	gl_program.attachShader(fragmentShader);
 
-	std::cout << gl_program.link() << std::endl;
+	gl_program.link();
 	gl_program.use(true);
 	
-	glViewport(0, 0, 1920, 1080);
+	glViewport(0, 0,WINDOW_SIZE.x,WINDOW_SIZE.y);
 
-	GLfloat polygons[] = { 1.0f,0.2f,0.7f,
-					  1.0f,0.7f,1.0f,
-					  1.0f,0.2f,0.6f};
-	GLuint buffer;
+	h3d::Clock globalClock;
+	globalClock.reset();
 
-	glGenBuffers(1, &buffer);
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glPointSize(3);
 
-	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9,
-				 &polygons, GL_STREAM_READ);
+	h3d::Quaternion b(0.1, 0.1, 0.4, 0.4);
+	h3d::Quaternion quatA(1.0, 0.0, 0.0, 0.0);
+	quatA *= b;
 
-	std::cout << "test" << std::endl;
+	h3d::mat4x4 rot = quatA.toRotateMat4x4();
 
-	h3d::Clock clock;
+	h3d::Vec3<float> point(0.1f, 0.5f, 1.0f);
+	h3d::Vec4 p = rot * h3d::Vec4(point,0.0);
+	h3d::Vec3<float> pp = rot * point;
+	h3d::Log::info("%f %f %f", p.x, p.y, p.z);
+	h3d::Log::info("%f %f %f", pp.x, pp.y, pp.z);
+
+	h3d::Camera cam;
+	cam.setShaderValues(gl_program, "proj_mat", "view_mat");
+
+	h3d::Log::screenshot("demo/", app);
 
 	while (app.isOpen())
 	{
-		clock.reset();
 		h3d::Event event;
 
 		while(app.pollEvent(event))
@@ -125,16 +108,13 @@ int main()
 				return 0;
 			}
 		}		
-		
-		app.clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT,
-				  h3d::Color<GLfloat>(1.0,0.5,0.25,1.0));
-		
-		glBindBuffer(GL_ARRAY_BUFFER, buffer);
-		glDrawArrays(GL_LINE_LOOP, 0, 9);
+
+		app.clear(GL_COLOR_BUFFER_BIT,
+				  h3d::Color<GLfloat>(cos(globalClock.getSeconds()),
+									  tan(globalClock.getSeconds()),
+									  sin(globalClock.getSeconds()),0.0));
 
 		app.swapBuffers();
-
-		std::cout << (double)1 / clock.getSeconds() << "\n";
 	}
 
 	return 0;

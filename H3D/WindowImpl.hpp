@@ -6,7 +6,7 @@
 
 namespace h3d {
 	enum class WindowStyle;
-	class ContextSettings;
+	struct ContextSettings;
 
 	namespace intern {
 		class WindowImpl : Uncopyable

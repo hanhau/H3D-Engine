@@ -22,7 +22,7 @@ extern bool loadWAV(char path[],
 					ALenum& format)
 {
 	// Info Log
-	Log.info("Loading %s now ...",path);
+	h3d::Log::info("Loading %s now ...",path);
 
 	// Temporary buffers
 	std::vector<char> fileBuffer;
@@ -30,7 +30,7 @@ extern bool loadWAV(char path[],
 	// Loading whole file into a temporary buffer
 	h3d::FileHandle fileHandle;
 	if (!fileHandle.open(path, 0)) {
-		Log.error("Unable to open h3d::FileHandle for %s", path);
+		h3d::Log::error("Unable to open h3d::FileHandle for %s", path);
 		return false;
 	}
 
@@ -49,10 +49,10 @@ extern bool loadWAV(char path[],
 			0 != memcmp(wavHeader.riffType, "WAVE", 4) ||
 			0 != memcmp(wavFormat.subChunkID, "fmt ", 4))
 	{
-		Log.error("%s is probably a invalid format",path);
+		h3d::Log::error("%s is probably a invalid format",path);
 	}
 	if (wavFormat.audioFormat != 1) { // Check for PCM
-		Log.error("%s is not PCM audio data !",path);
+		h3d::Log::error("%s is not PCM audio data !",path);
 		return false;
 	}
 
@@ -76,7 +76,7 @@ extern bool loadWAV(char path[],
 			format = AL_FORMAT_STEREO16;
 	}
 	else{
-		Log.error("%s has a unsupported amount of channels (%d)", path, wavFormat.numChannels);
+		h3d::Log::error("%s has a unsupported amount of channels (%d)", path, wavFormat.numChannels);
 		return  false;
 	}
 
@@ -89,7 +89,7 @@ extern bool loadWAV(char path[],
 
 	// Return
 	if (h3d::DebugMode)
-		Log.info("Finished loading %s.",path);
+		h3d::Log::info("Finished loading %s.",path);
 	return true;
 }
 /////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ extern bool loadOGG(char path[],
 	// Open file_stream
 	filehandle.open(path);
 	if (FALSE == filehandle.isOpen()) {
-		if (h3d::DebugMode) Log.error("Unable to loadOgg(%s)",path);
+		if (h3d::DebugMode) h3d::Log::error("Unable to loadOgg(%s)",path);
 		return false;
 	}
 	
@@ -123,7 +123,7 @@ extern bool loadOGG(char path[],
 	if (0 > ov_open_callbacks(file_data,
 							  oggfile, NULL, 0,
 							  oggcallbacks)) {
-		if (h3d::DebugMode) Log.error("%s is not a OGG File",path);
+		if (h3d::DebugMode) h3d::Log::error("%s is not a OGG File",path);
 		return false;
 	}
 
@@ -156,7 +156,7 @@ extern bool loadOGG(char path[],
 	else if (vi->channels == 2)
 		format = AL_FORMAT_STEREO16;
 	else {
-		if (h3d::DebugMode) Log.error("Unsupported channel count in %s",path);
+		if (h3d::DebugMode) h3d::Log::error("Unsupported channel count in %s",path);
 		return false;
 	}
 	size = finalpcm.size();

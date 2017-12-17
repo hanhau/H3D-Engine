@@ -79,20 +79,15 @@ public:
 /////////////////////////////////////////////////////////////////
 class H3D_API Vec4
 {
-private:
-	// values
-	__m128 m_vec;
-	
-	void* operator new(size_t size){ return _mm_malloc(size, 16); }
-	void operator delete(void * mem) { _mm_free(mem); }
 public:
 	// Con-/Destructor
 	Vec4(float _x, float _y, float _z, float _w);
+	Vec4(h3d::Vec3<float> vec, float w);
 	Vec4();
 	~Vec4();
 
 	// direct Access
-	const float& x, y, z, w;
+	float x, y, z, w;
 
 	// operators
 	Vec4& operator= (Vec4 &obj);

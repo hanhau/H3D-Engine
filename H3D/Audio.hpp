@@ -40,18 +40,17 @@ namespace h3d{
 		/////////////////////////////////////////////////////////
 		// global Listener Class
 		/////////////////////////////////////////////////////////
-		class tagListener 
+		class Listener
 		{
 		public:
-			tagListener();
-			~tagListener();
+			Listener();
+			~Listener();
 
-			void setMasterGain(float gain);
-			void setPosition(h3d::Vec3<float> pos);
-			void setVelocity(h3d::Vec3<float> vel);
-			void setOrientation(h3d::Vec3<float>at,h3d::Vec3<float>up);
+			static void setMasterGain(float gain);
+			static void setPosition(h3d::Vec3<float> pos);
+			static void setVelocity(h3d::Vec3<float> vel);
+			static void setOrientation(h3d::Vec3<float>at,h3d::Vec3<float>up);
 		};
-		extern tagListener H3D_API Listener;
 		/////////////////////////////////////////////////////////
 		// Audio Scene
 		/////////////////////////////////////////////////////////

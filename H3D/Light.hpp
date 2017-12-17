@@ -8,6 +8,7 @@
 #include <vector>
 #include "Color.hpp"
 #include "Vector.hpp"
+#include "memmng\memory.hpp"
 
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
@@ -17,51 +18,69 @@
 namespace h3d {
 	class Light
 	{
+	public:
+		enum class Type;
+		enum class Tag;
 	private:
 		// Position
 		h3d::Vec3<float> m_pos;
 		
-		// Light Type
-		int m_type;
+		Type m_type;
+		Tag  m_tag;
+
+		struct PointData
+		{
+			h3d::Color<float> m_color;
+			float			  m_brightness;
+		};
+		struct AmbientData
+		{
+			h3d::Color<float> m_color;
+			float			  m_brightness;
+		};
+		struct DirectionalData
+		{
+			h3d::Color<float> m_color;
+			float			  m_brightness;
+			h3d::Vec3<float>  m_direction;
+			float             m_length;
+		};
+		struct SpotData
+		{
+			h3d::Color<float> m_color;
+			float			  m_brightness;
+			h3d::Vec3<float>  m_direction;
+			float			  m_length;
+			float			  m_outerRadius;
+		};
 
 		// Light Data
-		union tagm_data
+		union tagm_lightData
 		{
-			struct tagAmbData
-			{
-				h3d::Color<float> m_color;
-				float			  m_brightness;
-			}AmbientData();
-			struct tagDirData
-			{
-				h3d::Color<float> m_color;
-				float			  m_brightness;
-				h3d::Vec3<float>  m_direction;
-				float             m_length;
-			}DirectionalData();
-			struct tagSptData
-			{
-				h3d::Color<float> m_color;
-				float			  m_brightness;
-				h3d::Vec3<float>  m_direction;
-				float			  m_length;
-				float			  m_outerRadius;
-			}SpotlightData();
-		}m_data();
+			inline tagm_lightData() {}
+			inline ~tagm_lightData() {}
+
+			PointData       point;
+			AmbientData     ambient;
+			DirectionalData directional;
+			SpotData        spot;
+		}m_lightData;
 
 	public:
-		// Con-/Destructor
 		H3D_API Light();
 		H3D_API ~Light();
 
-		// Light Types
-		struct Type {
-			static const int Ambient     = 0;
-			static const int Directional = 1;
-			static const int Spotlight   = 2;
+		enum class Type {
+			Ambient, Directional, Spotlight,Point
 		};
 
-		// Create Light
+		enum class Tag {
+			_static,_dynamic
+		};
+
+		void H3D_API setType(Type type);
+		void H3D_API setTag(Tag tag);
+
 		void H3D_API createAmbient    (h3d::Color<float>color,
 									   float brightness);
 		void H3D_API createDirectional(h3d::Color<float>color,
@@ -73,9 +92,11 @@ namespace h3d {
 									   h3d::Vec3<float>direction,
 									   float length,
 									   float outerRadius);
+		void H3D_API createPoint      (h3d::Color<float>color,
+									   float brightness);
 	};
 	/////////////////////////////////////////////////////////////
-	// Class Lightscene for handling a whole Stage
+	// Lightscene for handling a whole Stage
 	/////////////////////////////////////////////////////////////
 	class Lightscene
 	{
@@ -84,15 +105,15 @@ namespace h3d {
 		std::vector<Light> m_lightVec;
 	public:
 		// Con-/Destructor
-		Lightscene();
-		~Lightscene();
+		H3D_API Lightscene(h3d::AllocationSource as);
+		H3D_API ~Lightscene();
 
 		// File Loading/Saving
 		void H3D_API saveToFile(char Path[]);
 		void H3D_API loadFromFile(char Path[]);
 
 		// Adding Lights
-		void addLight(h3d::Light light);
+		int64_t H3D_API addLight(h3d::Light light);
 	};
 }
 /////////////////////////////////////////////////////////////////

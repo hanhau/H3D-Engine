@@ -23,10 +23,8 @@
 // Graphical User Interface
 /////////////////////////////////////////////////////////////////
 namespace gui {
-	// Needed Init function to setup OpenGL stuff
 	bool H3D_API init();
 
-	// Initialisation function
 	class Element;
 	template<typename T> const Element newElement(T data);
 

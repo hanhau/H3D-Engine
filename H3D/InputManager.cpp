@@ -2,11 +2,6 @@
 /////////////////////////////////////////////////////////////////
 //	Implementation of InputManager Class
 /////////////////////////////////////////////////////////////////
-// global Variables
-H3D_API h3d::tagKeyboard     h3d::Keyboard;
-H3D_API h3d::tagMouse        h3d::Mouse;
-H3D_API h3d::tagInputLayout  h3d::InputLayout;
-/////////////////////////////////////////////////////////////////
 void _gch3d_HIDBaseClass::setupRID(HWND win) {}
 _gch3d_HIDBaseClass::_gch3d_HIDBaseClass(USHORT usage) {
 	m_rid.usUsage = usage;
@@ -40,7 +35,7 @@ bool h3d::InputManager::setupHardware(HWND win)
 		 ) != (UINT)-1)
 	{
 		if (h3d::DebugMode) {
-			Log.error("Failed to get Device List %d",GetLastError());
+			h3d::Log::error("Failed to get Device List %d",GetLastError());
 		}
 		return false;
 	}

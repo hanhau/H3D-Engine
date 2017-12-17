@@ -19,17 +19,19 @@ namespace h3d {
 		inline ContextSettings(unsigned char bits_fb,
 							   unsigned char bits_db,
 							   unsigned char bits_sb,
-							   unsigned char c_aux) :
+							   unsigned char c_aux,bool v=false) :
 			bits_framebuffer(bits_fb),
 			bits_depthbuffer(bits_db),
 			bits_stencilbuffer(bits_sb),
-			count_auxbuffers(c_aux) 
+			count_auxbuffers(c_aux),
+			is_debug_context(v)
 		{}
 
 		unsigned char bits_framebuffer;
 		unsigned char bits_depthbuffer;
 		unsigned char bits_stencilbuffer;
 		unsigned char count_auxbuffers;
+		bool          is_debug_context;
 	};
 	class Window;
 }

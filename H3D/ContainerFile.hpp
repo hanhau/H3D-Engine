@@ -68,7 +68,7 @@ namespace h3d{
 	bool createContainerFile(std::string output_file,
 							 std::vector<std::string> input_files)
 	{
-		Log.info("Creating ContainerFile %s",output_file.c_str());
+		h3d::Log::info("Creating ContainerFile %s",output_file.c_str());
 
 		// Create Output Filestream
 		h3d::FileHandle fh;
@@ -81,7 +81,7 @@ namespace h3d{
 		
 		fh.write((char*)&header, sizeof(header));
 
-		Log.info("%s will contain %d items.", output_file.c_str(), header.itemCount);
+		h3d::Log::info("%s will contain %d items.", output_file.c_str(), header.itemCount);
 
 		// Write until done
 		static h3d::FileHandle infh;
@@ -90,7 +90,7 @@ namespace h3d{
 
 		for (auto &iter : input_files)
 		{
-			Log.info("Copying from %s", iter.c_str());
+			h3d::Log::info("Copying from %s", iter.c_str());
 			
 			// Filestream
 			infh.open(iter);

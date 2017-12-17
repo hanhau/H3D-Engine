@@ -3,6 +3,7 @@
 #include "Utilities.hpp"
 #include "Vector.hpp"
 #include "Texture.hpp"
+#include "Color.hpp"
 
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
@@ -15,7 +16,7 @@ bool h3d::Texture::loadBMP(char Path[],h3d::Texture& ref)
 	h3d::FileHandle filehandle;
 	filehandle.open(Path);
 	if (FALSE == filehandle.isOpen()) {
-		if (h3d::DebugMode) Log.error("Unable to load BMP %s",Path);
+		if (h3d::DebugMode) h3d::Log::error("Unable to load BMP %s",Path);
 		return false;
 	}
 
@@ -28,7 +29,7 @@ bool h3d::Texture::loadBMP(char Path[],h3d::Texture& ref)
 	h3d::setObjectFromFileHandle(t_header, filehandle);
 	if (t_header.bfType != 19778) {
 		if (h3d::DebugMode) {
-			Log.error("%s is corrupted!", Path);
+			h3d::Log::error("%s is corrupted!", Path);
 		}
 		return false;
 	}
@@ -53,10 +54,11 @@ bool h3d::Texture::loadPNG(char Path[],h3d::Texture& ref)
 	h3d::FileHandle filehandle;
 	filehandle.open(Path);
 	if (FALSE == filehandle.isOpen()) {
-		if (h3d::DebugMode) Log.error("Unable to open %s",Path);
+		if (h3d::DebugMode) h3d::Log::error("Unable to open %s",Path);
 		return false;
 	}
 	
+
 
 	// Return successfully
 	return true;
@@ -70,7 +72,7 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 	file_stream.open(Path, std::ios::binary);
 	if (file_stream.bad()) {
 		if (h3d::DebugMode) {
-			Log.error("Unable to open %s", Path);
+			h3d::Log::error("Unable to open %s", Path);
 		}
 		return false;
 	}
@@ -89,23 +91,97 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 /////////////////////////////////////////////////////////////////
 bool h3d::Texture::loadTGA(char Path[],h3d::Texture& ref)
 {
-	std::ifstream file_stream;
-	file_stream.rdbuf()->pubsetbuf(0, 0);
-	file_stream.open(Path, std::ios::binary);
-	if (file_stream.bad()) {
-		if (h3d::DebugMode) {
-			Log.error("Unable to open %s", Path);
-		}
+	h3d::FileHandle filehandle;
+	filehandle.open(Path);
+	if (FALSE == filehandle.isOpen()) {
+		if (h3d::DebugMode) h3d::Log::error("Unable to load TGA %s", Path);
 		return false;
 	}
+
 	// Temporary Variables
 	h3d::FileType::TGA::Header t_header;
+	h3d::Color<unsigned char> *pixels;
+	size_t skipover;
 
 	// Read Header (18 bytes)
-	file_stream.read((char*)&t_header, sizeof(t_header));
+	filehandle.read((char*)&t_header, sizeof(t_header));
+	
+	size_t pixel_count = t_header.width*t_header.height;
+	pixels = new h3d::Color<unsigned char > [pixel_count];
+	memset(pixels, 0, pixel_count * sizeof(h3d::Vec3<unsigned char>));
 
+	// Check for valid format types
+	if (t_header.datatypecode = 2 && t_header.datatypecode != 10) {
+		h3d::Log::error("Can only handle image type 2 and 10");
+		return false;
+	}
+	if (t_header.bitsperpixel != 16 &&
+		t_header.bitsperpixel != 24 && t_header.bitsperpixel != 32) {
+		h3d::Log::error("Can only handle pixel depths of 16, 24, and 32");
+		return false;
+	}
+	if (t_header.colormaptype != 0 && t_header.colormaptype != 1) {
+		h3d::Log::error("Can only handle colour map types of 0 and 1");
+		return false;
+	}
 
+	// Skip
+	skipover += t_header.IDlength;
+	skipover += t_header.colormaptype * t_header.colormaplength;
+	
+	filehandle.setIterPos(filehandle.getIterPos() + skipover);
+
+	// Reading the imade
+	size_t bytes2read = t_header.bitsperpixel / 8;
+	size_t n=0;
+	h3d::Color<unsigned char> p;
+	int i = 0, j = 0;
+	/*
+	while (n < t_header.width * t_header.height) {
+		// Uncompressed
+		if (t_header.datatypecode == 2) {
+			if (filehandle.read((char*)&p, bytes2read) != bytes2read) {
+				if (h3d::DebugMode)
+					h3d::Log::error("TGA Error #1");
+				return false;
+			}
+			MergeBytes(&(pixels[n]), p, bytes2read);
+			n++;
+		}
+		// Compressed
+		else if (t_header.datatypecode == 10) {
+			if (filehandle.read((char*)&p, bytes2read+1) != bytes2read + 1) {
+				if (h3d::DebugMode)
+					h3d::Log::error("TGA Error #2");
+				return false;
+			}
+			j = p[0] & 0x7f;
+			MergeBytes(&(pixels[n]), &(p[1]), bytes2read);
+			n++;
+			// RLE Chunk
+			if (p[0] & 0x80) {
+				for (i = 0; i<j; i++) {
+					MergeBytes(&(pixels[n]), &(p[1]), bytes2read);
+					n++;
+				}
+			}
+			// normal Chunk
+			else {
+				for (i = 0; i<j; i++) {
+					if (filehandle.read((char*)&p, bytes2read) != bytes2read) {
+						if(h3d::DebugMode)
+							h3d::Log::error("TGA Error #3");
+						return false;
+					}
+					MergeBytes(&(pixels[n]), p, bytes2read);
+					n++;
+				}
+			}
+		}
+		*/
 	// Close and return
-	file_stream.close();
+	if (h3d::DebugMode)
+		h3d::Log::info("Finished loading %s", Path);
+	filehandle.close();
 	return true;
 }

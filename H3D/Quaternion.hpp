@@ -15,20 +15,41 @@ namespace h3d {
 	public:
 		// Con-/Destructor
 		H3D_API Quaternion();
-		H3D_API Quaternion(double ax, double ai, double aj, double ak);
+		H3D_API Quaternion(float aw, float ax, float ay, float az);
 		H3D_API ~Quaternion();
 
 		// x real, ijk imaginary
-		double x, i, j, k;
+		float w, x, y, z;
 
 		// Transformations
-		mat4x4       H3D_API toMat4x4();
-		Quaternion   H3D_API fromMat4x4(const mat4x4& mat);
+		mat4x4       H3D_API toRotateMat4x4();
+		Quaternion   H3D_API fromMat4x4(mat4x4& mat);
+
+		H3D_API Quaternion& conjugate();
+		H3D_API Quaternion& normalize();
 
 		// Operators
-		const Quaternion& operator= (const mat4x4& mat); 
-		const Quaternion& operator+ (const Quaternion& quat);
-		const Quaternion& operator+=(const Quaternion& quat);
+		H3D_API Quaternion& operator= (mat4x4& mat);
+
+		H3D_API Quaternion& operator+ (Quaternion& q);
+		H3D_API Quaternion& operator+=(Quaternion& q);
+
+		H3D_API Quaternion& operator*(Quaternion& q);
+		H3D_API Quaternion& operator*=(Quaternion& q);
+
+		H3D_API Quaternion& operator*(float val);
+		H3D_API Quaternion& operator*=(float val);
 	};
+
+	namespace Math {
+		H3D_API Quaternion&  conjugated(Quaternion& q);
+		H3D_API Quaternion&  conjugate(Quaternion& q);
+
+		H3D_API Quaternion&  toQuaternion(h3d::mat4x4& mat);
+		mat4x4	H3D_API      toRotateMat4x4(Quaternion& q);
+
+		Vec3<float> H3D_API  toEulerAngles(Quaternion& q);
+		H3D_API Quaternion&  toQuaternion(h3d::Vec3<float> euler);
+	}
 }
 /////////////////////////////////////////////////////////////////

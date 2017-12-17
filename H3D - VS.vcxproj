@@ -30,7 +30,7 @@
     <ProjectGuid>{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>H3DVS</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectName>H3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -40,6 +40,7 @@
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -110,6 +111,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -177,6 +179,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -193,7 +196,7 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions> /std:c++latest /DLL</AdditionalOptions>
+      <AdditionalOptions> /std:c++14 /DLL</AdditionalOptions>
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
       <EnableParallelCodeGeneration>
       </EnableParallelCodeGeneration>
@@ -308,8 +311,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Linux|x64'">
       </PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="H3D - VS.cpp" />
     <ClCompile Include="H3D\3DModel.cpp" />
+    <ClCompile Include="H3D\3DModelType\3DModelAnimated.cpp" />
     <ClCompile Include="H3D\3DModelType\3DMT_X.cpp" />
     <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp" />
     <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp" />
@@ -322,6 +325,7 @@
     <ClCompile Include="H3D\Camera.cpp" />
     <ClCompile Include="H3D\Clock.cpp" />
     <ClCompile Include="H3D\Color.cpp" />
+    <ClCompile Include="H3D\ConsoleWin32Impl.cpp" />
     <ClCompile Include="H3D\ContainerFile.cpp" />
     <ClCompile Include="H3D\Drawable.cpp" />
     <ClCompile Include="H3D\FileSystem.cpp" />
@@ -332,13 +336,23 @@
     <ClCompile Include="H3D\hashing\CRC32.cpp" />
     <ClCompile Include="H3D\hashing\SHA256.cpp" />
     <ClCompile Include="H3D\hashing\UniChecksum.cpp" />
+    <ClCompile Include="H3D\ItemContainer.cpp" />
+    <ClCompile Include="H3D\KeyboardWin32Impl.cpp" />
+    <ClCompile Include="H3D\KeyboardX11Impl.cpp" />
+    <ClCompile Include="H3D\LightScene.cpp" />
     <ClCompile Include="H3D\LinuxClockImpl.cpp" />
     <ClCompile Include="H3D\LuaScript\LuaScript.cpp" />
     <ClCompile Include="H3D\memmng\linear_alloc.cpp" />
+    <ClCompile Include="H3D\memmng\memory.cpp" />
+    <ClCompile Include="H3D\MouseWin32Impl.cpp" />
+    <ClCompile Include="H3D\MouseX11Impl.cpp" />
     <ClCompile Include="H3D\network\Socket.cpp" />
     <ClCompile Include="H3D\PhysicEngine.cpp" />
+    <ClCompile Include="H3D\Posteffects\SSAO.cpp" />
     <ClCompile Include="H3D\Quaternion.cpp" />
     <ClCompile Include="H3D\Renderer.cpp" />
+    <ClCompile Include="H3D\Resource.cpp" />
+    <ClCompile Include="H3D\TextureConverter.cpp" />
     <ClCompile Include="H3D\TextureLoader.cpp" />
     <ClCompile Include="H3D\Utilities.cpp" />
     <ClCompile Include="H3D\Emitter.cpp" />
@@ -348,7 +362,6 @@
     <ClCompile Include="H3D\Image.cpp" />
     <ClCompile Include="H3D\InputManager.cpp" />
     <ClCompile Include="H3D\Joystick.cpp" />
-    <ClCompile Include="H3D\Keyboard.cpp" />
     <ClCompile Include="H3D\Light.cpp" />
     <ClCompile Include="H3D\Matrix.cpp" />
     <ClCompile Include="H3D\Mouse.cpp" />
@@ -370,10 +383,14 @@
     <ClCompile Include="H3D\WindowImpl.cpp" />
     <ClCompile Include="H3D\X11Context.cpp" />
     <ClCompile Include="H3D\X11WindowImpl.cpp" />
+    <ClCompile Include="H3D\XML.cpp" />
+    <ClCompile Include="H3D\XMLNode.cpp" />
+    <ClCompile Include="H3D\XMLTree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="H3D.hpp" />
     <ClInclude Include="H3D\3DModel.hpp" />
+    <ClInclude Include="H3D\3DModelType\3DMT_H3D.hpp" />
     <ClInclude Include="H3D\3DModelType\3DMT_X.hpp" />
     <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp" />
     <ClInclude Include="H3D\3DModelType\3DMT_OBJ.hpp" />
@@ -394,6 +411,7 @@
     <ClInclude Include="H3D\hashing\SHA256.hpp" />
     <ClInclude Include="H3D\hashing\UniChecksum.hpp" />
     <ClInclude Include="H3D\externals.h" />
+    <ClInclude Include="H3D\ItemContainer.hpp" />
     <ClInclude Include="H3D\Keyboard.hpp" />
     <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
     <ClInclude Include="H3D\memmng\base_alloc.hpp" />
@@ -406,9 +424,11 @@
     <ClInclude Include="H3D\network\Socket.hpp" />
     <ClInclude Include="H3D\PhysicObject.hpp" />
     <ClInclude Include="H3D\Physic\Physic.hpp" />
+    <ClInclude Include="H3D\Posteffects\SSAO.hpp" />
     <ClInclude Include="H3D\Quaternion.hpp" />
     <ClInclude Include="H3D\Renderer.hpp" />
-    <ClInclude Include="H3D\ShaderManager.hpp" />
+    <ClInclude Include="H3D\ProgramPipeline.hpp" />
+    <ClInclude Include="H3D\Resource.hpp" />
     <ClInclude Include="H3D\Utilities.hpp" />
     <ClInclude Include="H3D\Event.hpp" />
     <ClInclude Include="H3D\FileDataStructures.hpp" />
@@ -440,6 +460,7 @@
     <ClInclude Include="H3D\WindowImpl.hpp" />
     <ClInclude Include="H3D\X11Context.hpp" />
     <ClInclude Include="H3D\X11WindowImpl.hpp" />
+    <ClInclude Include="H3D\XML.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

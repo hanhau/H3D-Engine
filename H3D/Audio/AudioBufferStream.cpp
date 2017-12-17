@@ -50,10 +50,12 @@ bool openWAVStream(h3d::FileHandle& fh, char path[],
 bool closeWAVStream(h3d::FileHandle &fh);
 unsigned long catchWAVStream(h3d::FileHandle& fh, long size, char* dst);
 /////////////////////////////////////////////////////////////////
-struct PCMChunk{
-	char *data;
-	bool finished;
-};
+namespace {
+	struct PCMChunk {
+		char *data;
+		bool finished;
+	};
+}
 namespace h3d { 
 	class FileHandle; 
 }

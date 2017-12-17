@@ -1,31 +1,46 @@
 #include "ResourceManager.hpp"
+#include "Utilities.hpp"
 #include <string>
 #include <random>
 #include <climits>
 #include <algorithm>
+#include <unordered_map>
+#include <functional>
 /////////////////////////////////////////////////////////////////
 // Implementation of Resource Base class
 /////////////////////////////////////////////////////////////////
+namespace {
+	h3d::mem::Chunk _chunk;
+	std::unordered_map<int, h3d::Resource> a;
+}
+
 namespace h3d {
-	Resource::Resource(std::string name,std::string path) :
-		m_name(name) , m_refCount(0) , m_path(path)
-	{
-		std::string tmp = path;
-		tmp.replace(tmp.begin(),tmp.end(),'\\', '/');
-		m_filename = std::string(tmp.begin()+tmp.rfind('/')+1,
-								 tmp.end());
+	ResourceManager::ResourceManager(){}
+	ResourceManager::~ResourceManager(){}
+
+	void ResourceManager::initialize(size_t bytesToAllocate) {
+		_chunk.size = bytesToAllocate;
+		_chunk.start = h3d::GlobalAllocator::getChunk(bytesToAllocate).start;
+		if (_chunk.start == nullptr) {
+			if (h3d::DebugMode)
+				h3d::Log::error("Unable to init h3d::ResourceManager");
+		}
 	}
-	Resource::~Resource() {
-		
+	void ResourceManager::shutdown() {
+
+
+		h3d::GlobalAllocator::freeChunk(_chunk);
 	}
-	// Getter
-	std::string Resource::getPath()		{ return m_path; }
-	std::string Resource::getFilename() { return m_filename; }
-	std::string Resource::getName()		{ return m_name; }
-	uint64_t Resource::getUniqueID()	{ return m_uniqueID; }
-	
-	// Reference Counter functions
-	void Resource::increaseRefCount() { m_refCount++; }
-	void Resource::decreaseRefCount() { if (m_refCount - 1 >= 0) m_refCount--; }
+
+	void ResourceManager::registerResource(Resource &&res) {
+
+	}
+	void ResourceManager::detachResource(std::string name, std::string path) {
+
+	}
+
+	Resource& ResourceManager::getResource(std::string name, std::string path) {
+		return Resource();
+	}
 }
 /////////////////////////////////////////////////////////////////

@@ -163,14 +163,43 @@ h3d::mat4x4& h3d::mat4x4::operator-(const h3d::mat4x4 &mat)
 /////////////////////////////////////////////////////////////////
 h3d::mat4x4& h3d::mat4x4::operator*(const float val)
 {
-	mat4x4 temp_mat;
-
+	mat4x4 temp_mat = *this;
+	
 	return temp_mat;
 }
-h3d::mat4x4& h3d::mat4x4::operator*(const h3d::mat4x4 &mat)
+h3d::Vec4 h3d::mat4x4::operator*(h3d::Vec4 in) {
+	return h3d::Vec4(
+	getRowWiseValues()[0] * in.x + getRowWiseValues()[1] * in.y + 
+	getRowWiseValues()[2] * in.z + getRowWiseValues()[3] * in.w,
+	getRowWiseValues()[4] * in.x + getRowWiseValues()[5] * in.y + 
+	getRowWiseValues()[6] * in.z + getRowWiseValues()[7] * in.w,
+	getRowWiseValues()[8] * in.x + getRowWiseValues()[9] * in.y + 
+	getRowWiseValues()[10] * in.z + getRowWiseValues()[11] * in.w,
+	getRowWiseValues()[12] * in.x + getRowWiseValues()[13] * in.y + 
+	getRowWiseValues()[14] * in.z + getRowWiseValues()[15] * in.w
+	);
+}
+h3d::Vec3<float> h3d::mat4x4::operator*(h3d::Vec3<float> in) {
+	return h3d::Vec3<float>(
+	getRowWiseValues()[0] * in.x + getRowWiseValues()[1] * in.y +
+	getRowWiseValues()[2] * in.z,
+	getRowWiseValues()[4] * in.x + getRowWiseValues()[5] * in.y +
+	getRowWiseValues()[6] * in.z,
+	getRowWiseValues()[8] * in.x + getRowWiseValues()[9] * in.y +
+	getRowWiseValues()[10] * in.z
+	);
+}
+h3d::Vec2<float> h3d::mat4x4::operator*(h3d::Vec2<float> in) 
 {
-	mat4x4 temp_mat;
-
+	return h3d::Vec2<float>(
+	getRowWiseValues()[0] * in.x + getRowWiseValues()[1] * in.y,
+	getRowWiseValues()[4] * in.x + getRowWiseValues()[5] * in.y
+	);
+}
+h3d::mat4x4& h3d::mat4x4::operator*(h3d::mat4x4 &mat)
+{
+	mat4x4 temp_mat = *this;
+	temp_mat *= mat;
 	return temp_mat;
 }
 /////////////////////////////////////////////////////////////////

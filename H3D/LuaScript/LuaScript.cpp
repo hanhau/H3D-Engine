@@ -1,8 +1,11 @@
 #include "LuaScript.hpp"
+#include "..\FileSystem.hpp"
 /////////////////////////////////////////////////////////////////
 // Implementation of LuaScript Class
 /////////////////////////////////////////////////////////////////
 void lua::Script::init() {
+	m_state = luaL_newstate();
+
 	m_lua.open_libraries();
 	
 	// Load Lua Log functions
@@ -38,6 +41,15 @@ bool lua::Script::loadFromMemory(char *mem)
 }
 bool lua::Script::loadFromFile(char path[]) 
 {
+	h3d::FileHandle fh;
+	fh.open(path);
+
+	size_t file_size = fh.getFileSize();
+	m_code.reserve(file_size);
+
+	fh.read((char*)m_code.c_str(), file_size);
+	fh.close();
+
 	m_Path = path;
 	m_loadResult = m_lua.load_file(path);
 	if (m_loadResult.valid()) return true;

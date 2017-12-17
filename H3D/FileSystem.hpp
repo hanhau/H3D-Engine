@@ -140,8 +140,8 @@ namespace h3d {
 
 		// Operations when File is mapped
 		template<typename T> 
-			T getMappingPtr() {
-				return reinterpret_cast<T*>(m_mappedData.get())[0];
+			T getMappingPtr(size_t offset = 0) {
+				return reinterpret_cast<T*>(m_mappedData.get())[0]+offset;
 			}
 	};
 }

@@ -57,25 +57,25 @@ namespace h3d {
 		namespace BMP {
 			#pragma pack(push,BMP_HEADER,1)
 			struct H3D_API Header {
-				uint16_t bfType;
-				uint32_t bfsize;
-				uint32_t bfReserved;
-				uint32_t bfOffBits;
+				uint16_t bfType;       // must "BM"
+				uint32_t bfsize;       // 
+				uint32_t bfReserved;   //
+				uint32_t bfOffBits;    //
 			};
 			#pragma pack(pop,BMP_HEADER)
 			#pragma pack(push,BMP_BODY,1)
 			struct H3D_API Body {
-				uint32_t biSize;
-				int32_t  biWidth;
-				int32_t  biHeight;
-				uint16_t biPlanes;
-				uint16_t biBitCount;
-				uint32_t biCompression;
-				uint32_t biSizeImage;
-				int32_t  biXPelsPerMeter;
-				int32_t  biYPelsPerMeter;
-				int32_t  biClrUsed;
-				uint32_t biClrImportant;
+				uint32_t biSize;          // complete size in bytes
+				int32_t  biWidth;         // x size
+				int32_t  biHeight;        // y size
+				uint16_t biPlanes;        // layers
+				uint16_t biBitCount;      // bits per pixel
+				uint32_t biCompression;   // compression type
+				uint32_t biSizeImage;     // pixel count
+				int32_t  biXPelsPerMeter; // dpi x
+				int32_t  biYPelsPerMeter; // dpi y
+				int32_t  biClrUsed;       // 0
+				uint32_t biClrImportant;  // 0
 			};
 			#pragma pack(pop,BMP_BODY)
 		}
@@ -112,9 +112,18 @@ namespace h3d {
 		namespace TGA {
 			#pragma pack(push,TGA_HEADER,1)
 			struct H3D_API Header {
-				uint8_t IDlength;
-				uint8_t colorMapType;
-				uint8_t imageType;
+				int8_t IDlength;
+				int8_t colormaptype;
+				int8_t datatypecode;
+				int16_t colormaporigin;
+				int16_t colormaplength;
+				int8_t colormapdepth;
+				int16_t x_origin;
+				int16_t y_origin;
+				int16_t width;
+				int16_t height;
+				int8_t bitsperpixel;
+				int8_t imagedescriptor;
 			};
 			#pragma pack(pop,TGA_HEADER)
 			#pragma pack(push,TGA_HEADER_EXTENSION,1)

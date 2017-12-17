@@ -21,7 +21,7 @@ h3d::ModelType::OBJ::Mesh::~Mesh() { clearUp(); }
 /////////////////////////////////////////////////////////////////
 void h3d::ModelType::OBJ::Mesh::clearUp()
 {
-	memset(&m_meshname, 0, sizeof(char) * 40);
+	//memset(m_meshname, 0, sizeof(char) * 40);
 	m_textureID.clear();
 
 	glDeleteBuffers(1, &m_element_buffer);
@@ -121,9 +121,13 @@ void h3d::ModelType::OBJ::Mesh::render()
 	glBindVertexArray(0);
 }
 /////////////////////////////////////////////////////////////////
+void ignoreLine(std::fstream& fs) {
+	fs.ignore(1000, '\n');
+}
+
 bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 {
-	Log.info("Loading %s now ...", Path);
+	h3d::Log::info("Loading %s now ...", Path);
 
 	// Opening fstream
 	std::fstream file_stream;
@@ -147,7 +151,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 		file_stream >> param;
 		// comments
 		if (param == "#")
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 		// meshes
 		else if (param == "g")
 		{	
@@ -158,13 +162,13 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			temp_mesh->clearUp();
 
 			file_stream >> temp_mesh->m_meshname;
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 		}
 		// materials
 		else if (param == "usemtl")
 		{
 			file_stream >> temp_mesh->m_textureID;
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 		}
 		// vertices
 		else if (param == "v")
@@ -173,7 +177,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			file_stream >> temp_vec3f.y;
 			file_stream >> temp_vec3f.z;
 			temp_mesh->m_vertices.push_back(temp_vec3f);
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 		}
 		// normals
 		else if (param == "vn")
@@ -182,7 +186,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			file_stream >> temp_vec3f.y;
 			file_stream >> temp_vec3f.z;
 			temp_mesh->m_normals.push_back(temp_vec3f);
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 		}
 		// UV coords
 		else if (param == "vt")
@@ -190,7 +194,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			file_stream >> temp_f; temp_vec2f.x = temp_f;
 			file_stream >> temp_f; temp_vec2f.y = temp_f;
 			temp_mesh->m_texCoords.push_back(temp_vec2f);
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 		}
 		// faces (currently only triangles)
 		else if (param == "f")
@@ -246,10 +250,10 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 			}
 
 			// Ignore rest of line
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 		}
 		else 
-			file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			ignoreLine(file_stream);
 	}
 	m_meshes.push_back(*temp_mesh);
 	m_meshes.erase(m_meshes.begin());
@@ -258,7 +262,7 @@ bool h3d::ModelType::OBJ::loadFromFile(char Path[])
 		iter.prepareRendering();
 
 	// return successfully
-	Log.info("Sucessfully loaded %s !",Path);
+	h3d::Log::info("Sucessfully loaded %s !",Path);
 	return true;
 }
 /////////////////////////////////////////////////////////////////
@@ -272,21 +276,21 @@ void h3d::ModelType::OBJ::render()
 /////////////////////////////////////////////////////////////////
 void h3d::ModelType::OBJ::logModelData()
 {
-	Log.debug("///////////////////////////////////////////////");
-	Log.debug("mesh count: %d \n",m_meshes.size());
+	h3d::Log::debug("///////////////////////////////////////////////");
+	h3d::Log::debug("mesh count: %d \n",m_meshes.size());
 	
 	// Iterate through every mesh and list Intel
 	for(auto &iter : m_meshes)
 	{
-		Log.debug("Meshname  : %s", iter.m_meshname);
-		Log.debug("TextureID : %s",iter.m_textureID.c_str());
-		Log.debug("Vertexcount : %d",iter.m_vertices.size());
-		Log.debug("Normalcount : %d",iter.m_normals.size());
-		Log.debug("texCoords   : %d",iter.m_texCoords.size());
-		Log.debug("IndicesVertices  : %d",iter.m_indicesVertices.size());
-		Log.debug("IndicesNormals   : %d",iter.m_indicesNormals.size());
-		Log.debug("IndicesTexCoords : %d", iter.m_indicesTexCoords.size());
+		h3d::Log::debug("Meshname  : %s", iter.m_meshname);
+		h3d::Log::debug("TextureID : %s",iter.m_textureID.c_str());
+		h3d::Log::debug("Vertexcount : %d",iter.m_vertices.size());
+		h3d::Log::debug("Normalcount : %d",iter.m_normals.size());
+		h3d::Log::debug("texCoords   : %d",iter.m_texCoords.size());
+		h3d::Log::debug("IndicesVertices  : %d",iter.m_indicesVertices.size());
+		h3d::Log::debug("IndicesNormals   : %d",iter.m_indicesNormals.size());
+		h3d::Log::debug("IndicesTexCoords : %d", iter.m_indicesTexCoords.size());
 	}
-	Log.debug("///////////////////////////////////////////////");
+	h3d::Log::debug("///////////////////////////////////////////////");
 }
 /////////////////////////////////////////////////////////////////

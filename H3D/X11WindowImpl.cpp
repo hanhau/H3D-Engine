@@ -42,7 +42,7 @@ void h3d::Window::setupWin(h3d::Vec2<int>size,
 	pimpl->dpy = XOpenDisplay(NULL);
 	if (pimpl->dpy == NULL) {
 		if (h3d::DebugMode)
-			Log.error("Failed to connect to X Server!");
+			h3d::Log::error("Failed to connect to X Server!");
 		return false;
 	}
 
@@ -52,7 +52,7 @@ void h3d::Window::setupWin(h3d::Vec2<int>size,
 								pimpl->att);
 	if (pimpl->vi == NULL) {
 		if (h3d::DebugMode)
-			Log.error("Xlib: Not correct visual found");
+			h3d::Log::error("Xlib: Not correct visual found");
 		return false;
 	}
 

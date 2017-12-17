@@ -30,7 +30,7 @@ bool h3d::Texture::loadFromFile(char Path[])
 	else if (file_extension == "tga") m_format = Format::TGA;
 	else {
 		if (h3d::DebugMode) {
-			Log.error("%s is not a supported format!",Path);
+			h3d::Log::error("%s is not a supported format!",Path);
 		}
 		return false;
 	}

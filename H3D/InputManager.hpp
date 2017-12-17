@@ -107,50 +107,9 @@ namespace h3d {
 		void update(PRAWINPUT rawdata);
 	};
 /////////////////////////////////////////////////////////////////
-//	Keyboard
-/////////////////////////////////////////////////////////////////
-	class tagKeyboard : public _gch3d_HIDBaseClass
-	{
-	private:
-		void setupRID(HWND win);
-	public:
-		// Con-/Destructor
-		H3D_API tagKeyboard();
-		H3D_API ~tagKeyboard();
-
-		// Keys
-		enum Key {
-			
-		};
-
-		// Check Buttons
-		bool H3D_API isPressed(int keyID);
-	};
-	H3D_API extern tagKeyboard Keyboard; // global Class
-/////////////////////////////////////////////////////////////////
-//	Mouse																
-/////////////////////////////////////////////////////////////////
-	class tagMouse : private virtual _gch3d_HIDBaseClass
-	{
-	private:
-		void setupRID(HWND win);
-	public:
-		// Con-/Destructor
-		H3D_API tagMouse();
-		H3D_API ~tagMouse();
-
-		// Handling MousePosition
-		h3d::Vec2<LONG> H3D_API getPosition(HWND window);
-		h3d::Vec2<LONG> H3D_API getOffsetFromLastPos();
-
-		// Check Mouse Buttons
-		bool H3D_API isPressed();
-	};
-	H3D_API extern tagMouse Mouse; // global Class
-/////////////////////////////////////////////////////////////////
 //	Class InputActions
 /////////////////////////////////////////////////////////////////
-	class InputAction
+class InputAction
 	{
 	private:
 		// Name 
@@ -178,27 +137,23 @@ namespace h3d {
 /////////////////////////////////////////////////////////////////
 //	Class InputLayout
 /////////////////////////////////////////////////////////////////
-	class tagInputLayout
+	class InputLayout
 	{
 	private:
 		
 	public:
 		// Save and load from File
-		bool H3D_API loadFromFile(char Path[]);
-		bool H3D_API saveToFile  (char Path[]);
+		static bool H3D_API loadFromFile(char Path[]);
+		static bool H3D_API saveToFile  (char Path[]);
 	};
-	H3D_API extern tagInputLayout InputLayout;
 /////////////////////////////////////////////////////////////////
 //	Class InputManager
 /////////////////////////////////////////////////////////////////
-	class H3D_API InputManager
+	class InputManager
 	{
 	private:
 		// InputActionVector
 		static std::vector<InputAction> m_inputActionVec;
-
-		// Input Mapping
-		//tagInputLayout &m_InputLayout;
 
 		// RAW Input Device Setup Data
 		static HWND				m_window;
@@ -215,20 +170,19 @@ namespace h3d {
 		static std::map<unsigned char, Joystick> m_JoystickMap;
 	public:		
 		// Add bounded Actions
-		static void addInputAction(h3d::InputAction &action);
+		static void H3D_API addInputAction(h3d::InputAction &action);
 
 		// Activate/Deactivate Inputs
-		static void activateInput(uint8_t devType,bool val);
-		static bool isInputActive(uint8_t devType);
+		static void H3D_API activateInput(uint8_t devType,bool val);
+		static bool H3D_API isInputActive(uint8_t devType);
 		
 		// Processing Inputs
-		static void updateMouse();
-		static void updateKeyboard();
-		static void updateJoystick();
+		static void H3D_API updateMouse();
+		static void H3D_API updateKeyboard();
+		static void H3D_API updateJoystick();
 
 		// Setup Hardware
-		static bool setupHardware(HWND win);
+		static bool H3D_API setupHardware(HWND win);
 	};
-	//H3D_API extern tagInputManager InputManager;
 }
 /////////////////////////////////////////////////////////////////

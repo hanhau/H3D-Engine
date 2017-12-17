@@ -20,9 +20,10 @@ namespace h3d {
 	class Drawable;
 	class GlobalRenderer 
 	{
-		std::vector<Drawable> m_drawables;
-
+	public:
 		enum class StartParameter;
+	private:
+		std::vector<Drawable> m_drawables;
 		static std::unique_ptr<h3d::Window> m_win;
 	public:
 		static bool H3D_API init(std::unique_ptr<h3d::Window> winptr,
@@ -37,7 +38,7 @@ namespace h3d {
 		};
 		
 		// static public Intel
-		static std::string H3D_API GlobalRendererLogPath;
+		static std::string GlobalRendererLogPath;
 
 		// Statistic functions
 		static double H3D_API getFPS();

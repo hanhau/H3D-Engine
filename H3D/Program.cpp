@@ -1,4 +1,5 @@
 #include "Program.hpp"
+#include "Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // Program Implementation
 /////////////////////////////////////////////////////////////////
@@ -64,7 +65,25 @@ bool h3d::Program::link()
 		glGetProgramiv(programid, GL_LINK_STATUS, &status);
 		if (status == GL_TRUE)
 			return true;
-		else return false;
+		else {
+			h3d::Log::error("Failed while linking shaders");
+
+			GLint att_shaders, length;
+
+			glGetProgramiv(this->programid, GL_ATTACHED_SHADERS,
+						   &att_shaders);
+			glGetProgramiv(this->programid, GL_INFO_LOG_LENGTH,
+						   &length);
+			std::string log;
+			log.reserve(length);
+
+			glGetProgramInfoLog(programid, length, 0,(char*)log.c_str());
+
+			h3d::Log::error("Attached shaders: %d", att_shaders);
+			h3d::Log::error("%s", log.c_str());
+
+			return false;
+		}
 	}
 }
 /////////////////////////////////////////////////////////////////

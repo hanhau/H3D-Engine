@@ -49,9 +49,14 @@ void h3d::GeometryBuffer::setup(h3d::Vec2<int> size,int bitmask)
 				bitmask -= (actualState = Stage::SPECULAR);
 
 			glBindTexture(GL_TEXTURE_2D,m_oglBuffer[actualPos]);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, size.x, size.y, 0, GL_RGB, GL_FLOAT, NULL);
-			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + actualPos, GL_TEXTURE_2D, m_oglBuffer[actualPos], 0);
-
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, 
+						 size.x, size.y, 0, 
+						 GL_RGB, GL_FLOAT, NULL);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, 
+								   GL_COLOR_ATTACHMENT0 + actualPos,
+								   GL_TEXTURE_2D,
+								   m_oglBuffer[actualPos], 0);
+		 
 			actualPos++;
 		}
 	}

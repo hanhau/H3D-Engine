@@ -21,9 +21,11 @@ namespace lua {
 	class Script final {
 	private:
 		// Lua
+		lua_State *m_state;
 		sol::state       m_lua;
 		sol::load_result m_loadResult;
 		std::string      m_Path;
+		std::string      m_code;
 		
 		// Managing "Namespaces" in Lua
 		std::map<const char*,sol::table>  m_tableMap;

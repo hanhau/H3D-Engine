@@ -2,7 +2,7 @@
 
 #ifdef H3D_SYSTEM_WINDOWS
 #include "WglContext.hpp"
-#include "Utilities.hpp"
+#include <windows.h>
 
 bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32WindowImpl>& ptr)
 {	
@@ -35,17 +35,42 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 	if (error != GLEW_OK)
 		return false;
 
+	int * debug_attributes;
+
+	if (ptr->m_cs.is_debug_context) {
+		h3d::Log::info("Creating Debug Context");
+		debug_attributes = new int[8]();
+		int vals[] =
+		{
+			WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
+			WGL_CONTEXT_MINOR_VERSION_ARB, 5,
+			WGL_CONTEXT_DEBUG_BIT_ARB,
+			WGL_CONTEXT_FLAGS_ARB,
+			WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB, 1,
+			0
+		};
+		for (int i = 0; i < 9; i++)
+			debug_attributes[i] = vals[i];
+	}
+
 	int attributes[] =
 	{
 		WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
 		WGL_CONTEXT_MINOR_VERSION_ARB, 5,
-		WGL_CONTEXT_FLAGS_ARB, WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+		WGL_CONTEXT_FLAGS_ARB, 
+		WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
 		0
 	};
 
 	if (wglewIsSupported("WGL_ARB_create_context") != 0)
 	{
-		m_hrc = wglCreateContextAttribsARB(m_hdc, NULL, attributes);
+		if (ptr->m_cs.is_debug_context)
+			m_hrc = wglCreateContextAttribsARB(m_hdc, NULL, 
+							                   debug_attributes);
+		else 
+			m_hrc = wglCreateContextAttribsARB(m_hdc, NULL, 
+				                               attributes);
+		
 		wglMakeCurrent(NULL, NULL);
 		wglDeleteContext(tempOGLContext);
 		wglMakeCurrent(m_hdc, m_hrc);
@@ -58,6 +83,15 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 	int glVersion[2] = { -1, -1 };
 	glGetIntegerv(GL_MAJOR_VERSION, &glVersion[0]);
 	glGetIntegerv(GL_MINOR_VERSION, &glVersion[1]);
+
+	h3d::Log::info("Created Context with OpenGL Ver %d.%d", 
+				   glVersion[0], glVersion[1]);
+
+	if (ptr->m_cs.is_debug_context) {
+		glEnable(GL_DEBUG_CALLBACK_FUNCTION);
+		glDebugMessageCallback(&__opengl_callback_func, 0);
+		glEnable(GL_DEBUG_CALLBACK_FUNCTION);
+	}
 
 	ShowWindow(ptr->m_Win, SW_SHOW);
 	UpdateWindow(ptr->m_Win);

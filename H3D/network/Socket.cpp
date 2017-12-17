@@ -32,7 +32,7 @@ bool h3d::Network::Socket::create(int ai_family,
 	// Resolve the server address and port
 	int iResult = getaddrinfo(address, port, &hints, &result);
 	if (iResult != 0) {
-		Log.error("Socket: getaddrinfo(..) failed in create(...);");
+		h3d::Log::error("Socket: getaddrinfo(..) failed in create(...);");
 		return false;
 	}
 	
@@ -51,7 +51,7 @@ bool h3d::Network::Socket::bind()
 			   m_thisAddrInfo->ai_addr,
 			   m_thisAddrInfo->ai_addrlen) != 0)
 	{
-		Log.error("Unable to bind Port !");
+		h3d::Log::error("Unable to bind Port !");
 		return false;
 	}
 	else return true;
@@ -62,7 +62,7 @@ bool h3d::Network::Socket::connect()
 	// Connect to server.
 	int iResult = ::connect(m_thisSocket,ptr->ai_addr, (int)ptr->ai_addrlen);
 	if (iResult == SOCKET_ERROR) {
-		Log.error("Unable to connect socket to destination");
+		h3d::Log::error("Unable to connect socket to destination");
 		closesocket(m_thisSocket);
 		m_thisSocket = INVALID_SOCKET;
 		return false;
@@ -103,7 +103,7 @@ bool h3d::Network::Socket::send(const h3d::Network::Package& pkg)
 		byteleft -= n;
 	}
 	if (n == -1) {
-		Log.info("Socket wasn´t able to transmit whole Package");
+		h3d::Log::info("Socket wasn´t able to transmit whole Package");
 		return false;
 	} 
 	else return true;
@@ -118,7 +118,7 @@ bool h3d::Network::Socket::recv(const h3d::Network::Package& pkg)
 bool h3d::Network::Socket::shutdown(int what)
 {
 	if (::shutdown(0, what) != 0){
-		Log.error("Unable to shutdown socket !");
+		h3d::Log::error("Unable to shutdown socket !");
 		return false;
 	}
 	return true;

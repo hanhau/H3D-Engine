@@ -7,7 +7,9 @@
 #define POLYNOMIAL 0x04C11DB7
 /////////////////////////////////////////////////////////////////
 // CRC32 table generation
-bool is_created = false;
+namespace {
+	bool is_created = false;
+}
 uint8_t* initTable() {
 	static uint8_t table[256];
 	

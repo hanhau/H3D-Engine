@@ -18,7 +18,7 @@ extern bool openOGGStream(h3d::FileHandle& fh, char path[],
 {
 	// Open File
 	if (FALSE == fh.open(path)) {
-		if (h3d::DebugMode) Log.error("Unable to open OGG Stream");
+		if (h3d::DebugMode) h3d::Log::error("Unable to open OGG Stream");
 		return false;
 	}
 
@@ -48,7 +48,7 @@ extern bool openWAVStream(h3d::FileHandle& fh, char path[],
 {
 	// Open File
 	if (FALSE == fh.open(path)) {
-		if (h3d::DebugMode) Log.error("Unable to open OGG Stream");
+		if (h3d::DebugMode) h3d::Log::error("Unable to open OGG Stream");
 		return false;
 	}
 
@@ -63,10 +63,10 @@ extern bool openWAVStream(h3d::FileHandle& fh, char path[],
 		0 != memcmp(wavHeader.riffType, "WAVE", 4) ||
 		0 != memcmp(wavFormat.subChunkID, "fmt ", 4))
 	{
-		Log.error("%s is probably a invalid format", path);
+		h3d::Log::error("%s is probably a invalid format", path);
 	}
 	if (wavFormat.audioFormat != 1) { // Check for PCM
-		Log.error("%s is not PCM audio data !", path);
+		h3d::Log::error("%s is not PCM audio data !", path);
 		return false;
 	}
 
@@ -87,7 +87,7 @@ extern bool openWAVStream(h3d::FileHandle& fh, char path[],
 			format = AL_FORMAT_STEREO16;
 	}
 	else {
-		Log.error("%s has a unsupported amount of channels (%d)", path, wavFormat.numChannels);
+		h3d::Log::error("%s has a unsupported amount of channels (%d)", path, wavFormat.numChannels);
 		return  false;
 	}
 

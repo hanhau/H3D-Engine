@@ -8,11 +8,13 @@
 /////////////////////////////////////////////////////////////////
 // Implementation of Audio Engine Functions
 /////////////////////////////////////////////////////////////////
-// Hidden global data
+// Hidden intneral data
+namespace {
 static bool gInitialized = false;
 static ALCdevice* gDevice;
 static ALCcontext* gContext;
 static ALboolean gEAX20Support;
+}
 /////////////////////////////////////////////////////////////////
 bool h3d::Audio::initialize(char* default_device)
 {
@@ -44,19 +46,19 @@ bool h3d::Audio::shutdown()
 /////////////////////////////////////////////////////////////////
 // Listener Implementations
 /////////////////////////////////////////////////////////////////
-h3d::Audio::tagListener::tagListener() {}
-h3d::Audio::tagListener::~tagListener() {}
+h3d::Audio::Listener::Listener() {}
+h3d::Audio::Listener::~Listener() {}
 /////////////////////////////////////////////////////////////////
-void h3d::Audio::tagListener::setMasterGain(float gain) {
+void h3d::Audio::Listener::setMasterGain(float gain) {
 	alListenerf(AL_GAIN, gain);
 }
-void h3d::Audio::tagListener::setPosition(h3d::Vec3<float> pos) {
+void h3d::Audio::Listener::setPosition(h3d::Vec3<float> pos) {
 	alListener3f(AL_POSITION,pos.x,pos.y,pos.z);
 }
-void h3d::Audio::tagListener::setVelocity(h3d::Vec3<float> vel) {
+void h3d::Audio::Listener::setVelocity(h3d::Vec3<float> vel) {
 	alListener3f(AL_VELOCITY,vel.x,vel.y,vel.z);
 }
-void h3d::Audio::tagListener::setOrientation(h3d::Vec3<float>at, h3d::Vec3<float>up) {
+void h3d::Audio::Listener::setOrientation(h3d::Vec3<float>at, h3d::Vec3<float>up) {
 	float vals[] = { at.x, at.y, at.y,up.x, up.y, up.z };
 	alListenerfv(AL_ORIENTATION,vals);
 }

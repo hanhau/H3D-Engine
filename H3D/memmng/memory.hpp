@@ -9,23 +9,33 @@
 #include "..\Utilities.hpp"
 #include <list>
 
+namespace {
+	struct AllocHeader {
+		size_t  m_size;
+		uint8_t m_adjustment;
+	};
+
+	struct ChunkBlock {
+		size_t      m_size;
+		void *ptr;
+	};
+}
+
+namespace h3d { namespace mem {
+		struct Chunk {
+			size_t size;
+			void*  start;
+		};
+	}
+}
+
 namespace h3d {
 	enum class AllocationSource {
-		Self, Global
+		Self,        // Object handles its own memory
+		Global       // Object gets memory from global
 	};
 
 	class GlobalAllocator { 
-
-		struct AllocHeader {
-			size_t  m_size;
-			uint8_t m_adjustment;
-		};
-
-		struct ChunkBlock {
-			size_t      m_size;
-			void *ptr;
-		};
-
 		struct Element {
 			AllocHeader header;
 			ChunkBlock block;
@@ -40,37 +50,10 @@ namespace h3d {
 		static size_t m_allocations;
 
 	public:
-		inline static void allocate(size_t n)
-		{
-			if (m_allocptr == nullptr) {
-				m_allocptr = malloc(n);
+		static void H3D_API allocate(size_t n);
+		static void H3D_API deallocate();
 
-				
-
-				if (h3d::DebugMode)
-					Log.info("Allocated %d bytes of Memory",n);
-			}
-		}
-		inline static void deallocate()
-		{
-			free(m_allocptr);
-			m_allocptr = nullptr;
-			
-
-			if (h3d::DebugMode)
-				Log.info("Deallocated %d bytes of Memory", m_size);
-		}
-
-		inline static H3D_API void* getChunk(size_t n);
+		static H3D_API mem::Chunk getChunk(size_t n);
+		static H3D_API void  freeChunk(mem::Chunk chunk);
 	};
-
-	void*    GlobalAllocator::m_allocptr = nullptr;
-	size_t   GlobalAllocator::m_size     = 0;
-	size_t   GlobalAllocator::m_allocations = 0;
-	GlobalAllocator::Element* GlobalAllocator::elementList = nullptr;
-}
-
-inline void* h3d::GlobalAllocator::getChunk(size_t n)
-{
-
 }

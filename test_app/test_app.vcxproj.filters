@@ -19,4 +19,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="frag_shader.frag">
+      <Filter>Quelldateien</Filter>
+    </Text>
+    <Text Include="vert_shader.vert">
+      <Filter>Quelldateien</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

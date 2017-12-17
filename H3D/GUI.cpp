@@ -19,14 +19,15 @@ bool gui::init()
 	bool status = true;
 
 	GLchar vertexCode[] = {
-		"#version 330 core\n"
+		"#version 450 core\n"
+		"in vec3 pos;"
 		"void main() {"
 		"}"
 	};
 	h3d::Shader vertexShader(GL_VERTEX_SHADER, vertexCode);
 
 	GLchar fragmentCode[] = {
-		"#version 330 core\n"
+		"#version 450 core\n"
 		"void main() {"
 		"}"
 	};
@@ -36,6 +37,9 @@ bool gui::init()
 	h3d::intern::gui::g_programOGL.attachShader(fragmentShader);
 	
 	status = h3d::intern::gui::g_programOGL.link();
+	if (status == false && h3d::DebugMode)
+		h3d::Log::error("Failed while compiling shader for GUI");
+
 	FT_Error error = FT_Init_FreeType(&h3d::intern::gui::g_ft_lib);
 	if (error) status = false;
 

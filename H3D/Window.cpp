@@ -29,15 +29,16 @@ h3d::Window::Window(h3d::Vec2<int> p_size,
 	m_Size			= p_size; 
 	m_Title			= p_title; 
 	m_WindowStyle	= p_style;
-	
+	m_ContextSettings = contextsettings;
+
 	m_impl = std::unique_ptr<WindowImplType>(new WindowImplType());
 	if (false == m_impl->create(p_size, p_title, p_style, contextsettings)) {
-		Log.error("Unable to create Window");
+		h3d::Log::error("Unable to create Window");
 	}
 
 	m_context = std::unique_ptr<h3d::intern::WglContext>(new h3d::intern::WglContext());	
 	if (false == m_context.get()->createContext(m_impl)){
-		Log.error("Unable to create OpenGL Context");
+		h3d::Log::error("Unable to create OpenGL Context");
 	}
 }
 /////////////////////////////////////////////////////////////////
@@ -69,6 +70,9 @@ void h3d::Window::close() {
 }
 void h3d::Window::swapBuffers() {
 	m_impl->swapBuffers();
+}
+void h3d::Window::setVSync(bool val){
+	m_impl->setVSync(val);
 }
 h3d::Window::~Window() {
 	

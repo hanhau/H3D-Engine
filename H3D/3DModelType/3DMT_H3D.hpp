@@ -6,14 +6,20 @@
 #endif
 
 /////////////////////////////////////////////////////////////////
-// ShaderManager 
+// Hero 3D Model Format
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	class ShaderManager
-	{
+	namespace ModelType {
+		class H3D
+		{
 
-	public:
-		
-	};
+		public:
+			bool H3D_API loadFromFile(char path[]);
+			bool H3D_API loadFromMemory(void * mem);
+
+			void H3D_API update(float deltaTime);
+			void H3D_API render();
+		};
+	}
 }
 /////////////////////////////////////////////////////////////////

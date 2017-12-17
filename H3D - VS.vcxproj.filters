@@ -33,9 +33,6 @@
     <Filter Include="GUI">
       <UniqueIdentifier>{fc61880b-a8b2-4e8e-9d2c-5ed4a9f3b854}</UniqueIdentifier>
     </Filter>
-    <Filter Include="files">
-      <UniqueIdentifier>{85295442-4109-4285-8e32-d36924362d29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Texture">
       <UniqueIdentifier>{aa8a711d-5667-4ad8-b1dd-fb697c39d603}</UniqueIdentifier>
     </Filter>
@@ -63,14 +60,23 @@
     <Filter Include="Config">
       <UniqueIdentifier>{34e25e4f-32f0-494e-ad2b-c2cb0a375ee4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PostEffect">
+      <UniqueIdentifier>{b3c083bc-d4b3-4271-9d91-b90049d0f871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{158bfb97-2899-47a4-9a15-2a32f94a2a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSystem">
+      <UniqueIdentifier>{85295442-4109-4285-8e32-d36924362d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceManager">
+      <UniqueIdentifier>{01945f97-8dbd-44f7-8847-8021211390f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="H3D - VS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +87,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Vector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Matrix.cpp">
@@ -180,10 +183,10 @@
       <Filter>Hashing</Filter>
     </ClCompile>
     <ClCompile Include="H3D\FileSystem.cpp">
-      <Filter>files</Filter>
+      <Filter>FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="H3D\ContainerFile.cpp">
-      <Filter>files</Filter>
+      <Filter>FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Texture.cpp">
       <Filter>Texture</Filter>
@@ -227,9 +230,6 @@
     <ClCompile Include="H3D\Joystick.cpp">
       <Filter>InputHandling</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\Keyboard.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\Mouse.cpp">
       <Filter>InputHandling</Filter>
     </ClCompile>
@@ -256,6 +256,54 @@
     </ClCompile>
     <ClCompile Include="H3D\PhysicEngine.cpp">
       <Filter>Physic</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Posteffects\SSAO.cpp">
+      <Filter>PostEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\3DModelType\3DModelAnimated.cpp">
+      <Filter>Model Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\KeyboardWin32Impl.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\KeyboardX11Impl.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\MouseWin32Impl.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\LightScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\ItemContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\memmng\memory.cpp">
+      <Filter>memmng</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\MouseX11Impl.cpp">
+      <Filter>InputHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\ConsoleWin32Impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\XML.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\XMLTree.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\XMLNode.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\TextureConverter.cpp">
+      <Filter>Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\ResourceManager.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Resource.cpp">
+      <Filter>ResourceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +332,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Event.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ResourceManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Matrix.hpp">
@@ -386,13 +431,13 @@
       <Filter>Hashing</Filter>
     </ClInclude>
     <ClInclude Include="H3D\FileDataStructures.hpp">
-      <Filter>files</Filter>
+      <Filter>FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="H3D\FileSystem.hpp">
-      <Filter>files</Filter>
+      <Filter>FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="H3D\ContainerFile.hpp">
-      <Filter>files</Filter>
+      <Filter>FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Texture.hpp">
       <Filter>Texture</Filter>
@@ -405,9 +450,6 @@
     </ClInclude>
     <ClInclude Include="H3D\Physic\Physic.hpp">
       <Filter>Physic</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ShaderManager.hpp">
-      <Filter>OpenGL Shader</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Renderer.hpp">
       <Filter>Renderer</Filter>
@@ -462,6 +504,27 @@
     </ClInclude>
     <ClInclude Include="H3D\memmng\freelist_alloc.hpp">
       <Filter>memmng</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Posteffects\SSAO.hpp">
+      <Filter>PostEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\ProgramPipeline.hpp">
+      <Filter>OpenGL Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\ItemContainer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\XML.hpp">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\3DModelType\3DMT_H3D.hpp">
+      <Filter>Model Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\ResourceManager.hpp">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Resource.hpp">
+      <Filter>ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

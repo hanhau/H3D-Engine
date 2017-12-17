@@ -140,7 +140,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 	file_stream.open(path, std::ios::in);
 	if (!file_stream.good()) return false;
 	if (h3d::DebugMode)
-		Log.error("MD5: loadFromFile(%s)",path);
+		h3d::Log::error("MD5: loadFromFile(%s)",path);
 
 	// additional temp vals
 	std::string			temp_s;
@@ -178,7 +178,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 			joint_count = temp_i;
 
 			if (h3d::DebugMode)
-				Log.info("%s : numJoints = %d",path,temp_i);
+				h3d::Log::info("%s : numJoints = %d",path,temp_i);
 		}
 		else if (temp_s == "numMeshes")
 		{
@@ -186,7 +186,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 			mesh_count = temp_i;
 
 			if(h3d::DebugMode)
-				Log.info("%s : numMeshes = %d", path, temp_i);
+				h3d::Log::info("%s : numMeshes = %d", path, temp_i);
 		}
 		// Importing JOINTS
 		else if (temp_s == "joints")
@@ -234,7 +234,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 					temp_s.erase(temp_s.begin(),temp_s.begin() + temp_s.find_last_of("\\"));
 
 					if (h3d::DebugMode)
-						Log.info("%s : shader : %s",path,temp_s);
+						h3d::Log::info("%s : shader : %s",path,temp_s);
 				}
 				else if (temp_s == "numverts")
 				{
@@ -242,7 +242,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 					file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 					if (h3d::DebugMode)
-						Log.info("%s : numVerts : %d",path,numVerts);
+						h3d::Log::info("%s : numVerts : %d",path,numVerts);
 
 					for (int i = 0;i < numVerts;++i)
 					{
@@ -262,7 +262,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 					file_stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 					if (h3d::DebugMode)
-						Log.info("%s : numTris : %d", path, numTris);
+						h3d::Log::info("%s : numTris : %d", path, numTris);
 
 					for (int i = 0;i < numTris;i++)
 					{
@@ -308,7 +308,7 @@ bool h3d::ModelType::MD5::loadFromFile(const char path[])
 	// Closing Filestream and return
 	file_stream.close();
 	if (h3d::DebugMode)
-		Log.info("Finished MD5 loading from %s",path);
+		h3d::Log::info("Finished MD5 loading from %s",path);
 
 	return true;
 }
@@ -319,7 +319,7 @@ bool h3d::ModelType::MD5::Animation::loadFromFile(char Path[])
 	file_stream.open(Path, std::ios::in);
 	if (!file_stream.is_open())
 	{
-		if (h3d::DebugMode) Log.error("Failed to load %s",Path);
+		if (h3d::DebugMode) h3d::Log::error("Failed to load %s",Path);
 		return false;
 	}
 
@@ -340,7 +340,7 @@ bool h3d::ModelType::MD5::Animation::loadFromFile(char Path[])
 			if (m_MD5Version != 10)
 			{
 				if (h3d::DebugMode)
-					Log.error("%s MD% Version not matching!",Path);
+					h3d::Log::error("%s MD% Version not matching!",Path);
 				return false;
 			}
 		}
@@ -461,7 +461,7 @@ bool h3d::ModelType::MD5::Animation::loadFromFile(char Path[])
 			m_Frames.size() != m_NumFrames ||
 			m_Skeletons.size() != m_NumFrames)
 		{
-			Log.alarm("%s has probably invalid Information saved");
+			h3d::Log::alarm("%s has probably invalid Information saved");
 		}
 	}
 

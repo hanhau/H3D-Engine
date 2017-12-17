@@ -14,7 +14,7 @@
 bool h3d::Network::Startup(char version[2])
 {
 	if (h3d::DebugMode) {
-		Log.info("h3d::Network::Startup(version=%s)",version);
+		h3d::Log::info("h3d::Network::Startup(version=%s)",version);
 	}
 #ifdef _WIN32 || _WIN64
 	WSAData wsd;
@@ -23,7 +23,7 @@ bool h3d::Network::Startup(char version[2])
 	if (result != 0)
 	{
 		if (h3d::DebugMode)
-			Log.error("h3d::Network::Startup(...) failed !");
+			h3d::Log::error("h3d::Network::Startup(...) failed !");
 		return false;
 	}
 	else
@@ -33,7 +33,7 @@ bool h3d::Network::Startup(char version[2])
 bool h3d::Network::Shutdown()
 {
 	if (h3d::DebugMode)
-		Log.info("Shutdown Network (WSA Cleanup)");
+		h3d::Log::info("Shutdown Network (WSA Cleanup)");
 #ifdef _WIN32 || _WIN64
 	return (WSACleanup()) ? true : false;	
 #endif

@@ -55,14 +55,22 @@ bool h3d::FileHandle::open(std::string path, bool filemapping)
 	h3dverify(path.size() == 0);
 
 #ifdef __linux__
-	mmap
+	// TODO 
 #elif defined _WIN32 || _WIN64
 		
 	//  Parameter checking
-	
 	DWORD dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 
 	// Create Handle
+	m_fileHandle = CreateFileA(path.c_str(),
+							  GENERIC_READ | GENERIC_WRITE,
+							  FILE_SHARE_WRITE,
+							  NULL,
+							  CREATE_NEW,
+							  FILE_ATTRIBUTE_NORMAL,
+							  NULL);
+	if (m_fileHandle == INVALID_HANDLE_VALUE) {
+		h3d::Log::debug("Cannot create new file %s",GetLastError());
 	m_fileHandle = CreateFileA(path.c_str(),
 							  GENERIC_READ | GENERIC_WRITE | GENERIC_EXECUTE,
 							  dwShareMode,
@@ -70,10 +78,11 @@ bool h3d::FileHandle::open(std::string path, bool filemapping)
 							  OPEN_EXISTING,
 							  FILE_ATTRIBUTE_NORMAL,
 							  NULL);
+	}
 	// Error handling
 	if (m_fileHandle == INVALID_HANDLE_VALUE)
 	{
-		Log.error("Unable to open %s",path.c_str());
+		h3d::Log::error("Unable to open %s",path.c_str());
 		return false;
 	}
 	
@@ -91,7 +100,7 @@ bool h3d::FileHandle::open(std::string path, bool filemapping)
 											   NULL);
 		if (m_mappedFileHandle == NULL) {
 			if (h3d::DebugMode)
-				Log.error("Error @ CreateFileMapping");
+				h3d::Log::error("Error @ CreateFileMapping");
 			return false;
 		}
 
@@ -101,10 +110,10 @@ bool h3d::FileHandle::open(std::string path, bool filemapping)
 												0, 0,
 												0,
 												NULL)
-											   );
+												);
 		if (m_mappedData.get() == NULL) {
 			if (h3d::DebugMode)
-				Log.error("Error @ MapViewOfFileEx");
+				h3d::Log::error("Error @ MapViewOfFileEx");
 			return false;
 		}
 
@@ -164,7 +173,7 @@ unsigned long h3d::FileHandle::setIterPos(unsigned long val)
 	if (!SetFilePointerEx(m_fileHandle, LARGE_INTEGER{ val },
 						  nullptr, FILE_BEGIN))
 	{
-		Log.info("Unable to set filepointer.");
+		h3d::Log::info("Unable to set filepointer.");
 		return 0;
 	}
 	return val;

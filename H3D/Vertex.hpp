@@ -6,7 +6,6 @@
 #endif
 
 #include "Vector.hpp"
-#include "Color.hpp"
 
 #include "externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)

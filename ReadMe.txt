@@ -28,7 +28,6 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
     Model Loading
 	Math Lib
-	OpenGL Context (crossplatform)
 	Audio
 	Network
 	Cleanups

@@ -24,6 +24,8 @@ namespace h3d {
 			MSG m_Msg;
 			WNDCLASSEX m_WinClass;
 
+			h3d::ContextSettings m_cs;
+
 			void processEvents();
 
 			// Win32 specific

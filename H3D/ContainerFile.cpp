@@ -11,7 +11,7 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 {
 	// Opening FileHandle
 	if (false == m_fh.open(path)) {
-		Log.error("Unable to open %s h3d::ContainerFile.", path.c_str());
+		h3d::Log::error("Unable to open %s h3d::ContainerFile.", path.c_str());
 		return false;
 	}
 
@@ -21,7 +21,7 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 
 	// Verifying Header
 	if (memcmp(header.formatStr, "h3dcon", 6)) {
-		Log.error("%s invalid h3d::ContainerFile.", path.c_str());
+		h3d::Log::error("%s invalid h3d::ContainerFile.", path.c_str());
 		return false;
 	};
 

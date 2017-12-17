@@ -4,7 +4,7 @@
 // Linear Allocator
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	class linear_allocator : public base_alloc
+	class linear_allocator : public mem::base_alloc
 	{
 	private:
 		linear_allocator(const linear_allocator&) = delete;
@@ -23,13 +23,13 @@ namespace h3d {
 }
 /////////////////////////////////////////////////////////////////
 namespace allocator{
-	inline h3d::linear_allocator* newLinear(size_t size, base_alloc& alloc)
+	inline h3d::linear_allocator* newLinear(size_t size, h3d::mem::base_alloc& alloc)
 	{
 		void* p = alloc.allocate(size + sizeof(h3d::linear_allocator),
 								 __alignof(h3d::linear_allocator));
 		return new (p) h3d::linear_allocator(size, 0);
 	}
-	inline void deleteLinear(h3d::linear_allocator& linear, base_alloc& alloc)
+	inline void deleteLinear(h3d::linear_allocator& linear, h3d::mem::base_alloc& alloc)
 	{
 		linear.~linear_allocator();
 		alloc.deallocate(&linear);

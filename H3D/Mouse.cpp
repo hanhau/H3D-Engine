@@ -2,7 +2,7 @@
 /////////////////////////////////////////////////////////////////
 //	Implementation of Mouse Class
 /////////////////////////////////////////////////////////////////
-h3d::tagMouse::tagMouse() : _gch3d_HIDBaseClass(0x0) {}
+/*d::tagMouse::tagMouse() : _gch3d_HIDBaseClass(0x0) {}
 h3d::tagMouse::~tagMouse() {}
 /////////////////////////////////////////////////////////////////
 void h3d::tagMouse::setupRID(HWND win)
@@ -14,7 +14,7 @@ void h3d::tagMouse::setupRID(HWND win)
 	
 	if (!RegisterRawInputDevices(&m_rid, 1, sizeof(RAWINPUTDEVICE))){
 		if (h3d::DebugMode)		{
-			Log.alarm("Unable to register Mouse");
+			h3d::Log::alarm("Unable to register Mouse");
 		}
 	}
 }
@@ -29,4 +29,5 @@ h3d::Vec2<LONG> h3d::tagMouse::getOffsetFromLastPos()
 {
 	return h3d::Vec2<LONG>();
 }
-/////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////// 
+*/

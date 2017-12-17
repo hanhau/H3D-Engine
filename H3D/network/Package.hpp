@@ -12,14 +12,20 @@
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	namespace Network {
+		class Package;
+		static void encryptPkgAES256(Package& pkg, char *key);
+		static void decryptPkgAES256(Package& pkg, char *key);
+
 		class Package
 		{
 		private:
 			unsigned char*    buffer;
 			uint64_t          buffersize;
+
 		public:
 			template<typename T>
-				void operator=(T data){
+				void operator=(T data)
+				{
 					buffersize = sizeof(data);
 					buffer = new unsigned char[buffersize];
 					memcpy(buffer, data, buffersize);
@@ -42,3 +48,11 @@ namespace h3d {
 	}
 }
 /////////////////////////////////////////////////////////////////
+void h3d::Network::encryptPkgAES256(h3d::Network::Package& pkg, char *key)
+{
+
+}
+void h3d::Network::decryptPkgAES256(h3d::Network::Package& pkg, char *key)
+{
+
+}

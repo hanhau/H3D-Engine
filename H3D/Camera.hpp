@@ -10,6 +10,7 @@
 #include "Matrix.hpp"
 #include "Window.hpp"
 #include "Program.hpp"
+#include "Quaternion.hpp"
 /////////////////////////////////////////////////////////////////
 //	class Camera 
 /////////////////////////////////////////////////////////////////
@@ -26,6 +27,8 @@ private:
 	h3d::Vec2<unsigned short> m_size;
 	bool                      m_needToUpdateViewport;
 
+	h3d::Quaternion m_rotation;
+
 	// Output Matrices
 	h3d::mat4x4 m_view;
 	h3d::mat4x4 m_projectionMatrix;
@@ -38,6 +41,9 @@ public:
 	void H3D_API setTarget(    h3d::Vec3<float> target);
 	void H3D_API setPos(       h3d::Vec3<float> position);
 	void H3D_API setDirection( h3d::Vec3<float> direction);
+
+	void H3D_API setRotation(h3d::Quaternion total);
+	void H3D_API applyRotation(h3d::Quaternion local_rot);
 
 	// Set Viewportsize
 	void H3D_API setViewportSize(h3d::Vec2<unsigned short> size);

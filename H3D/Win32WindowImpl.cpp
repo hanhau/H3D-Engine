@@ -21,6 +21,7 @@ bool h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>       size,
 	m_Size				= size;
 	m_Title				= title;
 	Appname = (wchar_t*)m_Title.c_str();
+	m_cs = cs;
 
 	m_isOpen = true;
 
@@ -93,7 +94,7 @@ bool h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>       size,
 		return false;
 	}
 	else if (h3d::DebugMode)
-		Log.info("Registered Winapi Window class");
+		h3d::Log::info("Registered Winapi Window class");
 	
 	// Set Window Content
 	std::wstring _windowtitle;
@@ -109,18 +110,18 @@ bool h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>       size,
 							m_Instance,
 							this);
 	if (m_Win == NULL) {
-		Log.error("Unable to CreateWindowEx(..)");
+		h3d::Log::error("Unable to CreateWindowEx(..)");
 		return false;
 	}
 	if (h3d::DebugMode)
-		Log.info("Created Window Handle");
+		h3d::Log::info("Created Window Handle");
 	
 
 	// Make ready for use
 	ShowWindow(m_Win, SW_SHOW);
 	UpdateWindow(m_Win);
 	if (h3d::DebugMode)
-		Log.info("Finished creating Window");
+		h3d::Log::info("Finished creating Window");
 
 	return true;
 }
@@ -133,7 +134,11 @@ void h3d::intern::Win32WindowImpl::setActive(bool val){
 
 }
 void h3d::intern::Win32WindowImpl::setVSync(bool val){
-	
+	if (1) {
+		wglSwapIntervalEXT((val) ? 1 : 0);
+	}
+	else
+		h3d::Log::error("VSync cant be toggled %d", val);
 }
 // Settings
 void h3d::intern::Win32WindowImpl::setSize(h3d::Vec2<int>size) {

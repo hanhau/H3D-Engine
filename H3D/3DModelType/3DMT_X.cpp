@@ -16,13 +16,13 @@ bool h3d::ModelType::X::loadFromFile(char Path[])
 	char* tmp = new char[4];
 	file_stream.read(tmp, 4);
 	if (tmp != "xof") {
-		Log.error("Cannot open %s, probably damaged ?",Path);
+		h3d::Log::error("Cannot open %s, probably damaged ?",Path);
 		return false;
 	}
 	file_stream.read(tmp, 4);
 	file_stream.read(tmp, 4);
 	if (tmp != "txt") {
-		Log.error("%s is not a ASCII format !",Path);
+		h3d::Log::error("%s is not a ASCII format !",Path);
 		return false;
 	}
 	file_stream.read(tmp, 4);

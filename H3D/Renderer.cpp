@@ -34,4 +34,14 @@ namespace h3d {
 	uint64_t GlobalRenderer::queueDrawable(Drawable &drawobj) {
 		return 0;
 	}
+
+	bool GlobalRenderer::startRendering()
+	{
+		return false;
+	}
+
+	bool GlobalRenderer::endRendering()
+	{
+		return false;
+	}
 }
