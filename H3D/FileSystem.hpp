@@ -117,7 +117,12 @@ namespace h3d {
 		H3D_API FileHandle(std::string path, bool filemapping = false);
 		H3D_API ~FileHandle();
 
+		enum class Mode {
+			Read,Write,Trunc
+		};
+
 		// Create/Destroy Handle to File
+		bool H3D_API open(std::string path, std::initializer_list<Mode> il, bool a);
 		bool H3D_API open(std::string path,bool filemapping=false);
 		bool H3D_API close();
 

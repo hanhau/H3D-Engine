@@ -50,6 +50,24 @@ h3d::FileHandle::~FileHandle()
 
 }
 /////////////////////////////////////////////////////////////////
+bool h3d::FileHandle::open(std::string path, 
+						   std::initializer_list<h3d::FileHandle::Mode> il, 
+						   bool a)
+{
+	bool read = false, write = false, trunc = false;
+	for (auto &iter : il) {
+		if (iter == h3d::FileHandle::Mode::Read)
+			read = true;
+		if (iter == h3d::FileHandle::Mode::Write)
+			write = true;
+		if (iter == h3d::FileHandle::Mode::Trunc)
+			trunc = true;
+	}
+
+	h3dverify(path.size() == 0);
+
+	return false;
+}
 bool h3d::FileHandle::open(std::string path, bool filemapping)
 {
 	h3dverify(path.size() == 0);

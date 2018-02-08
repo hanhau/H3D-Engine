@@ -116,8 +116,8 @@ void h3d::Log::screenshot(char folder[], h3d::Window& win)
 
 	t_header.bfType = 19778;
 	t_header.bfReserved = 0;
-	t_header.bfOffBits = 0;
-	t_header.bfsize = sizeof(pixels);
+	t_header.bfOffBits = sizeof(t_header) + sizeof(t_body);
+	t_header.bfsize = size.x*size.y * 3 + sizeof(t_header) + sizeof(t_body);
 
 	t_body.biWidth = size.x;
 	t_body.biHeight = size.y;
@@ -125,11 +125,23 @@ void h3d::Log::screenshot(char folder[], h3d::Window& win)
 	t_body.biSizeImage = size.x*size.y;
 	t_body.biSize = size.x*size.y * 3;
 
+	// Check content of header and body
+	h3d::Log::debug("bfType    = %s", t_header.bfType);
+	h3d::Log::debug("bfOffBits = %d", t_header.bfOffBits);
+	h3d::Log::debug("bfsize    = %d", t_header.bfsize);
+
+	h3d::Log::debug("biWidth     = %d",t_body.biWidth);
+	h3d::Log::debug("biHeight    = %d",t_body.biHeight);
+	h3d::Log::debug("biBitCount  = %d", t_body.biBitCount);
+	h3d::Log::debug("biSizeImage = %d", t_body.biSizeImage);
+	h3d::Log::debug("biSize      = %d", t_body.biSize);
+
 	h3d::FileHandle fh;
 	if (fh.open(path) == false) {
+		h3d::Log::error("Unable to save screenshot to %s", path.c_str());
 		return;
 	}
-
+	
 	fh.write((char*)&t_header, sizeof(t_header));
 	fh.write((char*)&t_body, sizeof(t_body));
 	fh.write((char*)pixels, size.x*size.y * 3);

@@ -107,7 +107,7 @@ int main()
 				app.close();
 				return 0;
 			}
-		}		
+		}
 
 		app.clear(GL_COLOR_BUFFER_BIT,
 				  h3d::Color<GLfloat>(cos(globalClock.getSeconds()),
