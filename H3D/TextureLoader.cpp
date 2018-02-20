@@ -82,7 +82,41 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 	// Reading
 	file_stream.read((char*)&t_header, sizeof(t_header));
 
+	char identifier[12] = { '«', 'K', 'T', 'X', ' ',
+						   '1', '1', '»', '\r', '\n',
+						   '\x1A', '\n' };
 
+	if (memcmp(t_header.identifier, identifier, 12)) {
+		h3d::Log::error("File %s not a KTX file !",Path);
+		return false;
+	}
+
+
+
+	for (int i = 0; i < t_header.bytesOfKeyValueData; i++)
+	{
+		uint32_t keyAndValueByteSize;
+		char *keyAndValue = new char[keyAndValueByteSize];
+		char *valuePadding = new char[3 - ((keyAndValueByteSize + 3) % 4)];
+	}
+
+
+		for each mipmap_level in numberOfMipmapLevels*
+			UInt32 imageSize;
+	for each array_element in numberOfArrayElements*
+		for each face in numberOfFaces
+			for each z_slice in pixelDepth*
+				for each row or row_of_blocks in pixelHeight*
+					for each pixel or block_of_pixels in pixelWidth
+						Byte data[format - specific - number - of - bytes] * *
+						end
+						end
+						end
+						Byte cubePadding[0 - 3]
+						end
+						end
+						Byte mipPadding[3 - ((imageSize + 3) % 4)]
+						end
 
 	// Return
 	file_stream.close();
