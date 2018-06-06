@@ -42,8 +42,8 @@ bool h3d::Texture::loadBMP(char Path[],h3d::Texture& ref)
 
 	// Picturedatablock
 	unsigned long imageSize = t_body.biWidth*t_body.biHeight*t_body.biBitCount / 8;
-	ref.m_buffer = new unsigned char[imageSize];
-	h3d::setObjectFromFileHandle(ref.m_buffer, filehandle);
+	ref.m_buffer = new char[imageSize];
+    filehandle.read(ref.m_buffer, imageSize);
 
 	return true;
 }
@@ -100,7 +100,7 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 		char *valuePadding = new char[3 - ((keyAndValueByteSize + 3) % 4)];
 	}
 
-
+	/*
 		for each mipmap_level in numberOfMipmapLevels*
 			UInt32 imageSize;
 	for each array_element in numberOfArrayElements*
@@ -118,6 +118,7 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 						Byte mipPadding[3 - ((imageSize + 3) % 4)]
 						end
 
+	*/
 	// Return
 	file_stream.close();
 	return true;

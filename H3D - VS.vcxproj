@@ -30,7 +30,7 @@
     <ProjectGuid>{996C1AD2-27D3-4A26-B4C0-A838C38FC6FB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>H3DVS</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>H3D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -102,8 +102,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include</IncludePath>
-    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib</LibraryPath>
+    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include;C:\Program Files\Assimp\include</IncludePath>
+    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib;C:\Programme\Assimp\bin\x86</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -141,7 +141,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;H3DVS_EXPORTS;%(PreprocessorDefinitions);DLL_EXPORT</PreprocessorDefinitions>
       <EnablePREfast>false</EnablePREfast>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -152,11 +152,12 @@
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <MinimalRebuild>false</MinimalRebuild>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;ws2_32.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;ws2_32.lib;Winmm.lib;assimp-vc140-mt.lib;zlibstaticd.lib</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -312,10 +313,6 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="H3D\3DModel.cpp" />
-    <ClCompile Include="H3D\3DModelType\3DModelAnimated.cpp" />
-    <ClCompile Include="H3D\3DModelType\3DMT_X.cpp" />
-    <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp" />
-    <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp" />
     <ClCompile Include="H3D\Audio.cpp" />
     <ClCompile Include="H3D\Audio\AudioBufferClasses.cpp" />
     <ClCompile Include="H3D\Audio\AudioBufferStream.cpp" />
@@ -342,12 +339,15 @@
     <ClCompile Include="H3D\LightScene.cpp" />
     <ClCompile Include="H3D\LinuxClockImpl.cpp" />
     <ClCompile Include="H3D\LuaScript\LuaScript.cpp" />
+    <ClCompile Include="H3D\Material.cpp" />
     <ClCompile Include="H3D\memmng\linear_alloc.cpp" />
     <ClCompile Include="H3D\memmng\memory.cpp" />
+    <ClCompile Include="H3D\Mesh.cpp" />
     <ClCompile Include="H3D\MouseWin32Impl.cpp" />
     <ClCompile Include="H3D\MouseX11Impl.cpp" />
     <ClCompile Include="H3D\network\Socket.cpp" />
     <ClCompile Include="H3D\PhysicEngine.cpp" />
+    <ClCompile Include="H3D\Physic\Emitter.cpp" />
     <ClCompile Include="H3D\Posteffects\SSAO.cpp" />
     <ClCompile Include="H3D\Quaternion.cpp" />
     <ClCompile Include="H3D\Renderer.cpp" />
@@ -355,7 +355,6 @@
     <ClCompile Include="H3D\TextureConverter.cpp" />
     <ClCompile Include="H3D\TextureLoader.cpp" />
     <ClCompile Include="H3D\Utilities.cpp" />
-    <ClCompile Include="H3D\Emitter.cpp" />
     <ClCompile Include="H3D\GBuffer.cpp" />
     <ClCompile Include="H3D\GLMultithreading.cpp" />
     <ClCompile Include="H3D\GLMultithreadingPackages.cpp" />
@@ -390,10 +389,6 @@
   <ItemGroup>
     <ClInclude Include="H3D.hpp" />
     <ClInclude Include="H3D\3DModel.hpp" />
-    <ClInclude Include="H3D\3DModelType\3DMT_H3D.hpp" />
-    <ClInclude Include="H3D\3DModelType\3DMT_X.hpp" />
-    <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp" />
-    <ClInclude Include="H3D\3DModelType\3DMT_OBJ.hpp" />
     <ClInclude Include="H3D\Audio.hpp" />
     <ClInclude Include="H3D\AudioAccessories.hpp" />
     <ClInclude Include="H3D\Camera.hpp" />
@@ -414,6 +409,7 @@
     <ClInclude Include="H3D\ItemContainer.hpp" />
     <ClInclude Include="H3D\Keyboard.hpp" />
     <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
+    <ClInclude Include="H3D\Material.hpp" />
     <ClInclude Include="H3D\memmng\base_alloc.hpp" />
     <ClInclude Include="H3D\memmng\freelist_alloc.hpp" />
     <ClInclude Include="H3D\memmng\linear_alloc.hpp" />

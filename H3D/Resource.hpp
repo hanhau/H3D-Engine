@@ -7,6 +7,7 @@
 
 #include <string>
 #include <cstdint>
+#include <cstddef>
 /////////////////////////////////////////////////////////////////
 //	Resource
 /////////////////////////////////////////////////////////////////
@@ -21,7 +22,7 @@ namespace h3d {
 		virtual bool load()           = 0;
 		virtual bool makeReadyToUse() = 0;
 	};
-
+    
 	class Resource
 	{
 	public:

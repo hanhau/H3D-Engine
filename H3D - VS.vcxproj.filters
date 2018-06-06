@@ -18,9 +18,6 @@
     <Filter Include="OpenGL Shader">
       <UniqueIdentifier>{597c47ea-1a31-4cc2-8d3b-32f67998a1d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Model Loader">
-      <UniqueIdentifier>{cfd358ae-15a0-4bf9-a743-1e0458fb123c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Network">
       <UniqueIdentifier>{93798bb1-204e-4e86-9b03-27915ddf659b}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,9 @@
     <Filter Include="ResourceManager">
       <UniqueIdentifier>{01945f97-8dbd-44f7-8847-8021211390f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model3D">
+      <UniqueIdentifier>{cfd358ae-15a0-4bf9-a743-1e0458fb123c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -102,9 +102,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Emitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="H3D\GLMultithreadingPackages.cpp">
@@ -141,19 +138,10 @@
       <Filter>OpenGL Shader</Filter>
     </ClCompile>
     <ClCompile Include="H3D\3DModel.cpp">
-      <Filter>Model Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DMT_MD5.cpp">
-      <Filter>Model Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DMT_OBJ.cpp">
-      <Filter>Model Loader</Filter>
+      <Filter>Model3D</Filter>
     </ClCompile>
     <ClCompile Include="H3D\hashing\UniChecksum.cpp">
       <Filter>Hashing</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DMT_X.cpp">
-      <Filter>Model Loader</Filter>
     </ClCompile>
     <ClCompile Include="H3D\Network.cpp">
       <Filter>Network</Filter>
@@ -260,9 +248,6 @@
     <ClCompile Include="H3D\Posteffects\SSAO.cpp">
       <Filter>PostEffect</Filter>
     </ClCompile>
-    <ClCompile Include="H3D\3DModelType\3DModelAnimated.cpp">
-      <Filter>Model Loader</Filter>
-    </ClCompile>
     <ClCompile Include="H3D\KeyboardWin32Impl.cpp">
       <Filter>InputHandling</Filter>
     </ClCompile>
@@ -304,6 +289,15 @@
     </ClCompile>
     <ClCompile Include="H3D\Resource.cpp">
       <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Physic\Emitter.cpp">
+      <Filter>Physic</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Material.cpp">
+      <Filter>Model3D</Filter>
+    </ClCompile>
+    <ClCompile Include="H3D\Mesh.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -377,19 +371,10 @@
       <Filter>OpenGL Shader</Filter>
     </ClInclude>
     <ClInclude Include="H3D\3DModel.hpp">
-      <Filter>Model Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_MD5.hpp">
-      <Filter>Model Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_OBJ.hpp">
-      <Filter>Model Loader</Filter>
+      <Filter>Model3D</Filter>
     </ClInclude>
     <ClInclude Include="H3D\hashing\UniChecksum.hpp">
       <Filter>Hashing</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_X.hpp">
-      <Filter>Model Loader</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Network.hpp">
       <Filter>Network</Filter>
@@ -517,14 +502,14 @@
     <ClInclude Include="H3D\XML.hpp">
       <Filter>XML</Filter>
     </ClInclude>
-    <ClInclude Include="H3D\3DModelType\3DMT_H3D.hpp">
-      <Filter>Model Loader</Filter>
-    </ClInclude>
     <ClInclude Include="H3D\ResourceManager.hpp">
       <Filter>ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="H3D\Resource.hpp">
       <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="H3D\Material.hpp">
+      <Filter>Model3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

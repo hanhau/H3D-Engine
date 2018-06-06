@@ -1,4 +1,19 @@
 #include "3DModel.hpp"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include "externals.h"
+#include STR(GLEW_INCLUDE/gl/glew.h)
+/////////////////////////////////////////////////////////////////
+// Impl
+struct h3d::Model3D::impl 
+{
+    aiScene m_scene;
+    Assimp::Importer m_importer;
+    GLuint m_vba;
+    GLuint *m_buffers;
+    int m_buffersCount;
+};
 /////////////////////////////////////////////////////////////////
 // Implementation of abstract model class
 /////////////////////////////////////////////////////////////////
@@ -9,56 +24,46 @@ h3d::Model3D::Model3D(char Path[])
 }
 h3d::Model3D::~Model3D() {}
 /////////////////////////////////////////////////////////////////
-bool h3d::Model3D::loadFromFile(char Path[])
+bool h3d::Model3D::loadFromFile(char Path[]) 
 {
-	// Get file extension
-	std::string temp_path = Path;
-	auto iter = temp_path.find_last_of('.');
+    h3d::Log::info("Loading %s now");
 
-	// Define this models 3d model format type
-	temp_path.erase(0,iter);
-	if (temp_path == ".md5mesh") m_modelTypeEnum = 
-									h3d::Model3DFormat::MD5;
-	else if (temp_path == ".dae") m_modelTypeEnum = 
-									h3d::Model3DFormat::DAE;
-	else if (temp_path == ".obj") m_modelTypeEnum = 
-									h3d::Model3DFormat::OBJ;
-	else return false;
+    Assimp::Importer importer;
+    const aiScene* scene = importer.ReadFile(Path, aiProcess_CalcTangentSpace |
+        aiProcess_Triangulate |
+        aiProcess_JoinIdenticalVertices |
+        aiProcess_SortByPType);
+    
+    if (!scene) {
+        h3d::Log::error("Unable to load %s", Path);
+        return false;
+    }
 
-	// Allocate Memory for it
-	bool success_load = false;
-	switch (m_modelTypeEnum)
-	{
-	case h3d::Model3DFormat::OBJ:
-		m_rawModels.obj = new h3d::ModelType::OBJ();
-		success_load = m_rawModels.obj->loadFromFile(Path);
-		break;
-	case h3d::Model3DFormat::DAE:
+    for (int i = 0; i < scene->mNumMaterials; i++) {
+        h3d::Material mat;
+        mat.loadFromAssimpMaterial(scene->mMaterials[i]);
+        m_materials.push_back(mat);
+    }
 
-		break;
-	case h3d::Model3DFormat::MD5:
-		m_rawModels.md5 = new h3d::ModelType::MD5();
-		success_load = m_rawModels.md5->loadFromFile(Path);
-		break;
-	}
-	// Return state
-	return success_load;
+    for (int i = 0; i < scene->mNumMeshes; i++) {
+        Mesh temp_mesh;
+        temp_mesh.loadFromAiMesh(scene->mMeshes[i]);
+        temp_mesh.loadToOpenGL();
+        m_meshes.push_back(temp_mesh);
+    }
+
+    h3d::Log::info("Finished loading %s");
+    return true;
 }
 /////////////////////////////////////////////////////////////////
-void h3d::Model3D::render()
-{
-	switch (m_modelTypeEnum)
-	{
-	case h3d::Model3DFormat::OBJ:
-		m_rawModels.obj->render();
-		break;
-	case h3d::Model3DFormat::DAE:
-
-		break;
-	case h3d::Model3DFormat::MD5:
-
-		break;
-	}
-	return;
+void h3d::Model3D::render() {
+    for (auto &iter : m_meshes) {
+        iter.render();
+    }
 }
-/////////////////////////////////////////////////////////////////
+void h3d::Model3D::logModelData() {
+    h3d::Log::info("+ Data Content of Model3D:");
+    h3d::Log::info("| Num Materials: %d",1);
+    h3d::Log::info("| Num Meshes: %d",1);
+    h3d::Log::info("+ Meshes: %d",1);
+}

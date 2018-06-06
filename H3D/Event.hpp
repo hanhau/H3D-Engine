@@ -10,7 +10,7 @@
 namespace h3d {
 	enum class H3D_API EventType {
 		Closed, Resized, LostFocus, GainedFocus,
-		KeyDown, KeyUp
+		KeyDown, KeyUp, Input
 	};
 
 	class H3D_API Event 

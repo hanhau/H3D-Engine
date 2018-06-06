@@ -1,8 +1,8 @@
-#version 450 core
+#version 330
 
 out vec4 color;
-in vec4 col_a;
 
-void main(){
-	color = col_a;
+void main()
+{
+	color = vec4(1.0,1.0,1.0,1.0);
 }

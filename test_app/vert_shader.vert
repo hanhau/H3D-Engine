@@ -1,13 +1,13 @@
-#version 450 core
+#version 330 core
 
-layout (location=0) in vec4 cord;
-uniform mat4 proj_mat;
-uniform mat4 view_mat;
-out vec4 pos;
-out vec4 col_a;
+out vec2 uv;
+
+layout(location=0) in vec3 vert_in;
+layout(location=1) in vec3 uv_in;
+layout(location=2) in vec3 normal_in;
 
 void main()
 {
-	col_a = cord;
-	pos = cord;
+	gl_Position = vec4(vert_in,1.0);
+	uv = uv_in.xy;
 }

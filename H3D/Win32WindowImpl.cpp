@@ -180,6 +180,9 @@ void h3d::intern::Win32WindowImpl::processEvents() {
 	MSG msg;
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 
+        if (msg.message == WM_TIMER) 
+            break;
+
 		//! translate and dispatch message to Windows
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
@@ -193,22 +196,47 @@ void h3d::intern::Win32WindowImpl::processEvent(UINT msg,
 
 	switch (msg)
 	{
+    case WM_TIMER:
+
+        break;
+	case WM_CHAR:
+		{
+		h3d::Log::info("WM_CHAR");
+		}
+		break;
+	case WM_SETFOCUS:
+		{
+			h3d::Event e;
+			e.type = h3d::EventType::GainedFocus;
+			pushEvent(e);
+		}
+		break;
+	case WM_KILLFOCUS:
+		{
+			h3d::Event e;
+			e.type = h3d::EventType::LostFocus;
+			pushEvent(e);
+		}
+		break;
 		// Resize Event
 	case WM_SIZE:
 	{
 		// break if winapi message
 		if (lparam == 0 || wparam == 0) break;
 
-		/*h3d::Vec2<int> *newsize = new h3d::Vec2<int>;
-		newsize = reinterpret_cast<h3d::Vec2<int>*>(lparam);
-		int x = newsize->x, y = newsize->y;
-		delete newsize;
-
-		SetWindowPos(m_Win, 0, 1, 1, x, y, SWP_NOMOVE);*/
+		h3d::Event e;
+		e.type = h3d::EventType::Resized;
+		pushEvent(e);
 	}
 	break;
 	// Input Handling
 	case WM_INPUT:
+		h3d::Log::info("WM_INPUT");
+
+		h3d::Event e;
+		e.type = h3d::EventType::Input;
+		pushEvent(e);
+
 		/*if (h3d::InputManager::isInputActive(DEVICE_TYPE_KEYBOARD)) {
 			h3d::InputManager::updateKeyboard();
 		}

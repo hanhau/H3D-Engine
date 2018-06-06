@@ -72,7 +72,7 @@ bool h3d::Shader::compile()
 	glDeleteShader(this->shaderid);
 	this->shaderid = glCreateShader(shadertype);
 	glShaderSource(shaderid, 1,(const char**)&sourcecode,
-				   &sourcecode_length);
+				   nullptr);
 
 	glCompileShader(shaderid);
 

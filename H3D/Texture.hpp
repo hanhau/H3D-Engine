@@ -20,17 +20,17 @@ namespace h3d {
 	public:
 		enum class Format;
 	private:
-		bool loadPNG(char[], h3d::Texture&);
-		bool loadKTX(char[], h3d::Texture&);
-		bool loadBMP(char[], h3d::Texture&);
-		bool loadTGA(char[], h3d::Texture&);
+		bool loadPNG(char[], h3d::Texture& ref );
+		bool loadKTX(char[], h3d::Texture& ref);
+		bool loadBMP(char[], h3d::Texture& ref );
+		bool loadTGA(char[], h3d::Texture& ref);
 
 		// OpenGL Stuff
 		GLuint m_texid;
 		GLuint m_colormode;
 
 		// Buffer
-		unsigned char *m_buffer;
+		char *m_buffer;
 
 		// Format of the Image loaded
 		Format m_format;
@@ -52,21 +52,21 @@ namespace h3d {
 		H3D_API ~Texture();
 
 		// Loading and manipulating
-		H3D_API bool loadFromFile(char Path[]);
-		H3D_API bool loadFromMemory(void * mem);
+		bool H3D_API loadFromFile(char Path[]);
+		bool H3D_API loadFromMemory(void * mem);
 
 		// Set up to OpenGL
-		H3D_API bool createTexture();
-		H3D_API void generateMipMaps();
-		H3D_API bool destroyTexture();
+		bool H3D_API createTexture();
+		void H3D_API generateMipMaps();
+		bool H3D_API destroyTexture();
 
 		// Get information
 		H3D_API GLenum         getColorFormat();
 		H3D_API h3d::Vec2<int> getSize();
 
 		// Handling Texture			
-		H3D_API GLuint getTextureIndex();
-		H3D_API bool   setActive(bool val);
+		GLuint H3D_API getTextureIndex();
+		bool   H3D_API setActive(bool val);
 	};
 }
 /////////////////////////////////////////////////////////////////

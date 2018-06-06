@@ -18,6 +18,7 @@
 #include <H3D\Audio.hpp>
 #include <H3D\Clock.hpp>
 #include <H3D\Camera.hpp>
+#include <H3D/hashing/SHA256.hpp>
 
 #include <iostream>
 #include <vector>
@@ -41,28 +42,14 @@ int main()
 	h3d::Window app(WINDOW_SIZE,
 					"Damokles Digger",
 					h3d::WindowStyle::Default,
-					h3d::ContextSettings(0,0,0,0,true));
+					h3d::ContextSettings(0,0,0,0,false));
+	glewInit();
 
-	GLfloat points[] = {
-		0.0,0.0,0.0,0.0,
-		0.5,0.0,0.0,0.0,
-		0.5,0.5,0.0,0.0,
-		0.0,0.5,0.0,0.0,
-	};
+	h3d::Model3D md;
+	md.loadFromFile("C:\\Users\\hanne\\Documents\\untitled.obj");
+    md.logModelData();
 
-	GLuint vao;
-	glCreateVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	GLuint buffer;
-	glCreateBuffers(1, &buffer);
-	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
-
-	glVertexArrayVertexBuffer(vao, 0, buffer, 0, 16);
-	glVertexArrayAttribFormat(vao, 0, 4, GL_FLOAT, GL_FALSE, 0);
-	glEnableVertexArrayAttrib(vao, 0);
-
+    glPointSize(10.f);
 	h3d::Shader vertexShader(GL_VERTEX_SHADER, "vert_shader.vert"); 
 	h3d::Shader	fragmentShader(GL_FRAGMENT_SHADER,"frag_shader.frag");
 
@@ -74,28 +61,6 @@ int main()
 	gl_program.use(true);
 	
 	glViewport(0, 0,WINDOW_SIZE.x,WINDOW_SIZE.y);
-
-	h3d::Clock globalClock;
-	globalClock.reset();
-
-	glPointSize(3);
-
-	h3d::Quaternion b(0.1, 0.1, 0.4, 0.4);
-	h3d::Quaternion quatA(1.0, 0.0, 0.0, 0.0);
-	quatA *= b;
-
-	h3d::mat4x4 rot = quatA.toRotateMat4x4();
-
-	h3d::Vec3<float> point(0.1f, 0.5f, 1.0f);
-	h3d::Vec4 p = rot * h3d::Vec4(point,0.0);
-	h3d::Vec3<float> pp = rot * point;
-	h3d::Log::info("%f %f %f", p.x, p.y, p.z);
-	h3d::Log::info("%f %f %f", pp.x, pp.y, pp.z);
-
-	h3d::Camera cam;
-	cam.setShaderValues(gl_program, "proj_mat", "view_mat");
-
-	h3d::Log::screenshot("demo/", app);
 
 	while (app.isOpen())
 	{
@@ -110,9 +75,9 @@ int main()
 		}
 
 		app.clear(GL_COLOR_BUFFER_BIT,
-				  h3d::Color<GLfloat>(cos(globalClock.getSeconds()),
-									  tan(globalClock.getSeconds()),
-									  sin(globalClock.getSeconds()),0.0));
+				  h3d::Color<GLfloat>(0.0,0.0,0.0,0.0));
+
+       md.render();
 
 		app.swapBuffers();
 	}

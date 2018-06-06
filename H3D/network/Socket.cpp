@@ -1,11 +1,24 @@
 #include "Socket.hpp"
 #include "Package.hpp"
+#include "..\Config.hpp"
 #include "..\Utilities.hpp"
 #include <cstdlib>
 #include <sys\types.h>
+
+#ifdef H3D_SYSTEM_WINDOWS
+#include <WS2tcpip.h>
+#include <WinSock2.h>
+#include <Windows.h>
+#elif defined H3D_SYSTEM_LINUX
+#include <netdb.h>
+#endif
 /////////////////////////////////////////////////////////////////
 // Implementation of Socket class
 /////////////////////////////////////////////////////////////////
+struct h3d::Network::Socket::impl {
+
+};
+
 h3d::Network::Socket::Socket() {}
 h3d::Network::Socket::Socket(int ai_family,
 							 int ai_socktype,
@@ -13,7 +26,7 @@ h3d::Network::Socket::Socket(int ai_family,
 							 const char* port, const char* address) {
 	this->create(ai_family,
 				 ai_socktype,
-				 ai_protocol,
+				 ai_protocol ,
 				 port,address);
 }
 h3d::Network::Socket::~Socket() {}
@@ -82,7 +95,9 @@ bool h3d::Network::Socket::listen()
 /////////////////////////////////////////////////////////////////
 bool h3d::Network::Socket::accept()
 {
-
+	int new_socket = ::accept(m_thisSocket,
+							  m_thisAddrInfo->ai_addr,
+							  (int*)sizeof(m_thisAddrInfo->ai_addr));
 
 	return true;
 }
@@ -111,7 +126,7 @@ bool h3d::Network::Socket::send(const h3d::Network::Package& pkg)
 /////////////////////////////////////////////////////////////////
 bool h3d::Network::Socket::recv(const h3d::Network::Package& pkg)
 {
-
+	pkg.data();
 	return 0;
 }
 /////////////////////////////////////////////////////////////////

@@ -15,7 +15,9 @@
 namespace h3d {
 	struct H3D_API ContextSettings
 	{
-		inline ContextSettings() {}
+		inline ContextSettings() {
+            
+        }
 		inline ContextSettings(unsigned char bits_fb,
 							   unsigned char bits_db,
 							   unsigned char bits_sb,

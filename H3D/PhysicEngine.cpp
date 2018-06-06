@@ -3,6 +3,8 @@
 #include <thread>
 
 namespace h3d {
+	static int m_numOfCores;
+
 	bool PhysicEngine::init() {
 		m_numOfCores = std::thread::hardware_concurrency();
 		return true;

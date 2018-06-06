@@ -32,30 +32,36 @@ namespace h3d { // Part of H3D
 		{
 			friend ParticleUpdater;
 		private:
-			// Buffers for Shaders
-			GLuint m_ssPositions;
-			GLuint m_ssSpeed;
-			GLuint m_ssColor;
-			GLuint m_ssSize;
-
-			
-			// Emitter settings
-			float m_gravity;
-			int   m_particleType;
-
-			// List of particles
-			unsigned long m_particleCount;
-			//std::vector<Particle> m_particleVec;
+			class impl;
+			std::unique_ptr<impl> m_impl;
 		public:
 			// Setup 
 			H3D_API Emitter();
 			H3D_API ~Emitter();
+			
+			static const int MaxParticle = 128 * 128;
 
-			// Comparing containing particle type
-			bool H3D_API operator<(Emitter& emitter);
+			enum class Type {
+				Spot,Quad,Line
+			};
 
-			// Upload arrays to gpu
-			bool H3D_API uploadDataToGPU();
+			enum class FadeType {
+				Sin,Cos,Linear
+			};
+
+			void H3D_API create(h3d::Vec3<float> pos,
+								int particle_count,
+								Type type,bool gravity,
+								h3d::Vec3<float> size,
+								float strength);
+
+			void H3D_API setParticle(h3d::Texture& tex,
+									 h3d::Vec3<float> size,
+									 float fadetime,FadeType ftype,
+									 h3d::Color<GLfloat> col);
+
+			void H3D_API update(float deltaTime);
+			void H3D_API render();
 		};
 		/////////////////////////////////////////////////////////
 		// Base class for a particle
@@ -92,7 +98,7 @@ namespace h3d { // Part of H3D
 			};
 		}
 		/////////////////////////////////////////////////////////
-		// Contains every avaliable Particle (wich is not a point)
+		// Contains every avaliable Particle (which is not a point)
 		class tagParticleLib
 		{
 		private:

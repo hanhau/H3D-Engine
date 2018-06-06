@@ -15,19 +15,15 @@
 namespace h3d {
 	class PhysicEngine
 	{
-	private:
-		int m_numOfCores;
-
-		// container of objects
 	public:
 		// must be called before anything else
-		bool init();
+		static bool init();
 
 		// Manip objects
-		void addObject(const PhysicObject& obj);
+		static void addObject(const PhysicObject& obj);
 
 		// main functions
-		void udpate(float deltaTime);
+		static void udpate(float deltaTime);
 	};
 }
 /////////////////////////////////////////////////////////////////

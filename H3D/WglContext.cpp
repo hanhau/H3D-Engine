@@ -84,6 +84,20 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 	glGetIntegerv(GL_MAJOR_VERSION, &glVersion[0]);
 	glGetIntegerv(GL_MINOR_VERSION, &glVersion[1]);
 
+    if (glVersion[0] == -1 || glVersion[1] == -1) {
+        h3d::Log::error("Unable to create OpenGL Context with following settings:\n"
+                        "cs.bits_framebuffer = %d\n"
+                        "cs.bits_depthbuffer = %d\n"
+                        "cs.bits_stencilbuffer = %d\n"
+                        "cs.count_auxbuffers = %d\n"
+                        "cs.is_debug_context = %b",
+                        ptr->m_cs.bits_framebuffer,
+                        ptr->m_cs.bits_depthbuffer,
+                        ptr->m_cs.bits_stencilbuffer,
+                        ptr->m_cs.count_auxbuffers,
+                        ptr->m_cs.is_debug_context);
+    }
+
 	h3d::Log::info("Created Context with OpenGL Ver %d.%d", 
 				   glVersion[0], glVersion[1]);
 

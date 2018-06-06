@@ -5,6 +5,7 @@
 #include "Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS
 
+#include <Windows.h>
 #include <consoleapi.h>
 #include <cstdio>
 
@@ -44,23 +45,19 @@ namespace h3d {
 			h3dverify(false);
 		}
 	}
-
 	void Console::setTitle(char title[]) {
 		SetConsoleTitleA(title);
 	}
-
 	void Console::setCurPos(h3d::Vec2<int> pos) {
 		COORD coord;
 		coord.X = pos.x;
 		coord.Y = pos.y;
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 	}
-	
 	namespace {
 		static unsigned short __bckg_flags = 0;
 		static unsigned short __text_flags = 0;
 	}
-
 	void Console::setBkgCol(unsigned short col) {
 		__bckg_flags = col << 4;
 
@@ -73,7 +70,6 @@ namespace h3d {
 		HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 		SetConsoleTextAttribute(hStdout, __bckg_flags | __text_flags);
 	}
-
 	void Console::clear() {
 		CONSOLE_SCREEN_BUFFER_INFO csbi;
 		COORD target = { 0,0 };
@@ -91,7 +87,6 @@ namespace h3d {
 		
 		setCurPos({ 0,0 });
 	}
-
 	void Console::printInColor(unsigned short back,
 							   unsigned short text,
 							   const char str[]) {
@@ -101,5 +96,6 @@ namespace h3d {
 		printf_s(str);
 	}
 }
-
+#elif 
+#error "no linux"
 #endif

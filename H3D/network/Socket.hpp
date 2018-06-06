@@ -22,6 +22,9 @@ namespace h3d {
 		class Socket final
 		{
 		private:
+			struct impl;
+			std::unique_ptr<impl> m_impl;
+
 			// Winsock stuff
 			addrinfo *result = NULL,
 					 *ptr = NULL,
@@ -30,6 +33,10 @@ namespace h3d {
 			SOCKET    m_thisSocket;
 			addrinfo *m_thisAddrInfo;
 		public:
+			enum class Transport {
+				in,out,both
+			};
+
 			H3D_API Socket();
 			H3D_API Socket(int ai_family,
 						   int ai_socktype,

@@ -84,24 +84,23 @@ bool h3d::Texture::createTexture()
 	float borderColor[] = { 1.0f, 1.0f, 0.0f, 1.0f };
 	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
 
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0,
-					m_measurements.x, 
-					m_measurements.y, 
-					GL_RGB, GL_UNSIGNED_BYTE, m_buffer);
-
 	int image2dparam_format;
 	if (m_format == Format::BMP)
 		image2dparam_format = GL_BGR;
 	else
 		image2dparam_format = GL_RGB;
+
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0,
+        m_measurements.x,
+        m_measurements.y,
+        GL_RGB, GL_UNSIGNED_BYTE, m_buffer);
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 
 				 m_measurements.x, 
 				 m_measurements.y, 
 				 0, image2dparam_format, 
-				 GL_UNSIGNED_BYTE, m_buffer);
+				 GL_UNSIGNED_BYTE,m_buffer);
 
-	delete []m_buffer;
-	m_buffer = nullptr;
 	return true;
 }
 bool h3d::Texture::destroyTexture()

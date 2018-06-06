@@ -5,44 +5,24 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include "3DModelType\3DMT_MD5.hpp"
-#include "3DModelType\3DMT_X.hpp"
-#include "3DModelType\3DMT_OBJ.hpp"
-#include "3DModelType\3DMT_H3D.hpp"
 #include "Drawable.hpp"
+#include "Material.hpp"
+#include "Mesh.hpp"
 
 #include <string>
 #include <algorithm>
+#include <vector>
 /////////////////////////////////////////////////////////////////
 //	Universal 3D Model Class
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	enum class Model3DFormat {
-		OBJ,MD5,DAE
-	};
-	enum class Model3DTechnique {
-		NormalMap, Animated
-	};
-/////////////////////////////////////////////////////////////////
-// Convert Models
-/////////////////////////////////////////////////////////////////
-	namespace converter {
-		bool H3D_API MD5ToH3D(char input[], char ouput[]);
-		bool H3D_API OBJToH3D(char input[], char ouput[]);
-		bool H3D_API XToH3D  (char input[], char ouput[]);
-	}
-/////////////////////////////////////////////////////////////////
 class Model3D
 	{
-	private:
-		union {
-			ModelType::OBJ *obj;
-			ModelType::MD5 *md5;
-			ModelType::X   *x;
-			ModelType::H3D *h3d;
-		}m_rawModels;
+    struct impl;
+    std::unique_ptr<impl>m_impl;
 
-		Model3DFormat m_modelTypeEnum;
+    std::vector<h3d::Mesh> m_meshes;
+    std::vector<h3d::Material> m_materials;
 	public:
 		// Con-/Destructor
 		H3D_API Model3D();
@@ -57,6 +37,7 @@ class Model3D
 
 		// get Intel
 		bool H3D_API isAnimated();
+        void H3D_API logModelData();
 
 		// Animation Controls
 		void H3D_API play();
