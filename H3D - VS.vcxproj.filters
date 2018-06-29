@@ -1,515 +1,156 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Audio">
-      <UniqueIdentifier>{44d06b3d-d96c-467a-a0a2-17f637911820}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Hashing">
-      <UniqueIdentifier>{31502358-e376-42f7-98c3-d95f41baf217}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OpenGL Shader">
-      <UniqueIdentifier>{597c47ea-1a31-4cc2-8d3b-32f67998a1d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Network">
-      <UniqueIdentifier>{93798bb1-204e-4e86-9b03-27915ddf659b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LuaScript">
-      <UniqueIdentifier>{6e14e085-d900-4738-aacc-03bc9ee5bfdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="memmng">
-      <UniqueIdentifier>{2d95cf78-7a52-4a07-aff5-6da1d9619ebf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI">
-      <UniqueIdentifier>{fc61880b-a8b2-4e8e-9d2c-5ed4a9f3b854}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Texture">
-      <UniqueIdentifier>{aa8a711d-5667-4ad8-b1dd-fb697c39d603}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Physic">
-      <UniqueIdentifier>{f382b414-19c2-4d95-b5ea-7155da59e9f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Renderer">
-      <UniqueIdentifier>{1d1e6ed9-65f7-4fa8-abf2-7ca82cfef9ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window">
-      <UniqueIdentifier>{2771b009-c60e-4157-9b32-70d72f4a2f53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="InputHandling">
-      <UniqueIdentifier>{cd51efb0-d11f-4387-ad3d-5776cf15e848}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Camera">
-      <UniqueIdentifier>{2b590a5a-7a21-432e-a54c-f398706a93ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Clock">
-      <UniqueIdentifier>{223cc98d-d5d4-4212-ad8c-d0a33ca80993}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OpenGL Context">
-      <UniqueIdentifier>{aa434728-8c2d-4588-8927-c89f7bf12c3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Config">
-      <UniqueIdentifier>{34e25e4f-32f0-494e-ad2b-c2cb0a375ee4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PostEffect">
-      <UniqueIdentifier>{b3c083bc-d4b3-4271-9d91-b90049d0f871}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="XML">
-      <UniqueIdentifier>{158bfb97-2899-47a4-9a15-2a32f94a2a6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FileSystem">
-      <UniqueIdentifier>{85295442-4109-4285-8e32-d36924362d29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ResourceManager">
-      <UniqueIdentifier>{01945f97-8dbd-44f7-8847-8021211390f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Model3D">
-      <UniqueIdentifier>{cfd358ae-15a0-4bf9-a743-1e0458fb123c}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Vector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Matrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Vec4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Scenegraph.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GLMultithreadingPackages.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GLMultithreading.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Utilities.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Quaternion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Audio.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Audio\AudioBufferClasses.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Audio\AudioLoader.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Audio\AudioSource.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\hashing\CRC32.cpp">
-      <Filter>Hashing</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Shader.cpp">
-      <Filter>OpenGL Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Program.cpp">
-      <Filter>OpenGL Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\3DModel.cpp">
-      <Filter>Model3D</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\hashing\UniChecksum.cpp">
-      <Filter>Hashing</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Network.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\network\Socket.cpp">
-      <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\LuaScript\LuaScript.cpp">
-      <Filter>LuaScript</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GUI\Text.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GUI\Button.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GUI\Font.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\GUI.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\memmng\linear_alloc.cpp">
-      <Filter>memmng</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\hashing\SHA256.cpp">
-      <Filter>Hashing</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\FileSystem.cpp">
-      <Filter>FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ContainerFile.cpp">
-      <Filter>FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Texture.cpp">
-      <Filter>Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\TextureLoader.cpp">
-      <Filter>Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Audio\AudioBufferStream.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Audio\AudioBufferStreamer.cpp">
-      <Filter>Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ParticleUpdater.cpp">
-      <Filter>Physic</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ParticleRenderer.cpp">
-      <Filter>Physic</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Renderer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Drawable.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Window.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\OpenGLContext.cpp">
-      <Filter>OpenGL Context</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\WglContext.cpp">
-      <Filter>OpenGL Context</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\X11Context.cpp">
-      <Filter>OpenGL Context</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\InputManager.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Joystick.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Mouse.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Camera.cpp">
-      <Filter>Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Clock.cpp">
-      <Filter>Clock</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Win32ClockImpl.cpp">
-      <Filter>Clock</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\LinuxClockImpl.cpp">
-      <Filter>Clock</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Win32WindowImpl.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\X11WindowImpl.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\WindowImpl.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\PhysicEngine.cpp">
-      <Filter>Physic</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Posteffects\SSAO.cpp">
-      <Filter>PostEffect</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\KeyboardWin32Impl.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\KeyboardX11Impl.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\MouseWin32Impl.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\LightScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ItemContainer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\memmng\memory.cpp">
-      <Filter>memmng</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\MouseX11Impl.cpp">
-      <Filter>InputHandling</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ConsoleWin32Impl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\XML.cpp">
-      <Filter>XML</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\XMLTree.cpp">
-      <Filter>XML</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\XMLNode.cpp">
-      <Filter>XML</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\TextureConverter.cpp">
-      <Filter>Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\ResourceManager.cpp">
-      <Filter>ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Resource.cpp">
-      <Filter>ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Physic\Emitter.cpp">
-      <Filter>Physic</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Material.cpp">
-      <Filter>Model3D</Filter>
-    </ClCompile>
-    <ClCompile Include="H3D\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="H3D\Audio\Audio.hpp" />
+    <ClInclude Include="H3D\Audio\AudioAccessories.hpp" />
+    <ClInclude Include="H3D\Graphics\Color.hpp" />
+    <ClInclude Include="H3D\Graphics\Drawable.hpp" />
+    <ClInclude Include="H3D\Graphics\GBuffer.hpp" />
+    <ClInclude Include="H3D\Graphics\Image.hpp" />
+    <ClInclude Include="H3D\Graphics\Light.hpp" />
+    <ClInclude Include="H3D\Graphics\Material.hpp" />
+    <ClInclude Include="H3D\Graphics\OpenGLContext.hpp" />
+    <ClInclude Include="H3D\Graphics\Program.hpp" />
+    <ClInclude Include="H3D\Graphics\ProgramPipeline.hpp" />
+    <ClInclude Include="H3D\Graphics\Renderer.hpp" />
+    <ClInclude Include="H3D\Graphics\Shader.hpp" />
+    <ClInclude Include="H3D\Graphics\Texture.hpp" />
+    <ClInclude Include="H3D\Graphics\Vertex.hpp" />
+    <ClInclude Include="H3D\GUI\Button.hpp" />
+    <ClInclude Include="H3D\GUI\Font.hpp" />
+    <ClInclude Include="H3D\GUI\GUI.hpp" />
+    <ClInclude Include="H3D\GUI\Stylesheet.hpp" />
+    <ClInclude Include="H3D\GUI\Text.hpp" />
+    <ClInclude Include="H3D\Hashing\CRC32.hpp" />
+    <ClInclude Include="H3D\Hashing\SHA256.hpp" />
+    <ClInclude Include="H3D\Hashing\UniChecksum.hpp" />
+    <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
+    <ClInclude Include="H3D\Math\Matrix.hpp" />
+    <ClInclude Include="H3D\Math\Quaternion.hpp" />
+    <ClInclude Include="H3D\Math\Vector.hpp" />
+    <ClInclude Include="H3D\MemoryMng\base_alloc.hpp" />
+    <ClInclude Include="H3D\MemoryMng\freelist_alloc.hpp" />
+    <ClInclude Include="H3D\MemoryMng\linear_alloc.hpp" />
+    <ClInclude Include="H3D\MemoryMng\memory.hpp" />
+    <ClInclude Include="H3D\MemoryMng\pool_alloc.hpp" />
+    <ClInclude Include="H3D\Model\3DModel.hpp" />
+    <ClInclude Include="H3D\Model\Mesh.hpp" />
+    <ClInclude Include="H3D\Model\ModelConverter.hpp" />
+    <ClInclude Include="H3D\Network\Network.hpp" />
+    <ClInclude Include="H3D\Network\Package.hpp" />
+    <ClInclude Include="H3D\Network\Socket.hpp" />
+    <ClInclude Include="H3D\OpenGL\GLMultithreading.hpp" />
+    <ClInclude Include="H3D\OpenGL\GLMultithreadingPackages.hpp" />
+    <ClInclude Include="H3D\OS\WglContext.hpp" />
+    <ClInclude Include="H3D\OS\Win32WindowImpl.hpp" />
+    <ClInclude Include="H3D\OS\X11Context.hpp" />
+    <ClInclude Include="H3D\OS\X11WindowImpl.hpp" />
+    <ClInclude Include="H3D\Physic\ParticleEngine.hpp" />
+    <ClInclude Include="H3D\Physic\Physic.hpp" />
+    <ClInclude Include="H3D\Physic\PhysicObject.hpp" />
+    <ClInclude Include="H3D\Posteffects\SSAO.hpp" />
+    <ClInclude Include="H3D\Resource\Resource.hpp" />
+    <ClInclude Include="H3D\Resource\ResourceManager.hpp" />
+    <ClInclude Include="H3D\Scene\Camera.hpp" />
+    <ClInclude Include="H3D\Scene\Scenegraph.hpp" />
+    <ClInclude Include="H3D\Scene\ScenegraphClasses.hpp" />
+    <ClInclude Include="H3D\System\Clock.hpp" />
+    <ClInclude Include="H3D\System\Config.hpp" />
+    <ClInclude Include="H3D\System\ContainerFile.hpp" />
+    <ClInclude Include="H3D\System\Event.hpp" />
+    <ClInclude Include="H3D\System\FileDataStructures.hpp" />
+    <ClInclude Include="H3D\System\FileSystem.hpp" />
+    <ClInclude Include="H3D\System\InputManager.hpp" />
+    <ClInclude Include="H3D\System\ItemContainer.hpp" />
+    <ClInclude Include="H3D\System\Keyboard.hpp" />
+    <ClInclude Include="H3D\System\Mouse.hpp" />
+    <ClInclude Include="H3D\System\Utilities.hpp" />
+    <ClInclude Include="H3D\System\Window.hpp" />
+    <ClInclude Include="H3D\System\WindowImpl.hpp" />
+    <ClInclude Include="H3D\Vector\Vector_Declaration.hpp" />
+    <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
+    <ClInclude Include="H3D\XML\XML.hpp" />
+    <ClInclude Include="H3D\CImg.h" />
+    <ClInclude Include="H3D\externals.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="H3D.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Vector.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Color.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Image.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Mesh.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Vertex.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Vector\Vector_Declaration.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Vector\Vector_Implementation.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Event.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Matrix.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Scenegraph.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ScenegraphClasses.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Light.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GBuffer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GLMultithreading.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GLMultithreadingPackages.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Utilities.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Quaternion.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Audio.hpp">
-      <Filter>Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\AudioAccessories.hpp">
-      <Filter>Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\hashing\CRC32.hpp">
-      <Filter>Hashing</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Shader.hpp">
-      <Filter>OpenGL Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Program.hpp">
-      <Filter>OpenGL Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\3DModel.hpp">
-      <Filter>Model3D</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\hashing\UniChecksum.hpp">
-      <Filter>Hashing</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Network.hpp">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\network\Socket.hpp">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\network\Package.hpp">
-      <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\LuaScript\LuaScript.hpp">
-      <Filter>LuaScript</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\memmng\base_alloc.hpp">
-      <Filter>memmng</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI.hpp">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Button.hpp">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Font.hpp">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Text.hpp">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\GUI\Stylesheet.hpp">
-      <Filter>GUI</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\memmng\pool_alloc.hpp">
-      <Filter>memmng</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\memmng\linear_alloc.hpp">
-      <Filter>memmng</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\hashing\SHA256.hpp">
-      <Filter>Hashing</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\FileDataStructures.hpp">
-      <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\FileSystem.hpp">
-      <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ContainerFile.hpp">
-      <Filter>FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Texture.hpp">
-      <Filter>Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\externals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ParticleEngine.hpp">
-      <Filter>Physic</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Physic\Physic.hpp">
-      <Filter>Physic</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Renderer.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Drawable.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Window.hpp">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\WindowImpl.hpp">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\OpenGLContext.hpp">
-      <Filter>OpenGL Context</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\WglContext.hpp">
-      <Filter>OpenGL Context</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\X11Context.hpp">
-      <Filter>OpenGL Context</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Win32WindowImpl.hpp">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\X11WindowImpl.hpp">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\InputManager.hpp">
-      <Filter>InputHandling</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Keyboard.hpp">
-      <Filter>InputHandling</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Mouse.hpp">
-      <Filter>InputHandling</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Camera.hpp">
-      <Filter>Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Clock.hpp">
-      <Filter>Clock</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Config.hpp">
-      <Filter>Config</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\PhysicObject.hpp">
-      <Filter>Physic</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\memmng\memory.hpp">
-      <Filter>memmng</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\memmng\freelist_alloc.hpp">
-      <Filter>memmng</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Posteffects\SSAO.hpp">
-      <Filter>PostEffect</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ProgramPipeline.hpp">
-      <Filter>OpenGL Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ItemContainer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\XML.hpp">
-      <Filter>XML</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\ResourceManager.hpp">
-      <Filter>ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Resource.hpp">
-      <Filter>ResourceManager</Filter>
-    </ClInclude>
-    <ClInclude Include="H3D\Material.hpp">
-      <Filter>Model3D</Filter>
-    </ClInclude>
+    <ClCompile Include="H3D\OpenGL\GLMultithreading.cpp" />
+    <ClCompile Include="H3D\OpenGL\GLMultithreadingPackages.cpp" />
+    <ClCompile Include="src\Audio\Audio.cpp" />
+    <ClCompile Include="src\Audio\AudioBufferClasses.cpp" />
+    <ClCompile Include="src\Audio\AudioBufferStream.cpp" />
+    <ClCompile Include="src\Audio\AudioBufferStreamer.cpp" />
+    <ClCompile Include="src\Audio\AudioLoader.cpp" />
+    <ClCompile Include="src\Audio\AudioSource.cpp" />
+    <ClCompile Include="src\Graphics\Drawable.cpp" />
+    <ClCompile Include="src\Graphics\GBuffer.cpp" />
+    <ClCompile Include="src\Graphics\Image.cpp" />
+    <ClCompile Include="src\Graphics\Light.cpp" />
+    <ClCompile Include="src\Graphics\LightScene.cpp" />
+    <ClCompile Include="src\Graphics\Material.cpp" />
+    <ClCompile Include="src\Graphics\OpenGLContext.cpp" />
+    <ClCompile Include="src\Graphics\Program.cpp" />
+    <ClCompile Include="src\Graphics\Renderer.cpp" />
+    <ClCompile Include="src\Graphics\Shader.cpp" />
+    <ClCompile Include="src\Graphics\Texture.cpp" />
+    <ClCompile Include="src\Graphics\TextureConverter.cpp" />
+    <ClCompile Include="src\Graphics\TextureLoader.cpp" />
+    <ClCompile Include="src\GUI\Button.cpp" />
+    <ClCompile Include="src\GUI\Font.cpp" />
+    <ClCompile Include="src\GUI\GUI.cpp" />
+    <ClCompile Include="src\GUI\Text.cpp" />
+    <ClCompile Include="src\Hashing\CRC32.cpp" />
+    <ClCompile Include="src\Hashing\SHA256.cpp" />
+    <ClCompile Include="src\Hashing\UniChecksum.cpp" />
+    <ClCompile Include="src\LuaScript\LuaScript.cpp" />
+    <ClCompile Include="src\Math\Matrix.cpp" />
+    <ClCompile Include="src\Math\Quaternion.cpp" />
+    <ClCompile Include="src\Math\Vec4.cpp" />
+    <ClCompile Include="src\Math\Vector.cpp" />
+    <ClCompile Include="src\MemoryMng\linear_alloc.cpp" />
+    <ClCompile Include="src\MemoryMng\memory.cpp" />
+    <ClCompile Include="src\Model\3DModel.cpp" />
+    <ClCompile Include="src\Model\Mesh.cpp" />
+    <ClCompile Include="src\Network\Network.cpp" />
+    <ClCompile Include="src\Network\Socket.cpp" />
+    <ClCompile Include="src\OpenGL\GLMultithreading.cpp" />
+    <ClCompile Include="src\OpenGL\GLMultithreadingPackages.cpp" />
+    <ClCompile Include="src\OS\ConsoleWin32Impl.cpp" />
+    <ClCompile Include="src\OS\MouseWin32Impl.cpp" />
+    <ClCompile Include="src\OS\MouseX11Impl.cpp" />
+    <ClCompile Include="src\OS\WglContext.cpp" />
+    <ClCompile Include="src\OS\Win32WindowImpl.cpp" />
+    <ClCompile Include="src\OS\X11Context.cpp" />
+    <ClCompile Include="src\OS\X11WindowImpl.cpp" />
+    <ClCompile Include="src\Physic\Emitter.cpp" />
+    <ClCompile Include="src\Physic\ParticleRenderer.cpp" />
+    <ClCompile Include="src\Physic\ParticleUpdater.cpp" />
+    <ClCompile Include="src\Physic\PhysicEngine.cpp" />
+    <ClCompile Include="src\Posteffects\SSAO.cpp" />
+    <ClCompile Include="src\Resource\Resource.cpp" />
+    <ClCompile Include="src\Resource\ResourceManager.cpp" />
+    <ClCompile Include="src\Scene\Camera.cpp" />
+    <ClCompile Include="src\Scene\Scenegraph.cpp" />
+    <ClCompile Include="src\System\Clock.cpp" />
+    <ClCompile Include="src\System\ContainerFile.cpp" />
+    <ClCompile Include="src\System\FileSystem.cpp" />
+    <ClCompile Include="src\System\InputManager.cpp" />
+    <ClCompile Include="src\System\ItemContainer.cpp" />
+    <ClCompile Include="src\System\Joystick.cpp" />
+    <ClCompile Include="src\System\KeyboardWin32Impl.cpp" />
+    <ClCompile Include="src\System\KeyboardX11Impl.cpp" />
+    <ClCompile Include="src\System\LinuxClockImpl.cpp" />
+    <ClCompile Include="src\System\Mouse.cpp" />
+    <ClCompile Include="src\System\Utilities.cpp" />
+    <ClCompile Include="src\System\Win32ClockImpl.cpp" />
+    <ClCompile Include="src\System\Window.cpp" />
+    <ClCompile Include="src\System\WindowImpl.cpp" />
+    <ClCompile Include="src\XML\XML.cpp" />
+    <ClCompile Include="src\XML\XMLNode.cpp" />
+    <ClCompile Include="src\XML\XMLTree.cpp" />
+    <ClCompile Include="test_app\main.cpp" />
   </ItemGroup>
 </Project>
