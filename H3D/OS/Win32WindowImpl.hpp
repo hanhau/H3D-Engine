@@ -1,7 +1,8 @@
 #pragma once
 #ifdef _WIN32 || _WIN64
 
-#include "WindowImpl.hpp"
+#include "../../H3D/System/WindowImpl.hpp"
+
 namespace h3d {
 	class Event;
 	namespace intern {

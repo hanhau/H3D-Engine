@@ -2,8 +2,8 @@
 #include "../../H3D/System/FileDataStructures.hpp"
 #include "../../H3D/System/Utilities.hpp"
 #include "../../H3D/Math/Vector.hpp"
-#include "Texture.hpp"
-#include "Color.hpp"
+#include "../../H3D/Graphics/Texture.hpp"
+#include "../../H3D/Graphics/Color.hpp"
 
 #include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)

@@ -6,8 +6,8 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include "../../H3D/Graphics/Drawable.hpp"
-#include "Material.hpp"
-#include "Mesh.hpp"
+#include "../../H3D/Graphics/Material.hpp"
+#include "../../H3D/Model/Mesh.hpp"
 
 #include <string>
 #include <algorithm>

@@ -5,7 +5,6 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "../../H3D/System/Utilities.hpp"
 #include <cstring>
 #include <string>
 #include <queue>
@@ -14,7 +13,8 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-#include "network\Package.hpp"
+#include "../../H3D/System/Utilities.hpp"
+#include "../../H3D/Network/Package.hpp"
 /////////////////////////////////////////////////////////////////
 // Network Module
 namespace h3d {

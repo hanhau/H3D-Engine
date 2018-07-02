@@ -2,7 +2,7 @@
 #ifdef _WIN32 || _WIN64
 
 #include "../../H3D/System/Window.hpp"
-#include "Win32WindowImpl.hpp"
+#include "../../H3D/OS/Win32WindowImpl.hpp"
 #include <wingdi.h>
 #include <memory>
 #include <string>

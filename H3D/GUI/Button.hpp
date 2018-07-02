@@ -6,9 +6,9 @@
 #endif // DLL_EXPORT
 
 #include "Stylesheet.hpp"
-#include "../Vector.hpp"
-#include "../Vertex.hpp"
-#include "../Texture.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/Graphics/Vertex.hpp"
+#include "../../H3D/Graphics/Texture.hpp"
 
 #include "../externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)

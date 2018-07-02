@@ -1,5 +1,4 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include 
 
 #ifdef _DEBUG
 #pragma comment(lib,"../Debug/H3D.lib")
@@ -11,7 +10,6 @@
 
 #pragma comment(lib,"opengl32.lib")
 
-#include <H3D>
 #include <H3D/Model/3DModel.hpp>
 #include <H3D/LuaScript/LuaScript.hpp>
 #include <H3D/Graphics/Program.hpp>

@@ -7,7 +7,7 @@
 /////////////////////////////////////////////////////////////
 #include <string>
 #include "Font.hpp"
-#include "../Color.hpp"
+#include "../../H3D/Graphics/Color.hpp"
 
 #include "../externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)

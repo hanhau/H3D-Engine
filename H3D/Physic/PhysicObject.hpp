@@ -6,7 +6,7 @@
 #endif
 
 #include "../../H3D/Math/Vector.hpp"
-#include "Quaternion.hpp"
+#include "../../H3D/Math/Quaternion.hpp"
 #include <vector>
 
 namespace h3d {

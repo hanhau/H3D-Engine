@@ -5,8 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "GLMultithreadingPackages.hpp"
-#include "../OS/OpenGLContext.hpp"
+#include "../../H3D/OpenGL/GLMultithreadingPackages.hpp"
+#include "../../H3D/Graphics/OpenGLContext.hpp"
 #include <Windows.h>
 #include <thread>
 #include <list>
