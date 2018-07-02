@@ -1,4 +1,4 @@
-#include "Resource.hpp"
+#include "../../H3D/Resource/Resource.hpp"
 #include <algorithm>
 
 /////////////////////////////////////////////////////////////////

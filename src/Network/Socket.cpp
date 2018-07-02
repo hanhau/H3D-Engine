@@ -1,7 +1,7 @@
-#include "Socket.hpp"
-#include "Package.hpp"
-#include "..\Config.hpp"
-#include "..\Utilities.hpp"
+#include "../../H3D/Network/Socket.hpp"
+#include "../../H3D/Network/Package.hpp"
+#include "../../H3D/System/Config.hpp"
+#include "../../H3D/System/Utilities.hpp"
 #include <cstdlib>
 #include <sys\types.h>
 

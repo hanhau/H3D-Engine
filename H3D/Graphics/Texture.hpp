@@ -6,10 +6,10 @@
 #endif
 
 #include <memory>
-#include "Vector.hpp"
-#include "FileDataStructures.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/System/FileDataStructures.hpp"
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 //	class Texture

@@ -5,10 +5,10 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include "Utilities.hpp"
+#include "../../H3D/System/Utilities.hpp"
 #include <map>
 #include <string>
-#include "FileSystem.hpp"
+#include "../../H3D/System/FileSystem.hpp"
 /////////////////////////////////////////////////////////////////
 // ContainerFile containing multiple files in one
 /////////////////////////////////////////////////////////////////

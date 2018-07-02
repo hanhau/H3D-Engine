@@ -1,9 +1,9 @@
 #pragma once
-#include "Config.hpp"
+#include "../../H3D/System/Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS
 
-#include "OpenGLContext.hpp"
-#include "Win32WindowImpl.hpp"
+#include "../../H3D/Graphics/OpenGLContext.hpp"
+#include "../../H3D/OS/Win32WindowImpl.hpp"
 namespace h3d {
 	namespace intern {
 		class WglContext : GLContext

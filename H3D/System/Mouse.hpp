@@ -5,8 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "Vector.hpp"
-#include "Window.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/System/Window.hpp"
 namespace h3d{
 /////////////////////////////////////////////////////////////////
 // Mouse

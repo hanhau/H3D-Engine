@@ -1,6 +1,6 @@
 #pragma once
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Packages to send off in h3d::GL::packet_stream

@@ -1,5 +1,5 @@
 #if defined _WIN32 || _WIN64
-#include "Clock.hpp"
+#include "../../H3D/System/Clock.hpp"
 
 #include <Windows.h>
 class h3d::Clock::ClockImpl {

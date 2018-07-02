@@ -8,14 +8,14 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include "Vector.hpp"
-#include "Program.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/Graphics/Program.hpp"
 #include <assert.h>
 /////////////////////////////////////////////////////////////////
-#include "GUI\Button.hpp"
-#include "GUI\Text.hpp"
+#include "../../H3D/GUI/Button.hpp"
+#include "../../H3D/GUI/Text.hpp"
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 #include STR(FREETYPE_INCLUDE/ft2build.h)
 #include STR(FREETYPE_INCLUDE/freetype/freetype.h)

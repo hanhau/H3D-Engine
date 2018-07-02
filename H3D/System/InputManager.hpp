@@ -12,8 +12,8 @@
 #include <fstream>
 #include <hidsdi.h>
 
-#include "Utilities.hpp"
-#include "Vector.hpp"
+#include "../../H3D/System/Utilities.hpp"
+#include "../../H3D/Math/Vector.hpp"
 /////////////////////////////////////////////////////////////////
 //	Enumerations
 /////////////////////////////////////////////////////////////////

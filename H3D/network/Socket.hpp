@@ -5,7 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include "..\Network.hpp"
+#include "../../H3D/Network/Network.hpp"
 #include <string>
 #include <WS2tcpip.h>
 #include <WinSock2.h>

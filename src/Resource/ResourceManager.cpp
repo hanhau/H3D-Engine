@@ -1,5 +1,5 @@
-#include "ResourceManager.hpp"
-#include "Utilities.hpp"
+#include "../../H3D/Resource/ResourceManager.hpp"
+#include "../../H3D/System/Utilities.hpp"
 #include <string>
 #include <random>
 #include <climits>

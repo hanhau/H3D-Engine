@@ -5,7 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include "Drawable.hpp"
+#include "../../H3D/Graphics/Drawable.hpp"
 #include "Material.hpp"
 #include "Mesh.hpp"
 

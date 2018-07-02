@@ -11,21 +11,21 @@
 #include <queue>
 #include <type_traits>
 
-#include "Vector.hpp"
-#include "Color.hpp"
-#include "OpenGLContext.hpp"
-#include "InputManager.hpp"
-#include "Event.hpp"
-#include "WindowImpl.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/Graphics/Color.hpp"
+#include "../../H3D/Graphics/OpenGLContext.hpp"
+#include "../../H3D/System/InputManager.hpp"
+#include "../../H3D/System/Event.hpp"
+#include "../../H3D/System/WindowImpl.hpp"
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 
-#include "Config.hpp"
+#include "../../H3D/System/Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS
-#include "WglContext.hpp"
+#include "../../H3D/OS/WglContext.hpp"
 #elif defined H3D_SYSTEM_LINUX
-#include "X11Context.hpp"
+#include "../../H3D/OS/X11Context.hpp"
 #endif
 
 class h3d::Event;

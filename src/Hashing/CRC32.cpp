@@ -1,6 +1,6 @@
-#include "CRC32.hpp"
+#include "../../H3D/Hashing/CRC32.hpp"
+#include "../../H3D/System/Utilities.hpp"
 #include <fstream>
-#include "..\Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 #define WIDTH  (8 * sizeof(uint8_t))
 #define TOPBIT (1 << (WIDTH -1))

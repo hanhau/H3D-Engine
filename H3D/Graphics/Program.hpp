@@ -12,14 +12,14 @@
 #define _TYPE_VEC2F    0b0000'0100
 #define _TYPE_VEC1F    0b0000'0101 
 /////////////////////////////////////////////////////////////////
-#include "Vector.hpp"
-#include "Matrix.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/Math/Matrix.hpp"
 #include "Shader.hpp"
 #include <vector>
 #include <map>
 #include <tuple>
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 //	Program class

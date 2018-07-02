@@ -1,7 +1,8 @@
-#include "Config.hpp"
+#include "../../H3D/System/Config.hpp"
+#include <memory>
 
 #ifdef H3D_SYSTEM_WINDOWS
-#include "WglContext.hpp"
+#include "../../H3D/OS/WglContext.hpp"
 #include <windows.h>
 
 bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32WindowImpl>& ptr)

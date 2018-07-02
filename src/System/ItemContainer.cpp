@@ -1,4 +1,4 @@
-#include "ItemContainer.hpp"
+#include "../../H3D/System/ItemContainer.hpp"
 
 h3d::ItemContainer::ItemContainer(size_t typesize,
 								  AllocationSource as) {

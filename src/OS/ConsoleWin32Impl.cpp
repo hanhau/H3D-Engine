@@ -1,8 +1,8 @@
-#include "Utilities.hpp"
+#include "../../H3D/System/Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // Console Impls
 /////////////////////////////////////////////////////////////////
-#include "Config.hpp"
+#include "../../H3D/System/Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS
 
 #include <Windows.h>

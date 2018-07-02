@@ -10,7 +10,7 @@
 #include <fstream>
 #include <cstdint>
 #include <thread>
-#include "hashing\UniChecksum.hpp"
+#include "../Hashing/UniChecksum.hpp"
 
 #ifdef _WIN32 || _WIN64
 #include <windows.h>

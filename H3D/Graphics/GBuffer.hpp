@@ -6,12 +6,12 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include "Light.hpp"
-#include "Vector.hpp"
+#include "../../H3D/Math/Vector.hpp"
 
 #include <mutex>
 #include <map>
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 //	GBuffer Class

@@ -6,11 +6,11 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include <cmath>
-#include "Vector.hpp"
-#include "Matrix.hpp"
-#include "Window.hpp"
-#include "Program.hpp"
-#include "Quaternion.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/Math/Matrix.hpp"
+#include "../../H3D/System/Window.hpp"
+#include "../../H3D/Graphics/Program.hpp"
+#include "../../H3D/Math/Quaternion.hpp"
 /////////////////////////////////////////////////////////////////
 //	class Camera 
 /////////////////////////////////////////////////////////////////

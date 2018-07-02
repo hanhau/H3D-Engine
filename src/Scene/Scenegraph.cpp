@@ -1,4 +1,4 @@
-#include "Scenegraph.hpp"
+#include "../../H3D/Scene/Scenegraph.hpp"
 #if defined DLL_EXPORT
 #define H3D_API __declspec(dllexport)
 #else

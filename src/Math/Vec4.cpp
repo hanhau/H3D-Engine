@@ -1,5 +1,5 @@
-#include "Vector/Vector_Declaration.hpp"
-#include "Matrix.hpp"
+#include "../../H3D/Vector/Vector_Declaration.hpp"
+#include "../../H3D/Math/Matrix.hpp"
 #include <utility>
 /////////////////////////////////////////////////////////////////
 //	Vec4 Implementations

@@ -1,4 +1,4 @@
-#include "ParticleEngine.hpp"
+#include "../../H3D/Physic/ParticleEngine.hpp"
 #include <cmath>
 /////////////////////////////////////////////////////////////////
 // Implementation of ParticleUpdater class

@@ -5,16 +5,16 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "Vector.hpp"
-#include "Color.hpp"
-#include "Texture.hpp"
-#include "Shader.hpp"
-#include "Program.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/Graphics/Color.hpp"
+#include "../../H3D/Graphics/Texture.hpp"
+#include "../../H3D/Graphics/Shader.hpp"
+#include "../../H3D/Graphics/Program.hpp"
 #include <vector>
 #include <queue>
 #include <math.h>
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Particle System for Particle Simulation
