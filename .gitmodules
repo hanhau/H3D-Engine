@@ -1,0 +1,21 @@
+[submodule "dep_libs/openal"]
+	path = dep_libs/openal
+	url = https://github.com/kcat/openal-soft
+[submodule "dep_libs/glew"]
+	path = dep_libs/glew
+	url = https://github.com/nigels-com/glew
+[submodule "dep_libs/freetype"]
+	path = dep_libs/freetype
+	url = https://github.com/rougier/freetype-gl
+[submodule "dep_libs/lua"]
+	path = dep_libs/lua
+	url = https://github.com/LuaDist/lua
+[submodule "dep_libs/sol2"]
+	path = dep_libs/sol2
+	url = https://github.com/ThePhD/sol2
+[submodule "dep_libs/assimp"]
+	path = dep_libs/assimp
+	url = https://github.com/assimp/assimp
+[submodule "dep_libs/libogg"]
+	path = dep_libs/libogg
+	url = https://github.com/xiph/ogg
