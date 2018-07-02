@@ -1,8 +1,8 @@
-#include "3DModel.hpp"
+#include "../../H3D/Model/3DModel.hpp"
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Impl

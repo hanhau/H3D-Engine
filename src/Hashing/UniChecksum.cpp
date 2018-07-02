@@ -1,11 +1,11 @@
-#include "UniChecksum.hpp"
+#include "../../H3D/Hashing/UniChecksum.hpp"
 #include <algorithm>
 #include <fstream>
 /////////////////////////////////////////////////////////////////
 // Inplementation of UniChecksum
 /////////////////////////////////////////////////////////////////
-#define MAX_KEY_LENGTH 24
-#define START_STRING "h3denginechecksumstartseed"
+constexpr int MAX_KEY_LENGTH = 24;
+constexpr char* START_STRING = "h3denginechecksumstartseed";
 /////////////////////////////////////////////////////////////////
 h3d::Checksum::Checksum() {}
 h3d::Checksum::~Checksum() {}

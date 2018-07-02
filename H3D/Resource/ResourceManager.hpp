@@ -5,8 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "memmng\memory.hpp"
-#include "hashing\UniChecksum.hpp"
+#include "../../H3D/MemoryMng/memory.hpp"
+#include "../../H3D/Hashing/UniChecksum.hpp"
 #include "Resource.hpp"
 #include <vector>
 /////////////////////////////////////////////////////////////////

@@ -1,12 +1,14 @@
-#include "Utilities.hpp"
-#include "Window.hpp"
-#include "FileDataStructures.hpp"
-#include "FileSystem.hpp"
 #include <cassert>
 #include <sstream>
 #include <stdlib.h>
-#include "Config.hpp"
-#include "externals.h"
+
+#include "../../H3D/System/Utilities.hpp"
+#include "../../H3D/System/Window.hpp"
+#include "../../H3D/System/FileDataStructures.hpp"
+#include "../../H3D/System/FileSystem.hpp"
+
+#include "../../H3D/System/Config.hpp"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 #ifdef H3D_SYSTEM_WINDOWS

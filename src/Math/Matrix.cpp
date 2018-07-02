@@ -1,4 +1,4 @@
-#include "Matrix.hpp"
+#include "../../H3D/Math/Matrix.hpp"
 
 #define _USE_MATH_DEFINES
 #include <math.h>

@@ -5,11 +5,11 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "memmng\pool_alloc.hpp"
-#include "Vector.hpp"
+#include "../../H3D/MemoryMng/pool_alloc.hpp"
+#include "../../H3D/Math/Vector.hpp"
 #include "Texture.hpp"
-#include "3DModel.hpp"
-#include "Window.hpp"
+#include "../../H3D/Model/3DModel.hpp"
+#include "../../H3D/System/Window.hpp"
 
 /////////////////////////////////////////////////////////////////
 // Drawable

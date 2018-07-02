@@ -1,5 +1,5 @@
-#include "LuaScript.hpp"
-#include "..\FileSystem.hpp"
+#include "../../H3D/LuaScript/LuaScript.hpp"
+#include "../../H3D/System/FileSystem.hpp"
 /////////////////////////////////////////////////////////////////
 // Implementation of LuaScript Class
 /////////////////////////////////////////////////////////////////

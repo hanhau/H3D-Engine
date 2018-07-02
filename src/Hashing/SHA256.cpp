@@ -1,5 +1,5 @@
-#include "SHA256.hpp"
-#include "../Utilities.hpp"
+#include "../../H3D/Hashing/SHA256.hpp"
+#include "../../H3D/System/Utilities.hpp"
 #include <cmath>
 #include <climits>
 #include <sstream>

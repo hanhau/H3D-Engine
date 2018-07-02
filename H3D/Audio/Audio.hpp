@@ -21,8 +21,8 @@
 #include <string>
 // internal 
 #include "../../H3D/System/Utilities.hpp"
-#include "../../H3D/Audio/AudioAccessories.hpp"
 #include "../../H3D/Math/Vector.hpp"
+#include "AudioAccessories.hpp"
 /////////////////////////////////////////////////////////////////
 // Audio Module
 /////////////////////////////////////////////////////////////////

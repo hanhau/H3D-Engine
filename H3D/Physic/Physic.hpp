@@ -5,8 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "..\Utilities.hpp"
-#include "..\PhysicObject.hpp"
+#include "../../H3D/System/Utilities.hpp"
+#include "../../H3D/Physic/PhysicObject.hpp"
 #include <thread>
 
 /////////////////////////////////////////////////////////////////

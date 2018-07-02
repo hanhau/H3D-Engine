@@ -12,7 +12,7 @@
 #include <list>
 #include <mutex>
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Package for sending off a call from a different thread

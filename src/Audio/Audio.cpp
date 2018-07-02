@@ -2,7 +2,7 @@
 #include <fstream>
 #include <algorithm>
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(LIBVORBIS_INCLUDE/vorbis/vorbisenc.h)
 #include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
 /////////////////////////////////////////////////////////////////

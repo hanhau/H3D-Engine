@@ -1,4 +1,4 @@
-#include "Network.hpp"
+#include "../../H3D/Network/Network.hpp"
 
 #ifdef _WIN32 || _WIN64
 #include <WinSock2.h>

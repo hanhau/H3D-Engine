@@ -1,5 +1,5 @@
-#include "ContainerFile.hpp"
-#include "Utilities.hpp"
+#include "../../H3D/System/ContainerFile.hpp"
+#include "../../H3D/System/Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // Implementation of ContainerFile Class
 /////////////////////////////////////////////////////////////////

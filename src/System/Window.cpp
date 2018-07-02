@@ -1,20 +1,20 @@
-#include "../../H3D/OS/Window.hpp"
-#include "../../H3D/OS/WindowImpl.hpp"
+#include "../../H3D/System/Window.hpp"
+#include "../../H3D/System/WindowImpl.hpp"
 
 #include "../../H3D/System/Utilities.hpp"
-#include "../../H3D/SYstem/Event.hpp"
+#include "../../H3D/System/Event.hpp"
 #include "../../H3D/OS/WglContext.hpp"
 
 // Windows
 #ifdef _WIN32 || _WIN64
 
-#include "Win32WindowImpl.hpp"
+#include "../../H3D/OS/Win32WindowImpl.hpp"
 typedef h3d::intern::Win32WindowImpl WindowImplType;
 
 // Linux
 #elif defined _linux_
 
-#include "X11WindowImpl.hpp"
+#include "../../H3D/OS/X11WindowImpl.hpp"
 typedef h3d::intern::X11WindowImpl WindowImplType;
 
 #endif 

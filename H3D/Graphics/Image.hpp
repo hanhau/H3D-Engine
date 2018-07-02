@@ -10,7 +10,7 @@
 #include STR(GLEW_INCLUDE/gl/glew.h)
 
 #include "Color.hpp"
-#include "Vector.hpp"
+#include "../../H3D/Math/Vector.hpp"
 #include <string>
 #include <fstream>
 /////////////////////////////////////////////////////////////////

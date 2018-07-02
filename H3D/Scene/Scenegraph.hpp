@@ -7,8 +7,8 @@
 /////////////////////////////////////////////////////////////////
 // Includes
 #include <list>
-#include "Vector.hpp"
-#include "Matrix.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/Math/Matrix.hpp"
 #include <cstdint>
 
 namespace h3d {

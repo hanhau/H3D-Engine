@@ -5,8 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif 
 
-#include "Utilities.hpp"
-#include "externals.h"
+#include "../../H3D/System/Utilities.hpp"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 #include STR(GLEW_INCLUDE/gl/wglew.h)
 /////////////////////////////////////////////////////////////////

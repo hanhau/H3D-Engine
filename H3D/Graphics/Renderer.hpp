@@ -8,10 +8,10 @@
 #include <vector>
 #include <queue>
 #include <thread>
-#include "memmng\linear_alloc.hpp"
-#include "Window.hpp"
-#include "Drawable.hpp"
-#include "Camera.hpp"
+#include "../../H3D/MemoryMng/linear_alloc.hpp"
+#include "../../H3D/System/Window.hpp"
+#include "../../H3D/Graphics/Drawable.hpp"
+#include "../../H3D/Scene/Camera.hpp"
 
 /////////////////////////////////////////////////////////////////
 // RendererClass

@@ -6,7 +6,7 @@
 #endif // DLL_EXPORT
 
 #include <malloc.h>
-#include "..\Utilities.hpp"
+#include "../../H3D/System/Utilities.hpp"
 #include <list>
 
 namespace {

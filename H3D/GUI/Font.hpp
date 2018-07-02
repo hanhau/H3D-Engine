@@ -5,8 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif // DLL_EXPORT
 /////////////////////////////////////////////////////////////
-#include "../Texture.hpp"
-#include "../Vector.hpp"
+#include "../../H3D/Graphics/Texture.hpp"
+#include "../../H3D/Math/Vector.hpp"
 #include "../externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 #include STR(FREETYPE_INCLUDE/ft2build.h)

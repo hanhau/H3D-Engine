@@ -26,6 +26,7 @@
 #include <H3D\Color.hpp>
 
 #include <H3D\hashing\SHA256.hpp>
+#include <H3D/hashing/CRC32.hpp>
 #include <H3D\memmng\memory.hpp>
 
 const h3d::Vec2<int> WINDOW_SIZE(600,400);
@@ -35,6 +36,12 @@ const h3d::Vec2<int> WINDOW_SIZE(600,400);
 
 int main()
 {	
+    h3d::CRC32Sum sum;
+    unsigned char a[] = { "asdaffwd" };
+    sum.create(a,sizeof a);
+
+    h3d::Log::debug("%x", sum.getKey());
+
 	h3d::DebugMode = true;
 
 	h3d::Log::debug("lewl %s", "lewl");
@@ -45,9 +52,13 @@ int main()
 					h3d::ContextSettings(0,0,0,0,false));
 	glewInit();
 
-	h3d::Model3D md;
-	md.loadFromFile("C:\\Users\\hanne\\Documents\\untitled.obj");
-    md.logModelData();
+	h3d::Model3D md_obj;
+	md_obj.loadFromFile("C:\\Users\\hanne\\Documents\\untitled.obj");
+    md_obj.logModelData();
+
+    h3d::Model3D md_fbx;
+    md_fbx.loadFromFile("C:\\Users\\hanne\\Documents\\untitled.fbx");
+    md_fbx.logModelData();
 
     glPointSize(10.f);
 	h3d::Shader vertexShader(GL_VERTEX_SHADER, "vert_shader.vert"); 
@@ -77,7 +88,7 @@ int main()
 		app.clear(GL_COLOR_BUFFER_BIT,
 				  h3d::Color<GLfloat>(0.0,0.0,0.0,0.0));
 
-       md.render();
+
 
 		app.swapBuffers();
 	}

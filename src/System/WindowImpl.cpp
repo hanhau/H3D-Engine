@@ -1,5 +1,5 @@
-#include "WindowImpl.hpp"
-#include "Event.hpp"
+#include "../../H3D/System/WindowImpl.hpp"
+#include "../../H3D/System/Event.hpp"
 
 namespace h3d {
 	namespace intern {

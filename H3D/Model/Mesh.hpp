@@ -6,8 +6,8 @@
 #endif
 
 #include <vector>
-#include "Vertex.hpp"
-#include "externals.h"
+#include "../../H3D/Graphics/Vertex.hpp"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 //	h3d::Mesh

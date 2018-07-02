@@ -1,7 +1,7 @@
 #pragma once
 /////////////////////////////////////////////////////////////////
 //	Including Declaration
-#include "Vector\Vector_Declaration.hpp"
+#include "../../H3D/Vector/Vector_Declaration.hpp"
 /////////////////////////////////////////////////////////////////
 //	Including Definitions
-#include "Vector\Vector_Implementation.hpp"
+#include "../../H3D/Vector/Vector_Implementation.hpp"

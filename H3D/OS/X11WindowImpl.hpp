@@ -1,7 +1,7 @@
 #pragma 
 #ifdef _linux_
-#include "Vector.hpp"
-#include "Window.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../../H3D/System/Window.hpp"
 
 namespace h3d {
 	namespace intern {

@@ -5,7 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "Vector.hpp"
+#include "../../H3D/Math/Vector.hpp"
 #include "Quaternion.hpp"
 #include <vector>
 

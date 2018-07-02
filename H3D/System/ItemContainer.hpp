@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <cstdint>
-#include "memmng\memory.hpp"
+#include "../../H3D/MemoryMng/memory.hpp"
 
 // TODO : ITERATOR ?!
 

@@ -7,10 +7,10 @@
 /////////////////////////////////////////////////////////////////
 #include <vector>
 #include "Color.hpp"
-#include "Vector.hpp"
-#include "memmng\memory.hpp"
+#include "../../H3D/Math/Vector.hpp"
+#include "../MemoryMng/memory.hpp"
 
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 //	Light Class

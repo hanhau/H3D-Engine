@@ -1,7 +1,7 @@
 #ifdef __linux__
 
 #define pimpl m_pimpl.get()
-#include "Window.hpp"
+#include "../../H3D/System/Window.hpp"
 #include <gl\glx.h>
 #include <X11.h>
 

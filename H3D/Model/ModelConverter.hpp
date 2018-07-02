@@ -5,7 +5,8 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include "FileSystem.hpp"
+#include "../../H3D/System/FileSystem.hpp"
+#include "../../H3D/Model/3DModel.hpp"
 #include <string>
 /////////////////////////////////////////////////////////////////
 // Converts any Format to H3D internal Format

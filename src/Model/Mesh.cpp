@@ -1,7 +1,7 @@
-#include "Mesh.hpp"
+#include "../../H3D/Model/Mesh.hpp"
 #include <assimp/mesh.h>
 #include <algorithm>
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
 // Implementation of Mesh
@@ -31,9 +31,10 @@ namespace h3d {
             m_vertices.push_back(temp_vert);
         }
         m_indices.clear();
-        auto iter = m_indices.begin();
-        m_indices.insert(iter, &m_ptr->mFaces->mIndices[0],
-                         m_ptr->mFaces->mIndices+sizeof(m_ptr->mFaces->mIndices));
+
+        for (int i = 0; i < sizeof(m_ptr->mFaces->mIndices); i++)
+            m_indices.push_back(m_ptr->mFaces->mIndices[i]);
+
         return true;
     }
     GLuint Mesh::loadToOpenGL() {

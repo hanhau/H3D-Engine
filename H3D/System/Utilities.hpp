@@ -32,7 +32,7 @@ void H3D_API VerifyFailed(const char* file, const char* line,
 #include "../../H3D/Math/Vector.hpp"
 /////////////////////////////////////////////////////////////////
 // OS specific printf/scanf
-#include "Config.hpp"
+#include "../../H3D/System/Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS
 
 #elif defined H3D_SYSTEM_LINUX

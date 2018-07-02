@@ -1,7 +1,7 @@
-#include "XML.hpp"
+#include "../../H3D/XML/XML.hpp"
 
-#include "FileSystem.hpp"
-#include "Utilities.hpp"
+#include "../../H3D/System/FileSystem.hpp"
+#include "../../H3D/System/Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // XML Implementation
 /////////////////////////////////////////////////////////////////

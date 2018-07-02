@@ -1,5 +1,5 @@
-#include "FileSystem.hpp"
-#include "Utilities.hpp"
+#include "../../H3D/System/FileSystem.hpp"
+#include "../../H3D/System/Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // Implementation of MemoryStream
 /////////////////////////////////////////////////////////////////

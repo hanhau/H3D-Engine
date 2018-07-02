@@ -1,6 +1,5 @@
-#include "SSAO.hpp"
-
-#include "../Program.hpp"
+#include "../../H3D/Posteffects/SSAO.hpp"
+#include "../../H3D/Graphics/Program.hpp"
 
 void h3d::Posteffects::applySSAO(GLuint framebuffer,
 								 SSAO_ControlValues &&vals) {

@@ -73,7 +73,6 @@
     <ClInclude Include="H3D\Vector\Vector_Declaration.hpp" />
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
     <ClInclude Include="H3D\XML\XML.hpp" />
-    <ClInclude Include="H3D\CImg.h" />
     <ClInclude Include="H3D\externals.h" />
   </ItemGroup>
   <ItemGroup>
@@ -152,5 +151,61 @@
     <ClCompile Include="src\XML\XMLNode.cpp" />
     <ClCompile Include="src\XML\XMLTree.cpp" />
     <ClCompile Include="test_app\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{66c4bdc8-ca10-4f26-abe4-45b61baf1516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{7c8393dc-d8ff-4acf-ba02-7fe4d4087765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{aa72ab34-2584-4293-aaa8-33acf97b0b8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LuaScript">
+      <UniqueIdentifier>{3de73cb6-9924-4063-bdd0-21101f59cf70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{6e13e5ce-6b6d-49bf-9c0e-171d8d546cbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MemoryMng">
+      <UniqueIdentifier>{b4988ec5-6403-48c7-b4e8-35c96bf4ff41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{e6486f68-3804-42d2-8b99-c807fcd448ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{800988cb-9377-4f5c-94de-8e1082f84777}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OpenGL">
+      <UniqueIdentifier>{30c755a2-931e-4372-8f39-91e40e546a2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OS">
+      <UniqueIdentifier>{02ae0b9c-3606-4523-a341-df64b2ab29ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physic">
+      <UniqueIdentifier>{314c2afb-2115-4a7b-bdfc-458a94df4300}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Posteffects">
+      <UniqueIdentifier>{79fea5ce-e4c0-49a1-88c3-48185219344d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hashing">
+      <UniqueIdentifier>{2da9c6a4-042f-4701-be14-e38292d7da02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{c0b36ccf-1a40-4c9d-ace2-11ba8e9994a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{46881a82-0c22-4c9a-9617-c8b1f1410e23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{75cf762e-8959-40e2-9785-821fad7876cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vector">
+      <UniqueIdentifier>{3a113eda-103c-4c2d-bf64-de66a3ec3fac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{f748fc54-59ad-4eb2-ac67-3257e98ed2d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-#include "memory.hpp"
+#include "../../H3D/MemoryMng/memory.hpp"
 
 namespace h3d {
 	void GlobalAllocator::allocate(size_t n)
