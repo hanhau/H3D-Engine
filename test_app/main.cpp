@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <H3D\externals.h>
+#include 
 
 #ifdef _DEBUG
 #pragma comment(lib,"../Debug/H3D.lib")
@@ -11,11 +11,11 @@
 
 #pragma comment(lib,"opengl32.lib")
 
-#include <H3D\Window.hpp>
-#include <H3D\3DModel.hpp>
-#include <H3D\LuaScript\LuaScript.hpp>
-#include <H3D\Program.hpp>
-#include <H3D\Audio.hpp>
+#include <H3D>
+#include <H3D/Model/3DModel.hpp>
+#include <H3D/LuaScript/LuaScript.hpp>
+#include <H3D/Graphics/Program.hpp>
+#include <H3D/Audio/Audio.hpp>
 #include <H3D\Clock.hpp>
 #include <H3D\Camera.hpp>
 #include <H3D/hashing/SHA256.hpp>

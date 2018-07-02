@@ -1,4 +1,4 @@
-#include "Config.hpp"
+#include "../../H3D/System/Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS
 
 #include "Keyboard.hpp"

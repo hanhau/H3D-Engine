@@ -6,7 +6,7 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include <Windows.h>
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(GLEW_INCLUDE/gl/glew.h)
 
 #include "Color.hpp"

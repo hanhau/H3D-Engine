@@ -11,7 +11,7 @@
 #include <queue>
 #include <type_traits>
 
-#include "Vector.hpp"
+#include "../../H3D/Math/Vector.hpp"
 #include "Color.hpp"
 #include "OpenGLContext.hpp"
 #include "InputManager.hpp"

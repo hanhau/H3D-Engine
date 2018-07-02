@@ -5,15 +5,14 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-#include <map>
-#include <vector>
-#include <Windows.h>
-#include <Mmsystem.h>
-#include <fstream>
-#include <hidsdi.h>
-
 #include "Utilities.hpp"
 #include "Vector.hpp"
+#include <fstream>
+#include <hidsdi.h>
+#include <map>
+#include <mmsystem.h>
+#include <vector>
+#include <Windows.h>
 /////////////////////////////////////////////////////////////////
 //	Enumerations
 /////////////////////////////////////////////////////////////////

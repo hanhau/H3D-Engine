@@ -1,9 +1,9 @@
-#include "Window.hpp"
-#include "WindowImpl.hpp"
+#include "../../H3D/OS/Window.hpp"
+#include "../../H3D/OS/WindowImpl.hpp"
 
-#include "Utilities.hpp"
-#include "Event.hpp"
-#include "WglContext.hpp"
+#include "../../H3D/System/Utilities.hpp"
+#include "../../H3D/SYstem/Event.hpp"
+#include "../../H3D/OS/WglContext.hpp"
 
 // Windows
 #ifdef _WIN32 || _WIN64

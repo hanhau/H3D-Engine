@@ -29,7 +29,7 @@ void H3D_API VerifyFailed(const char* file, const char* line,
 #include <string>
 #include <mutex>
 #include <cstdint>
-#include "Vector.hpp"
+#include "../../H3D/Math/Vector.hpp"
 /////////////////////////////////////////////////////////////////
 // OS specific printf/scanf
 #include "Config.hpp"
@@ -40,7 +40,7 @@ void H3D_API VerifyFailed(const char* file, const char* line,
 #endif
 /////////////////////////////////////////////////////////////////
 // Lua
-#include "externals.h"
+#include "../../H3D/externals.h"
 #include STR(LUA_INCLUDE/lua.hpp)
 #include STR(GLEW_INCLUDE/gl/glew.h)
 /////////////////////////////////////////////////////////////////
