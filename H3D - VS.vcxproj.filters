@@ -207,5 +207,13 @@
     <Filter Include="XML">
       <UniqueIdentifier>{f748fc54-59ad-4eb2-ac67-3257e98ed2d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BUILD SCRIPT">
+      <UniqueIdentifier>{bf04f46e-4ffc-42c3-ab6c-a255766651d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build_dep_libs.bat">
+      <Filter>BUILD SCRIPT</Filter>
+    </None>
   </ItemGroup>
 </Project>

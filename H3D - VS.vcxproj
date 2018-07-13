@@ -440,6 +440,9 @@
     <ClCompile Include="src\XML\XMLTree.cpp" />
     <ClCompile Include="test_app\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="build_dep_libs.bat" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
