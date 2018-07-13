@@ -7,9 +7,9 @@
 /////////////////////////////////////////////////////////////////
 // external
 #include "../../H3D/externals.h"
-#include STR(OPENAL_INCLUDE/al.h)
-#include STR(OPENAL_INCLUDE/alc.h)
-#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
+#include "../../dep_libs/openal/include/AL/al.h"
+#include "../../dep_libs/openal/include/AL/alc.h"
+#include "../../dep_libs/libvorbis/include/vorbis/vorbisfile.h"
 
 // cpp headers
 #include <stdint.h>
