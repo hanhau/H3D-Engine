@@ -3,7 +3,7 @@
 	url = https://github.com/kcat/openal-soft
 [submodule "dep_libs/glew"]
 	path = dep_libs/glew
-	url = https://github.com/nigels-com/glew
+	url = https://github.com/Perlmint/glew-cmake
 [submodule "dep_libs/freetype"]
 	path = dep_libs/freetype
 	url = https://github.com/rougier/freetype-gl
