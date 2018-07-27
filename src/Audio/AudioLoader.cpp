@@ -3,8 +3,8 @@
 #include "../../H3D/System/Utilities.hpp"
 
 #include "../../H3D/externals.h"
-#include STR(OPENAL_INCLUDE/al.h)
-#include STR(OPENAL_INCLUDE/alc.h)
+#include STR(OPENAL_INCLUDE/al/al.h)
+#include STR(OPENAL_INCLUDE/al/alc.h)
 #include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
 #include STR(LIBVORBIS_INCLUDE/vorbis/vorbisenc.h)
 

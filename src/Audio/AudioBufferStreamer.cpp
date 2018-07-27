@@ -3,7 +3,7 @@
 #include "../../H3D/System//Utilities.hpp"
 
 #include "../../H3D/externals.h"
-#include STR(OPENAL_INCLUDE/al.h)
+#include STR(OPENAL_INCLUDE/al/al.h)
 #include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
 /////////////////////////////////////////////////////////////////
 // OGG Streaming Utils

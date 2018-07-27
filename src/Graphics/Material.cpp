@@ -1,5 +1,6 @@
 #include "../../H3D/Graphics/Material.hpp"
-#include <assimp/material.h>
+#include "../../H3D/externals.h"
+#include STR(ASSIMP_INCLUDE/assimp/material.h)
 /////////////////////////////////////////////////////////////////
 inline h3d::Color<float> fromAssimpCol(aiColor3D col) {
     return h3d::Color<float>(col.r, col.g, col.b, 1.0);

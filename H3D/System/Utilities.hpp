@@ -43,6 +43,7 @@ void H3D_API VerifyFailed(const char* file, const char* line,
 #include "../../H3D/externals.h"
 #include STR(LUA_INCLUDE/lua.hpp)
 #include STR(GLEW_INCLUDE/gl/glew.h)
+#include "../../dep_libs/lua/src/lua.hpp"
 /////////////////////////////////////////////////////////////////
 // Numerics
 namespace h3d {
