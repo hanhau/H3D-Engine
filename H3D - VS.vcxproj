@@ -102,8 +102,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\glew-2.0.0\include;$(IncludePath);C:\CppLibs\freetype-2.7\include;C:\OpenAL 1.1 SDK\include;C:\libvorbis-1.3.5\include\vorbis;C:\lua 5.3.4\include;C:\Program Files\Assimp\include</IncludePath>
-    <LibraryPath>C:\glew-2.0.0\lib\Release\Win32;$(LibraryPath);$(DXSDK_DIR)Lib/x86;C:\CppLibs\freetype-2.7\objs\vc2010\Win32;C:\OpenAL 1.1 SDK\libs\Win32;C:\libvorbis-1.3.5\win32\VS2010\Win32\Release;C:\libogg-1.3.2\libogg-1.3.2\win32\VS2010\Win32\Debug;C:\lua 5.3.4\lib;C:\Programme\Assimp\bin\x86</LibraryPath>
+    <IncludePath>$(IncludePath);\dep_libs\freetype\windows\freetype\</IncludePath>
+    <LibraryPath>$(LibraryPath);C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\glew\bin\Debug;C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\assimp\bin\Debug</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>

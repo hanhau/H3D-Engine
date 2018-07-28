@@ -2,10 +2,8 @@
 
 #ifdef _DEBUG
 #pragma comment(lib,"../Debug/H3D.lib")
-#pragma comment(lib,STR(GLEW_PATH/lib/Release/Win32/glew32.lib))
 #else 
 #pragma comment(lib,"../Release/H3D.lib")
-#pragma comment(lib,STR(GLEW_PATH/lib/Release/Win32/glew32.lib))
 #endif 
 
 #pragma comment(lib,"opengl32.lib")
