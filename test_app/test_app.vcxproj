@@ -76,9 +76,9 @@
     <ReferencePath>$(VC_ReferencesPath_x86);../../Release/</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\sol2\single;../;$(IncludePath)</IncludePath>
-    <ReferencePath>$(VC_ReferencesPath_x86);../../Debug/</ReferencePath>
-    <LibraryPath>C:\Users\Hannes\Source\Repos\H3D-Engine\Debug;C:\Users\hanne\Documents\GitHub\H3D - VS\Debug;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\assimp\bin\Debug;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\openal\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\dep_libs\sol2\single;../;$(IncludePath)</IncludePath>
+    <ReferencePath>$(VC_ReferencesPath_x86);$(ProjectDir)../Debug/;$(ProjectDir)../dep_libs/assimp/bin/Debug</ReferencePath>
+    <LibraryPath>$(ProjectDir)..\Debug;$(ProjectDir)..\dep_libs\assimp\bin\Debug;$(ProjectDir)..\dep_libs\openal\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>../;$(IncludePath)</IncludePath>
