@@ -294,6 +294,7 @@
   <ItemGroup>
     <ClInclude Include="H3D\Audio\Audio.hpp" />
     <ClInclude Include="H3D\Audio\AudioAccessories.hpp" />
+    <ClInclude Include="H3D\dep_lib_fwd.h" />
     <ClInclude Include="H3D\Graphics\Color.hpp" />
     <ClInclude Include="H3D\Graphics\Drawable.hpp" />
     <ClInclude Include="H3D\Graphics\GBuffer.hpp" />

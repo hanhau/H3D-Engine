@@ -4,7 +4,89 @@
 #ifdef H3D_SYSTEM_WINDOWS
 #include "../../H3D/OS/WglContext.hpp"
 #include <windows.h>
+#include <GL/glew.h>
 #include <GL/wglew.h>
+
+#undef APENTRY
+#define APIENTRY _stdcall
+void APIENTRY __opengl_callback_func(GLenum source, GLenum type,
+	GLuint id, GLenum severity,
+	GLsizei length, const GLchar* msg, const void* usr)
+{
+	h3d::Log::opengl("");
+
+	switch (severity) {
+	case GL_DEBUG_SEVERITY_NOTIFICATION:
+		h3d::Console::setTextCol(h3d::Console::Color::Green);
+		break;
+	case GL_DEBUG_SEVERITY_LOW:
+		h3d::Console::setTextCol(h3d::Console::Color::Blue);
+		break;
+	case GL_DEBUG_SEVERITY_MEDIUM:
+		h3d::Console::setTextCol(h3d::Console::Color::Yellow);
+		break;
+	case GL_DEBUG_SEVERITY_HIGH:
+		h3d::Console::setTextCol(h3d::Console::Color::Red);
+		break;
+	}
+	std::cout << "[#] ";
+	h3d::Console::setTextCol(h3d::Console::Color::White);
+
+	switch (source) {
+	case GL_DEBUG_SOURCE_API:
+		std::cout << "GL_DEBUG_SOURCE_API";
+		break;
+	case GL_DEBUG_SOURCE_SHADER_COMPILER:
+		std::cout << "GL_DEBUG_SOURCE_SHADER_COMPILER";
+		break;
+	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+		std::cout << "GL_DEBUG_SOURCE_WINDOW_SYSTEM";
+	case GL_DEBUG_SOURCE_THIRD_PARTY:
+		std::cout << "GL_DEBUG_SOURCE_THIRD_PARTY";
+		break;
+	case GL_DEBUG_SOURCE_APPLICATION:
+		std::cout << "GL_DEBUG_SOURCE_APPLICATION";
+		break;
+	case GL_DEBUG_SOURCE_OTHER:
+		std::cout << "GL_DEBUG_SOURCE_OTHER";
+		break;
+	default: break;
+	}
+
+	std::cout << " ";
+
+	switch (type) {
+	case GL_DEBUG_TYPE_ERROR:
+		std::cout << "GL_DEBUG_TYPE_ERROR";
+		break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+		std::cout << "GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR";
+		break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+		std::cout << "GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR";
+		break;
+	case GL_DEBUG_TYPE_PERFORMANCE:
+		std::cout << "GL_DEBUG_TYPE_PERFORMANCE";
+		break;
+	case GL_DEBUG_TYPE_PORTABILITY:
+		std::cout << "GL_TYPE_PORTABILITY";
+		break;
+	case GL_DEBUG_TYPE_MARKER:
+		std::cout << "GL_DEBUG_TYPE_MARKER";
+		break;
+	case GL_DEBUG_TYPE_PUSH_GROUP:
+		std::cout << "GL_DEBUG_TYPE_PUSH_GROUP";
+		break;
+	case GL_DEBUG_TYPE_OTHER:
+		std::cout << "GL_DEBUG_TYPE_OTHER";
+		break;
+	default: break;
+	}
+
+	std::string s = msg;
+	std::cout << " " << s << "\n";
+}
+
 bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32WindowImpl>& ptr)
 {	
 	m_hdc = GetDC(ptr->m_Win); //Get device context

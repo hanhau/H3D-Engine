@@ -1,5 +1,9 @@
 #include "../../H3D/GUI/GUI.hpp"
 #include "../../H3D/System/Utilities.hpp"
+
+#include <ft2build.h>
+#include <freetype/freetype.h>
+#include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 #define VAR_TYPE_BUTTON 0b0000'0001
 #define VAR_TYPE_TEXT   0b0000'0010

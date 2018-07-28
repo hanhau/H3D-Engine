@@ -1,5 +1,10 @@
 #include "../../H3D/Audio/Audio.hpp"
 #include "../../H3D/System/FileSystem.hpp"
+
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <vorbis/vorbisfile.h>
+#include <vorbis/codec.h>
 /////////////////////////////////////////////////////////////////
 // Implementation of AudioBufferStream
 namespace h3d {

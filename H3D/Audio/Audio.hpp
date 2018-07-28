@@ -5,10 +5,9 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-// external
-#include "../../dep_libs/openal/include/AL/al.h"
-#include "../../dep_libs/openal/include/AL/alc.h"
-#include "../../dep_libs/libvorbis/include/vorbis/vorbisfile.h"
+typedef unsigned int ALuint;
+typedef int ALsizei;
+typedef int ALenum;
 
 // cpp headers
 #include <stdint.h>

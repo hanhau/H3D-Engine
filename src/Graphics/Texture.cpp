@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <string>
 #include <algorithm>
+#include <GL/glew.h>
 #include "../../H3D/System/Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 //	Texture Function Implementations

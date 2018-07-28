@@ -5,6 +5,8 @@
 #include "../../H3D/System/Event.hpp"
 #include "../../H3D/OS/WglContext.hpp"
 
+#include <GL/glew.h>
+
 // Windows
 #ifdef _WIN32 || _WIN64
 

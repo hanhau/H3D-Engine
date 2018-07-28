@@ -1,6 +1,7 @@
 #include "../../H3D/Audio/Audio.hpp"
 #include "../../H3D/MemoryMng/base_alloc.hpp"
 #include <algorithm>
+#include <AL/al.h>
 /////////////////////////////////////////////////////////////////
 // Loader Prototypes
 bool loadWAV(char path[],

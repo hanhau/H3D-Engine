@@ -7,18 +7,14 @@
 /////////////////////////////////////////////////////////////
 #include "../../H3D/Graphics/Texture.hpp"
 #include "../../H3D/Math/Vector.hpp"
-
-#include <GL/glew.h>
-#include <ft2build.h>
-#define FT_FREETYPE_H
-#include <freetype/freetype.h>
 /////////////////////////////////////////////////////////////
 // Font class basing of freetype (wrapper class)
 /////////////////////////////////////////////////////////////
 namespace gui {
 	class Font
 	{
-		FT_Face m_face;
+		struct impl;
+		std::unique_ptr<impl> m_impl;
 		h3d::Texture m_texture;
 	public:
 		H3D_API Font();

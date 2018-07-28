@@ -73,6 +73,7 @@
     <ClInclude Include="H3D\Vector\Vector_Declaration.hpp" />
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
     <ClInclude Include="H3D\XML\XML.hpp" />
+    <ClInclude Include="H3D\dep_lib_fwd.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="H3D\OpenGL\GLMultithreading.cpp" />

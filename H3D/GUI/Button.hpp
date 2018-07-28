@@ -9,8 +9,6 @@
 #include "../../H3D/Math/Vector.hpp"
 #include "../../H3D/Graphics/Vertex.hpp"
 #include "../../H3D/Graphics/Texture.hpp"
-
-#include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 // GUI Button
 /////////////////////////////////////////////////////////////////
@@ -35,8 +33,8 @@ namespace gui {
 		H3D_API Button();
 		H3D_API ~Button();
 
-		void setPosition(h3d::Vec3<GLfloat> pos);
-		void setSize(h3d::Vec2<GLfloat> size);
+		void setPosition(h3d::Vec3<float> pos);
+		void setSize(h3d::Vec2<float> size);
 		void setStyle(const StylesheetModule::Button& module);
 
 		void H3D_API render();
@@ -44,10 +42,10 @@ namespace gui {
 
 		struct {
 			static const int normal = 1,
-									  pressed = 2,
-								      hovered = 3,
-								      focused = 4,
-								      disabled = 5;
+							  pressed = 2,
+						      hovered = 3,
+						      focused = 4,
+						      disabled = 5;
 		}State;
 		int H3D_API getState();
 	};

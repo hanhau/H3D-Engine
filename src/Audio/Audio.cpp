@@ -1,6 +1,8 @@
 #include "../../H3D/Audio/Audio.hpp"
 #include <fstream>
 #include <algorithm>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 #include <vorbis/vorbisenc.h>
 #include <vorbis/vorbisfile.h>

@@ -327,16 +327,3 @@ void h3d::Log::opengl(char* msg, Args... args)
 	}
 }
 /////////////////////////////////////////////////////////////////
-#undef APENTRY
-#define APIENTRY _stdcall
-#ifdef DLL_EXPORT
-#include <GL/glew.h>
-#else
-struct GLuint;
-struct GLenum;
-struct GLsizei;
-struct GLchar;
-#endif
-void APIENTRY __opengl_callback_func(GLenum source, GLenum type,
-	GLuint id, GLenum severity,
-	GLsizei length, const GLchar* msg, const void* usr);

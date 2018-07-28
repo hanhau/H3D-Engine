@@ -15,7 +15,7 @@
 // Drawable
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	typedef h3d::Vec3<h3d::Vec2<GLfloat>> AABB;
+	typedef h3d::Vec3<h3d::Vec2<float>> AABB;
 
 	class Drawable
 	{

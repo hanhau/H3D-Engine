@@ -15,9 +15,6 @@
 #include "../../H3D/GUI/Button.hpp"
 #include "../../H3D/GUI/Text.hpp"
 
-#include <GL/glew.h>
-#include <ft2build.h>
-#include <freetype/freetype.h>
 /////////////////////////////////////////////////////////////////
 // Graphical User Interface
 /////////////////////////////////////////////////////////////////
@@ -38,8 +35,8 @@ namespace gui {
 		}m_elementUnion;
 		int m_elementType;
 
-		h3d::Vec2<GLfloat> m_position;
-		h3d::Vec2<GLfloat> m_size;
+		h3d::Vec2<float> m_position;
+		h3d::Vec2<float> m_size;
 	public:
 		H3D_API Element(const Element &element);
 		H3D_API ~Element();

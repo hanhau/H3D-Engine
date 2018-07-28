@@ -9,7 +9,8 @@
 #include "../../H3D/Math/Vector.hpp"
 #include "../../H3D/System/FileDataStructures.hpp"
 
-#include <GL/glew.h>
+typedef unsigned int GLuint;
+typedef unsigned int GLenum;
 /////////////////////////////////////////////////////////////////
 //	class Texture
 /////////////////////////////////////////////////////////////////
