@@ -5,9 +5,6 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
-#include <sol/sol.hpp>
 #include <fstream>
 #include <string>
 #include <map>
@@ -20,14 +17,8 @@ namespace lua {
 	class Script final {
 	private:
 		// Lua
-		lua_State *m_state;
-		sol::state       m_lua;
-		sol::load_result m_loadResult;
-		std::string      m_Path;
-		std::string      m_code;
-		
-		// Managing "Namespaces" in Lua
-		std::map<const char*,sol::table>  m_tableMap;
+		struct impl;
+		std::unique_ptr<impl> m_impl;
 		
 		// Internal
 		void init();
@@ -38,8 +29,8 @@ namespace lua {
 		H3D_API ~Script();
 
 		// Direct Access to sol2
-		H3D_API sol::table& getTable(const char* name);
-		H3D_API sol::state& getState();
+		//H3D_API sol::table& getTable(const char* name);
+		//H3D_API sol::state& getState();
 
 		// Script Operations
 		bool H3D_API loadFromMemory(char* mem);

@@ -12,7 +12,7 @@
 #include <thread>
 #include "../Hashing/UniChecksum.hpp"
 
-#ifdef _WIN32 || _WIN64
+#ifdef _WIN32||_WIN64
 #include <windows.h>
 #elif defined __linux__
 #include <sys\mman.h>

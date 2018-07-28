@@ -2,6 +2,7 @@
 #ifdef _WIN32 || _WIN64
 
 #include "../../H3D/System/WindowImpl.hpp"
+#include <Windows.h>
 
 namespace h3d {
 	class Event;

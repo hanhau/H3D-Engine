@@ -7,8 +7,9 @@
 #include <memory>
 #include <string>
 
+#include <GL/glew.h>
+#include <GL/wglew.h>
 LRESULT CALLBACK _H3D_WndProc(HWND, UINT, WPARAM, LPARAM);
-
 /////////////////////////////////////////////////////////////////
 // System specific setup function
 /////////////////////////////////////////////////////////////////

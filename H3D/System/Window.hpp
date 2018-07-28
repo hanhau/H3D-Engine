@@ -18,8 +18,6 @@
 #include "../../H3D/System/Event.hpp"
 #include "../../H3D/System/WindowImpl.hpp"
 
-#include <GL/glew.h>
-
 #include "../../H3D/System/Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS
 #include "../../H3D/OS/WglContext.hpp"
@@ -92,7 +90,7 @@ public:
 
 	// OpenGL Operations
 	std::string H3D_API getContextVer();
-	void		H3D_API clear(GLbitfield mask,h3d::Color<GLfloat> col);
+	void		H3D_API clear(unsigned int mask,h3d::Color<float> col);
 	
 	// system specific
 	void		H3D_API swapBuffers();

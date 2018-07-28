@@ -76,9 +76,9 @@
     <ReferencePath>$(VC_ReferencesPath_x86);../../Release/</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>../;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\sol2\single;../;$(IncludePath)</IncludePath>
     <ReferencePath>$(VC_ReferencesPath_x86);../../Debug/</ReferencePath>
-    <LibraryPath>C:\Users\hanne\Documents\GitHub\H3D - VS\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Hannes\Source\Repos\H3D-Engine\Debug;C:\Users\hanne\Documents\GitHub\H3D - VS\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>../;$(IncludePath)</IncludePath>
@@ -108,6 +108,9 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>H3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -133,11 +136,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="frag_shader.frag" />
     <Text Include="vert_shader.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

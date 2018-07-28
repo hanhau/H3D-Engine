@@ -55,7 +55,7 @@ bool h3d::Window::pollEvent(h3d::Event& event) {
 std::string h3d::Window::getContextVer() {
 	return std::string((char*)glGetString(GL_VERSION));
 }
-void h3d::Window::clear(GLbitfield mask,h3d::Color<GLfloat> col={ 0,0,0,1 })
+void h3d::Window::clear(unsigned int mask,h3d::Color<float> col={ 0,0,0,1 })
 {
 	glClearColor(col.r, col.g, col.b, col.a);
 	glClear(mask);

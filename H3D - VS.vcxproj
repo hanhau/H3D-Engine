@@ -103,7 +103,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\sol2\single;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\freetype\windows\freetype;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\openal\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\glew\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\assimp\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\lua\src;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libogg;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libvorbis\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libogg\include;$(IncludePath);\dep_libs\freetype\windows\freetype\</IncludePath>
-    <LibraryPath>$(LibraryPath);C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\glew\bin\Debug;C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\assimp\bin\Debug</LibraryPath>
+    <LibraryPath>C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\freetype\windows\freetype;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\lua\Debug;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libvorbis\win32\VS2010\Win32\Debug;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libogg\win32\VS2015\Win32\Debug;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\openal\Debug;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\glew\out\lib;$(LibraryPath);C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\glew\bin\Debug;C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\assimp\lib\Debug</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -157,7 +157,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;ws2_32.lib;Winmm.lib;assimp-vc140-mt.lib;zlibstaticd.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;winspool.lib;gdi32.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;opengl32.lib;glu32.lib;ws2_32.lib;Winmm.lib;assimp-vc140-mt.lib;zlibstaticd.lib;OpenAL32.lib;glew32.lib;libvorbis_static.lib;libvorbisfile_static.lib;libogg_static.lib;lua.lib;freetype.lib;legacy_stdio_definitions.lib</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -437,10 +437,6 @@
     <ClCompile Include="src\XML\XML.cpp" />
     <ClCompile Include="src\XML\XMLNode.cpp" />
     <ClCompile Include="src\XML\XMLTree.cpp" />
-    <ClCompile Include="test_app\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="build_dep_libs.bat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

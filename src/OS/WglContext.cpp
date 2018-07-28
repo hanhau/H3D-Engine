@@ -4,7 +4,7 @@
 #ifdef H3D_SYSTEM_WINDOWS
 #include "../../H3D/OS/WglContext.hpp"
 #include <windows.h>
-
+#include <GL/wglew.h>
 bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32WindowImpl>& ptr)
 {	
 	m_hdc = GetDC(ptr->m_Win); //Get device context
