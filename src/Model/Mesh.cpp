@@ -1,8 +1,7 @@
 #include "../../H3D/Model/Mesh.hpp"
 #include <algorithm>
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
-#include STR(ASSIMP_INCLUDE/assimp/mesh.h)
+#include <GL/glew.h>
+#include <assimp/mesh.h>
 /////////////////////////////////////////////////////////////////
 // Implementation of Mesh
 /////////////////////////////////////////////////////////////////

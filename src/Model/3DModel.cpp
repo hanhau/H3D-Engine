@@ -1,9 +1,9 @@
 #include "../../H3D/Model/3DModel.hpp"
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
-#include STR(ASSIMP_INCLUDE/assimp/Importer.hpp)
-#include STR(ASSIMP_INCLUDE/assimp/scene.hpp)
-#include STR(ASSIMP_INCLUDE/assimp/postprocess.hpp)
+
+#include <GL/glew.h>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 /////////////////////////////////////////////////////////////////
 // Impl
 struct h3d::Model3D::impl 

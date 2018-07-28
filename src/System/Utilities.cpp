@@ -8,8 +8,9 @@
 #include "../../H3D/System/FileSystem.hpp"
 
 #include "../../H3D/System/Config.hpp"
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 /////////////////////////////////////////////////////////////////
 #ifdef H3D_SYSTEM_WINDOWS
 const std::string h3d::Log::getCurrentTime()

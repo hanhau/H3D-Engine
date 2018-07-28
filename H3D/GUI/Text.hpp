@@ -9,8 +9,7 @@
 #include "Font.hpp"
 #include "../../H3D/Graphics/Color.hpp"
 
-#include "../externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
 /////////////////////////////////////////////////////////////
 // Text class
 /////////////////////////////////////////////////////////////

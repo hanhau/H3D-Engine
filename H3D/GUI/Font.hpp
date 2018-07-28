@@ -7,11 +7,11 @@
 /////////////////////////////////////////////////////////////
 #include "../../H3D/Graphics/Texture.hpp"
 #include "../../H3D/Math/Vector.hpp"
-#include "../externals.h"
-#include STR(GLEW_INCLUDE/GL/glew.h)
-#include STR(FREETYPE_INCLUDE/ft2build.h)
+
+#include <GL/glew.h>
+#include <ft2build.h>
 #define FT_FREETYPE_H
-#include STR(FREETYPE_INCLUDE/freetype/freetype.h)
+#include <freetype/freetype.h>
 /////////////////////////////////////////////////////////////
 // Font class basing of freetype (wrapper class)
 /////////////////////////////////////////////////////////////

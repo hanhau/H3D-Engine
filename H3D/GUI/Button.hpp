@@ -10,8 +10,7 @@
 #include "../../H3D/Graphics/Vertex.hpp"
 #include "../../H3D/Graphics/Texture.hpp"
 
-#include "../externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 // GUI Button
 /////////////////////////////////////////////////////////////////

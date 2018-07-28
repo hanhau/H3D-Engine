@@ -6,7 +6,6 @@
 #endif
 /////////////////////////////////////////////////////////////////
 // external
-#include "../../H3D/externals.h"
 #include "../../dep_libs/openal/include/AL/al.h"
 #include "../../dep_libs/openal/include/AL/alc.h"
 #include "../../dep_libs/libvorbis/include/vorbis/vorbisfile.h"

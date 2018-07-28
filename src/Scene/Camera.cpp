@@ -1,8 +1,7 @@
 #include "../../H3D/Scene/Camera.hpp"
 #include "../../H3D/System/Utilities.hpp"
 
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 // Camera Implementations
 /////////////////////////////////////////////////////////////////

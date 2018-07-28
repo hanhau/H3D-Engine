@@ -15,10 +15,9 @@
 #include "../../H3D/GUI/Button.hpp"
 #include "../../H3D/GUI/Text.hpp"
 
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
-#include STR(FREETYPE_INCLUDE/ft2build.h)
-#include STR(FREETYPE_INCLUDE/freetype/freetype.h)
+#include <GL/glew.h>
+#include <ft2build.h>
+#include <freetype/freetype.h>
 /////////////////////////////////////////////////////////////////
 // Graphical User Interface
 /////////////////////////////////////////////////////////////////

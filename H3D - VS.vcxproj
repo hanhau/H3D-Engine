@@ -102,7 +102,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\assimp\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\lua\src;$(IncludePath);\dep_libs\freetype\windows\freetype\;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libogg\include</IncludePath>
+    <IncludePath>C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\sol2\single;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\freetype\windows\freetype;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\openal\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\glew\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\assimp\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\lua\src;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libogg;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libvorbis\include;C:\Users\Hannes\Source\Repos\H3D-Engine\dep_libs\libogg\include;$(IncludePath);\dep_libs\freetype\windows\freetype\</IncludePath>
     <LibraryPath>$(LibraryPath);C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\glew\bin\Debug;C:\Users\Hannes\source\repos\H3D-Engine\dep_libs\assimp\bin\Debug</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
@@ -294,7 +294,6 @@
   <ItemGroup>
     <ClInclude Include="H3D\Audio\Audio.hpp" />
     <ClInclude Include="H3D\Audio\AudioAccessories.hpp" />
-    <ClInclude Include="H3D\externals.h" />
     <ClInclude Include="H3D\Graphics\Color.hpp" />
     <ClInclude Include="H3D\Graphics\Drawable.hpp" />
     <ClInclude Include="H3D\Graphics\GBuffer.hpp" />

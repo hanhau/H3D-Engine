@@ -38,12 +38,8 @@ void H3D_API VerifyFailed(const char* file, const char* line,
 #elif defined H3D_SYSTEM_LINUX
 
 #endif
-/////////////////////////////////////////////////////////////////
-// Lua
-#include "../../H3D/externals.h"
-#include STR(LUA_INCLUDE/lua.hpp)
-#include STR(GLEW_INCLUDE/gl/glew.h)
-#include "../../dep_libs/lua/src/lua.hpp"
+
+#include <sol/sol.hpp>
 /////////////////////////////////////////////////////////////////
 // Numerics
 namespace h3d {
@@ -330,6 +326,7 @@ void h3d::Log::opengl(char* msg, Args... args)
 /////////////////////////////////////////////////////////////////
 #undef APENTRY
 #define APIENTRY _stdcall
+#include <GL/glew.h>
 void APIENTRY __opengl_callback_func(GLenum source, GLenum type,
 	GLuint id, GLenum severity,
 	GLsizei length, const GLchar* msg, const void* usr);

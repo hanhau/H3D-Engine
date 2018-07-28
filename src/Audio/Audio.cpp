@@ -2,9 +2,8 @@
 #include <fstream>
 #include <algorithm>
 
-#include "../../H3D/externals.h"
-#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisenc.h)
-#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
+#include <vorbis/vorbisenc.h>
+#include <vorbis/vorbisfile.h>
 /////////////////////////////////////////////////////////////////
 // Implementation of Audio Engine Functions
 /////////////////////////////////////////////////////////////////

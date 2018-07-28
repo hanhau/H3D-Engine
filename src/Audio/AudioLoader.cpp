@@ -2,12 +2,10 @@
 #include "../../H3D/System/FileDataStructures.hpp"
 #include "../../H3D/System/Utilities.hpp"
 
-#include "../../H3D/externals.h"
-#include STR(OPENAL_INCLUDE/al/al.h)
-#include STR(OPENAL_INCLUDE/al/alc.h)
-#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisfile.h)
-#include STR(LIBVORBIS_INCLUDE/vorbis/vorbisenc.h)
-
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <vorbis/vorbisfile.h>
+#include <vorbis/vorbisenc.h>
 
 #include <fstream>
 #include <cstdio>

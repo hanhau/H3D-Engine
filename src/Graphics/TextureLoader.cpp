@@ -5,8 +5,7 @@
 #include "../../H3D/Graphics/Texture.hpp"
 #include "../../H3D/Graphics/Color.hpp"
 
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 // Loading individual formats
 /////////////////////////////////////////////////////////////////

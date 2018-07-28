@@ -9,8 +9,7 @@
 #include "../../H3D/Math/Vector.hpp"
 #include "../../H3D/System/FileDataStructures.hpp"
 
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 //	class Texture
 /////////////////////////////////////////////////////////////////

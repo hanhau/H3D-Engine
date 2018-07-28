@@ -14,8 +14,7 @@
 #include <queue>
 #include <math.h>
 
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
 /////////////////////////////////////////////////////////////////
 // Particle System for Particle Simulation
 /////////////////////////////////////////////////////////////////

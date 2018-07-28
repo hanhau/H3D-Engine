@@ -18,8 +18,7 @@
 #include "../../H3D/System/Event.hpp"
 #include "../../H3D/System/WindowImpl.hpp"
 
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
+#include <GL/glew.h>
 
 #include "../../H3D/System/Config.hpp"
 #ifdef H3D_SYSTEM_WINDOWS

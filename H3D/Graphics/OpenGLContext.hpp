@@ -6,9 +6,9 @@
 #endif 
 
 #include "../../H3D/System/Utilities.hpp"
-#include "../../H3D/externals.h"
-#include STR(GLEW_INCLUDE/gl/glew.h)
-#include STR(GLEW_INCLUDE/gl/wglew.h)
+
+#include <GL/glew.h>
+#include <GL/wglew.h>
 /////////////////////////////////////////////////////////////////
 //	Contextsettings
 /////////////////////////////////////////////////////////////////

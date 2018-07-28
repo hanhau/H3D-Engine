@@ -5,10 +5,9 @@
 #define H3D_API __declspec(dllimport)
 #endif
 
-#include "..\externals.h"
-#include STR(LUA_INCLUDE/lua.hpp)
-#include STR(SOL2_INCLUDE/sol/sol.hpp)
-
+#include <ft2build.h>
+#include FT_FREETYPE_H
+#include <sol/sol.hpp>
 #include <fstream>
 #include <string>
 #include <map>
