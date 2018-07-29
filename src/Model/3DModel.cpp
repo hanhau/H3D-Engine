@@ -26,13 +26,12 @@ h3d::Model3D::~Model3D() {}
 /////////////////////////////////////////////////////////////////
 bool h3d::Model3D::loadFromFile(char Path[]) 
 {
-    h3d::Log::info("Loading %s now");
+    h3d::Log::info("Loading %s now",Path);
 
     Assimp::Importer importer;
-    const aiScene* scene = importer.ReadFile(Path, aiProcess_CalcTangentSpace |
+	const aiScene* scene = importer.ReadFile(Path,
         aiProcess_Triangulate |
-        aiProcess_JoinIdenticalVertices |
-        aiProcess_SortByPType);
+        aiProcess_JoinIdenticalVertices);
     
     if (!scene) {
         h3d::Log::error("Unable to load %s", Path);
@@ -46,13 +45,12 @@ bool h3d::Model3D::loadFromFile(char Path[])
     }
 
     for (int i = 0; i < scene->mNumMeshes; i++) {
-        Mesh temp_mesh;
-        temp_mesh.loadFromAiMesh(scene->mMeshes[i]);
-        temp_mesh.loadToOpenGL();
-        m_meshes.push_back(temp_mesh);
+		m_meshes.push_back(Mesh());
+		m_meshes.back().loadFromAiMesh(scene->mMeshes[i]);
+		m_meshes.back().loadToOpenGL();
     }
 
-    h3d::Log::info("Finished loading %s");
+    h3d::Log::info("Finished loading %s",Path);
     return true;
 }
 /////////////////////////////////////////////////////////////////
@@ -63,7 +61,7 @@ void h3d::Model3D::render() {
 }
 void h3d::Model3D::logModelData() {
     h3d::Log::info("+ Data Content of Model3D:");
-    h3d::Log::info("| Num Materials: %d",1);
-    h3d::Log::info("| Num Meshes: %d",1);
+    h3d::Log::info("| Num Materials: %d",m_materials.size());
+    h3d::Log::info("| Num Meshes: %d",m_meshes.size());
     h3d::Log::info("+ Meshes: %d",1);
 }

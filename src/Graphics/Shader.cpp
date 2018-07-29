@@ -8,7 +8,7 @@
 //	Shader Implementation
 /////////////////////////////////////////////////////////////////
 static bool __glew_init = false;
-h3d::Shader::Shader() :created(false),shadertype(0)
+h3d::Shader::Shader() :m_created(false),m_type(Type::Geometry)
 {
 	if (__glew_init == false) {
 		glewExperimental = true;
@@ -16,8 +16,8 @@ h3d::Shader::Shader() :created(false),shadertype(0)
 		__glew_init = true;
 	}
 }
-h3d::Shader::Shader(GLenum type,GLchar code_path[]) :
-	created(false),shadertype(0)
+h3d::Shader::Shader(Type type,GLchar code_path[]) :
+	m_created(false),m_type(type)
 {
 	setType(type); setCode(code_path);
 }
@@ -31,9 +31,9 @@ bool h3d::Shader::setCode(GLchar acode[])
 	h3dassert(sizeof(*acode) == 0);
 	if (acode[0] == '#')
 	{
-		sourcecode_length = strlen(acode);
-		sourcecode = new char[sourcecode_length];
-		memcpy(sourcecode, acode, sourcecode_length);
+		m_sourcecode_length = strlen(acode);
+		m_sourcecode = new char[m_sourcecode_length];
+		memcpy(m_sourcecode, acode, m_sourcecode_length);
 		return true;
 	}
 	else
@@ -47,49 +47,48 @@ bool h3d::Shader::setCode(GLchar acode[])
 			return false;
 		}
 
-		sourcecode = new char[fh.getFileSize()+1];
-		fh.read(sourcecode, fh.getFileSize());
-		sourcecode[fh.getFileSize()] = '\0';
+		m_sourcecode = new char[fh.getFileSize()+1];
+		fh.read(m_sourcecode, fh.getFileSize());
+		m_sourcecode[fh.getFileSize()] = '\0';
 
 		fh.close();
 		return true;
 	} 
 }
-void h3d::Shader::setType(GLenum atype) 
-{ 
-	h3dverify(atype != GL_VERTEX_SHADER &&
-			  atype != GL_FRAGMENT_SHADER &&
-			  atype != GL_GEOMETRY_SHADER &&
-			  atype != GL_COMPUTE_SHADER &&
-			  atype != GL_TESS_CONTROL_SHADER &&
-			  atype != GL_TESS_EVALUATION_SHADER);
-	shadertype = atype; 
-}
+void h3d::Shader::setType(Type type) { m_type = type;}
 /////////////////////////////////////////////////////////////////
 bool h3d::Shader::compile()
 {
-	if (shadertype == 0)
-		return false;
-	glDeleteShader(this->shaderid);
-	this->shaderid = glCreateShader(shadertype);
-	glShaderSource(shaderid, 1,(const char**)&sourcecode,
+	int shadertype = 0;
+	switch (m_type) {
+	case Type::Vertex: shadertype = GL_VERTEX_SHADER; break;
+	case Type::Fragment: shadertype = GL_FRAGMENT_SHADER; break;
+	case Type::Geometry: shadertype = GL_GEOMETRY_SHADER; break;
+	case Type::Compute: shadertype = GL_COMPUTE_SHADER; break;
+	case Type::TessControl: shadertype = GL_TESS_CONTROL_SHADER; break;
+	case Type::TessEvaluation: shadertype = GL_TESS_EVALUATION_SHADER; break;
+	}
+
+	glDeleteShader(this->m_shaderid);
+	this->m_shaderid = glCreateShader(shadertype);
+	glShaderSource(m_shaderid, 1,(const char**)&m_sourcecode,
 				   nullptr);
 
-	glCompileShader(shaderid);
+	glCompileShader(m_shaderid);
 
 	if (h3d::DebugMode) 
 	{
 		GLint status;
-		glGetShaderiv(this->shaderid, GL_COMPILE_STATUS, &status);
+		glGetShaderiv(this->m_shaderid, GL_COMPILE_STATUS, &status);
 		if (status != GL_TRUE) 
 		{
 			h3d::Log::error("Failed while compiling shader:");
 
 			GLint length;
-			glGetShaderiv(this->shaderid,
+			glGetShaderiv(this->m_shaderid,
 						  GL_INFO_LOG_LENGTH, &length);
 			char *log = new char[length];
-			glGetShaderInfoLog(this->shaderid, length, NULL, log);
+			glGetShaderInfoLog(this->m_shaderid, length, NULL, log);
 
 			h3d::Log::error("%s",log);
 
@@ -102,31 +101,31 @@ bool h3d::Shader::compile()
 void h3d::Shader::createBuildLog()
 {
 	GLint compile_success = 0;
-	glGetShaderiv(shaderid, GL_COMPILE_STATUS, &compile_success);
+	glGetShaderiv(m_shaderid, GL_COMPILE_STATUS, &compile_success);
 	if (compile_success == GL_FALSE)
 	{
-		glGetShaderiv(shaderid, GL_INFO_LOG_LENGTH,&buildlog_length);
-		buildlog = new GLchar[buildlog_length];
-		glGetShaderInfoLog(shaderid, buildlog_length, NULL, buildlog);
+		glGetShaderiv(m_shaderid, GL_INFO_LOG_LENGTH,&m_buildlog_length);
+		m_buildlog = new GLchar[m_buildlog_length];
+		glGetShaderInfoLog(m_shaderid, m_buildlog_length, NULL, m_buildlog);
 	}
 	else {
-		buildlog = new GLchar[13];
-		buildlog = "successfull!";
+		m_buildlog = new GLchar[13];
+		m_buildlog = "successfull!";
 	}
 }
 /////////////////////////////////////////////////////////////////
 bool h3d::Shader::printBuildLog()
 {
-	if (buildlog == NULL)
+	if (m_buildlog == NULL)
 		return false;
 	else
-		h3d::Log::info(buildlog);
+		h3d::Log::info(m_buildlog);
 	return true;
 }
 /////////////////////////////////////////////////////////////////
 bool h3d::Shader::saveBuildLog(char Path[])
 {
-	if(buildlog == NULL)
+	if(m_buildlog == NULL)
 		return false;
 	else
 	{
@@ -140,8 +139,8 @@ bool h3d::Shader::saveBuildLog(char Path[])
 			h3d::Log::debug("Saving shader log %s", Path);
 
 		std::stringstream ss;
-		ss << "buildlog from shader " << shaderid << " : \n";
-		ss << buildlog << "\n";
+		ss << "buildlog from shader " << m_shaderid << " : \n";
+		ss << m_buildlog << "\n";
 		
 		fh.write((char*)ss.str().c_str(), ss.str().length());
 

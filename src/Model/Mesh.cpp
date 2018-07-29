@@ -13,62 +13,72 @@ namespace h3d {
     }
 
     void Mesh::render() {
-        glBindVertexArray(m_vba);
-        glBindBuffer(GL_ARRAY_BUFFER, m_bufferID);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
-
-        glDrawArrays(GL_TRIANGLES, 3, GL_UNSIGNED_INT);
+		glBindVertexArray(m_vao);
+		glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
     }
     
-    bool Mesh::loadFromAiMesh(aiMesh *m_ptr) {
+    bool Mesh::loadFromAiMesh(aiMesh *m_ptr) { 
         for (int i = 0; i < m_ptr->mNumVertices; i++) {
             h3d::Vertex temp_vert;
             temp_vert.position = h3d::Vec3<float>(
                 m_ptr->mVertices[i].x,
                 m_ptr->mVertices[i].y,
                 m_ptr->mVertices[i].z);
+			temp_vert.normal = h3d::Vec3<float>(
+				m_ptr->mNormals[i].x,
+				m_ptr->mNormals[i].y,
+				m_ptr->mNormals[i].z);
             m_vertices.push_back(temp_vert);
+			temp_vert.texCoord = Vec2<float>(0, 0);
+
+			m_vertices.push_back(temp_vert);
         }
+
         m_indices.clear();
-
-        for (int i = 0; i < sizeof(m_ptr->mFaces->mIndices); i++)
-            m_indices.push_back(m_ptr->mFaces->mIndices[i]);
-
+		for (unsigned int i = 0; i < m_ptr->mNumFaces; i++)
+		{
+			aiFace face = m_ptr->mFaces[i];
+			for (unsigned int j = 0; j < face.mNumIndices; j++)
+				m_indices.push_back(face.mIndices[j]);
+		}
         return true;
     }
-    GLuint Mesh::loadToOpenGL() {
-        glCreateBuffers(1, &m_bufferID);
-        glCreateBuffers(1, &m_elementBuffer);
-        glCreateVertexArrays(1, &m_vba);
+    void Mesh::loadToOpenGL() {
+		glGenVertexArrays(1, &m_vao);
+		glGenBuffers(1, &m_vbo);
+		glGenBuffers(1, &m_ebo);
 
-        glBindVertexArray(m_vba);
-        glBindBuffer(GL_ARRAY_BUFFER, m_bufferID);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
-        
-        glBufferStorage(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), m_vertices.data(), GL_STATIC_DRAW);
-        glBufferStorage(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int), m_indices.data(), GL_STATIC_DRAW);
+		glBindVertexArray(m_vao);
 
-        glBufferData(GL_ARRAY_BUFFER, m_vertices.size()*sizeof(Vertex), m_vertices.data(),GL_STATIC_DRAW);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size()*sizeof(unsigned int), m_indices.data(), GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+		glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), &m_vertices[0], GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,sizeof(h3d::Vertex), (void*)offsetof(h3d::Vertex, position));
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(h3d::Vertex), (void*)offsetof(h3d::Vertex, texCoord));
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(h3d::Vertex), (void*)offsetof(h3d::Vertex, normal));
-        glEnableVertexAttribArray(2);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int),
+			&m_indices[0], GL_STATIC_DRAW);
 
-        return 1;
+		// vertex positions
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+		// vertex normals
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+		// vertex texture coords
+		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texCoord));
+
+		glBindVertexArray(0);
     }
     bool Mesh::unloadFromOpenGL() {
-        glDeleteBuffers(1, &m_bufferID);
-        glDeleteBuffers(1, &m_elementBuffer);
+        //glDeleteBuffers(1, &m_vbo);
+        //glDeleteBuffers(1, &m_ebo);
+		//glDeleteVertexArrays(1,&m_vao);
         return true;
     }
 
-    GLuint Mesh::getVertexBufferID()  { return m_bufferID;}
-    GLuint Mesh::getElementBufferID() { return m_elementBuffer; }
-    GLuint Mesh::getVbaID()           { return m_vba; }
+    GLuint Mesh::getVertexBufferID()  { return m_vbo;}
+    GLuint Mesh::getElementBufferID() { return m_ebo; }
+    GLuint Mesh::getVbaID()           { return m_vao; }
     size_t Mesh::getVertexNum() { return m_vertices.size();}
     
 }

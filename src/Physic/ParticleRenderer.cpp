@@ -28,9 +28,9 @@ h3d::PE::ParticleRenderer::ParticleRenderer()
 	};
 
 	m_vertexShader.setCode(vertexCode);
-	m_vertexShader.setType(GL_VERTEX_SHADER);
+	m_vertexShader.setType(h3d::Shader::Type::Vertex);
 	m_fragmentShader.setCode(fragmentCode);
-	m_fragmentShader.setType(GL_FRAGMENT_SHADER);
+	m_fragmentShader.setType(h3d::Shader::Type::Fragment);
 
 	m_program.attachShader(m_vertexShader);
 	m_program.attachShader(m_fragmentShader);

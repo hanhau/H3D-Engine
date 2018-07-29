@@ -56,7 +56,7 @@ h3d::PE::ParticleUpdater::ParticleUpdater()
 			"}"
 		};
 		m_computeShader.setCode(computeCode);
-		m_computeShader.setType(GL_COMPUTE_SHADER);
+		m_computeShader.setType(h3d::Shader::Type::Compute);
 		m_program.attachShader(m_computeShader);
 		m_program.link();
 	}

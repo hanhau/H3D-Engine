@@ -1,8 +1,10 @@
-#version 330
+#version 330 core
 
-out vec4 color;
+in vec2 TexCoords;
+in vec3 posout;
+out vec4 FragColor;
 
 void main()
-{
-	color = vec4(1.0,1.0,1.0,1.0);
+{    
+    FragColor = vec4(posout.zzz,1.0);
 }

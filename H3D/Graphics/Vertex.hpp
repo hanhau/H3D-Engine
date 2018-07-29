@@ -16,8 +16,8 @@ class Vertex
 {
 public:				 
 	h3d::Vec3<GLfloat>  position;
-	h3d::Vec2<GLfloat>  texCoord;
 	h3d::Vec3<GLfloat>  normal;
+	h3d::Vec2<GLfloat>  texCoord;
 };
 }
 /////////////////////////////////////////////////////////////////

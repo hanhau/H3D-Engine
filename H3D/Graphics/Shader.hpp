@@ -5,10 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif
 /////////////////////////////////////////////////////////////////
-typedef char GLchar;
-typedef unsigned int GLenum;
-typedef unsigned int GLuint;
-typedef int GLint;
+#include "../dep_lib_fwd.h"
 /////////////////////////////////////////////////////////////////
 // Shader class
 /////////////////////////////////////////////////////////////////
@@ -16,26 +13,31 @@ namespace h3d{
 	class Program;
 	class Shader
 	{
-		friend Program;
+	public:
+		enum class Type {
+		Vertex, Fragment,
+		Geometry, Compute,
+		TessControl, TessEvaluation
+	};
 	private:
-		// Stuff for Building
-		GLchar* sourcecode;
-		GLint sourcecode_length;
-		GLchar* buildlog;
-		GLint buildlog_length;
+		friend Program;
 
-		// OpenGL stuff
-		bool created;
-		GLenum shadertype;
-		GLuint shaderid;
+		GLchar* m_sourcecode;
+		GLint m_sourcecode_length;
+		GLchar* m_buildlog;
+		GLint m_buildlog_length;
+
+		bool m_created;
+		GLuint m_shaderid;
+		Type m_type;
 	public:
 		// Constructor
 		H3D_API Shader();
-		H3D_API Shader(GLenum type,GLchar code_path[]);
+		H3D_API Shader(Type type,GLchar code_path[]);
 
 		// change Code or Type
 		H3D_API bool setCode(GLchar acode[]);
-		H3D_API void setType(GLenum atype);
+		H3D_API void setType(Type type);
 
 		// Compile
 		H3D_API bool compile();

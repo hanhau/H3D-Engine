@@ -7,7 +7,20 @@
 
 int main()
 {
-	h3d::Window app(h3d::Vec2<int>(800, 600), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
+	h3d::Window app(h3d::Vec2<int>(1600, 900), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
+
+	h3d::Model3D model;
+	model.loadFromFile("C:/Users/hanne/Desktop/blender objekte/DING.fbx");
+	model.logModelData();
+
+	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
+	h3d::Shader frag_shader(h3d::Shader::Type::Fragment, "frag_shader.frag");
+
+	h3d::Program program;
+	program.attachShader(vert_shader);
+	program.attachShader(frag_shader);
+	program.link();
+	program.use();
 
 	while (app.isOpen())
 	{
@@ -15,10 +28,11 @@ int main()
 		while (app.pollEvent(event)) {
 			if (event.type == h3d::EventType::Closed)
 				app.close();
-
-			app.clear(h3d::Window::BufferBit::Color,h3d::Color<float>(0.6,1.0,0.2,1.0));
-
-			app.swapBuffers();
 		}
+		app.clear(h3d::Window::BufferBit::Color,h3d::Color<float>(0.6,1.0,0.2,1.0));
+
+		model.render();
+
+		app.swapBuffers();
 	}
 }

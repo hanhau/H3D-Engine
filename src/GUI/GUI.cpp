@@ -28,14 +28,14 @@ bool gui::init()
 		"void main() {"
 		"}"
 	};
-	h3d::Shader vertexShader(GL_VERTEX_SHADER, vertexCode);
+	h3d::Shader vertexShader(h3d::Shader::Type::Vertex, vertexCode);
 
 	GLchar fragmentCode[] = {
 		"#version 450 core\n"
 		"void main() {"
 		"}"
 	};
-	h3d::Shader fragmentShader(GL_FRAGMENT_SHADER, fragmentCode);
+	h3d::Shader fragmentShader(h3d::Shader::Type::Fragment, fragmentCode);
 
 	h3d::intern::gui::g_programOGL.attachShader(vertexShader);
 	h3d::intern::gui::g_programOGL.attachShader(fragmentShader);

@@ -17,27 +17,28 @@ bool h3d::Program::attachShader(h3d::Shader &ashader)
 		return false;
 	else
 	{
-		switch(ashader.shadertype)
+		switch(ashader.m_type)
 		{
-		case GL_VERTEX_SHADER:
-			vertexshader = ashader;
+		case Shader::Type::Vertex:
+			vertexshader = std::make_unique<Shader>(ashader);
 			break;
-		case GL_FRAGMENT_SHADER:
-			fragmentshader = ashader;
+		case Shader::Type::Fragment:
+			fragmentshader = std::make_unique<Shader>(ashader);
 			break;
-		case GL_GEOMETRY_SHADER:
-			geometryshader = ashader;
+		case Shader::Type::Geometry:
+			geometryshader = std::make_unique<Shader>(ashader);
 			break;
-		case GL_COMPUTE_SHADER:
-			computeshader = ashader;
+		case Shader::Type::Compute:
+			computeshader = std::make_unique<Shader>(ashader);
 			break;
-		case GL_TESS_CONTROL_SHADER:
-			tesscontrolshader = ashader;
+		case Shader::Type::TessControl:
+			tesscontrolshader = std::make_unique<Shader>(ashader);
 			break;
-		case GL_TESS_EVALUATION_SHADER:
-			tessevaluationshader = ashader;
+		case Shader::Type::TessEvaluation:
+			tessevaluationshader = std::make_unique<Shader>(ashader);
 			break;
-		default: return false; break;
+		default: 
+			return false; 
 		}
 	}
 	return true;
@@ -50,17 +51,17 @@ bool h3d::Program::link()
 	else
 	{
 		programid = glCreateProgram();
-		if (vertexshader.shadertype) {
-			vertexshader.compile();
-			glAttachShader(this->programid,vertexshader.shaderid);
+		if (vertexshader) {
+			vertexshader->compile();
+			glAttachShader(this->programid,vertexshader->m_shaderid);
 		}
-		if (fragmentshader.shadertype) {
-			fragmentshader.compile();
-			glAttachShader(this->programid, fragmentshader.shaderid);
+		if (fragmentshader) {
+			fragmentshader->compile();
+			glAttachShader(this->programid, fragmentshader->m_shaderid);
 		}
-		if (geometryshader.shadertype) {
-			geometryshader.compile();
-			glAttachShader(this->programid,geometryshader.shaderid);
+		if (geometryshader) {
+			geometryshader->compile();
+			glAttachShader(this->programid,geometryshader->m_shaderid);
 		}
 		glLinkProgram(programid);
 		GLint status;
@@ -205,21 +206,21 @@ namespace h3d {
 /////////////////////////////////////////////////////////////////
 void h3d::Program::printBuildLogs()
 {
-	vertexshader.printBuildLog();
-	fragmentshader.printBuildLog();
-	geometryshader.printBuildLog();
-	computeshader.printBuildLog();
-	tesscontrolshader.printBuildLog();
-	tessevaluationshader.printBuildLog();
+	vertexshader->printBuildLog();
+	fragmentshader->printBuildLog();
+	geometryshader->printBuildLog();
+	computeshader->printBuildLog();
+	tesscontrolshader->printBuildLog();
+	tessevaluationshader->printBuildLog();
 }
 /////////////////////////////////////////////////////////////////
 void h3d::Program::saveBuildLogs(char Path[])
 {
-	vertexshader.saveBuildLog(Path);
-	fragmentshader.saveBuildLog(Path);
-	geometryshader.saveBuildLog(Path);
-	computeshader.saveBuildLog(Path);
-	tesscontrolshader.saveBuildLog(Path);
-	tessevaluationshader.saveBuildLog(Path);
+	vertexshader->saveBuildLog(Path);
+	fragmentshader->saveBuildLog(Path);
+	geometryshader->saveBuildLog(Path);
+	computeshader->saveBuildLog(Path);
+	tesscontrolshader->saveBuildLog(Path);
+	tessevaluationshader->saveBuildLog(Path);
 }
 /////////////////////////////////////////////////////////////////

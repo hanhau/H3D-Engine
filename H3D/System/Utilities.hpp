@@ -106,7 +106,7 @@ namespace h3d {
 			for (; *str != '\0'; str++) {
 				if (*str == '%') {
 					std::cout << value;
-					printf(str + 2, args...);
+					print(str + 2, args...);
 					return;
 				}
 				std::cout << *str;

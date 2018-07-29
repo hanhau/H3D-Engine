@@ -17,9 +17,10 @@ namespace h3d {
 	class Mesh
 	{
 	private:
-        GLuint m_vba;
-        GLuint m_bufferID;
-        GLuint m_elementBuffer;
+        GLuint m_vao;
+        GLuint m_vbo;
+		GLuint m_ebo;
+
         std::vector<h3d::Vertex> m_vertices;
         std::vector<unsigned int> m_indices;
 	public:
@@ -29,7 +30,7 @@ namespace h3d {
         void H3D_API render();
 
         bool H3D_API loadFromAiMesh(aiMesh *m_ptr);
-        GLuint H3D_API loadToOpenGL();
+        void H3D_API loadToOpenGL();
         bool H3D_API unloadFromOpenGL();
 
         GLuint H3D_API getVertexBufferID();

@@ -18,6 +18,7 @@
 #include <vector>
 #include <map>
 #include <tuple>
+#include <memory>
 
 #include "../dep_lib_fwd.h"
 /////////////////////////////////////////////////////////////////
@@ -31,13 +32,12 @@ namespace h3d{
 		bool linked;
 		GLuint programid;
 
-		// Subshader Classes
-		Shader vertexshader;
-		Shader fragmentshader;
-		Shader geometryshader;
-		Shader computeshader;
-		Shader tesscontrolshader;
-		Shader tessevaluationshader;
+		std::unique_ptr<Shader> vertexshader;
+		std::unique_ptr<Shader> fragmentshader;
+		std::unique_ptr<Shader> geometryshader;
+		std::unique_ptr<Shader> computeshader;
+		std::unique_ptr<Shader> tesscontrolshader;
+		std::unique_ptr<Shader> tessevaluationshader;
 		
 		// Provides Interface for Uniform Manipulation
 		struct tagUniformOperations
