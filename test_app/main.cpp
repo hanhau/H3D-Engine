@@ -6,8 +6,7 @@
 #include <H3D/Graphics/Shader.hpp>
 #include <H3D/System/Byte.h>
 #include <H3D/Graphics/Vertex.hpp>
-#include <gl/GL.h>
-#pragma comment(lib,"opengl32.lib")
+#include <H3D/Math/Matrix.hpp>
 
 int main()
 {
@@ -26,7 +25,8 @@ int main()
 	program.link();
 	program.use();
 
-	glDisable(GL_DEPTH_FUNC);
+	h3d::mat4x4 proj_mat = h3d::Math::projectionMatrix(90.f, 0.001f, 10000.f, 8.f / 4.f);
+	program.Uniform.setMatrix4x4(proj_mat, program.Uniform.getLocation("proj_mat"));
 
 	while (app.isOpen())
 	{
@@ -37,7 +37,6 @@ int main()
 		}
 		app.clear(h3d::Window::BufferBit::Color,h3d::Color<float>(0.6,1.0,0.2,1.0));
 
-		glViewport(0, 0, app.getSize().x, app.getSize().y);
 		model.render();
 
 		app.swapBuffers();

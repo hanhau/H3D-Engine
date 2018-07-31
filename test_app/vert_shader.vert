@@ -6,6 +6,8 @@ layout (location = 2) in vec2 aTexCoords;
 out vec2 TexCoords;
 out vec3 posout;
 
+uniform mat4x4 proj_mat;
+
 void main()
 {
 	TexCoords = aTexCoords;    
