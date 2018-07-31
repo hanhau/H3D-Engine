@@ -1,4 +1,5 @@
 #include "../../H3D/Model/Mesh.hpp"
+#include "../../H3D/System/Utilities.hpp"
 #include <algorithm>
 #include <GL/glew.h>
 #include <assimp/mesh.h>
@@ -15,6 +16,7 @@ namespace h3d {
     void Mesh::render() {
 		glBindVertexArray(m_vao);
 		glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
     }
     
     bool Mesh::loadFromAiMesh(aiMesh *m_ptr) { 
@@ -28,7 +30,6 @@ namespace h3d {
 				m_ptr->mNormals[i].x,
 				m_ptr->mNormals[i].y,
 				m_ptr->mNormals[i].z);
-            m_vertices.push_back(temp_vert);
 			temp_vert.texCoord = Vec2<float>(0, 0);
 
 			m_vertices.push_back(temp_vert);
@@ -37,12 +38,14 @@ namespace h3d {
         m_indices.clear();
 		for (unsigned int i = 0; i < m_ptr->mNumFaces; i++)
 		{
-			aiFace face = m_ptr->mFaces[i];
-			for (unsigned int j = 0; j < face.mNumIndices; j++)
+			const aiFace& face = m_ptr->mFaces[i];
+			h3dverify(face.mNumIndices != 3);
+			for (size_t j = 0; j < 3; j++)
 				m_indices.push_back(face.mIndices[j]);
 		}
         return true;
     }
+
     void Mesh::loadToOpenGL() {
 		glGenVertexArrays(1, &m_vao);
 		glGenBuffers(1, &m_vbo);

@@ -14,3 +14,6 @@ typedef char GLchar;
 typedef int GLsizei;
 typedef unsigned char GLubyte;
 typedef signed char GLbyte;
+
+struct aiNode;
+struct aiScene;

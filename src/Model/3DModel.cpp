@@ -24,31 +24,41 @@ h3d::Model3D::Model3D(char Path[])
 }
 h3d::Model3D::~Model3D() {}
 /////////////////////////////////////////////////////////////////
+void h3d::Model3D::processNode(aiNode *node, const aiScene *scene)
+{
+	// itself
+	for (unsigned int i = 0; i < node->mNumMeshes; i++)
+	{
+		aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+		m_meshes.push_back(Mesh());
+		m_meshes.back().loadFromAiMesh(mesh);
+		m_meshes.back().loadToOpenGL();
+	}
+
+	// children
+	for (unsigned int i = 0; i < node->mNumChildren; i++)
+	{
+		processNode(node->mChildren[i], scene);
+	}
+}
+
 bool h3d::Model3D::loadFromFile(char Path[]) 
 {
     h3d::Log::info("Loading %s now",Path);
 
     Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(Path,
+	const aiScene* scene = importer.ReadFile(Path, aiProcessPreset_TargetRealtime_MaxQuality);
+	/*const aiScene* scene = importer.ReadFile(Path,
         aiProcess_Triangulate |
-        aiProcess_JoinIdenticalVertices);
+        aiProcess_JoinIdenticalVertices |
+		aiProcess_FindDegenerates);*/
     
     if (!scene) {
         h3d::Log::error("Unable to load %s", Path);
         return false;
     }
 
-    for (int i = 0; i < scene->mNumMaterials; i++) {
-        h3d::Material mat;
-        mat.loadFromAssimpMaterial(scene->mMaterials[i]);
-        m_materials.push_back(mat);
-    }
-
-    for (int i = 0; i < scene->mNumMeshes; i++) {
-		m_meshes.push_back(Mesh());
-		m_meshes.back().loadFromAiMesh(scene->mMeshes[i]);
-		m_meshes.back().loadToOpenGL();
-    }
+	processNode(scene->mRootNode, scene);
 
     h3d::Log::info("Finished loading %s",Path);
     return true;

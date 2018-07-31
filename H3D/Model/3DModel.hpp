@@ -8,6 +8,7 @@
 #include "../../H3D/Graphics/Drawable.hpp"
 #include "../../H3D/Graphics/Material.hpp"
 #include "../../H3D/Model/Mesh.hpp"
+#include "../dep_lib_fwd.h"
 
 #include <string>
 #include <algorithm>
@@ -23,6 +24,8 @@ class Model3D
 
     std::vector<h3d::Mesh> m_meshes;
     std::vector<h3d::Material> m_materials;
+
+	void processNode(aiNode *node, const aiScene *scene);
 	public:
 		// Con-/Destructor
 		H3D_API Model3D();
