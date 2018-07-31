@@ -4,13 +4,15 @@
 #include <H3D/Audio/Audio.hpp>
 #include <H3D/Graphics/Program.hpp>
 #include <H3D/Graphics/Shader.hpp>
-
+#include <H3D/System/Byte.h>
+#include <gl/GL.h>
+#pragma comment(lib,"opengl32.lib")
 int main()
 {
-	h3d::Window app(h3d::Vec2<int>(1600, 900), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
+	h3d::Window app(h3d::Vec2<int>(800, 400), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
 
 	h3d::Model3D model;
-	model.loadFromFile("C:/Users/hanne/Desktop/blender objekte/DING.fbx");
+	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
@@ -21,6 +23,8 @@ int main()
 	program.attachShader(frag_shader);
 	program.link();
 	program.use();
+
+	glDisable(GL_DEPTH_FUNC);
 
 	while (app.isOpen())
 	{

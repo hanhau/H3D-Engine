@@ -141,7 +141,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;H3DVS_EXPORTS;%(PreprocessorDefinitions);DLL_EXPORT</PreprocessorDefinitions>
       <EnablePREfast>false</EnablePREfast>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -333,7 +333,10 @@
     <ClInclude Include="H3D\Network\Socket.hpp" />
     <ClInclude Include="H3D\OpenGL\GLMultithreading.hpp" />
     <ClInclude Include="H3D\OpenGL\GLMultithreadingPackages.hpp" />
+    <ClInclude Include="H3D\OS\FileStreamImpl.hpp" />
+    <ClInclude Include="H3D\OS\LinuxFileStreamImpl.hpp" />
     <ClInclude Include="H3D\OS\WglContext.hpp" />
+    <ClInclude Include="H3D\OS\Win32FileStreamImpl.hpp" />
     <ClInclude Include="H3D\OS\Win32WindowImpl.hpp" />
     <ClInclude Include="H3D\OS\X11Context.hpp" />
     <ClInclude Include="H3D\OS\X11WindowImpl.hpp" />
@@ -346,6 +349,7 @@
     <ClInclude Include="H3D\Scene\Camera.hpp" />
     <ClInclude Include="H3D\Scene\Scenegraph.hpp" />
     <ClInclude Include="H3D\Scene\ScenegraphClasses.hpp" />
+    <ClInclude Include="H3D\System\Byte.h" />
     <ClInclude Include="H3D\System\Clock.hpp" />
     <ClInclude Include="H3D\System\Config.hpp" />
     <ClInclude Include="H3D\System\ContainerFile.hpp" />
@@ -406,9 +410,11 @@
     <ClCompile Include="src\OpenGL\GLMultithreading.cpp" />
     <ClCompile Include="src\OpenGL\GLMultithreadingPackages.cpp" />
     <ClCompile Include="src\OS\ConsoleWin32Impl.cpp" />
+    <ClCompile Include="src\OS\LinuxFileStreamImpl.cpp" />
     <ClCompile Include="src\OS\MouseWin32Impl.cpp" />
     <ClCompile Include="src\OS\MouseX11Impl.cpp" />
     <ClCompile Include="src\OS\WglContext.cpp" />
+    <ClCompile Include="src\OS\Win32FileStreamImpl.cpp" />
     <ClCompile Include="src\OS\Win32WindowImpl.cpp" />
     <ClCompile Include="src\OS\X11Context.cpp" />
     <ClCompile Include="src\OS\X11WindowImpl.cpp" />

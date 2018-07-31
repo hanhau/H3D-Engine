@@ -6,6 +6,7 @@
 #endif
 
 #include <stdint.h>
+#include <map>
 namespace h3d {
 /////////////////////////////////////////////////////////////////
 //	FileDataStructures
@@ -138,6 +139,31 @@ namespace h3d {
 			#pragma pack(pop,TGA_FOOT)
 		}
 		/////////////////////////////////////////////////////////
+		// ContainerFile
+		namespace CH3D {
+			#pragma pack(push,CONTAINERFILE_HEADER,1)
+			struct H3D_API Header
+			{
+				char formatStr[6];  // Must be "h3dcon"
+				uint32_t itemCount; // Items in Container
+			};
+			#pragma pack(pop,CONTAINERFILE_HEADER)
+			#pragma pack(push,CONTAINERFILE_ITEMLISTING,1)
+			struct H3D_API ItemListing
+			{
+				std::string filename; // normal filename
+				uint64_t    filesize; // size in bytes
+				uint64_t    begin,    // first byte in container
+					end;      // last byte -in container
+			};
+			#pragma pack(pop,CONTAINERFILE_ITEMLISTING)
+			#pragma pack (push,CONTAINERFILE_ITEMDICTIONARY,1)
+			struct H3D_API ItemDictionary
+			{
+				std::map<int, ItemListing> map;
+			};
+			#pragma pack(pop,CONTAINERFILE_ITEMDICTIONARY)
+		}
 	}
 /////////////////////////////////////////////////////////////////
 }

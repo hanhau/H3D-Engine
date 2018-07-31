@@ -5,7 +5,19 @@
 gui::Button::Button() { m_state = State.normal; }
 gui::Button::~Button() {}
 /////////////////////////////////////////////////////////////////
+void gui::Button::setPosition(h3d::Vec3<float> pos) {
 
+}
+void gui::Button::setSize(h3d::Vec2<float> size) {
+
+}
+void gui::Button::setStyle(const StylesheetModule::Button& module) {
+
+}
+void setCallback(std::function<void> func_ptr(std::unique_ptr<gui::Button> ptr)) 
+{
+	
+}
 /////////////////////////////////////////////////////////////////
 void gui::Button::render()
 {

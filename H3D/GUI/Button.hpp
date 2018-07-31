@@ -5,6 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif // DLL_EXPORT
 
+#include <functional>
 #include "Stylesheet.hpp"
 #include "../../H3D/Math/Vector.hpp"
 #include "../../H3D/Graphics/Vertex.hpp"
@@ -36,6 +37,7 @@ namespace gui {
 		void setPosition(h3d::Vec3<float> pos);
 		void setSize(h3d::Vec2<float> size);
 		void setStyle(const StylesheetModule::Button& module);
+		void setCallback(std::function<void> func_ptr(std::unique_ptr<Button> ptr));
 
 		void H3D_API render();
 		void H3D_API update();

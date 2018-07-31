@@ -74,6 +74,10 @@
     <ClInclude Include="H3D\Vector\Vector_Implementation.hpp" />
     <ClInclude Include="H3D\XML\XML.hpp" />
     <ClInclude Include="H3D\dep_lib_fwd.h" />
+    <ClInclude Include="H3D\OS\LinuxFileStreamImpl.hpp" />
+    <ClInclude Include="H3D\OS\Win32FileStreamImpl.hpp" />
+    <ClInclude Include="H3D\OS\FileStreamImpl.hpp" />
+    <ClInclude Include="H3D\System\Byte.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="H3D\OpenGL\GLMultithreading.cpp" />
@@ -150,6 +154,8 @@
     <ClCompile Include="src\XML\XML.cpp" />
     <ClCompile Include="src\XML\XMLNode.cpp" />
     <ClCompile Include="src\XML\XMLTree.cpp" />
+    <ClCompile Include="src\OS\Win32FileStreamImpl.cpp" />
+    <ClCompile Include="src\OS\LinuxFileStreamImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Audio">

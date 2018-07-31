@@ -223,7 +223,13 @@ void h3d::intern::Win32WindowImpl::processEvent(UINT msg,
 	case WM_SIZE:
 	{
 		// break if winapi message
-		if (lparam == 0 || wparam == 0) break;
+		if (lparam == 0 && wparam == 0) break;
+		
+		int w = this->m_Size.y * this->m_Size.x/(float)this->m_Size.y;
+		int left = (this->m_Size.x - w) / 2;
+		glViewport(left, 0, w, this->m_Size.y);
+		gluOrtho2D(0, this->m_Size.x, this->m_Size.y, 0);
+		glMatrixMode(GL_MODELVIEW);
 
 		h3d::Event e;
 		e.type = h3d::EventType::Resized;

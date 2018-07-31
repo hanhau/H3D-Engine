@@ -9,38 +9,16 @@
 #include <map>
 #include <string>
 #include "../../H3D/System/FileSystem.hpp"
+#include "../../H3D/System/FileDataStructures.hpp"
 /////////////////////////////////////////////////////////////////
 // ContainerFile containing multiple files in one
-/////////////////////////////////////////////////////////////////
-namespace h3d {
-	namespace FileType {
-		namespace ContainerFile {
-			#pragma pack(push,CONTAINERFILE_HEADER,1)
-			struct H3D_API Header
-			{
-				char formatStr[6];  // Must be "h3dcon"
-				uint32_t itemCount; // Items in Container
-			};
-			#pragma pack(pop,CONTAINERFILE_HEADER)
-			#pragma pack(push,CONTAINERFILE_ITEMLISTING,1)
-			struct H3D_API ItemListing
-			{				   
-				char filename[48]; // normal filename
-				uint64_t filesize; // size in bytes
-				uint64_t begin,    // first byte in container
-						 end;      // last byte in container
-			};
-			#pragma pack(pop,CONTAINERFILE_ITEMLISTING)
-		}
-	}
-}
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	class ContainerFile
 	{
 	private:
 		// final Item struct
-		struct Item : public h3d::FileType::ContainerFile::ItemListing {
+		struct Item : public h3d::FileType::CH3D::ItemListing {
 			h3d::FileHandle filehandle;
 		};
 
@@ -52,10 +30,12 @@ namespace h3d {
 		h3d::FileHandle m_fh;
 	public:
 		H3D_API ContainerFile();
-		H3D_API ContainerFile(std::string path);
+		H3D_API ContainerFile(std::string path,bool filemapping = false);
+		H3D_API ContainerFile(h3d::FileHandle& filehandle);
 		H3D_API ~ContainerFile();
 
 		bool H3D_API openContainerFile(std::string path);
+		bool H3D_API openContainerFile(h3d::FileHandle& filehandle);
 		bool H3D_API close();
 
 		H3D_API h3d::FileHandle& getFileHandle(char filename[48]);
@@ -75,7 +55,7 @@ namespace h3d{
 		if(!fh.open(output_file)) return false;
 
 		// Setup Header in file
-		h3d::FileType::ContainerFile::Header header;
+		h3d::FileType::CH3D::Header header;
 		strcpy(header.formatStr, "h3dcon");
 		header.itemCount = input_files.size();
 		
@@ -85,7 +65,7 @@ namespace h3d{
 
 		// Write until done
 		static h3d::FileHandle infh;
-		static h3d::FileType::ContainerFile::ItemListing itemlisting;
+		static h3d::FileType::CH3D::ItemListing itemlisting;
 		static char* buffer;
 
 		for (auto &iter : input_files)
@@ -100,7 +80,7 @@ namespace h3d{
 			infh.read(buffer, file_length);
 			infh.close();
 			
-			strcpy(itemlisting.filename, iter.c_str());
+			itemlisting.filename = iter;
 			itemlisting.filesize = file_length;
 			
 			fh.write((char*)&itemlisting,sizeof(itemlisting));

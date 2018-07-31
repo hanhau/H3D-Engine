@@ -113,9 +113,11 @@ namespace h3d {
 		unsigned long m_actualIterPos;
 	public:
 		// Con-/Destructor
-		H3D_API FileHandle();
+		H3D_API FileHandle();	
 		H3D_API FileHandle(std::string path, bool filemapping = false);
 		H3D_API ~FileHandle();
+
+		H3D_API FileHandle& operator=(h3d::FileHandle& otherFh);
 
 		enum class Mode {
 			Read,Write,Trunc

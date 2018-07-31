@@ -4,7 +4,12 @@
 // Implementation of ContainerFile Class
 /////////////////////////////////////////////////////////////////
 h3d::ContainerFile::ContainerFile(){}
-h3d::ContainerFile::ContainerFile(std::string path) {}
+h3d::ContainerFile::ContainerFile(std::string path,bool filemapping) {
+	m_fh.open(path,filemapping);
+}
+h3d::ContainerFile::ContainerFile(h3d::FileHandle &filehandle) {
+	m_fh = filehandle;
+}
 h3d::ContainerFile::~ContainerFile() {}
 /////////////////////////////////////////////////////////////////
 bool h3d::ContainerFile::openContainerFile(std::string path) 
@@ -16,7 +21,7 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 	}
 
 	// Loading Header
-	h3d::FileType::ContainerFile::Header header;
+	h3d::FileType::CH3D::Header header;
 	h3d::setObjectFromFileHandle(header, m_fh);
 
 	// Verifying Header
@@ -27,7 +32,7 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 
 	// Get ItemListings
 	static Item tempItem;
-	static h3d::FileType::ContainerFile::ItemListing tempListing;
+	static h3d::FileType::CH3D::ItemListing tempListing;
 
 	for (int i = 0;i < header.itemCount;i++)
 	{
@@ -35,7 +40,7 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 		h3d::setObjectFromFileHandle(tempListing,m_fh);	
 		
 		// Add as internal format to map
-		memmove(tempItem.filename, tempListing.filename, 48);
+		tempItem.filename = tempListing.filename;
 		tempItem.begin    = tempListing.begin;
 		tempItem.end      = tempListing.end;
 		tempItem.filesize = tempListing.filesize;

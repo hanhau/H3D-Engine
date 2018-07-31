@@ -49,6 +49,10 @@ h3d::FileHandle::~FileHandle()
 {
 
 }
+h3d::FileHandle& h3d::FileHandle::operator=(h3d::FileHandle& otherFh) {
+	
+	return *this;
+}
 /////////////////////////////////////////////////////////////////
 bool h3d::FileHandle::open(std::string path, 
 						   std::initializer_list<h3d::FileHandle::Mode> il, 
