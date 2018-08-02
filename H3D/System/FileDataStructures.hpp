@@ -164,6 +164,27 @@ namespace h3d {
 			};
 			#pragma pack(pop,CONTAINERFILE_ITEMDICTIONARY)
 		}
+		/////////////////////////////////////////////////////////
+		// H3D Model Format
+		namespace MH3D {
+			struct Header {
+				char		format[6];
+				uint64_t	size;
+				char		type;
+			};
+			struct Information {
+				uint32_t numMesh;
+				uint32_t numMaterial;
+				uint32_t numVertices;
+				uint32_t numAnimations;
+			};
+			struct ModelData {
+
+			};
+			struct AnimationData {
+
+			};
+		}
 	}
 /////////////////////////////////////////////////////////////////
 }

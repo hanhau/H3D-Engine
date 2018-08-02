@@ -21,7 +21,8 @@ namespace h3d{
             }
         };
         Result H3D_API convertToH3DModel(std::string input_path,
-                                         h3d::Model &md_output);
+                                         h3d::Model3D &md_output);
+		Result H3D_API convertFolderContent(std::string path);
     }
 }
 /////////////////////////////////////////////////////////////////

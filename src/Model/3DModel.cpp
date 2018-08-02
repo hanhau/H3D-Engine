@@ -47,16 +47,17 @@ bool h3d::Model3D::loadFromFile(char Path[])
     h3d::Log::info("Loading %s now",Path);
 
     Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(Path, aiProcessPreset_TargetRealtime_MaxQuality);
-	/*const aiScene* scene = importer.ReadFile(Path,
+	const aiScene* scene = importer.ReadFile(Path,
         aiProcess_Triangulate |
-        aiProcess_JoinIdenticalVertices |
-		aiProcess_FindDegenerates);*/
-    
+        aiProcess_JoinIdenticalVertices);
     if (!scene) {
         h3d::Log::error("Unable to load %s", Path);
         return false;
     }
+
+	for (int i = 0; i < scene->mNumMaterials;i++) {
+		
+	}
 
 	processNode(scene->mRootNode, scene);
 

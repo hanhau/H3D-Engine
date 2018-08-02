@@ -1,5 +1,6 @@
 #include "../../H3D/GUI/Font.hpp"
 #include "../../H3D/GUI/GUI.hpp"
+#include "../../H3D/System/FileSystem.hpp"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -15,17 +16,16 @@ gui::Font::~Font() {}
 /////////////////////////////////////////////////////////////
 bool gui::Font::loadFromFile(char Path[])
 {
-	FT_Error error;
-	if (error == FT_Err_Unknown_File_Format || error) return false;
-	else return true;
+	h3d::FileHandle fh(Path);
+	
+
+	return false;
 }
 /////////////////////////////////////////////////////////////
 bool gui::Font::loadFromMemory(char* data)
 {
 	assert(data == nullptr);
 
-	FT_Error error;
-	if (error) return false;
-	else return true;
+	return false;
 }
 /////////////////////////////////////////////////////////////
