@@ -4,31 +4,36 @@
 namespace h3d {
 	namespace intern {
 		class FileStreamImpl {
-			std::string m_currentPath;
-			unsigned long long m_currentFileSize;
-			bool m_isMemoryMapped;
+		protected:
+			std::string				m_currentPath;
+			size_t					m_currentFileSize;
+			bool					m_isMemoryMapped;
+			std::shared_ptr<void*>	m_fileMapPointer;
+
 		public:
-			enum class StartPos {
-				Start,End
+			struct Mode {
+				enum Values {
+					Read = 0b0001,
+					Write = 0b0010,
+					Exclusive = 0b0100,
+					Trunc = 0b1000
+				};
 			};
 
-			virtual bool open(std::string path) = 0;
+			FileStreamImpl() {};
+			virtual ~FileStreamImpl() {};
+
+			virtual bool open(std::string Path, int params) = 0;
 			virtual void close() = 0;
 
-			virtual void* getMappedBuffer() = 0;
-			
-			virtual size_t read(size_t pos, size_t amount,char *buffer);
-			virtual size_t write();
+			virtual void* openFileMapping(std::string Path,int params,size_t offset) = 0;
+			virtual void  closeFileMapping() = 0;
 
-			template<typename T>
-			T read(size_t pos = -1, StartPos startpos = StartPos::Start) {
-				size_t size = sizeof(T);
-			}
+			virtual size_t read(size_t length,char* buffer) = 0;
+			virtual size_t write(size_t length, char* buffer) = 0;
 
-			template<typename T>
-			void write(T& const object,size_t pos=-1,StartPos startpos = StartPos::Start) {
-				size_t size = sizeof(T);
-			}
+			virtual void setIteratorPos(size_t pos) = 0;
+			virtual size_t getIteratorPos() = 0;
 		};
 	}
 }

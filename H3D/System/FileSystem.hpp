@@ -11,12 +11,11 @@
 #include <cstdint>
 #include <thread>
 #include "../Hashing/UniChecksum.hpp"
+#include "../System/Config.hpp"
+#include "../OS/Win32FileStreamImpl.hpp"
+#include "../OS/LinuxFileStreamImpl.hpp"
 
-#ifdef _WIN32||_WIN64
 #include <windows.h>
-#elif defined __linux__
-#include <sys\mman.h>
-#endif
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	class FileHandle;
@@ -87,6 +86,12 @@ namespace h3d {
 		h3d::Checksum        m_checksum;
 		h3d::File::Crypter  *m_crypter;
 		
+#ifdef H3D_SYSTEM_WINDOWS
+		std::unique_ptr<h3d::intern::Win32FileStreamImpl> m_impl;
+#elif defined H3D_SYSTEM_LINUX
+		std::unique_ptr<h3d::intern::Win32FileStreamImpl> m_impl;
+#endif
+
 #ifdef _WIN32 || _WIN64
 		// winapi stuff
 		HANDLE		 m_fileHandle;
@@ -119,8 +124,17 @@ namespace h3d {
 
 		H3D_API FileHandle& operator=(h3d::FileHandle& otherFh);
 
+		struct _Mode {
+			enum Values {
+				Read,
+				Write,
+				Trunc,
+				Exclusive
+			};
+		};
+
 		enum class Mode {
-			Read,Write,Trunc
+			Read,Write,Trunc,Exclusive
 		};
 
 		// Create/Destroy Handle to File

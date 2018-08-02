@@ -51,21 +51,36 @@ bool h3d::Program::link()
 	else
 	{
 		programid = glCreateProgram();
+		
 		if (vertexshader) {
 			vertexshader->compile();
-			glAttachShader(this->programid,vertexshader->m_shaderid);
+			glAttachShader(programid,vertexshader->m_shaderid);
 		}
 		if (fragmentshader) {
 			fragmentshader->compile();
-			glAttachShader(this->programid, fragmentshader->m_shaderid);
+			glAttachShader(programid, fragmentshader->m_shaderid);
 		}
 		if (geometryshader) {
 			geometryshader->compile();
-			glAttachShader(this->programid,geometryshader->m_shaderid);
+			glAttachShader(programid,geometryshader->m_shaderid);
 		}
+		if (computeshader) {
+			computeshader->compile();
+			glAttachShader(programid, computeshader->m_shaderid);
+		}
+		if (tesscontrolshader) {
+			tesscontrolshader->compile();
+			glAttachShader(programid, tesscontrolshader->m_shaderid);
+		}
+		if (tessevaluationshader) {
+			tessevaluationshader->compile();
+			glAttachShader(programid,tessevaluationshader->m_shaderid);
+		}
+
 		glLinkProgram(programid);
 		GLint status;
 		glGetProgramiv(programid, GL_LINK_STATUS, &status);
+
 		if (status == GL_TRUE)
 			return true;
 		else {
@@ -185,27 +200,45 @@ namespace h3d{
 	}
 
 	void Program::tagUniformOperations::setMatrix4x4v(h3d::mat4x4* mats, GLchar* name) {
-
+		setMatrix4x4v(mats, getLocation(name));
 	}
 	void Program::tagUniformOperations::setMatrix4x4v(h3d::mat4x4* mats, GLint location) {
 		glUniformMatrix4fv(location, sizeof(mats), GL_FALSE, mats->getColumnWiseValues());
 	}
 	void Program::tagUniformOperations::setUniform4fv(h3d::Vec4* vals, GLchar* name) {
-		
+		setUniform4fv(vals, getLocation(name));
 	}
 	void Program::tagUniformOperations::setUniform4fv(h3d::Vec4* vals, GLint location) {
-		glUniform4fv(location, sizeof(vals), 0);
+		float *val_ptrs[sizeof(vals) * 4];
+		for (int i = 0,j=0; i < sizeof(vals) * 4; i += 4,j++) {
+			val_ptrs[i+0] = &vals[j].x;
+			val_ptrs[i+1] = &vals[j].y;
+			val_ptrs[i+2] = &vals[j].z;
+			val_ptrs[i+3] = &vals[j].w;
+		}
+		glUniform4fv(location, sizeof(vals), *val_ptrs);
 	}
 	void Program::tagUniformOperations::setUniform3fv(h3d::Vec3<float>* vals, GLchar* name) {
-
+		setUniform3fv(vals, getLocation(name));
 	}
 	void Program::tagUniformOperations::setUniform3fv(h3d::Vec3<float>* vals, GLint location) {
+		float *val_ptrs[sizeof(vals) * 3];
+		for (int i = 0,j = 0; i < sizeof(vals) * 3; i += 3, j++) {
+			val_ptrs[i + 0] = &vals[j].x;
+			val_ptrs[i + 1] = &vals[j].y;
+			val_ptrs[i + 2] = &vals[j].z;
+		}
 		glUniform4fv(location, sizeof(vals), 0);
 	}
 	void Program::tagUniformOperations::setUniform2fv(h3d::Vec2<float>* vals, GLchar* name) {
-
+		setUniform2fv(vals, getLocation(name));
 	}
 	void Program::tagUniformOperations::setUniform2fv(h3d::Vec2<float>* vals, GLint location) {
+		float *val_ptrs[sizeof(vals) * 2];
+		for (int i = 0,j = 0; i < sizeof(vals) * 2; i += 2, j++) {
+			val_ptrs[i + 0] = &vals[j].x;
+			val_ptrs[i + 1] = &vals[j].y;
+		}
 		glUniform4fv(location, sizeof(vals), 0);
 	}
 	void Program::tagUniformOperations::setUniform1fv(float* vals, GLchar* name) {
