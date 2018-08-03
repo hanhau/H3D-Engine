@@ -60,8 +60,10 @@ bool h3d::Model3D::loadFromFile(char Path[])
 	}
 
 	processNode(scene->mRootNode, scene);
+	for (auto &iter : m_meshes)
+		iter.clearOfflineData();
 
-    h3d::Log::info("Finished loading %s",Path);
+	h3d::Log::info("Finished loading %s", Path);
     return true;
 }
 /////////////////////////////////////////////////////////////////

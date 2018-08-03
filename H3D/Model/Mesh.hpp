@@ -23,6 +23,7 @@ namespace h3d {
 
         std::vector<h3d::Vertex> m_vertices;
         std::vector<unsigned int> m_indices;
+		size_t m_indicesCount;
 	public:
         H3D_API Mesh();
         H3D_API ~Mesh();
@@ -30,6 +31,7 @@ namespace h3d {
         void H3D_API render();
 
         bool H3D_API loadFromAiMesh(aiMesh *m_ptr);
+		void H3D_API clearOfflineData();
         void H3D_API loadToOpenGL();
         bool H3D_API unloadFromOpenGL();
 

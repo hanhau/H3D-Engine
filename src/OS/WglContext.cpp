@@ -98,8 +98,8 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 	pfd.dwFlags = PFD_DOUBLEBUFFER | PFD_SUPPORT_OPENGL |
 				  PFD_DRAW_TO_WINDOW;
 	pfd.iPixelType = PFD_TYPE_RGBA;
-	pfd.cColorBits = 32;
-	pfd.cDepthBits = 32;
+	pfd.cColorBits = 24;
+	pfd.cDepthBits = 8;
 	pfd.iLayerType = PFD_MAIN_PLANE;
 
 	int nPixelFormat = ChoosePixelFormat(m_hdc, &pfd);
@@ -119,7 +119,6 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 		return false;
 
 	int * debug_attributes;
-
 	if (ptr->m_cs.is_debug_context) {
 		h3d::Log::info("Creating Debug Context");
 		debug_attributes = new int[8]();

@@ -92,8 +92,8 @@ public:
 	enum BufferBit {
 		Color = 0x00004000,
 		Accum = 0x00000400,
-		Depth = 0x00000200,
-		Stencil = 0x0000100
+		Depth = 0x00000100,
+		Stencil = 0x0000200
 	};
 	std::string H3D_API getContextVer();
 	void		H3D_API clear(unsigned int mask,h3d::Color<float> col);
