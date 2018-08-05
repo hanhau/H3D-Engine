@@ -18,7 +18,7 @@ int main()
 	h3d::Window app(h3d::Vec2<int>(1500, 750), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
 
 	h3d::Model3D model;
-	model.loadFromFile("C:/Users/hanne/Downloads/M4A1/M4A1.obj");
+	model.loadFromFile("C:/Users/hanne/Downloads/M4A1/ak47.obj");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
@@ -30,7 +30,7 @@ int main()
 	program.link();
 	program.use();
 
-	h3d::mat4x4 mat_scale = h3d::Math::scale(0.25, 0.25, 0.25);
+	h3d::mat4x4 mat_scale = h3d::Math::scale(0.8, 0.8, 0.8);
 	program.Uniform.setMatrix4x4(mat_scale, "mat_scale");
 
 	h3d::mat4x4 mat_proj = h3d::Math::projectionMatrix(95.f,0.0001f,10000.f,1500.f/750.f);

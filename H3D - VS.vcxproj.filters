@@ -79,6 +79,7 @@
     <ClInclude Include="H3D\OS\FileStreamImpl.hpp" />
     <ClInclude Include="H3D\System\Byte.h" />
     <ClInclude Include="H3D\System\Memorystream.hpp" />
+    <ClInclude Include="H3D\hashing\SHA1.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="H3D\OpenGL\GLMultithreading.cpp" />

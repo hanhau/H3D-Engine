@@ -314,6 +314,7 @@
     <ClInclude Include="H3D\GUI\Stylesheet.hpp" />
     <ClInclude Include="H3D\GUI\Text.hpp" />
     <ClInclude Include="H3D\Hashing\CRC32.hpp" />
+    <ClInclude Include="H3D\hashing\SHA1.hpp" />
     <ClInclude Include="H3D\Hashing\SHA256.hpp" />
     <ClInclude Include="H3D\Hashing\UniChecksum.hpp" />
     <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
@@ -414,7 +415,9 @@
     <ClCompile Include="src\OS\LinuxFileStreamImpl.cpp" />
     <ClCompile Include="src\OS\MouseWin32Impl.cpp" />
     <ClCompile Include="src\OS\MouseX11Impl.cpp" />
-    <ClCompile Include="src\OS\WglContext.cpp" />
+    <ClCompile Include="src\OS\WglContext.cpp">
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MaxSpeed</Optimization>
+    </ClCompile>
     <ClCompile Include="src\OS\Win32FileStreamImpl.cpp" />
     <ClCompile Include="src\OS\Win32WindowImpl.cpp" />
     <ClCompile Include="src\OS\X11Context.cpp" />
