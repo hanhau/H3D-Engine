@@ -70,6 +70,11 @@ namespace h3d {
 		memcpy((char*)&object,buffer,objectSize);
 		return objectSize;
 	}
+	template<typename T>
+	void setObjectToFileHandle(T& object, h3d::FileHandle &fh)
+	{
+		fh.write((char*)&src, sizeof(T));
+	}
 	/////////////////////////////////////////////////////////////
 	//	Class for File handling and loading
 	/////////////////////////////////////////////////////////////
