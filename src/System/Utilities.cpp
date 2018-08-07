@@ -124,9 +124,13 @@ void h3d::Log::screenshot(char folder[], h3d::Window& win)
 
 	t_body.biWidth = size.x;
 	t_body.biHeight = size.y;
+	t_body.biPlanes = 1;
 	t_body.biBitCount = 24;
-	t_body.biSizeImage = size.x*size.y;
-	t_body.biSize = size.x*size.y * 3;
+	t_body.biCompression = 0;
+	t_body.biSizeImage = 0;
+	t_body.biSize = sizeof(t_body);
+	t_body.biXPelsPerMeter = 72;
+	t_body.biYPelsPerMeter = 72;
 
 	// Check content of header and body
 	h3d::Log::debug("bfType    = %s", t_header.bfType);
