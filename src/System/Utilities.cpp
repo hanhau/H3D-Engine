@@ -12,7 +12,6 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 /////////////////////////////////////////////////////////////////
-#ifdef H3D_SYSTEM_WINDOWS
 const std::string h3d::Log::getCurrentTime()
 {
 	std::string currTime;
@@ -22,12 +21,6 @@ const std::string h3d::Log::getCurrentTime()
 	currTime.push_back('\0');
 	return currTime;
 }
-#elif defined H3D_SYSTEM_LINUX
-const std::string h3d::Log::getCurrentTime()
-{
-	return "no time func";
-}
-#endif
 /////////////////////////////////////////////////////////////////
 // Assertion 
 void AssertFailed(const char* file, const char* line, const char* expr)
