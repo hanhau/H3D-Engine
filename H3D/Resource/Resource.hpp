@@ -13,6 +13,11 @@
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	struct ResourceBase {
+	protected:
+		union {
+			uint64_t v[4];
+		}m_uid;
+	public:
 		virtual bool loadFromFile(char path[])    = 0;
 		virtual bool loadFromMemory(void * mem)   = 0;
 

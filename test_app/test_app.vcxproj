@@ -79,6 +79,7 @@
     <IncludePath>$(ProjectDir)\dep_libs\sol2\single;../;$(IncludePath)</IncludePath>
     <ReferencePath>$(VC_ReferencesPath_x86);$(ProjectDir)../Debug/;$(ProjectDir)../dep_libs/assimp/bin/Debug</ReferencePath>
     <LibraryPath>$(ProjectDir)..\Debug;$(ProjectDir)..\dep_libs\assimp\bin\Debug;$(ProjectDir)..\dep_libs\openal\Debug;$(LibraryPath)</LibraryPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>../;$(IncludePath)</IncludePath>

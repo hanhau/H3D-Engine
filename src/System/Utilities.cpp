@@ -16,9 +16,12 @@ const std::string h3d::Log::getCurrentTime()
 {
 	std::string currTime;
 	time_t now = time(0);
-	currTime.assign(ctime(&now));
-	currTime.erase(std::end(currTime)-1);
-	currTime.push_back('\0');
+	char timeStr[50];
+	ctime_s(timeStr, 50, &now);
+	for (int i = 0; i < 50; i++)
+		if (timeStr[i] == '\n')
+			timeStr[i] = ' '; 
+	currTime.assign(timeStr);
 	return currTime;
 }
 /////////////////////////////////////////////////////////////////
@@ -55,7 +58,6 @@ void h3d::Log::setLogType(h3d::LogType type) {
 void h3d::Log::costum(const char* tag, const char* str)
 {
 	std::string logString(getCurrentTime());
-	logString.erase(std::end(logString) - 1);
 	logString.append(" [" + std::string(tag) + "]: ");
 	logString.append(str);
 	logString.append("\n");
@@ -98,8 +100,9 @@ extern "C" {
 // Take Screenshot
 void h3d::Log::screenshot(char folder[], h3d::Window& win) 
 {
-	std::string path = std::string(folder) + "shot " + (char*)h3d::Log::getCurrentTime().c_str() + ".bmp";
-	std::replace(path.begin(), path.end(), ':', '_');
+	std::string item_name = "shot " + std::string(h3d::Log::getCurrentTime().c_str()) + ".bmp";
+	std::replace(item_name.begin(), item_name.end(), ':', '_');
+	std::string path = std::string(folder) + item_name;
 	if (h3d::DebugMode)
 		h3d::Log::info("Saving Screenshot '%s'", path.c_str());
 
@@ -124,17 +127,6 @@ void h3d::Log::screenshot(char folder[], h3d::Window& win)
 	t_body.biSize = sizeof(t_body);
 	t_body.biXPelsPerMeter = 72;
 	t_body.biYPelsPerMeter = 72;
-
-	// Check content of header and body
-	h3d::Log::debug("bfType    = %s", t_header.bfType);
-	h3d::Log::debug("bfOffBits = %d", t_header.bfOffBits);
-	h3d::Log::debug("bfsize    = %d", t_header.bfsize);
-
-	h3d::Log::debug("biWidth     = %d",t_body.biWidth);
-	h3d::Log::debug("biHeight    = %d",t_body.biHeight);
-	h3d::Log::debug("biBitCount  = %d", t_body.biBitCount);
-	h3d::Log::debug("biSizeImage = %d", t_body.biSizeImage);
-	h3d::Log::debug("biSize      = %d", t_body.biSize);
 
 	h3d::FileHandle fh;
 	if (fh.open(path) == false) {

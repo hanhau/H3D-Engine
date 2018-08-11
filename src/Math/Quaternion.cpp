@@ -14,10 +14,10 @@ h3d::Quaternion::~Quaternion() {
 constexpr float calc_Pi() {
 	float p16 = 1, pi = 0, precision = 10;
 		for (int k = 0; k <= precision; k++) {
-			pi += 1.0 / p16 * (4.0 / (8 * k + 1) - 2.0 /
-				(8 * k + 4) - 1.0 / (8 * k + 5) - 1.0 /
-				(8 * k + 6));
-			p16 *= 16;
+			pi += 1.f / p16 * (4.f / (8.f * k + 1.f) - 2.f /
+				(8.f * k + 4.f) - 1.f / (8.f * k + 5) - 1.f /
+				(8.f * k + 6.f));
+			p16 *= 16.f;
 		}
 return pi;
 }
@@ -32,10 +32,10 @@ h3d::mat4x4 h3d::Quaternion::toRotateMat4x4()
 {
 	h3d::mat4x4 mat;
 
-	float values[] = {1.0-2.0*y*y,2.0*x*y- 2.0*w*z,2.0*x*z+2.0*w*y,0.0,
-					  2.0*x*y+2.0*w*z,1.0-2.0*x*-2*z*z,2.0*y*z+2*w*x,0.0,
-					  2.0*x*z-2.0*w*y,2.0*y*z-2.0*w*x,1.0-2.0*x*x-2.0*y*y,0.0,
-					  0.0,0.0,0.0,1.0};
+	float values[] = {1.f-2.f*y*y,2.f*x*y- 2.f*w*z,2.f*x*z+2.f*w*y,0.f,
+					  2.f*x*y+2.f*w*z,1.f-2.f*x*-2*z*z,2.f*y*z+2*w*x,0.f,
+					  2.f*x*z-2.f*w*y,2.f*y*z-2.f*w*x,1.f-2.f*x*x-2.f*y*y,0.f,
+					  0.f,0.f,0.f,1.f};
 
 	mat.setRowWiseValues(values);
 	return mat;
@@ -157,11 +157,11 @@ h3d::Vec3<float> h3d::Math::toEulerAngles(Quaternion& q)
 	m_temp.x = atan2f(to_radian(2 * q.x*q.w - 2 * q.y*q.z),
 					  to_radian(1 - 2 * q.x * q.x - 2 * q.z * q.z));
 	
-	if (q.x*q.y + q.z*q.w == 0.5) {
+	if (q.x*q.y + q.z*q.w == 0.5f) {
 		m_temp.y = 2.0 * atan2f(q.x, q.w);
 		m_temp.x = 0.0;
 	}
-	if (q.x*q.y + q.z*q.w == -0.5) {
+	if (q.x*q.y + q.z*q.w == -0.5f) {
 		m_temp.y = -2.0 * atan2f(q.x, q.w);
 		m_temp.x = 0.0;
 	}

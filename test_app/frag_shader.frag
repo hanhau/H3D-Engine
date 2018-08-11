@@ -17,7 +17,6 @@ void main()
     vec3 diffuse = diff * vec3(1.0,0.95,0.95);
             
     vec3 result = (ambient + diffuse) * vec3(0.5,0.7,0.3);
-    //FragColor = vec4(result, 1.0);
 
 	FragColor = vec4(vec3(gl_FragCoord.z), 1.0) + vec4(result, 1.0);
 }

@@ -15,7 +15,13 @@
 
 int main()
 {
-	h3d::Window app(h3d::Vec2<int>(1500, 750), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
+	h3d::mat4x4 mat1;
+	h3d::mat4x4 mat2;
+	h3d::mat4x4 mat3 = mat1 * mat2;
+
+	h3d::Window app(h3d::Vec2<int>(1000, 500), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
+
+	h3d::Audio::initialize();
 
 	h3d::Model3D model;
 	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
@@ -30,7 +36,7 @@ int main()
 	program.link();
 	program.use();
 
-	h3d::mat4x4 mat_scale = h3d::Math::scale(0.15, 0.15, 0.15);
+	h3d::mat4x4 mat_scale = h3d::Math::scale(0.20, 0.20, 0.20);
 	program.Uniform.setMatrix4x4(mat_scale, "mat_scale");
 
 	h3d::mat4x4 mat_proj = h3d::Math::projectionMatrix(95.f,0.0001f,10000.f,1500.f/750.f);
@@ -49,8 +55,10 @@ int main()
 		h3d::Event event;
 		while (app.pollEvent(event)) {
 			if (event.type == h3d::EventType::Closed) {
-				h3d::Log::screenshot("c:/users/Hannes/Desktop/", app);
 				app.close();
+			}
+			if (event.type == h3d::EventType::KeyDown) {
+				std::cout << "lol\n";
 			}
 		}
 
@@ -60,7 +68,7 @@ int main()
 		float x = h3d::Mouse::getPosition().x;
 		float y = h3d::Mouse::getPosition().y;
 
-		h3d::mat4x4 mat_rotate = h3d::Math::rotate(y, x, 3);
+		h3d::mat4x4 mat_rotate = h3d::Math::rotate(sin(clock.getSeconds())*360, cos(clock.getSeconds())*360, tan(clock.getSeconds())*360);
 		program.Uniform.setMatrix4x4(mat_rotate, "mat_rotate");
 
 		program.Uniform.setUniform3f(h3d::Vec3<float>(sinf(clock.getSeconds()),10.f,cosf(clock.getSeconds())), "lightPos");

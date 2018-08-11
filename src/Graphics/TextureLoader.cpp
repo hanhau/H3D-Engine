@@ -57,6 +57,14 @@ bool h3d::Texture::loadPNG(char Path[],h3d::Texture& ref)
 		return false;
 	}
 	
+	h3d::FileType::PNG::Signature f_signature;
+	h3d::setObjectFromFileHandle(f_signature, filehandle);
+	uint8_t check_signature[8]{ 137,80,78,71, 13, 10, 26, 10 };
+	if (memcmp(f_signature.signature, check_signature, 8) != 0){
+		h3d::Log::error("%s is not a valid *.png file",Path);
+		return false;
+	}
+
 
 
 	// Return successfully
@@ -94,7 +102,7 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 
 	for (int i = 0; i < t_header.bytesOfKeyValueData; i++)
 	{
-		uint32_t keyAndValueByteSize;
+		uint32_t keyAndValueByteSize = 0;
 		char *keyAndValue = new char[keyAndValueByteSize];
 		char *valuePadding = new char[3 - ((keyAndValueByteSize + 3) % 4)];
 	}
@@ -135,7 +143,7 @@ bool h3d::Texture::loadTGA(char Path[],h3d::Texture& ref)
 	// Temporary Variables
 	h3d::FileType::TGA::Header t_header;
 	h3d::Color<unsigned char> *pixels;
-	size_t skipover;
+	size_t skipover = 0;
 
 	// Read Header (18 bytes)
 	filehandle.read((char*)&t_header, sizeof(t_header));

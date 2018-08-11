@@ -202,7 +202,9 @@ void h3d::intern::Win32WindowImpl::processEvent(UINT msg,
         break;
 	case WM_CHAR:
 		{
-		h3d::Log::info("WM_CHAR");
+			h3d::Event e;
+			e.type = h3d::EventType::KeyDown;
+			pushEvent(e);
 		}
 		break;
 	case WM_SETFOCUS:

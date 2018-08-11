@@ -17,7 +17,8 @@ h3d::Shader::Shader() :m_created(false),m_type(Type::Geometry)
 	}
 }
 h3d::Shader::Shader(Type type,GLchar code_path[]) :
-	m_created(false),m_type(type)
+	m_created(false),m_type(type),m_sourcecode(0),
+	m_sourcecode_length(0)
 {
 	setType(type); setCode(code_path);
 }

@@ -9,10 +9,10 @@ namespace h3d {
 			h3dverify(Path.size() != 0);
 			h3d::Log::info("Loading %s now", Path.c_str());
 
-			bool _exlusive = params & Mode::Exclusive;
-			bool _trunc = params & Mode::Trunc;
-			bool _read = params & Mode::Read;
-			bool _write = params & Mode::Write;
+			const bool _exlusive = params & Mode::Exclusive;
+			const bool _trunc = params & Mode::Trunc;
+			const bool _read = params & Mode::Read;
+			const bool _write = params & Mode::Write;
 
 			DWORD dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 			DWORD dwDesiredAccess = 0;

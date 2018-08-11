@@ -17,7 +17,10 @@ namespace h3d {
 	class mat4x4	
 	{
 	private:
-		__m128 m_column[4];
+		union{
+		__m128 m;
+		float f[4];
+		} m_column[4];
 
 		void* operator new(size_t size){ return _mm_malloc(size, 16); }
 		void operator delete(void * mem) { _mm_free(mem); }

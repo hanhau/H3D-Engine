@@ -159,6 +159,7 @@
     <ClCompile Include="src\OS\Win32FileStreamImpl.cpp" />
     <ClCompile Include="src\OS\LinuxFileStreamImpl.cpp" />
     <ClCompile Include="src\System\Memorystream.cpp" />
+    <ClCompile Include="src\Model\ModelConverter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Audio">

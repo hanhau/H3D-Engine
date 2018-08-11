@@ -7,7 +7,7 @@
 #include <GL/glew.h>
 #include <GL/wglew.h>
 
-#undef APENTRY
+#undef APIENTRY
 #define APIENTRY _stdcall
 void APIENTRY __opengl_callback_func(GLenum source, GLenum type,
 	GLuint id, GLenum severity,
@@ -106,7 +106,7 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 	if (nPixelFormat == 0)
 		return false;
 
-	BOOL bResult = SetPixelFormat(m_hdc, nPixelFormat, &pfd);
+	const BOOL bResult = SetPixelFormat(m_hdc, nPixelFormat, &pfd);
 	if (!bResult)
 		return false;
 
@@ -114,26 +114,22 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 	wglMakeCurrent(m_hdc, tempOGLContext);
 
 	glewExperimental = GL_TRUE;
-	GLenum error = glewInit();
+	const GLenum error = glewInit();
 	if (error != GLEW_OK)
 		return false;
 
-	int * debug_attributes;
 	if (ptr->m_cs.is_debug_context) {
 		h3d::Log::info("Creating Debug Context");
-		debug_attributes = new int[8]();
-		int vals[] =
-		{
-			WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
-			WGL_CONTEXT_MINOR_VERSION_ARB, 5,
-			WGL_CONTEXT_DEBUG_BIT_ARB,
-			WGL_CONTEXT_FLAGS_ARB,
-			WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB, 1,
-			0
-		};
-		for (int i = 0; i < 9; i++)
-			debug_attributes[i] = vals[i];
 	}
+
+	const int debug_attributes[9]{
+		WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
+		WGL_CONTEXT_MINOR_VERSION_ARB, 5,
+		WGL_CONTEXT_DEBUG_BIT_ARB,
+		WGL_CONTEXT_FLAGS_ARB,
+		WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB, 1,
+		0
+	};
 
 	int attributes[] =
 	{

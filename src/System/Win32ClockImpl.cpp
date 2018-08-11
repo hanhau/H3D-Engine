@@ -13,7 +13,9 @@ public:
 /////////////////////////////////////////////////////////////////
 h3d::Clock::Clock()
 {
-	m_impl = std::unique_ptr<ClockImpl>(new ClockImpl);
+	this->m_newTick = 0;
+	this->m_actualTick = 0;
+	m_impl = std::make_unique<ClockImpl>(new ClockImpl);
 
 	LARGE_INTEGER t;
 	QueryPerformanceFrequency(&t);

@@ -31,7 +31,10 @@ bool h3d::Audio::initialize(char* default_device)
 	else return false;
 	gEAX20Support = alIsExtensionPresent("EAX2.0");
 
-	return gInitialized = true;
+	h3d::Log::info("Opened Audio Device:" ,alcGetString(gDevice, ALC_DEFAULT_DEVICE_SPECIFIER));
+
+	gInitialized = true;
+	return gInitialized;
 }
 bool h3d::Audio::shutdown()
 {	  

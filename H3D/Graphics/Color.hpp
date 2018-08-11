@@ -19,7 +19,7 @@ public:
 	T r, g, b, a;
 	
 	// Constructor
-	Color() {};
+	Color() : r(0),g(0),b(0),a(0){};
 	Color(T red, T green, T blue, T alpha) :
 		r(red), g(green), b(blue), a(alpha) {};
 	~Color() {};

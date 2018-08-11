@@ -26,16 +26,16 @@ namespace h3d {
 		if (fileExtension == "wav")
 		{
 			m_fileType = FileType::WAV;			
+			loadState = true;
 		}
 		else if (fileExtension == "ogg")
 		{
 			m_fileType = FileType::OGG;
+			loadState = true;
 		}
 		else loadState = false;
 
 		return loadState;
-
-		return true;
 	}
 }
 /////////////////////////////////////////////////////////////////

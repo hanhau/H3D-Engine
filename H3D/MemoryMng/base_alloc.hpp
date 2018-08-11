@@ -61,22 +61,22 @@ namespace h3d {namespace mem {namespace math {
 	/////////////////////////////////////////////////////////////////
 	inline void* alignForward(void* addr, uint8_t al)
 	{
-		size_t offset = (uintptr_t)addr % al;
+		const size_t offset = (uintptr_t)addr % al;
 		return add(addr, offset);
 	}
 	inline const void* alignForward(const void* addr, uint8_t al)
 	{
-		size_t offset = (uintptr_t)addr % al;
+		const size_t offset = (uintptr_t)addr % al;
 		return add(addr, offset);
 	}
 	inline void* alignBackward(void* addr, uint8_t al)
 	{
-		size_t negative_offset = al - ((uintptr_t)addr % al);
+		const size_t negative_offset = al - ((uintptr_t)addr % al);
 		return subtract(addr, negative_offset);
 	}
 	inline const void* alignBackward(const void* addr, uint8_t al)
 	{
-		size_t negative_offset = al - ((uintptr_t)addr % al);
+		const size_t negative_offset = al - ((uintptr_t)addr % al);
 		return subtract(addr, negative_offset);
 	}
 	inline uint8_t alignForwardAdjustment(const void* address, 

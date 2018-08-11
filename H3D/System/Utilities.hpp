@@ -137,8 +137,8 @@ namespace h3d {
 
 		static H3D_API const std::string getCurrentTime();
 	public:
-		inline Log() {};
-		inline ~Log() {};
+		inline Log() noexcept {};
+		inline ~Log() noexcept {};
 
 		// Set Logger Properties
 		static void H3D_API setLogType(h3d::LogType type);
@@ -175,7 +175,7 @@ int H3D_API luaLog_alarm(lua_State *lua);
 /////////////////////////////////////////////////////////////////
 class Uncopyable {
 public:
-	inline Uncopyable() {}
+	inline Uncopyable() noexcept {}
 private:
 	inline Uncopyable(const Uncopyable&) = delete;
 	inline Uncopyable& operator=(const Uncopyable&) = delete;
@@ -186,7 +186,7 @@ template<typename... Args>
 void h3d::Log::error(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
-	logString.erase(std::end(logString) - 1);
+	logString.erase(logString.find_last_of('\n'));
 
 	if (m_currentLogType == LogType::CONSOLE) {
 		Console::printInColor(Console::Color::DarkGray,
@@ -215,7 +215,6 @@ template<typename... Args>
 void h3d::Log::debug(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
-	logString.erase(std::end(logString) - 1);
 
 	if (m_currentLogType == LogType::CONSOLE) {
 		Console::printInColor(Console::Color::DarkGray,
@@ -244,7 +243,6 @@ template<typename... Args>
 void h3d::Log::info(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
-	logString.erase(std::end(logString) - 1);
 
 	if (m_currentLogType == LogType::CONSOLE) {
 		Console::printInColor(Console::Color::DarkGray,
@@ -273,7 +271,6 @@ template<typename... Args>
 void h3d::Log::alarm(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
-	logString.erase(std::end(logString) - 1);
 
 	if (m_currentLogType == LogType::CONSOLE) {
 		Console::printInColor(Console::Color::DarkGray,
@@ -302,7 +299,6 @@ template<typename... Args>
 void h3d::Log::opengl(char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
-	logString.erase(std::end(logString) - 1);
 
 	if (m_currentLogType == LogType::CONSOLE) {
 		Console::printInColor(Console::Color::DarkGray,

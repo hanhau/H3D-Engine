@@ -136,10 +136,12 @@ h3d::Checksum h3d::FileHandle::getChecksum()  {
 unsigned long h3d::FileHandle::read(char* dst, size_t size)
 {
 	unsigned long readbytes = 0;
-	ReadFile(m_fileHandle,
-			 dst,size,
-			 &readbytes,NULL);
-	return readbytes;
+	if (ReadFile(m_fileHandle,
+		dst, size,
+		&readbytes, NULL))
+		return readbytes;
+	else
+		return 0;
 }
 unsigned long h3d::FileHandle::write(char* src, size_t size)
 {

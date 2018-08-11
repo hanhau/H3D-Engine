@@ -82,11 +82,24 @@ namespace h3d {
 		}
 		// PNG File Format Structures ///////////////////////////
 		namespace PNG {
+			struct H3D_API Signature {
+				uint8_t signature[8];
+			};
+			struct H3D_API ChunkBase {
+				uint8_t chunkType[4];
+				uint32_t dataSize;
+				uint32_t crc32Sum;
+			};
 			#pragma pack(push,PNG_HEADER,1)
-			struct H3D_API Header {
-
+			struct H3D_API Header : ChunkBase {
+				
 			};
 			#pragma pack(pop,PNG_HEADER)
+			#pragma pack(push,PNG_END,1)
+			struct H3D_API End : ChunkBase {
+
+			};
+			#pragma pack(pop,PNG_END)
 		}
 		// KTX File Format Structures ///////////////////////////
 		namespace KTX {
@@ -168,15 +181,33 @@ namespace h3d {
 		// H3D Model Format
 		namespace MH3D {
 			struct Header {
-				char		format[6];
-				uint64_t	size;
-				char		type;
+				char		format[6];	// "mh3d_?"
+				uint64_t	size;		// total file size
+				char		type;		// 1 static or 2 animated
 			};
 			struct Information {
-				uint32_t numMesh;
-				uint32_t numMaterial;
-				uint32_t numVertices;
-				uint32_t numAnimations;
+				int32_t numMesh;		
+				int32_t numMaterial;
+				int32_t numVertices;
+				int32_t numAnimations;
+				int8_t hasSpecularMap;
+				int8_t hasNormalMap;
+				int8_t hasDiffuseMap;
+				int8_t hasDisplacementMap;
+			};
+			struct MaterialInfo {
+				union {uint64_t v[4];}m_uid; // 256 bit uid
+				int8_t numLayers;
+				int8_t layerSpecular;
+				int8_t layerNormal;
+				int8_t layerDiffuse;
+				int8_t layerDisplacement;
+				int32_t width;
+				int32_t height;
+				int8_t numBitsPP;
+				int8_t hasAlpha;
+				int64_t sizeBytes;
+				int64_t offsetContent;
 			};
 			struct ModelData {
 
