@@ -45,7 +45,7 @@ namespace h3d {
 			h3dverify(false);
 		}
 	}
-	void Console::setTitle(char title[]) {
+	void Console::setTitle(const char title[]) {
 		SetConsoleTitleA(title);
 	}
 	void Console::setCurPos(h3d::Vec2<int> pos) {

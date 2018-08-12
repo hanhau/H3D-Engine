@@ -19,7 +19,7 @@ namespace h3d {
 		glBindVertexArray(0);
     }
     
-    bool Mesh::loadFromAiMesh(aiMesh *m_ptr) { 
+    bool Mesh::loadFromAiMesh(const aiMesh *m_ptr) { 
         for (int i = 0; i < m_ptr->mNumVertices; i++) {
             h3d::Vertex temp_vert;
             temp_vert.position = h3d::Vec3<float>(

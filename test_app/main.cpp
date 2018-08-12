@@ -24,7 +24,7 @@ int main()
 	h3d::Audio::initialize();
 
 	h3d::Model3D model;
-	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
+	model.loadFromFile("C:/Users/hanne/Downloads/M4A1/M4A1.obj");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
@@ -65,8 +65,8 @@ int main()
 		app.clear(h3d::Window::BufferBit::Color | h3d::Window::BufferBit::Depth,
 				  h3d::Color<float>(0.6,1.0,0.2,1.0));
 
-		float x = h3d::Mouse::getPosition().x;
-		float y = h3d::Mouse::getPosition().y;
+		const float x = h3d::Mouse::getPosition().x;
+		const float y = h3d::Mouse::getPosition().y;
 
 		h3d::mat4x4 mat_rotate = h3d::Math::rotate(sin(clock.getSeconds())*360, cos(clock.getSeconds())*360, tan(clock.getSeconds())*360);
 		program.Uniform.setMatrix4x4(mat_rotate, "mat_rotate");

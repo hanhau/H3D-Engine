@@ -4,7 +4,8 @@
 /////////////////////////////////////////////////////////////////
 const float _gravity_ms = 9.81;
 
-struct h3d::PE::Emitter::impl {
+class h3d::PE::Emitter::impl {
+public:
 	GLuint m_bufferids[4];
 
 	int						m_particleCount;

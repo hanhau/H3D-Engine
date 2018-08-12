@@ -141,7 +141,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;H3DVS_EXPORTS;%(PreprocessorDefinitions);DLL_EXPORT</PreprocessorDefinitions>
       <EnablePREfast>false</EnablePREfast>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -152,7 +152,8 @@
       <PrecompiledHeaderFile>H3D/externals.h</PrecompiledHeaderFile>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <MinimalRebuild>false</MinimalRebuild>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <ConformanceMode>false</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -7,7 +7,7 @@
 /////////////////////////////////////////////////////////////////
 // OGG Streaming Utils
 /////////////////////////////////////////////////////////////////
-extern bool openOGGStream(h3d::FileHandle& fh, char path[],
+extern bool openOGGStream(h3d::FileHandle& fh, const char path[],
 						  // OpenAL params
 						  ALsizei &frequency,
 						  ALenum  &format,

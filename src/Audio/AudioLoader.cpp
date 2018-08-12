@@ -103,7 +103,7 @@ extern bool loadOGG(char path[],
 	char* file_data = NULL;
 
 	OggVorbis_File *oggfile;
-	ov_callbacks oggcallbacks = OV_CALLBACKS_DEFAULT;
+	const ov_callbacks oggcallbacks = OV_CALLBACKS_DEFAULT;
 
 	// Open file_stream
 	filehandle.open(path);
@@ -140,7 +140,7 @@ extern bool loadOGG(char path[],
 						   sizeof(pcmdata),
 						   0, 2, 1, &curr);
 		if (ret == 0) eof = true;
-		else if (ret < 0);
+		else if (ret < 0) eof = false;
 
 		// give pcm further
 		std::move(pcmdata,pcmdata+ret,finalpcm.end());

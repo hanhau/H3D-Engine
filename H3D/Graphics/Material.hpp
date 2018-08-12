@@ -26,7 +26,7 @@ namespace h3d {
         float m_shininess;
         float m_shininessStrength;
     public:
-        bool loadFromAssimpMaterial(aiMaterial* mat);
+        bool loadFromAssimpMaterial(const aiMaterial* mat);
     };
 }
 /////////////////////////////////////////////////////////////////

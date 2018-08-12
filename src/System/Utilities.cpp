@@ -15,10 +15,11 @@
 const std::string h3d::Log::getCurrentTime()
 {
 	std::string currTime;
-	time_t now = time(0);
-	char timeStr[50];
-	ctime_s(timeStr, 50, &now);
-	for (int i = 0; i < 50; i++)
+	const time_t now = time(0);
+	const int bufSize = 50;
+	char timeStr[bufSize];
+	ctime_s(&timeStr[0], bufSize, &now);
+	for (int i = 0; i < bufSize; i++)
 		if (timeStr[i] == '\n')
 			timeStr[i] = ' '; 
 	currTime.assign(timeStr);
@@ -75,25 +76,17 @@ void h3d::Log::costum(const char* tag, const char* str)
 // Lua implementation of log functions
 /////////////////////////////////////////////////////////////////
 extern "C" {
-	int luaLog_error(lua_State *lua)
-	{
-		h3d::Log::error((char*)lua_tostring(lua, 1));
-		return 0;
+	void luaLog_error(lua_State *lua){
+		h3d::Log::error(lua_tostring(lua, 1));
 	}
-	int luaLog_debug(lua_State *lua)
-	{
-		h3d::Log::debug((char*)lua_tostring(lua, 1));
-		return 0;
+	void luaLog_debug(lua_State *lua){
+		h3d::Log::debug(lua_tostring(lua, 1));
 	}
-	int luaLog_info(lua_State *lua)
-	{
-		h3d::Log::info((char*)lua_tostring(lua, 1));
-		return 0;
+	void luaLog_info(lua_State *lua){
+		h3d::Log::info(lua_tostring(lua, 1));
 	}
-	int luaLog_alarm(lua_State *lua)
-	{
-		h3d::Log::alarm((char*)lua_tostring(lua, 1));
-		return 0;
+	void luaLog_alarm(lua_State *lua){
+		h3d::Log::alarm(lua_tostring(lua, 1));
 	}
 }
 /////////////////////////////////////////////////////////////////
@@ -106,7 +99,7 @@ void h3d::Log::screenshot(char folder[], h3d::Window& win)
 	if (h3d::DebugMode)
 		h3d::Log::info("Saving Screenshot '%s'", path.c_str());
 
-	h3d::Vec2<int> size = win.getSize();
+	const h3d::Vec2<int> size = win.getSize();
 	h3d::FileType::BMP::Header t_header = { 0 };
 	h3d::FileType::BMP::Body t_body = { 0 };
 

@@ -10,7 +10,7 @@ namespace h3d {
 	}
 
 	// File Loading/Saving
-	void Lightscene::saveToFile(char Path[]) {
+	void Lightscene::saveToFile(const char Path[]) {
 		h3d::FileHandle fh;
 		fh.open(Path);
 
@@ -19,7 +19,7 @@ namespace h3d {
 		fh.close();
 	}
 
-	void Lightscene::loadFromFile(char Path[]) {
+	void Lightscene::loadFromFile(const char Path[]) {
 		h3d::FileHandle fh;
 		fh.open(Path);
 

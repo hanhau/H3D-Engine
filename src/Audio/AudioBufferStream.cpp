@@ -12,7 +12,7 @@ namespace h3d {
 	Audio::AudioBufferStream::AudioBufferStream() {}
 	Audio::AudioBufferStream::~AudioBufferStream() {}
 	/////////////////////////////////////////////////////////////
-	bool Audio::AudioBufferStream::open(char Path[])
+	bool Audio::AudioBufferStream::open(const char Path[])
 	{
 		// Check if file extension is supported
 		std::string fileExtension(Path);
@@ -39,7 +39,7 @@ namespace h3d {
 	}
 }
 /////////////////////////////////////////////////////////////////
-bool openOGGStream(h3d::FileHandle& fh, char path[],
+bool openOGGStream(h3d::FileHandle& fh,const char path[],
 				   // OpenAL params
 				   ALsizei &frequency,
 				   ALenum  &format,

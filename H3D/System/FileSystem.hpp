@@ -153,7 +153,7 @@ namespace h3d {
 
 		// File Operations
 		unsigned long H3D_API read (char* dst, size_t size);
-		unsigned long H3D_API write(char* src, size_t size);
+		unsigned long H3D_API write(const char* src, size_t size);
 
 		// Moving Iterator
 		unsigned long H3D_API getIterPos();

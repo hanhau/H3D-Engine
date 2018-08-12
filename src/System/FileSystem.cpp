@@ -46,7 +46,7 @@ bool h3d::FileHandle::open(std::string path, bool filemapping)
 #elif defined _WIN32 || _WIN64
 		
 	//  Parameter checking
-	DWORD dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
+	const DWORD dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 
 	// Create Handle
 	m_fileHandle = CreateFileA(path.c_str(),
@@ -143,7 +143,7 @@ unsigned long h3d::FileHandle::read(char* dst, size_t size)
 	else
 		return 0;
 }
-unsigned long h3d::FileHandle::write(char* src, size_t size)
+unsigned long h3d::FileHandle::write(const char* src, size_t size)
 {
 	unsigned long writtenbytes = 0;
 	WriteFile(m_fileHandle,

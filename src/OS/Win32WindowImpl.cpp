@@ -55,8 +55,8 @@ bool h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>       size,
 				!= DISP_CHANGE_SUCCESSFUL)
 		{
 			// setting display mode failed, switch to windowed
-			wchar_t* str = L"Fatal Error: Cannot open window "
-							"in fullscreen mode !";
+			const wchar_t* str = L"Fatal Error: Cannot open window "
+								  "in fullscreen mode !";
 			MessageBox(NULL, str, NULL, MB_OK);
 			return false;
 		}
@@ -227,8 +227,8 @@ void h3d::intern::Win32WindowImpl::processEvent(UINT msg,
 		// break if winapi message
 		if (lparam == 0 && wparam == 0) break;
 		
-		int w = this->m_Size.y * this->m_Size.x/(float)this->m_Size.y;
-		int left = (this->m_Size.x - w) / 2;
+		const int w = this->m_Size.y * this->m_Size.x/(float)this->m_Size.y;
+		const int left = (this->m_Size.x - w) / 2;
 		glViewport(left, 0, w, this->m_Size.y);
 		gluOrtho2D(0, this->m_Size.x, this->m_Size.y, 0);
 		glMatrixMode(GL_MODELVIEW);
@@ -274,7 +274,7 @@ void h3d::intern::Win32WindowImpl::processEvent(UINT msg,
 LRESULT CALLBACK _H3D_WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	if (msg == WM_CREATE) {
-		LONG_PTR win = (LONG_PTR)reinterpret_cast<CREATESTRUCT*>(
+		const LONG_PTR win = (LONG_PTR)reinterpret_cast<CREATESTRUCT*>(
 			lparam)->lpCreateParams;
 
 		SetWindowLongPtr(hwnd, GWLP_USERDATA, win);

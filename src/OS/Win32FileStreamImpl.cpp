@@ -14,9 +14,9 @@ namespace h3d {
 			const bool _read = params & Mode::Read;
 			const bool _write = params & Mode::Write;
 
-			DWORD dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
+			const DWORD dwShareMode = FILE_SHARE_READ | FILE_SHARE_WRITE;
 			DWORD dwDesiredAccess = 0;
-			DWORD dwCreationDisposation = 0;
+			const DWORD dwCreationDisposation = 0;
 
 			if (_read) dwDesiredAccess += GENERIC_READ;
 			if (_write) dwDesiredAccess += GENERIC_WRITE;
@@ -47,8 +47,8 @@ namespace h3d {
 		void* Win32FileStreamImpl::openFileMapping(std::string Path,int params, size_t offset) {
 			if (open(Path, params)) {
 				
-				bool _read = params & Mode::Read;
-				bool _write = params & Mode::Write;
+				const bool _read = params & Mode::Read;
+				const bool _write = params & Mode::Write;
 
 				DWORD dwDesiredAccess = 0;
 				if (_read) dwDesiredAccess += GENERIC_READ;

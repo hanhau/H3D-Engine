@@ -28,7 +28,7 @@ float& h3d::mat4x4::operator()(int x, int y){
 __m128& h3d::mat4x4::operator()(int y) {
 	return m_column[y].m;
 }
-float* h3d::mat4x4::getColumnWiseValues()
+float* h3d::mat4x4::getColumnWiseValues() const
 {
 	static float values[16];
 	for (int i = 0;i < 4;i++)
@@ -36,7 +36,7 @@ float* h3d::mat4x4::getColumnWiseValues()
 			values[i*4+j] = m_column[i].f[j];
 	return values;
 }
-float* h3d::mat4x4::getRowWiseValues()
+float* h3d::mat4x4::getRowWiseValues() const
 {
 	static float values[16];
 	for (int i = 0,col = 0;col < 4;col++)
@@ -47,14 +47,14 @@ float* h3d::mat4x4::getRowWiseValues()
 		}
 	return values;
 }
-void h3d::mat4x4::setColumnWiseValues(float *values)
+void h3d::mat4x4::setColumnWiseValues(const float *values)
 {
 	m_column[0].m = _mm_set_ps(values[ 3], values[ 2], values[ 1], values[ 0]);
 	m_column[1].m = _mm_set_ps(values[ 7], values[ 6], values[ 5], values[ 4]);
 	m_column[2].m = _mm_set_ps(values[11], values[10], values[ 9], values[ 8]);
 	m_column[3].m = _mm_set_ps(values[15], values[14], values[13], values[12]);
 }
-void h3d::mat4x4::setRowWiseValues(float *values)
+void h3d::mat4x4::setRowWiseValues(const float *values)
 {							
 	m_column[0].m = _mm_set_ps(values[12], values[ 8], values[4], values[0]);
 	m_column[1].m = _mm_set_ps(values[13], values[ 9], values[5], values[1]);
@@ -75,7 +75,7 @@ h3d::mat4x4& h3d::mat4x4::operator=(h3d::mat4x4 &mat)
 /////////////////////////////////////////////////////////////////
 h3d::mat4x4& h3d::mat4x4::operator+=(const float val) 
 {
-	__m128 add_vals = _mm_set_ps(val, val, val, val);
+	const __m128 add_vals = _mm_set_ps(val, val, val, val);
 	for (int i = 0;i < 4;i++)
 		m_column[i].m = _mm_add_ps(m_column[i].m, add_vals);
 	return *this;
@@ -89,7 +89,7 @@ h3d::mat4x4& h3d::mat4x4::operator+=(const h3d::mat4x4 &mat)
 /////////////////////////////////////////////////////////////////
 h3d::mat4x4& h3d::mat4x4::operator-= (const float val)
 {
-	__m128 sub_vals = _mm_set_ps(val, val, val, val);
+	const __m128 sub_vals = _mm_set_ps(val, val, val, val);
 	for (int i = 0;i < 4;i++)
 		m_column[i].m = _mm_sub_ps(m_column[i].m, sub_vals);
 	return *this;
@@ -103,7 +103,7 @@ h3d::mat4x4& h3d::mat4x4::operator-= (const h3d::mat4x4 &mat)
 /////////////////////////////////////////////////////////////////
 h3d::mat4x4& h3d::mat4x4::operator*=(const float val)
 {
-	__m128 mul_vals = _mm_set_ps(val, val, val, val);
+	const __m128 mul_vals = _mm_set_ps(val, val, val, val);
 	for (int i = 0;i < 4;i++)
 		m_column[i].m = _mm_mul_ps(m_column[i].m, mul_vals);
 	return *this;
@@ -113,17 +113,17 @@ h3d::mat4x4& h3d::mat4x4::operator*=(h3d::mat4x4 &mat)
 	const float *A = getRowWiseValues();
 	const float *B = mat.getRowWiseValues();
 	float C[16];
-	__m128 row1 = _mm_load_ps(&B[0]);
-	__m128 row2 = _mm_load_ps(&B[4]);
-	__m128 row3 = _mm_load_ps(&B[8]);
-	__m128 row4 = _mm_load_ps(&B[12]);
+	const __m128 row1 = _mm_load_ps(&B[0]);
+	const __m128 row2 = _mm_load_ps(&B[4]);
+	const __m128 row3 = _mm_load_ps(&B[8]);
+	const __m128 row4 = _mm_load_ps(&B[12]);
 	for (int i = 0;i < 4;i++)
 	{
-		__m128 brod1 = _mm_set1_ps(A[4 * i + 0]);
-		__m128 brod2 = _mm_set1_ps(A[4 * i + 1]);
-		__m128 brod3 = _mm_set1_ps(A[4 * i + 2]);
-		__m128 brod4 = _mm_set1_ps(A[4 * i + 3]);
-		__m128 row = _mm_add_ps(
+		const __m128 brod1 = _mm_set1_ps(A[4 * i + 0]);
+		const __m128 brod2 = _mm_set1_ps(A[4 * i + 1]);
+		const __m128 brod3 = _mm_set1_ps(A[4 * i + 2]);
+		const __m128 brod4 = _mm_set1_ps(A[4 * i + 3]);
+		const __m128 row = _mm_add_ps(
 						_mm_add_ps(_mm_mul_ps(brod1,row1),
 								   _mm_mul_ps(brod2,row2)),
 						_mm_add_ps(_mm_mul_ps(brod3,row3),

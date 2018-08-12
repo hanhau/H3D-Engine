@@ -102,7 +102,7 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 	pfd.cDepthBits = 8;
 	pfd.iLayerType = PFD_MAIN_PLANE;
 
-	int nPixelFormat = ChoosePixelFormat(m_hdc, &pfd);
+	const int nPixelFormat = ChoosePixelFormat(m_hdc, &pfd);
 	if (nPixelFormat == 0)
 		return false;
 
@@ -131,7 +131,7 @@ bool h3d::intern::WglContext::createContext(std::unique_ptr<h3d::intern::Win32Wi
 		0
 	};
 
-	int attributes[] =
+	const int attributes[] =
 	{
 		WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
 		WGL_CONTEXT_MINOR_VERSION_ARB, 5,

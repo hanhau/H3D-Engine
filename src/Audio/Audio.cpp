@@ -17,7 +17,7 @@ static ALCcontext* gContext;
 static ALboolean gEAX20Support;
 }
 /////////////////////////////////////////////////////////////////
-bool h3d::Audio::initialize(char* default_device)
+bool h3d::Audio::initialize(const char*default_device)
 {
 	if (gInitialized) shutdown();
 
@@ -63,7 +63,7 @@ void h3d::Audio::Listener::setVelocity(h3d::Vec3<float> vel) {
 	alListener3f(AL_VELOCITY,vel.x,vel.y,vel.z);
 }
 void h3d::Audio::Listener::setOrientation(h3d::Vec3<float>at, h3d::Vec3<float>up) {
-	float vals[] = { at.x, at.y, at.y,up.x, up.y, up.z };
+	const float vals[] = { at.x, at.y, at.y,up.x, up.y, up.z };
 	alListenerfv(AL_ORIENTATION,vals);
 }
 /////////////////////////////////////////////////////////////////

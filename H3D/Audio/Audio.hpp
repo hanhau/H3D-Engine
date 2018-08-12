@@ -29,7 +29,7 @@ namespace h3d{
 		/////////////////////////////////////////////////////////
 		// Audio Engine Functions
 		/////////////////////////////////////////////////////////
-		bool H3D_API initialize(char* default_device = NULL);
+		bool H3D_API initialize(const char* default_device = NULL);
 		bool H3D_API shutdown();
 		/////////////////////////////////////////////////////////
 		enum class FileType {
@@ -107,7 +107,7 @@ namespace h3d{
 			H3D_API AudioBufferStream();
 			H3D_API ~AudioBufferStream();
 
-			bool H3D_API open(char Path[]);
+			bool H3D_API open(const char Path[]);
 		};
 		/////////////////////////////////////////////////////////
 		// Audio Sources

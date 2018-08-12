@@ -55,7 +55,7 @@ bool h3d::Model3D::loadFromFile(char Path[])
         return false;
     }
 
-	for (int i = 0; i < scene->mNumMaterials;i++) {
+	for (unsigned int i = 0; i < scene->mNumMaterials;i++) {
 		
 	}
 

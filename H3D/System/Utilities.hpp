@@ -48,13 +48,13 @@ struct lua_State;
 namespace h3d {
 	class Window;
 	namespace numeric {
-		inline size_t kilobytes(size_t t) {
+		inline constexpr size_t kilobytes(size_t t) {
 			return t * 1024;
 		}
-		inline size_t megabytes(size_t t) {
+		inline constexpr size_t megabytes(size_t t) {
 			return t * 1024 * 1024;
 		}
-		inline size_t gigabytes(size_t t) {
+		inline constexpr size_t gigabytes(size_t t) {
 			return t * 1024 * 1024 * 1024;
 		}
 	}
@@ -87,7 +87,7 @@ namespace h3d {
 			static const unsigned short IntenseYellow = Yellow|1<<3;
 		};
 
-		static void H3D_API setTitle(char title[]);
+		static void H3D_API setTitle(const char title[]);
 		static void H3D_API setCurPos(h3d::Vec2<int> pos);
 			
 		static void H3D_API printInColor(unsigned short text,
@@ -137,25 +137,22 @@ namespace h3d {
 
 		static H3D_API const std::string getCurrentTime();
 	public:
-		inline Log() noexcept {};
-		inline ~Log() noexcept {};
-
 		// Set Logger Properties
 		static void H3D_API setLogType(h3d::LogType type);
 
 		// Log Functions
 		template<typename... Args>
-		static void error(char*msg, Args... args);
+		static void error(const char* msg, Args... args);
 		template<typename... Args>
-		static void debug(char*msg, Args... args);
+		static void debug(const char* msg, Args... args);
 		template<typename... Args>
-		static void info (char*msg, Args... args);
+		static void info (const char* msg, Args... args);
 		template<typename... Args>
-		static void alarm(char*msg, Args... args);
+		static void alarm(const char* msg, Args... args);
 		template<typename... Args>
-		static void opengl(char*msg, Args... args);
+		static void opengl(const char* msg, Args... args);
 		template<typename... Args>
-		static void subval(char*msg, Args... args);
+		static void subval(const char* msg, Args... args);
 
 		// costum tag log
 		static void H3D_API costum(const char* tag,const char* str);
@@ -167,10 +164,10 @@ namespace h3d {
 /////////////////////////////////////////////////////////////////
 // Lua Log functions
 extern "C"{
-int H3D_API luaLog_error(lua_State *lua);
-int H3D_API luaLog_debug(lua_State *lua);
-int H3D_API luaLog_info(lua_State *lua);
-int H3D_API luaLog_alarm(lua_State *lua);
+void H3D_API luaLog_error(lua_State *lua);
+void H3D_API luaLog_debug(lua_State *lua);
+void H3D_API luaLog_info(lua_State *lua);
+void H3D_API luaLog_alarm(lua_State *lua);
 }
 /////////////////////////////////////////////////////////////////
 class Uncopyable {
@@ -183,7 +180,7 @@ private:
 /////////////////////////////////////////////////////////////////
 // Log Functions
 template<typename... Args>
-void h3d::Log::error(char* msg, Args... args)
+void h3d::Log::error(const char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
 	logString.erase(logString.find_last_of('\n'));
@@ -212,7 +209,7 @@ void h3d::Log::error(char* msg, Args... args)
 	}
 }
 template<typename... Args>
-void h3d::Log::debug(char* msg, Args... args)
+void h3d::Log::debug(const char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
 
@@ -240,7 +237,7 @@ void h3d::Log::debug(char* msg, Args... args)
 	}
 }
 template<typename... Args>
-void h3d::Log::info(char* msg, Args... args)
+void h3d::Log::info(const char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
 
@@ -268,7 +265,7 @@ void h3d::Log::info(char* msg, Args... args)
 	}
 }
 template<typename... Args>
-void h3d::Log::alarm(char* msg, Args... args)
+void h3d::Log::alarm(const char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
 
@@ -296,7 +293,7 @@ void h3d::Log::alarm(char* msg, Args... args)
 	}
 }
 template<typename... Args>
-void h3d::Log::opengl(char* msg, Args... args)
+void h3d::Log::opengl(const char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
 

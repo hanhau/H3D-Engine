@@ -27,7 +27,7 @@ bool h3d::converter::BMPToKTX(char input[], char output[])
 		return false;
 	}
 
-	h3d::Vec2<int> m_texSize(bmpBody->biWidth,bmpBody->biHeight);
+	const h3d::Vec2<int> m_texSize(bmpBody->biWidth,bmpBody->biHeight);
 
 	FileHandle fh_out;
 	if (!fh.open(output, true)) {

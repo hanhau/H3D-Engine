@@ -59,8 +59,8 @@ namespace h3d {
 			}
 			m_mutex_setState.unlock();
 
-			h3d::GL::Packages::gl_ENABLE_DISABLE* __restrict pPacket =
-				m_nextPacket<h3d::GL::Packages::gl_ENABLE_DISABLE>();
+			const h3d::GL::Packages::gl_ENABLE_DISABLE* __restrict pPacket =
+					m_nextPacket<h3d::GL::Packages::gl_ENABLE_DISABLE>();
 		}
 	}
 }

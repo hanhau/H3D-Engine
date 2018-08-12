@@ -40,7 +40,7 @@ bool h3d::Texture::loadBMP(char Path[],h3d::Texture& ref)
 	ref.m_measurements = h3d::Vec2<int>(t_body.biWidth, abs(t_body.biHeight));
 
 	// Picturedatablock
-	unsigned long imageSize = t_body.biWidth*t_body.biHeight*t_body.biBitCount / 8;
+	const unsigned long imageSize = t_body.biWidth*t_body.biHeight*t_body.biBitCount / 8;
 	ref.m_buffer = new char[imageSize];
     filehandle.read(ref.m_buffer, imageSize);
 
@@ -59,7 +59,7 @@ bool h3d::Texture::loadPNG(char Path[],h3d::Texture& ref)
 	
 	h3d::FileType::PNG::Signature f_signature;
 	h3d::setObjectFromFileHandle(f_signature, filehandle);
-	uint8_t check_signature[8]{ 137,80,78,71, 13, 10, 26, 10 };
+	const uint8_t check_signature[8]{ 137,80,78,71, 13, 10, 26, 10 };
 	if (memcmp(f_signature.signature, check_signature, 8) != 0){
 		h3d::Log::error("%s is not a valid *.png file",Path);
 		return false;
@@ -89,7 +89,7 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 	// Reading
 	file_stream.read((char*)&t_header, sizeof(t_header));
 
-	char identifier[12] = { '«', 'K', 'T', 'X', ' ',
+	const char identifier[12] = { '«', 'K', 'T', 'X', ' ',
 						   '1', '1', '»', '\r', '\n',
 						   '\x1A', '\n' };
 
@@ -102,9 +102,9 @@ bool h3d::Texture::loadKTX(char Path[],h3d::Texture& ref)
 
 	for (int i = 0; i < t_header.bytesOfKeyValueData; i++)
 	{
-		uint32_t keyAndValueByteSize = 0;
-		char *keyAndValue = new char[keyAndValueByteSize];
-		char *valuePadding = new char[3 - ((keyAndValueByteSize + 3) % 4)];
+		const uint32_t keyAndValueByteSize = 0;
+		const char *keyAndValue = new char[keyAndValueByteSize];
+		const char *valuePadding = new char[3 - ((keyAndValueByteSize + 3) % 4)];
 	}
 
 	/*
@@ -174,7 +174,7 @@ bool h3d::Texture::loadTGA(char Path[],h3d::Texture& ref)
 	filehandle.setIterPos(filehandle.getIterPos() + skipover);
 
 	// Reading the imade
-	size_t bytes2read = t_header.bitsperpixel / 8;
+	const size_t bytes2read = t_header.bitsperpixel / 8;
 	size_t n=0;
 	h3d::Color<unsigned char> p;
 	int i = 0, j = 0;

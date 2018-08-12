@@ -33,10 +33,10 @@ namespace h3d {
 		//	Access operators
 		H3D_API float&       operator()(int x, int y); // 2D
 		H3D_API __m128&      operator()(int y);		   // 1D
-		H3D_API float* getColumnWiseValues();
-		H3D_API float* getRowWiseValues();
-		H3D_API void setColumnWiseValues(float *values);
-		H3D_API void setRowWiseValues   (float *values);
+		H3D_API float* getColumnWiseValues() const;
+		H3D_API float* getRowWiseValues() const;
+		H3D_API void setColumnWiseValues(const float *values);
+		H3D_API void setRowWiseValues   (const float *values);
 
 		// Standart Operators
 		H3D_API mat4x4& operator=(mat4x4& mat);

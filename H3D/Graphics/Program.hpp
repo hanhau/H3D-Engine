@@ -55,34 +55,33 @@ namespace h3d{
 		public:
 			// Con-/Destructor
 			H3D_API tagUniformOperations(h3d::Program &prgm);
-			H3D_API ~tagUniformOperations();
 
 			// Basic Uniform Operations
 			GLint H3D_API getLocation(GLchar* name);
 			void  H3D_API deleteUniformEntry(GLint location);
 
 			// set Uniform Variables
-			void H3D_API setMatrix4x4(h3d::mat4x4&		mat, GLchar* name);
-			void H3D_API setMatrix4x4(h3d::mat4x4&      mat, GLint location);
-			void H3D_API setUniform4f(h3d::Vec4&        val, GLchar* name);
-			void H3D_API setUniform4f(h3d::Vec4&        val, GLint location);
-			void H3D_API setUniform3f(h3d::Vec3<float>& val, GLchar* name);
-			void H3D_API setUniform3f(h3d::Vec3<float>& val, GLint location);
-			void H3D_API setUniform2f(h3d::Vec2<float>& val, GLchar* name);
-			void H3D_API setUniform2f(h3d::Vec2<float>& val, GLint location);
-			void H3D_API setUniform1f(float             val, GLchar* name);
-			void H3D_API setUniform1f(float             val, GLint location);
+			void H3D_API setMatrix4x4(const h3d::mat4x4&		mat, GLchar* name);
+			void H3D_API setMatrix4x4(const h3d::mat4x4&      mat, GLint location);
+			void H3D_API setUniform4f(const h3d::Vec4&        val, GLchar* name);
+			void H3D_API setUniform4f(const h3d::Vec4&        val, GLint location);
+			void H3D_API setUniform3f(const h3d::Vec3<float>& val, GLchar* name);
+			void H3D_API setUniform3f(const h3d::Vec3<float>& val, GLint location);
+			void H3D_API setUniform2f(const h3d::Vec2<float>& val, GLchar* name);
+			void H3D_API setUniform2f(const h3d::Vec2<float>& val, GLint location);
+			void H3D_API setUniform1f(const float             val, GLchar* name);
+			void H3D_API setUniform1f(const float             val, GLint location);
 
-			void H3D_API setMatrix4x4v(h3d::mat4x4* mats     , GLchar* name);
-			void H3D_API setMatrix4x4v(h3d::mat4x4* mats     , GLint location);
-			void H3D_API setUniform4fv(h3d::Vec4* vals       , GLchar* name);
-			void H3D_API setUniform4fv(h3d::Vec4* vals	   , GLint location);
-			void H3D_API setUniform3fv(h3d::Vec3<float>* vals, GLchar* name);
-			void H3D_API setUniform3fv(h3d::Vec3<float>* vals, GLint location);
-			void H3D_API setUniform2fv(h3d::Vec2<float>* vals, GLchar* name);
-			void H3D_API setUniform2fv(h3d::Vec2<float>* vals, GLint location);
-			void H3D_API setUniform1fv(float* vals		   , GLchar* name);
-			void H3D_API setUniform1fv(float* vals		   , GLint location);
+			void H3D_API setMatrix4x4v(const h3d::mat4x4* mats     , GLchar* name);
+			void H3D_API setMatrix4x4v(const h3d::mat4x4* mats     , GLint location);
+			void H3D_API setUniform4fv(const h3d::Vec4* vals       , GLchar* name);
+			void H3D_API setUniform4fv(const h3d::Vec4* vals	   , GLint location);
+			void H3D_API setUniform3fv(const h3d::Vec3<float>* vals, GLchar* name);
+			void H3D_API setUniform3fv(const h3d::Vec3<float>* vals, GLint location);
+			void H3D_API setUniform2fv(const h3d::Vec2<float>* vals, GLchar* name);
+			void H3D_API setUniform2fv(const h3d::Vec2<float>* vals, GLint location);
+			void H3D_API setUniform1fv(const float* vals, GLchar* name);
+			void H3D_API setUniform1fv(const float* vals, GLint location);
 
 			// get Uniform Variables
 			H3D_API h3d::mat4x4&      getMatrix4x4(GLint location);
@@ -94,7 +93,6 @@ namespace h3d{
 	public:
 		// Con-/Destructor
 		H3D_API Program();
-		H3D_API ~Program();
 
 		// Resets the Program to be linked again
 		H3D_API void clear();

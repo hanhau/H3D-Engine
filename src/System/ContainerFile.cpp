@@ -34,7 +34,7 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 	static Item tempItem;
 	static h3d::FileType::CH3D::ItemListing tempListing;
 
-	for (int i = 0;i < header.itemCount;i++)
+	for (unsigned int i = 0;i < header.itemCount;i++)
 	{
 		// Get Listing from file
 		h3d::setObjectFromFileHandle(tempListing,m_fh);	
@@ -63,8 +63,6 @@ bool h3d::ContainerFile::close()
 /////////////////////////////////////////////////////////////////
 h3d::FileHandle& h3d::ContainerFile::getFileHandle(char filename[48])
 {
-	
-
 	return h3d::FileHandle();
 }
 /////////////////////////////////////////////////////////////////

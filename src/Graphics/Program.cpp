@@ -2,14 +2,12 @@
 #include "../../H3D/System/Utilities.hpp"
 
 #include <GL/glew.h>
+#include <array>
 /////////////////////////////////////////////////////////////////
 // Program Implementation
 /////////////////////////////////////////////////////////////////
 h3d::Program::tagUniformOperations::tagUniformOperations(h3d::Program &prgm) : m_programRef(prgm){}
-h3d::Program::tagUniformOperations::~tagUniformOperations() {}
-/////////////////////////////////////////////////////////////////
 h3d::Program::Program() : Uniform(*this), linked(false),programid(0) {}
-h3d::Program::~Program() {}
 /////////////////////////////////////////////////////////////////
 bool h3d::Program::attachShader(h3d::Shader &ashader)
 {
@@ -119,7 +117,6 @@ GLuint h3d::Program::getID_GL()
 void h3d::Program::clear()
 {
 	glDeleteProgram(programid);
-	memset((void*)&vertexshader, 0, sizeof(vertexshader));
 	linked = false;
 }
 /////////////////////////////////////////////////////////////////
@@ -127,7 +124,7 @@ void h3d::Program::clear()
 /////////////////////////////////////////////////////////////////
 GLint h3d::Program::tagUniformOperations::getLocation(GLchar* name)
 {
-	GLint res = glGetUniformLocation(m_programRef.programid, name);
+	const GLint res = glGetUniformLocation(m_programRef.programid, name);
 	if (res == -1)
 		h3d::Log::error("Unable to get uniform location of %s",name);
 	return res;
@@ -139,11 +136,11 @@ void h3d::Program::tagUniformOperations::deleteUniformEntry(GLint location)
 /////////////////////////////////////////////////////////////////s
 // SET METHODS
 namespace h3d{ 
-	void Program::tagUniformOperations::setMatrix4x4(h3d::mat4x4& mat,
+	void Program::tagUniformOperations::setMatrix4x4(const h3d::mat4x4& mat,
 													 GLchar* name) {
 		this->setMatrix4x4(mat, getLocation(name));
 	}
-	void Program::tagUniformOperations::setMatrix4x4(h3d::mat4x4& mat, 
+	void Program::tagUniformOperations::setMatrix4x4(const h3d::mat4x4& mat,
 													 GLint location)
 	{
 		m_uniformMap[location] = std::tuple<GLuint, GLuint, void*>
@@ -151,11 +148,11 @@ namespace h3d{
 		glUniformMatrix4fv(location, 1, GL_FALSE, mat.getColumnWiseValues());
 	}
 
-	void Program::tagUniformOperations::setUniform4f(h3d::Vec4& val,
+	void Program::tagUniformOperations::setUniform4f(const h3d::Vec4& val,
 													 GLchar* name) {
 		this->setUniform4f(val, getLocation(name));
 	}
-	void Program::tagUniformOperations::setUniform4f(h3d::Vec4& val, 
+	void Program::tagUniformOperations::setUniform4f(const h3d::Vec4& val,
 													 GLint location)
 	{
 		m_uniformMap[location] = std::tuple<GLuint, GLuint, void*>
@@ -163,11 +160,11 @@ namespace h3d{
 		glUniform4f(location, val.x, val.y, val.z, val.w);
 	}
 
-	void Program::tagUniformOperations::setUniform3f(h3d::Vec3<float>& val,
+	void Program::tagUniformOperations::setUniform3f(const h3d::Vec3<float>& val,
 													 GLchar* name) {
 		this->setUniform3f(val, getLocation(name));
 	}
-	void Program::tagUniformOperations::setUniform3f(h3d::Vec3<float>& val, 
+	void Program::tagUniformOperations::setUniform3f(const h3d::Vec3<float>& val,
 													 GLint location)
 	{
 		m_uniformMap[location] = std::tuple<GLuint, GLuint, void*>
@@ -175,11 +172,11 @@ namespace h3d{
 		glUniform3f(location, val.x, val.y, val.z);
 	}
 
-	void Program::tagUniformOperations::setUniform2f(h3d::Vec2<float>& val,
+	void Program::tagUniformOperations::setUniform2f(const h3d::Vec2<float>& val,
 													 GLchar* name) {
 		this->setUniform2f(val, getLocation(name));
 	}
-	void Program::tagUniformOperations::setUniform2f(h3d::Vec2<float>& val, 
+	void Program::tagUniformOperations::setUniform2f(const h3d::Vec2<float>& val,
 													 GLint location)
 	{
 		m_uniformMap[location] = std::tuple<GLuint, GLuint, void*>
@@ -199,52 +196,62 @@ namespace h3d{
 		glUniform1f(location, val);
 	}
 
-	void Program::tagUniformOperations::setMatrix4x4v(h3d::mat4x4* mats, GLchar* name) {
+	void Program::tagUniformOperations::setMatrix4x4v(const h3d::mat4x4* mats, GLchar* name) {
+		if (!mats) return;
 		setMatrix4x4v(mats, getLocation(name));
 	}
-	void Program::tagUniformOperations::setMatrix4x4v(h3d::mat4x4* mats, GLint location) {
+	void Program::tagUniformOperations::setMatrix4x4v(const h3d::mat4x4* mats, GLint location) {
+		if (!mats) return;
 		glUniformMatrix4fv(location, sizeof(mats), GL_FALSE, mats->getColumnWiseValues());
 	}
-	void Program::tagUniformOperations::setUniform4fv(h3d::Vec4* vals, GLchar* name) {
+	void Program::tagUniformOperations::setUniform4fv(const h3d::Vec4* vals, GLchar* name) {
+		if (!vals) return;
 		setUniform4fv(vals, getLocation(name));
 	}
-	void Program::tagUniformOperations::setUniform4fv(h3d::Vec4* vals, GLint location) {
-		float *val_ptrs[sizeof(vals) * 4];
-		for (int i = 0,j=0; i < sizeof(vals) * 4; i += 4,j++) {
-			val_ptrs[i+0] = &vals[j].x;
-			val_ptrs[i+1] = &vals[j].y;
-			val_ptrs[i+2] = &vals[j].z;
-			val_ptrs[i+3] = &vals[j].w;
+	void Program::tagUniformOperations::setUniform4fv(const h3d::Vec4* vals, GLint location) {
+		if (!vals) return;
+		std::array<const float*, sizeof(vals) * 4> m = { 0 };
+		for (int i = 0, j = 0; i < sizeof(vals) * 4; i += 4, j++) {
+			m.at(i + 0) = &vals[j].x;
+			m.at(i + 1) = &vals[j].y;
+			m.at(i + 2) = &vals[j].z;
+			m.at(i + 3) = &vals[j].w;
 		}
-		glUniform4fv(location, sizeof(vals), *val_ptrs);
+		glUniform4fv(location, sizeof(vals) * 4, *m.data());
 	}
-	void Program::tagUniformOperations::setUniform3fv(h3d::Vec3<float>* vals, GLchar* name) {
+	void Program::tagUniformOperations::setUniform3fv(const h3d::Vec3<float>* vals, GLchar* name) {
+		if (!vals) return;
 		setUniform3fv(vals, getLocation(name));
 	}
-	void Program::tagUniformOperations::setUniform3fv(h3d::Vec3<float>* vals, GLint location) {
-		float *val_ptrs[sizeof(vals) * 3];
-		for (int i = 0,j = 0; i < sizeof(vals) * 3; i += 3, j++) {
-			val_ptrs[i + 0] = &vals[j].x;
-			val_ptrs[i + 1] = &vals[j].y;
-			val_ptrs[i + 2] = &vals[j].z;
+	void Program::tagUniformOperations::setUniform3fv(const h3d::Vec3<float>* vals, GLint location) {
+		if (!vals) return;
+		std::array<const float*, sizeof(vals) * 3> m = {0};
+		for (int i = 0, j = 0; i < sizeof(vals) * 3; i += 3, j++) {
+			m.at(i + 0) = &vals[j].x;
+			m.at(i + 1) = &vals[j].y;
+			m.at(i + 2) = &vals[j].z;
 		}
-		glUniform4fv(location, sizeof(vals), 0);
+		glUniform3fv(location, sizeof(vals) * 3, *m.data());
 	}
-	void Program::tagUniformOperations::setUniform2fv(h3d::Vec2<float>* vals, GLchar* name) {
+	void Program::tagUniformOperations::setUniform2fv(const h3d::Vec2<float>* vals, GLchar* name) {
+		if (!vals) return;
 		setUniform2fv(vals, getLocation(name));
 	}
-	void Program::tagUniformOperations::setUniform2fv(h3d::Vec2<float>* vals, GLint location) {
-		float *val_ptrs[sizeof(vals) * 2];
-		for (int i = 0,j = 0; i < sizeof(vals) * 2; i += 2, j++) {
-			val_ptrs[i + 0] = &vals[j].x;
-			val_ptrs[i + 1] = &vals[j].y;
+	void Program::tagUniformOperations::setUniform2fv(const h3d::Vec2<float>* vals, GLint location) {
+		if (!vals) return;
+		std::array<const float*, sizeof(vals) * 2> m = { 0 };
+		for (int i = 0, j = 0; i < sizeof(vals) * 2; i += 2, j++) {
+			m.at(i + 0) = &vals[j].x;
+			m.at(i + 1) = &vals[j].y;
 		}
-		glUniform4fv(location, sizeof(vals), 0);
+		glUniform2fv(location, sizeof(vals) * 2, *m.data());
 	}
-	void Program::tagUniformOperations::setUniform1fv(float* vals, GLchar* name) {
+	void Program::tagUniformOperations::setUniform1fv(const float* vals, GLchar* name) {
+		if (!vals) return;
 		setUniform1fv(vals, getLocation(name));
 	}
-	void Program::tagUniformOperations::setUniform1fv(float* vals, GLint location) {
+	void Program::tagUniformOperations::setUniform1fv(const float* vals, GLint location) {
+		if (!vals) return;
 		glUniform1fv(location, sizeof(vals), vals);
 	}
 }

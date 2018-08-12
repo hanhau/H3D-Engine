@@ -108,8 +108,8 @@ namespace h3d {
 		H3D_API ~Lightscene();
 
 		// File Loading/Saving
-		void H3D_API saveToFile(char Path[]);
-		void H3D_API loadFromFile(char Path[]);
+		void H3D_API saveToFile(const char Path[]);
+		void H3D_API loadFromFile(const char Path[]);
 
 		// Adding Lights
 		int64_t H3D_API addLight(h3d::Light light);

@@ -15,7 +15,7 @@ h3d::Clock::Clock()
 {
 	this->m_newTick = 0;
 	this->m_actualTick = 0;
-	m_impl = std::make_unique<ClockImpl>(new ClockImpl);
+	m_impl = std::make_unique<ClockImpl>();
 
 	LARGE_INTEGER t;
 	QueryPerformanceFrequency(&t);

@@ -12,16 +12,17 @@
 namespace h3d {
 	struct H3D_API ContextSettings
 	{
-		inline ContextSettings() :
+		inline ContextSettings() noexcept :
 			bits_framebuffer(24),
 			bits_depthbuffer(8),
 			count_auxbuffers(1),
+			bits_stencilbuffer(1),
 			is_debug_context(false)
 		{}
 		inline ContextSettings(unsigned char bits_fb,
 							   unsigned char bits_db,
 							   unsigned char bits_sb,
-							   unsigned char c_aux,bool v=false) :
+							   unsigned char c_aux,bool v=false) noexcept :
 			bits_framebuffer(bits_fb),
 			bits_depthbuffer(bits_db),
 			bits_stencilbuffer(bits_sb),
