@@ -4,17 +4,18 @@
 #include "../../H3D/System/Utilities.hpp"
 #include "../../H3D/System/Event.hpp"
 #include "../../H3D/OS/WglContext.hpp"
+#include "../../H3D/System/Config.hpp"
 
 #include <GL/glew.h>
 
 // Windows
-#ifdef _WIN32 || _WIN64
+#ifdef H3D_SYSTEM_WINDOWS
 
 #include "../../H3D/OS/Win32WindowImpl.hpp"
 typedef h3d::intern::Win32WindowImpl WindowImplType;
 
 // Linux
-#elif defined _linux_
+#elif defined H3D_SYSTEM_LINUX
 
 #include "../../H3D/OS/X11WindowImpl.hpp"
 typedef h3d::intern::X11WindowImpl WindowImplType;
@@ -65,7 +66,7 @@ void h3d::Window::clear(unsigned int mask,h3d::Color<float> col={ 0,0,0,1 })
 /////////////////////////////////////////////////////////////////
 // Setting
 void h3d::Window::setActive(bool val){
-	
+	m_impl->setActive(val);
 }
 void h3d::Window::close() {
 	m_impl->close();

@@ -11,12 +11,10 @@ public:
 /////////////////////////////////////////////////////////////////
 //	Implementations of Winapi Clock Class
 /////////////////////////////////////////////////////////////////
-h3d::Clock::Clock()
+h3d::Clock::Clock() :
+	m_newTick(0),m_actualTick(0),m_tickDiff(0),
+	m_impl(std::make_unique<ClockImpl>())
 {
-	this->m_newTick = 0;
-	this->m_actualTick = 0;
-	m_impl = std::make_unique<ClockImpl>();
-
 	LARGE_INTEGER t;
 	QueryPerformanceFrequency(&t);
 	m_frequency = *reinterpret_cast<uint64_t*>((void*)&t);

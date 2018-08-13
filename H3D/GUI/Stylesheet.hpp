@@ -14,7 +14,7 @@
 namespace gui {
 	namespace StylesheetModule
 	{
-		struct H3D_API Button {
+		struct Button {
 			h3d::Color<GLfloat> m_normalColor;
 		};
 	}

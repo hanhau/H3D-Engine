@@ -11,7 +11,7 @@ h3d::Vec4::Vec4(float _x, float _y, float _z, float _w) :
 h3d::Vec4::Vec4(h3d::Vec3<float> vec, float w) :
 	x(vec.x), y(vec.y), z(vec.z), w(w)
 {}
-h3d::Vec4::Vec4() {}
+h3d::Vec4::Vec4() : x(0), y(0), z(0), w(0) {}
 h3d::Vec4::~Vec4() {}
 /////////////////////////////////////////////////////////////////
 // Operators

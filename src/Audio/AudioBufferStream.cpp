@@ -75,8 +75,8 @@ void ABfishingThread(thread_action &ta,
 					 ALsizei &freq,ALenum &form)
 {
 	// Temp vars
-	bool running;
-	PCMChunk chunks[4];	
+	bool running = true;
+	PCMChunk chunks[4] = { 0 };
 
 	switch (m_fileType)
 	{

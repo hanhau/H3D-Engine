@@ -1,6 +1,5 @@
 #pragma once 
-
-#ifdef _WIN32||_WIN64 
+#if defined(WIN32) || defined(_WIN64)
 
 #define H3D_SYSTEM_WINDOWS 
 
@@ -8,4 +7,4 @@
 
 #define H3D_SYSTEM_LINUX 
 
-#endif 
+#endif

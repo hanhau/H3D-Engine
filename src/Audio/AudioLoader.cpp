@@ -102,7 +102,7 @@ extern bool loadOGG(char path[],
 	h3d::FileHandle filehandle;
 	char* file_data = NULL;
 
-	OggVorbis_File *oggfile;
+	OggVorbis_File *oggfile = nullptr;
 	const ov_callbacks oggcallbacks = OV_CALLBACKS_DEFAULT;
 
 	// Open file_stream

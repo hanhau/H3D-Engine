@@ -153,7 +153,7 @@ bool h3d::Texture::loadTGA(char Path[],h3d::Texture& ref)
 	memset(pixels, 0, pixel_count * sizeof(h3d::Vec3<unsigned char>));
 
 	// Check for valid format types
-	if (t_header.datatypecode = 2 && t_header.datatypecode != 10) {
+	if (t_header.datatypecode != 2 && t_header.datatypecode != 10) {
 		h3d::Log::error("Can only handle image type 2 and 10");
 		return false;
 	}

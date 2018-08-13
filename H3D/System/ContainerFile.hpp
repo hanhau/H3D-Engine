@@ -56,7 +56,7 @@ namespace h3d{
 
 		// Setup Header in file
 		h3d::FileType::CH3D::Header header;
-		strcpy(header.formatStr, "h3dcon");
+		strcpy_s(header.formatStr, "h3dcon");
 		header.itemCount = input_files.size();
 		
 		fh.write((char*)&header, sizeof(header));

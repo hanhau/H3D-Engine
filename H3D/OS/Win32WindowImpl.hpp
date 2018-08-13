@@ -1,6 +1,7 @@
 #pragma once
 
-#ifdef _WIN32 || _WIN64
+#include "../System/Config.hpp"
+#ifdef H3D_SYSTEM_WINDOWS
 
 #include "../../H3D/System/WindowImpl.hpp"
 #include <Windows.h>
@@ -34,21 +35,21 @@ namespace h3d {
 			// Win32 specific
 			void processEvent(UINT msg, WPARAM wparam, LPARAM lparam);
 
-			void setSize(h3d::Vec2<int> param);
-			void resize();
-			void setTitle(std::string param);
-			void setFullscreen(bool param);
-			void setVSync(bool param);
-			void setActive(bool val);
-			void swapBuffers();
-			void allowResize(bool val);
-			void showCursor(bool val);
-			void close();
+			void setSize(h3d::Vec2<int> param) override;
+			void resize() override;
+			void setTitle(std::string param) override;
+			void setFullscreen(bool param) override;
+			void setVSync(bool param) override;
+			void setActive(bool val) override;
+			void swapBuffers() override;
+			void allowResize(bool val) override;
+			void showCursor(bool val) override;
+			void close() override;
 			bool pollEvent(h3d::Event &event);
-			bool isOpen();
+			bool isOpen() override;
 
 			bool create(h3d::Vec2<int>size, std::string title,
-							   h3d::WindowStyle ws, h3d::ContextSettings cs);
+							   h3d::WindowStyle ws, h3d::ContextSettings cs) override;
 		};
 	}
 }

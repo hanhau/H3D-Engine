@@ -132,8 +132,8 @@ h3d::mat4x4	h3d::Math::toRotateMat4x4(Quaternion& q)
 		1.0f - 2.0f*q.y*q.y - 2.0f*q.z*q.z, 2.0f *q.x*q.y - 2.0f*q.z*q.w, 
 		2.0f*q.x*q.z + 2.0f*q.y*q.w, 0.0f,
 		// 5 6 7 8
-		2.0f*q.x*q.y + 2.0*q.z*q.w, 1.0 - 2.0f*q.x*q.x - 2.0f*q.z*q.z, 
-		2.0f*q.y*q.z - 2.0*q.x*q.w, 0.0f,
+		2.0f*q.x*q.y + 2.0f*q.z*q.w, 1.0f - 2.0f*q.x*q.x - 2.0f*q.z*q.z, 
+		2.0f*q.y*q.z - 2.0f*q.x*q.w, 0.0f,
 		// 9 10 11 12
 		2.0f *q.x*q.z - 2.0f*q.y*q.w, 2.0f*q.y*q.z + 2.0f*q.x*q.w, 
 		1.0f - 2.0f*q.x*q.x - 2.0f*q.y*q.y, 0.0f,		

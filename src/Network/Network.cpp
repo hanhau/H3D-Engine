@@ -1,9 +1,9 @@
 #include "../../H3D/Network/Network.hpp"
-
-#ifdef _WIN32 || _WIN64
+#include "../../H3D/System/Config.hpp"
+#ifdef H3D_SYSTEM_WINDOWS
 #include <WinSock2.h>
 #include <Windows.h>
-#elif __linux__
+#elif H3D_SYSTEM_LINUX
 #include <sys\types.h>
 #include <sys\socket.h>
 #include <netdb.h>
@@ -16,7 +16,7 @@ bool h3d::Network::Startup(char version[2])
 	if (h3d::DebugMode) {
 		h3d::Log::info("h3d::Network::Startup(version=%s)",version);
 	}
-#ifdef _WIN32 || _WIN64
+#ifdef H3D_SYSTEM_WINDOWS
 	WSAData wsd;
 	int result = WSAStartup(MAKEWORD(version[0],version[1]),&wsd);
 
@@ -34,7 +34,7 @@ bool h3d::Network::Shutdown()
 {
 	if (h3d::DebugMode)
 		h3d::Log::info("Shutdown Network (WSA Cleanup)");
-#ifdef _WIN32 || _WIN64
+#ifdef H3D_SYSTEM_WINDOWS
 	return (WSACleanup()) ? true : false;	
 #endif
 	return true;

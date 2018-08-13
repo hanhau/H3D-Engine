@@ -97,7 +97,7 @@ namespace h3d {
 		std::unique_ptr<h3d::intern::Win32FileStreamImpl> m_impl;
 #endif
 
-#ifdef _WIN32 || _WIN64
+#ifdef H3D_SYSTEM_WINDOWS
 		// winapi stuff
 		HANDLE		 m_fileHandle;
 		HANDLE		 m_mappedFileHandle;

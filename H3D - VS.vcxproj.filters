@@ -82,8 +82,6 @@
     <ClInclude Include="H3D\hashing\SHA1.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="H3D\OpenGL\GLMultithreading.cpp" />
-    <ClCompile Include="H3D\OpenGL\GLMultithreadingPackages.cpp" />
     <ClCompile Include="src\Audio\Audio.cpp" />
     <ClCompile Include="src\Audio\AudioBufferClasses.cpp" />
     <ClCompile Include="src\Audio\AudioBufferStream.cpp" />

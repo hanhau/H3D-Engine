@@ -183,7 +183,6 @@ template<typename... Args>
 void h3d::Log::error(const char* msg, Args... args)
 {
 	std::string logString(getCurrentTime());
-	logString.erase(logString.find_last_of('\n'));
 
 	if (m_currentLogType == LogType::CONSOLE) {
 		Console::printInColor(Console::Color::DarkGray,

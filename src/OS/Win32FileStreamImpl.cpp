@@ -59,6 +59,7 @@ namespace h3d {
 					PAGE_EXECUTE_READWRITE,
 					0, 0,
 					NULL);
+				if (m_mappedFileHandle == nullptr) return nullptr;
 				this->m_fileMapPointer = std::make_shared<void*>(
 					MapViewOfFileEx(m_mappedFileHandle,
 						dwDesiredAccess, 0, 0, 0, NULL)

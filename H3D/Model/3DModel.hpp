@@ -28,7 +28,7 @@ class Model3D
 	void processNode(aiNode *node, const aiScene *scene);
 	public:
 		// Con-/Destructor
-		H3D_API Model3D();
+		H3D_API Model3D() noexcept;
 		H3D_API Model3D(char Path[]);
 		H3D_API ~Model3D();
 

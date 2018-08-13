@@ -1,5 +1,6 @@
 /////////////////////////////////////////////////////////////////
-#ifdef _WIN32 || _WIN64
+#include "../../H3D/System/Config.hpp"
+#ifdef H3D_SYSTEM_WINDOWS
 
 #include "../../H3D/System/Window.hpp"
 #include "../../H3D/OS/Win32WindowImpl.hpp"
@@ -159,7 +160,7 @@ void h3d::intern::Win32WindowImpl::allowResize(bool val) {
 	m_resizeAllowed = val;
 }
 void h3d::intern::Win32WindowImpl::showCursor(bool val) {
-	ShowCursor((BOOL)val);
+	ShowCursor(val ? 1 : 0);
 }
 void h3d::intern::Win32WindowImpl::close() {
 	if (m_isFullscreen)
@@ -240,12 +241,13 @@ void h3d::intern::Win32WindowImpl::processEvent(UINT msg,
 	break;
 	// Input Handling
 	case WM_INPUT:
-		h3d::Log::info("WM_INPUT");
+		{
+			h3d::Log::info("WM_INPUT");
 
-		h3d::Event e;
-		e.type = h3d::EventType::Input;
-		pushEvent(e);
-
+			h3d::Event e;
+			e.type = h3d::EventType::Input;
+			pushEvent(e);
+		}
 		/*if (h3d::InputManager::isInputActive(DEVICE_TYPE_KEYBOARD)) {
 			h3d::InputManager::updateKeyboard();
 		}

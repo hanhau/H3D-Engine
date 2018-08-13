@@ -14,7 +14,7 @@
 //		 fips/180/4/final/documents/fips180-4-draft-aug2014.pdf
 /////////////////////////////////////////////////////////////////
 namespace {
-	static const uint32_t padding_bit32(1 << 31);
+	static const uint32_t padding_bit32(1U << 31U);
 
 	static inline uint32_t ROTR32(uint32_t x,uint32_t n) { 
 		
@@ -131,10 +131,10 @@ namespace h3d {
 		size_t msgblock_count = msglength_bits/512;
 
 		// Iterate each message block
-		for (int i = 0; i < msgblock_count; i++)
+		for (size_t i = 0; i < msgblock_count; i++)
 		{
 			// {Wt} calc
-			uint32_t W[64];
+			uint32_t W[64] = { 0 };
 
 			a = curr_hash.h0;
 			b = curr_hash.h1;

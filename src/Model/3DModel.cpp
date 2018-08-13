@@ -17,7 +17,7 @@ struct h3d::Model3D::impl
 /////////////////////////////////////////////////////////////////
 // Implementation of abstract model class
 /////////////////////////////////////////////////////////////////
-h3d::Model3D::Model3D() {}
+h3d::Model3D::Model3D() noexcept {}
 h3d::Model3D::Model3D(char Path[])
 {
 	this->loadFromFile(Path);
@@ -26,10 +26,12 @@ h3d::Model3D::~Model3D() {}
 /////////////////////////////////////////////////////////////////
 void h3d::Model3D::processNode(aiNode *node, const aiScene *scene)
 {
+	if (scene == nullptr) return;
+
 	// itself
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
-		aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
+		const aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
 		m_meshes.push_back(Mesh());
 		m_meshes.back().loadFromAiMesh(mesh);
 		m_meshes.back().loadToOpenGL();

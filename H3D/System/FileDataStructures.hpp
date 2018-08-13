@@ -18,14 +18,14 @@ namespace h3d {
 		// WAV File Format Structures ///////////////////////////
 		namespace WAV {
 			#pragma pack(push,WAV_HEADER,1)
-			struct H3D_API Header {
+			struct Header {
 				char     chunkID[4];
 				uint32_t ChunkSize;
 				char     riffType[4];
 			};
 			#pragma pack(pop,WAV_HEADER)
 			#pragma pack(push,WAV_FORMAT,1)
-			struct H3D_API Format {
+			struct Format {
 				char subChunkID[4];
 				long subChunkSize;
 				short audioFormat;
@@ -37,7 +37,7 @@ namespace h3d {
 			};
 			#pragma pack(pop,WAV_FORMAT)
 			#pragma pack(push,WAV_DATA,1)
-			struct H3D_API Data {
+			struct Data {
 				char subChunkID[4];
 				long subChunk2Size;
 			};
@@ -46,7 +46,7 @@ namespace h3d {
 		// OFF File Format Structures ///////////////////////////
 		namespace OGG {
 			#pragma pack(push,OGG_HEADER,1)
-			struct H3D_API Header {
+			struct Header {
 
 			};
 			#pragma pack(pop,OGG_HEADER)
@@ -57,7 +57,7 @@ namespace h3d {
 		// BMP File Format Structures ///////////////////////////
 		namespace BMP {
 			#pragma pack(push,BMP_HEADER,1)
-			struct H3D_API Header {
+			struct Header {
 				uint16_t bfType;       // must "BM"
 				uint32_t bfsize;       // 
 				uint32_t bfReserved;   //
@@ -65,7 +65,7 @@ namespace h3d {
 			};
 			#pragma pack(pop,BMP_HEADER)
 			#pragma pack(push,BMP_BODY,1)
-			struct H3D_API Body {
+			struct Body {
 				uint32_t biSize;          // complete size in bytes
 				int32_t  biWidth;         // x size
 				int32_t  biHeight;        // y size
@@ -82,21 +82,21 @@ namespace h3d {
 		}
 		// PNG File Format Structures ///////////////////////////
 		namespace PNG {
-			struct H3D_API Signature {
+			struct Signature {
 				uint8_t signature[8];
 			};
-			struct H3D_API ChunkBase {
+			struct ChunkBase {
 				uint8_t chunkType[4];
 				uint32_t dataSize;
 				uint32_t crc32Sum;
 			};
 			#pragma pack(push,PNG_HEADER,1)
-			struct H3D_API Header : ChunkBase {
+			struct Header : ChunkBase {
 				
 			};
 			#pragma pack(pop,PNG_HEADER)
 			#pragma pack(push,PNG_END,1)
-			struct H3D_API End : ChunkBase {
+			struct End : ChunkBase {
 
 			};
 			#pragma pack(pop,PNG_END)
@@ -104,7 +104,7 @@ namespace h3d {
 		// KTX File Format Structures ///////////////////////////
 		namespace KTX {
 			#pragma pack(push,KTX_HEADER,1)
-			struct H3D_API Header {
+			struct Header {
 				char     identifier[12];
 				uint32_t endianness;
 				uint32_t glType;
@@ -125,7 +125,7 @@ namespace h3d {
 		// TGA File Format Structures ///////////////////////////
 		namespace TGA {
 			#pragma pack(push,TGA_HEADER,1)
-			struct H3D_API Header {
+			struct Header {
 				int8_t IDlength;
 				int8_t colormaptype;
 				int8_t datatypecode;
@@ -141,12 +141,12 @@ namespace h3d {
 			};
 			#pragma pack(pop,TGA_HEADER)
 			#pragma pack(push,TGA_HEADER_EXTENSION,1)
-			struct H3D_API HeaderExtension {
+			struct HeaderExtension {
 
 			};
 			#pragma pack(pop,TGA_HEADER_EXTENSION)
 			#pragma pack(push,TGA_FOOT,1)
-			struct H3D_API Foot {
+			struct Foot {
 
 			};
 			#pragma pack(pop,TGA_FOOT)
@@ -155,14 +155,14 @@ namespace h3d {
 		// ContainerFile
 		namespace CH3D {
 			#pragma pack(push,CONTAINERFILE_HEADER,1)
-			struct H3D_API Header
+			struct Header
 			{
 				char formatStr[6];  // Must be "h3dcon"
 				uint32_t itemCount; // Items in Container
 			};
 			#pragma pack(pop,CONTAINERFILE_HEADER)
 			#pragma pack(push,CONTAINERFILE_ITEMLISTING,1)
-			struct H3D_API ItemListing
+			struct ItemListing
 			{
 				std::string filename; // normal filename
 				uint64_t    filesize; // size in bytes
@@ -171,7 +171,7 @@ namespace h3d {
 			};
 			#pragma pack(pop,CONTAINERFILE_ITEMLISTING)
 			#pragma pack (push,CONTAINERFILE_ITEMDICTIONARY,1)
-			struct H3D_API ItemDictionary
+			struct ItemDictionary
 			{
 				std::map<int, ItemListing> map;
 			};
