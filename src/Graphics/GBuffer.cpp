@@ -30,7 +30,7 @@ void h3d::GeometryBuffer::setup(h3d::Vec2<int> size,int bitmask)
 	{
 		if (bitmask & Stage::DEPTH)
 		{
-			glBindTexture(GL_TEXTURE_2D, m_oglBuffer[6]);
+			glBindTexture(GL_TEXTURE_2D, m_oglBuffer[5]);
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, size.x, size.y, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
 			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_oglBuffer[5], 0);
 			bitmask -= Stage::DEPTH;

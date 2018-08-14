@@ -90,7 +90,7 @@ T h3d::Vec2<T>::length()
 /////////////////////////////////////////////////////////////////
 // Operators
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator=(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator=(const Vec3<U> &obj)
 {
 	this->x = static_cast<T>(obj.x);
 	this->y = static_cast<T>(obj.y);
@@ -98,7 +98,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator=(Vec3<U> &obj)
 	return *this;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator+(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator+(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
 	temp.x = this->x + static_cast<T>(obj.x);
@@ -107,16 +107,16 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator+(Vec3<U> &obj)
 	return temp;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator-(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator-(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
-	temp.x = this->x - static_cast<T>(obj.x);
-	temp.y = this->y - static_cast<T>(obj.y);
-	temp.z = this->z - static_cast<T>(obj.z);
+	temp.x = this->x + static_cast<T>(obj.x*-1);
+	temp.y = this->y + static_cast<T>(obj.y*-1);
+	temp.z = this->z + static_cast<T>(obj.z*-1);
 	return temp;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator*(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator*(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
 	temp.x = this->x * static_cast<T>(obj.x);
@@ -125,7 +125,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator*(Vec3<U> &obj)
 	return temp;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator/(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator/(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
 	temp.x = this->x / static_cast<T>(obj.x);
@@ -134,7 +134,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator/(Vec3<U> &obj)
 	return temp;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator+=(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator+=(const Vec3<U> &obj)
 {
 	this->x += static_cast<T>(obj.x);
 	this->y += static_cast<T>(obj.y);
@@ -142,7 +142,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator+=(Vec3<U> &obj)
 	return *this;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator-=(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator-=(const Vec3<U> &obj)
 {
 	this->x -= static_cast<T>(obj.x);
 	this->y -= static_cast<T>(obj.y);
@@ -150,7 +150,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator-=(Vec3<U> &obj)
 	return *this;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator*=(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator*=(const Vec3<U> &obj)
 {
 	this->x *= static_cast<T>(obj.x);
 	this->y *= static_cast<T>(obj.y);
@@ -158,7 +158,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator*=(Vec3<U> &obj)
 	return *this;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator/=(Vec3<U> &obj)
+h3d::Vec3<T>& h3d::Vec3<T>::operator/=(const Vec3<U> &obj)
 {
 	this->x /= static_cast<T>(obj.x);
 	this->y /= static_cast<T>(obj.y);
@@ -184,16 +184,23 @@ template<typename T> h3d::Vec3<T>& h3d::Vec3<T>::normalize()
 }	
 /////////////////////////////////////////////////////////////////
 template<typename T> template<typename U> 
-h3d::Vec3<T>& h3d::Vec3<T>::cross(h3d::Vec3<U> &obj)
+T h3d::Vec3<T>::cross(h3d::Vec3<U> &obj)
 {
-	h3d::Vec3<T> temp;
-	temp.x = (this->y*obj.z) - (this->z*obj.y);
-	temp.y = (this->z*obj.x) - (this->x*obj.z);
-	temp.z = (this->x*obj.y) - (this->y*obj.x);
-	return temp;
+	return x * obj.x + y * obj.y + z * obj.z;
 }
 /////////////////////////////////////////////////////////////////
 //	Math Implementations 
+/////////////////////////////////////////////////////////////////
+template<typename T> h3d::Vec3<T> h3d::negative(const h3d::Vec3<T>& vec) 
+{
+	return h3d::Vec3<T>(vec.x*-1, vec.y*-1, vec.z*-1);
+}
+/////////////////////////////////////////////////////////////////
+template<typename T> h3d::Vec3<T> h3d::distance(const h3d::Vec3<T>& from,
+												const h3d::Vec3<T>& to)
+{
+	return h3d::Vec3<T>(to.x-from.x,to.y-from.y,to.z-from.z);
+}
 /////////////////////////////////////////////////////////////////
 template<typename T> h3d::Vec3<T> h3d::normalized(h3d::Vec3<T> vec)
 {

@@ -9,6 +9,7 @@
 #include <H3D/Math/Matrix.hpp>
 #include <H3D/System/Mouse.hpp>
 #include <H3D/System/Clock.hpp>
+#include <H3D/Math/Math.hpp>
 
 #include <gl/GL.h>
 #pragma comment(lib,"opengl32.lib")
@@ -19,12 +20,24 @@ int main()
 	h3d::mat4x4 mat2;
 	h3d::mat4x4 mat3 = mat1 * mat2;
 
+	h3d::Math::Triangle tri;
+	tri.m_pos[0] = h3d::Vec3<float>(0.0, 0.0, 0.0);
+	tri.m_pos[1] = h3d::Vec3<float>(1.0, 1.0, 0.0);
+	tri.m_pos[2] = h3d::Vec3<float>(1.0, 0.0, 0.0);
+
+	h3d::Math::Ray ray;
+	ray.m_pos = h3d::Vec3<float>(0.5, 0.5, 1.0);
+	ray.m_dir = h3d::Vec3<float>(0.5, 0.5, -1.0);
+
+	std::cout << h3d::Math::intersectRay(ray, tri);
+	std::cout << "\n";
+
 	h3d::Window app(h3d::Vec2<int>(1000, 500), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
 
 	h3d::Audio::initialize();
 
 	h3d::Model3D model;
-	model.loadFromFile("C:/Users/hanne/Downloads/M4A1/M4A1.obj");
+	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
@@ -73,6 +86,7 @@ int main()
 
 		program.Uniform.setUniform3f(h3d::Vec3<float>(sinf(clock.getSeconds()),10.f,cosf(clock.getSeconds())), "lightPos");
 
+		for(int i=0;i<1000;i++)
 		model.render();
 		
 		app.swapBuffers();

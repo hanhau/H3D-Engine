@@ -130,7 +130,8 @@ bool h3d::intern::Win32WindowImpl::create(h3d::Vec2<int>       size,
 /////////////////////////////////////////////////////////////////
 // System specific OpenGL Functions
 void h3d::intern::Win32WindowImpl::swapBuffers(){
-	::SwapBuffers(GetDC(m_Win));
+	static HDC dc = GetDC(m_Win);
+	::SwapBuffers(dc);
 }
 void h3d::intern::Win32WindowImpl::setActive(bool val){
 

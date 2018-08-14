@@ -15,7 +15,7 @@ std::string h3d::Checksum::create(std::string path)
 	static std::fstream file_stream;
 	file_stream.open(path, std::ios::in | std::ios::binary | std::ios::ate);
 	if (!file_stream.is_open())
-		return 0;
+		return "";
 
 	// Get file size
 	unsigned fileSize = file_stream.tellg();

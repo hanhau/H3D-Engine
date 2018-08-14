@@ -154,6 +154,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <ConformanceMode>false</ConformanceMode>
+      <ExceptionHandling>false</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -319,6 +320,7 @@
     <ClInclude Include="H3D\Hashing\SHA256.hpp" />
     <ClInclude Include="H3D\Hashing\UniChecksum.hpp" />
     <ClInclude Include="H3D\LuaScript\LuaScript.hpp" />
+    <ClInclude Include="H3D\Math\Math.hpp" />
     <ClInclude Include="H3D\Math\Matrix.hpp" />
     <ClInclude Include="H3D\Math\Quaternion.hpp" />
     <ClInclude Include="H3D\Math\Vector.hpp" />
@@ -398,6 +400,7 @@
     <ClCompile Include="src\Hashing\SHA256.cpp" />
     <ClCompile Include="src\Hashing\UniChecksum.cpp" />
     <ClCompile Include="src\LuaScript\LuaScript.cpp" />
+    <ClCompile Include="src\Math\Math.cpp" />
     <ClCompile Include="src\Math\Matrix.cpp" />
     <ClCompile Include="src\Math\Quaternion.cpp" />
     <ClCompile Include="src\Math\Vec4.cpp" />

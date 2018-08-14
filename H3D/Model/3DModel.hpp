@@ -10,22 +10,28 @@
 #include "../../H3D/Model/Mesh.hpp"
 #include "../dep_lib_fwd.h"
 
-#include <string>
-#include <algorithm>
 #include <vector>
 /////////////////////////////////////////////////////////////////
 //	Universal 3D Model Class
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-class Model3D
+	class BoudingBox {
+		float x_start;
+		float x_end;
+		float y_start;
+		float y_end;
+		float z_start;
+		float z_end;
+	};
+	class Model3D
 	{
-    struct impl;
-    std::unique_ptr<impl>m_impl;
+		struct impl;
+		std::unique_ptr<impl>m_impl;
 
-    std::vector<h3d::Mesh> m_meshes;
-    std::vector<h3d::Material> m_materials;
+		std::vector<h3d::Mesh> m_meshes;
+		std::vector<h3d::Material> m_materials;
 
-	void processNode(aiNode *node, const aiScene *scene);
+		void processNode(aiNode *node, const aiScene *scene);
 	public:
 		// Con-/Destructor
 		H3D_API Model3D() noexcept;
@@ -40,7 +46,7 @@ class Model3D
 
 		// get Intel
 		bool H3D_API isAnimated();
-        void H3D_API logModelData();
+		void H3D_API logModelData();
 
 		// Animation Controls
 		void H3D_API play();

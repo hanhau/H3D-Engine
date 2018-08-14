@@ -59,20 +59,20 @@ public:
 	Vec3() {};
 
 	// operators
-	template<typename U> Vec3<T>& operator= (Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator+ (Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator- (Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator* (Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator/ (Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator+=(Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator-=(Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator*=(Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator/=(Vec3<U> &obj);
+	template<typename U> Vec3<T>& operator= (const Vec3<U> &obj);
+	template<typename U> Vec3<T>& operator+ (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T>& operator- (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T>& operator* (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T>& operator/ (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T>& operator+=(const Vec3<U> &obj);
+	template<typename U> Vec3<T>& operator-=(const Vec3<U> &obj);
+	template<typename U> Vec3<T>& operator*=(const Vec3<U> &obj);
+	template<typename U> Vec3<T>& operator/=(const Vec3<U> &obj);
 
 	// functions
 	T length();
 	Vec3<T>& normalize();
-	template<typename U> Vec3<T>& cross(h3d::Vec3<U> &obj);
+	template<typename U> T cross(h3d::Vec3<U> &obj);
 };
 /////////////////////////////////////////////////////////////////
 //  Vec4 (SIMD supported class)
@@ -111,6 +111,9 @@ public:
 /////////////////////////////////////////////////////////////////
 //	Math Operations
 /////////////////////////////////////////////////////////////////
+template<typename T> h3d::Vec3<T> negative(const h3d::Vec3<T>& vec);
+template<typename T> h3d::Vec3<T> distance(const h3d::Vec3<T>& from,
+										   const h3d::Vec3<T>& to);
 template<typename T> h3d::Vec3<T> normalized(h3d::Vec3<T> vec);
 template<typename T> h3d::Vec3<T> cross(h3d::Vec3<T> vec_a,
 										h3d::Vec3<T> vec_b);

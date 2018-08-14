@@ -1,4 +1,9 @@
 #pragma once
+#if defined DLL_EXPORT
+#define H3D_API __declspec(dllexport)
+#else
+#define H3D_API __declspec(dllimport)
+#endif
 #include <string>
 
 namespace h3d {
