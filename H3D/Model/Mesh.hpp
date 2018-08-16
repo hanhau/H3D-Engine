@@ -32,6 +32,12 @@ namespace h3d {
 
         bool H3D_API loadFromAiMesh(const aiMesh *m_ptr);
 		void H3D_API clearOfflineData();
+
+		void H3D_API passVertices(std::vector<h3d::Vertex> &vertices);
+		H3D_API std::vector<h3d::Vertex>& getVertices();
+		void H3D_API passIndices(std::vector<unsigned int> &indices);
+		H3D_API std::vector<unsigned int>& getIndices();
+
         void H3D_API loadToOpenGL();
         bool H3D_API unloadFromOpenGL();
 

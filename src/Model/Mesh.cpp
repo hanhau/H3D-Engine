@@ -7,8 +7,7 @@
 // Implementation of Mesh
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-    Mesh::Mesh() {
-    }
+    Mesh::Mesh() {}
     Mesh::~Mesh() {
         unloadFromOpenGL();
     }
@@ -49,6 +48,19 @@ namespace h3d {
 	void Mesh::clearOfflineData() {
 		m_indices.clear();
 		m_vertices.clear();
+	}
+
+	void Mesh::passVertices(std::vector<h3d::Vertex> &vertices) {
+		this->m_vertices = std::move(vertices);
+	}
+	std::vector<h3d::Vertex>& Mesh::getVertices() {
+		return m_vertices;
+	}
+	void Mesh::passIndices(std::vector<unsigned int> &indices) {
+		this->m_indices = std::move(indices);
+	}
+	std::vector<unsigned int>& Mesh::getIndices() {
+		return m_indices;
 	}
 
     void Mesh::loadToOpenGL() {

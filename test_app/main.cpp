@@ -26,10 +26,11 @@ int main()
 	tri.m_pos[2] = h3d::Vec3<float>(1.0, 0.0, 0.0);
 
 	h3d::Math::Ray ray;
-	ray.m_pos = h3d::Vec3<float>(0.5, 0.5, 1.0);
-	ray.m_dir = h3d::Vec3<float>(0.5, 0.5, -1.0);
+	ray.m_pos = h3d::Vec3<float>(0.1, 0.1, 1.0);
+	ray.m_target = h3d::Vec3<float>(0.1, 0.1, 0.5);
 
-	std::cout << h3d::Math::intersectRay(ray, tri);
+	h3d::Vec3<float> aaaaaa;
+	std::cout << h3d::Math::intersectRay(ray, tri,aaaaaa);
 	std::cout << "\n";
 
 	h3d::Window app(h3d::Vec2<int>(900, 900), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());

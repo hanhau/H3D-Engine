@@ -8,6 +8,7 @@
 #include "../../H3D/Graphics/Drawable.hpp"
 #include "../../H3D/Graphics/Material.hpp"
 #include "../../H3D/Model/Mesh.hpp"
+#include "../../H3D/Math/Math.hpp"
 #include "../dep_lib_fwd.h"
 
 #include <vector>
@@ -15,13 +16,23 @@
 //	Universal 3D Model Class
 /////////////////////////////////////////////////////////////////
 namespace h3d {
-	class BoudingBox {
+	class BoundingBox {
 		float x_start;
 		float x_end;
 		float y_start;
 		float y_end;
 		float z_start;
 		float z_end;
+		std::array<h3d::Vec3<float>[3], 12> m_tris;
+		h3d::Mesh m_mesh;
+	public:
+		H3D_API BoundingBox();
+		H3D_API BoundingBox(float xstart,float xend,
+							float ystart,float yend,
+							float zstart,float zend);
+
+		void create();
+		bool intersect(const h3d::Math::Ray& ray);
 	};
 	class Model3D
 	{

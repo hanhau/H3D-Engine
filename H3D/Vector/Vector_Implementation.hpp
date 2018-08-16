@@ -98,7 +98,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator=(const Vec3<U> &obj)
 	return *this;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator+(const Vec3<U> &obj) const
+h3d::Vec3<T> h3d::Vec3<T>::operator+(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
 	temp.x = this->x + static_cast<T>(obj.x);
@@ -107,7 +107,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator+(const Vec3<U> &obj) const
 	return temp;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator-(const Vec3<U> &obj) const
+h3d::Vec3<T> h3d::Vec3<T>::operator-(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
 	temp.x = this->x + static_cast<T>(obj.x*-1);
@@ -116,7 +116,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator-(const Vec3<U> &obj) const
 	return temp;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator*(const Vec3<U> &obj) const
+h3d::Vec3<T> h3d::Vec3<T>::operator*(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
 	temp.x = this->x * static_cast<T>(obj.x);
@@ -125,7 +125,7 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator*(const Vec3<U> &obj) const
 	return temp;
 }
 template<typename T> template<typename U>
-h3d::Vec3<T>& h3d::Vec3<T>::operator/(const Vec3<U> &obj) const
+h3d::Vec3<T> h3d::Vec3<T>::operator/(const Vec3<U> &obj) const
 {
 	Vec3<T> temp;
 	temp.x = this->x / static_cast<T>(obj.x);
@@ -133,6 +133,19 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator/(const Vec3<U> &obj) const
 	temp.z = this->z / static_cast<T>(obj.z);
 	return temp;
 }
+template<typename T>
+h3d::Vec3<T> h3d::Vec3<T>::operator*(const float val) const{
+	return h3d::Vec3<T>(this->x*val,
+						this->y*val,
+						this->z*val);
+}
+template<typename T>
+h3d::Vec3<T> h3d::Vec3<T>::operator/(const float val) const {
+	return h3d::Vec3<T>(this->x*val,
+						this->y*val,
+						this->z*val);
+}
+
 template<typename T> template<typename U>
 h3d::Vec3<T>& h3d::Vec3<T>::operator+=(const Vec3<U> &obj)
 {
@@ -165,6 +178,10 @@ h3d::Vec3<T>& h3d::Vec3<T>::operator/=(const Vec3<U> &obj)
 	this->z /= static_cast<T>(obj.z);
 	return *this;
 }
+template<typename T>
+bool h3d::Vec3<T>::operator==(int val) const {
+	return (x == val && y == val && z == val);
+}
 /////////////////////////////////////////////////////////////////
 //	Functions
 template<typename T>
@@ -184,9 +201,14 @@ template<typename T> h3d::Vec3<T>& h3d::Vec3<T>::normalize()
 }	
 /////////////////////////////////////////////////////////////////
 template<typename T> template<typename U> 
-T h3d::Vec3<T>::cross(h3d::Vec3<U> &obj)
-{
+T h3d::Vec3<T>::dot(const h3d::Vec3<U> &obj) const{
 	return x * obj.x + y * obj.y + z * obj.z;
+}
+template<typename T> template<typename U>
+h3d::Vec3<T> h3d::Vec3<T>::cross(const h3d::Vec3<U> &obj) const {
+	return h3d::Vec3<T>(y*obj.z-z*obj.y,
+						z*obj.x-x*obj.z,
+						x*obj.y-y*obj.x);
 }
 /////////////////////////////////////////////////////////////////
 //	Math Implementations 
@@ -209,17 +231,14 @@ template<typename T> h3d::Vec3<T> h3d::normalized(h3d::Vec3<T> vec)
 						vec.z / vec.length());
 }
 /////////////////////////////////////////////////////////////////
-template<typename T> h3d::Vec3<T> h3d::cross(h3d::Vec3<T> vec_a,
-										h3d::Vec3<T> vec_b)
-{
-	return h3d::Vec3<T>(vec_a.y * vec_b.z - vec_b.y * vec_a.z,
-						vec_a.z * vec_b.x - vec_b.z * vec_a.x,
-						vec_a.x * vec_b.y - vec_b.y * vec_a.x);
+template<typename T> h3d::Vec3<T> h3d::cross(const h3d::Vec3<T>& vec_a,
+											 const h3d::Vec3<T>& vec_b) {
+	return vec_a.cross(vec_b);
 }
 /////////////////////////////////////////////////////////////////
-template<typename T> T h3d::dot(h3d::Vec3<T> vec_a,
-								h3d::Vec3<T> vec_b)
+template<typename T> T h3d::dot(const h3d::Vec3<T>& vec_a,
+								const h3d::Vec3<T>& vec_b)
 {
-	return T(vec_a.x*vec_b.x+ vec_a.y*vec_b.y+ vec_a.z*vec_b.z);
+	return vec_a.dot(vec_b);
 }
 /////////////////////////////////////////////////////////////////

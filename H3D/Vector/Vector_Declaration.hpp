@@ -60,19 +60,23 @@ public:
 
 	// operators
 	template<typename U> Vec3<T>& operator= (const Vec3<U> &obj);
-	template<typename U> Vec3<T>& operator+ (const Vec3<U> &obj) const;
-	template<typename U> Vec3<T>& operator- (const Vec3<U> &obj) const;
-	template<typename U> Vec3<T>& operator* (const Vec3<U> &obj) const;
-	template<typename U> Vec3<T>& operator/ (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T> operator+ (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T> operator- (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T> operator* (const Vec3<U> &obj) const;
+	template<typename U> Vec3<T> operator/ (const Vec3<U> &obj) const;
+	Vec3<T> operator*(const float val) const;
+	Vec3<T> operator/(const float val) const;
 	template<typename U> Vec3<T>& operator+=(const Vec3<U> &obj);
 	template<typename U> Vec3<T>& operator-=(const Vec3<U> &obj);
 	template<typename U> Vec3<T>& operator*=(const Vec3<U> &obj);
 	template<typename U> Vec3<T>& operator/=(const Vec3<U> &obj);
+	bool operator==(int val) const;
 
 	// functions
 	T length();
 	Vec3<T>& normalize();
-	template<typename U> T cross(h3d::Vec3<U> &obj);
+	template<typename U> T dot(const h3d::Vec3<U> &obj) const; 
+	template<typename U> h3d::Vec3<T> cross(const h3d::Vec3<U> &obj) const;
 };
 /////////////////////////////////////////////////////////////////
 //  Vec4 (SIMD supported class)
@@ -115,9 +119,9 @@ template<typename T> h3d::Vec3<T> negative(const h3d::Vec3<T>& vec);
 template<typename T> h3d::Vec3<T> distance(const h3d::Vec3<T>& from,
 										   const h3d::Vec3<T>& to);
 template<typename T> h3d::Vec3<T> normalized(h3d::Vec3<T> vec);
-template<typename T> h3d::Vec3<T> cross(h3d::Vec3<T> vec_a,
-										h3d::Vec3<T> vec_b);
-template<typename T>           T  dot(h3d::Vec3<T> vec_a,
-									  h3d::Vec3<T> vec_b);
+template<typename T> h3d::Vec3<T> cross(const h3d::Vec3<T>& vec_a,
+										const h3d::Vec3<T>& vec_b);
+template<typename T>           T  dot(const h3d::Vec3<T>& vec_a,
+									  const h3d::Vec3<T>& vec_b);
 /////////////////////////////////////////////////////////////////
 }

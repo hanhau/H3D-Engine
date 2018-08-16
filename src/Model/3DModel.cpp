@@ -5,6 +5,37 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 /////////////////////////////////////////////////////////////////
+// Bounding Box
+h3d::BoundingBox::BoundingBox() {}
+h3d::BoundingBox::BoundingBox(float xstart, float xend,
+							  float ystart, float yend,
+							  float zstart, float zend) :
+	x_start(xstart),x_end(xend),
+	y_start(ystart),y_end(yend),
+	z_start(zstart),z_end(zend)
+{
+	this->create();
+}
+
+void h3d::BoundingBox::create() {
+	std::array<h3d::Vec3<float>, 8> m_edges = {
+		h3d::Vec3<float>(x_start,y_start,z_start),
+		h3d::Vec3<float>(x_start,y_start,z_end),
+		h3d::Vec3<float>(x_end,y_start,z_end),
+		h3d::Vec3<float>(x_end,y_start,z_start),
+		h3d::Vec3<float>(x_start,y_end,z_start),
+		h3d::Vec3<float>(x_start,y_end,z_end),
+		h3d::Vec3<float>(x_end,y_end,z_end),
+		h3d::Vec3<float>(x_end,y_end,z_start)
+	};
+
+}
+bool h3d::BoundingBox::intersect(const h3d::Math::Ray& ray)
+{
+	for(auto &iter : m_tris)
+		if()
+}
+/////////////////////////////////////////////////////////////////
 // Impl
 struct h3d::Model3D::impl 
 {
