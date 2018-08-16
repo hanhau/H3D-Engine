@@ -106,7 +106,7 @@
     <LibraryPath>$(ProjectDir)dep_libs\freetype\windows\freetype;$(ProjectDir)dep_libs\lua\Debug;$(ProjectDir)dep_libs\libvorbis\win32\VS2010\Win32\Debug;$(ProjectDir)dep_libs\libogg\win32\VS2015\Win32\Debug;$(ProjectDir)dep_libs\openal\Debug;$(ProjectDir)dep_libs\glew\out\lib;$(ProjectDir)dep_libs\glew\bin\Debug;$(ProjectDir)dep_libs\assimp\lib\Debug;$(LibraryPath)</LibraryPath>
     <TargetExt>.dll</TargetExt>
     <TargetName>H3D</TargetName>
-    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

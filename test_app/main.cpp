@@ -32,12 +32,12 @@ int main()
 	std::cout << h3d::Math::intersectRay(ray, tri);
 	std::cout << "\n";
 
-	h3d::Window app(h3d::Vec2<int>(1000, 500), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
+	h3d::Window app(h3d::Vec2<int>(900, 900), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
 
 	h3d::Audio::initialize();
 
 	h3d::Model3D model;
-	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
+	model.loadFromFile("C:/Users/hanne/Downloads/M4A1/M4A1.obj");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
@@ -52,7 +52,7 @@ int main()
 	h3d::mat4x4 mat_scale = h3d::Math::scale(0.20, 0.20, 0.20);
 	program.Uniform.setMatrix4x4(mat_scale, "mat_scale");
 
-	h3d::mat4x4 mat_proj = h3d::Math::projectionMatrix(95.f,0.0001f,10000.f,1500.f/750.f);
+	h3d::mat4x4 mat_proj = h3d::Math::projectionMatrix(95.f,0.0001f,10000.f,1.f);
 	program.Uniform.setMatrix4x4(mat_scale, "mat_proj");
 
 	h3d::Clock clock;
@@ -81,12 +81,11 @@ int main()
 		const float x = h3d::Mouse::getPosition().x;
 		const float y = h3d::Mouse::getPosition().y;
 
-		h3d::mat4x4 mat_rotate = h3d::Math::rotate(sin(clock.getSeconds())*360, cos(clock.getSeconds())*360, tan(clock.getSeconds())*360);
+		h3d::mat4x4 mat_rotate = h3d::Math::rotate(y, x, 0);
 		program.Uniform.setMatrix4x4(mat_rotate, "mat_rotate");
 
-		program.Uniform.setUniform3f(h3d::Vec3<float>(sinf(clock.getSeconds()),10.f,cosf(clock.getSeconds())), "lightPos");
+		program.Uniform.setUniform3f(h3d::Vec3<float>(5.f,10.f,7.f), "lightPos");
 
-		for(int i=0;i<1000;i++)
 		model.render();
 		
 		app.swapBuffers();

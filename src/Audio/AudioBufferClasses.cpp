@@ -4,10 +4,10 @@
 #include <AL/al.h>
 /////////////////////////////////////////////////////////////////
 // Loader Prototypes
-bool loadWAV(char path[],
+bool loadWAV(const char path[],
 			 ALuint& buffer, ALsizei& size, ALsizei& frequency,
 			 ALenum& format);
-bool loadOGG(char path[],
+bool loadOGG(const char path[],
 			 ALuint& buffer, ALsizei& size, ALsizei& frequency,
 			 ALenum& format);
 /////////////////////////////////////////////////////////////////

@@ -71,7 +71,7 @@ namespace h3d {
 		SetConsoleTextAttribute(hStdout, __bckg_flags | __text_flags);
 	}
 	void Console::clear() {
-		CONSOLE_SCREEN_BUFFER_INFO csbi;
+		CONSOLE_SCREEN_BUFFER_INFO csbi = { 0 };
 		COORD target = { 0,0 };
 		DWORD written;
 

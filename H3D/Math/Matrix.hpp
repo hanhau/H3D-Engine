@@ -49,15 +49,15 @@ namespace h3d {
 		H3D_API mat4x4& operator*= (const float val);
 	    H3D_API mat4x4& operator*= (h3d::mat4x4 &mat);
 
-		H3D_API mat4x4& operator+(const float val);
-		H3D_API mat4x4& operator+(const h3d::mat4x4 &mat);
-		H3D_API mat4x4& operator-(const float val);
-		H3D_API mat4x4& operator-(const h3d::mat4x4 &mat);
-		H3D_API mat4x4& operator*(const float val);
+		H3D_API mat4x4 operator+(const float val);
+		H3D_API mat4x4 operator+(const h3d::mat4x4 &mat) const;
+		H3D_API mat4x4 operator-(const float val);
+		H3D_API mat4x4 operator-(const h3d::mat4x4 &mat);
+		H3D_API mat4x4		operator*(const float val);
 		H3D_API Vec4        operator*(h3d::Vec4 in);
 		H3D_API Vec3<float> operator*(h3d::Vec3<float> in);
 		H3D_API Vec2<float> operator*(h3d::Vec2<float> in);
-		H3D_API mat4x4& operator*(h3d::mat4x4 &mat);
+		H3D_API mat4x4		operator*(h3d::mat4x4 &mat);
 	};
 	/////////////////////////////////////////////////////////////
 	//	Matrix Math Functions

@@ -14,7 +14,7 @@
 /////////////////////////////////////////////////////////////////
 // .wav Loading
 /////////////////////////////////////////////////////////////////
-extern bool loadWAV(char path[],
+extern bool loadWAV(const char path[],
 					ALuint& buffer,ALsizei& size,ALsizei& frequency,
 					ALenum& format)
 {
@@ -93,7 +93,7 @@ extern bool loadWAV(char path[],
 // .ogg Loading	
 /////////////////////////////////////////////////////////////////
 #define CHUNK_SIZE 4096
-extern bool loadOGG(char path[],
+extern bool loadOGG(const char path[],
 					ALuint& buffer, ALsizei& size, 
 					ALsizei& frequency,
 					ALenum& format)

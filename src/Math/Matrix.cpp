@@ -134,34 +134,36 @@ h3d::mat4x4& h3d::mat4x4::operator*=(h3d::mat4x4 &mat)
 	return *this;
 }
 /////////////////////////////////////////////////////////////////
-h3d::mat4x4& h3d::mat4x4::operator+(const float val)
+h3d::mat4x4 h3d::mat4x4::operator+(const float val)
 {
 	mat4x4 temp_mat;
 	for (int i = 0;i < 4;i++)
 		m_column[i].m = _mm_add_ps(m_column[i].m, _mm_set_ss(val));
 	return temp_mat;
 }
-h3d::mat4x4& h3d::mat4x4::operator+(const h3d::mat4x4 &mat)
+h3d::mat4x4 h3d::mat4x4::operator+(const h3d::mat4x4 &mat) const
 {
 	mat4x4 temp_mat;
-	
+	for (int i = 0; i < 4; i++)
+		temp_mat.m_column[0].m = 
+		_mm_add_ps(this->m_column[0].m, mat.m_column[0].m);
 	return temp_mat;
 }
 /////////////////////////////////////////////////////////////////
-h3d::mat4x4& h3d::mat4x4::operator-(const float val)
+h3d::mat4x4 h3d::mat4x4::operator-(const float val)
 {
 	mat4x4 temp_mat;
 	
 	return temp_mat;
 }
-h3d::mat4x4& h3d::mat4x4::operator-(const h3d::mat4x4 &mat)
+h3d::mat4x4 h3d::mat4x4::operator-(const h3d::mat4x4 &mat)
 {
 	mat4x4 temp_mat;
 
 	return temp_mat;
 }
 /////////////////////////////////////////////////////////////////
-h3d::mat4x4& h3d::mat4x4::operator*(const float val)
+h3d::mat4x4 h3d::mat4x4::operator*(const float val)
 {
 	mat4x4 temp_mat = *this;
 	
@@ -196,7 +198,7 @@ h3d::Vec2<float> h3d::mat4x4::operator*(h3d::Vec2<float> in)
 	getRowWiseValues()[4] * in.x + getRowWiseValues()[5] * in.y
 	);
 }
-h3d::mat4x4& h3d::mat4x4::operator*(h3d::mat4x4 &mat)
+h3d::mat4x4 h3d::mat4x4::operator*(h3d::mat4x4 &mat)
 {
 	mat4x4 temp_mat = *this;
 	temp_mat *= mat;
