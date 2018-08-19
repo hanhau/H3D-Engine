@@ -23,7 +23,6 @@ namespace h3d {
 		float y_end;
 		float z_start;
 		float z_end;
-		std::array<h3d::Vec3<float>[3], 12> m_tris;
 		h3d::Mesh m_mesh;
 	public:
 		H3D_API BoundingBox();

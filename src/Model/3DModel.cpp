@@ -32,8 +32,8 @@ void h3d::BoundingBox::create() {
 }
 bool h3d::BoundingBox::intersect(const h3d::Math::Ray& ray)
 {
-	for(auto &iter : m_tris)
-		if()
+	
+	return false;
 }
 /////////////////////////////////////////////////////////////////
 // Impl

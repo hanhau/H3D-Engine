@@ -53,8 +53,5 @@ bool h3d::Math::intersectRay(const Ray& ray, h3d::Mesh& const mesh,
 	const size_t tri_num = indicesCount/3;
 	std::vector<h3d::Math::Triangle> tris;
 	tris.resize(tri_num);
-
-	for (int i = 0; i < tri_num; i++) {	
-		tri.m_pos[0] = 
-	}
+	return false;
 }
