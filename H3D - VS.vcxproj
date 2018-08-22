@@ -330,6 +330,7 @@
     <ClInclude Include="H3D\MemoryMng\memory.hpp" />
     <ClInclude Include="H3D\MemoryMng\pool_alloc.hpp" />
     <ClInclude Include="H3D\Model\3DModel.hpp" />
+    <ClInclude Include="H3D\Model\BoundingBox.hpp" />
     <ClInclude Include="H3D\Model\Mesh.hpp" />
     <ClInclude Include="H3D\Model\ModelConverter.hpp" />
     <ClInclude Include="H3D\Network\Network.hpp" />
@@ -373,6 +374,7 @@
     <ClInclude Include="H3D\XML\XML.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="H3D\Model\BoundingBox.cpp" />
     <ClCompile Include="src\Audio\Audio.cpp" />
     <ClCompile Include="src\Audio\AudioBufferClasses.cpp" />
     <ClCompile Include="src\Audio\AudioBufferStream.cpp" />

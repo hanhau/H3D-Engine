@@ -81,6 +81,7 @@
     <ClInclude Include="H3D\System\Memorystream.hpp" />
     <ClInclude Include="H3D\hashing\SHA1.hpp" />
     <ClInclude Include="H3D\Math\Math.hpp" />
+    <ClInclude Include="H3D\Model\BoundingBox.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Audio\Audio.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\System\Memorystream.cpp" />
     <ClCompile Include="src\Model\ModelConverter.cpp" />
     <ClCompile Include="src\Math\Math.cpp" />
+    <ClCompile Include="H3D\Model\BoundingBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Audio">

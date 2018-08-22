@@ -1,5 +1,6 @@
 #include "../../H3D/Math/Math.hpp"
 #include "../../H3D/Model/3DModel.hpp"
+#include "../../H3D/Model/Mesh.hpp"
 
 constexpr float _smallnum = 0.00000001f;
 
@@ -52,6 +53,19 @@ bool h3d::Math::intersectRay(const Ray& ray, h3d::Mesh& const mesh,
 	const size_t indicesCount = mesh.getIndices().size();
 	const size_t tri_num = indicesCount/3;
 	std::vector<h3d::Math::Triangle> tris;
-	tris.resize(tri_num);
+
+	if (indicesCount != 0) {
+		for (int i = 0; i < indicesCount; i += 3)
+		{
+			h3d::Math::Triangle temp_tri;
+			temp_tri.m_pos[i+0] = mesh.getVertices()[mesh.getIndices()[i]].position;
+			temp_tri.m_pos[i+1] = mesh.getVertices()[mesh.getIndices()[i]].position;
+			temp_tri.m_pos[i+2] = mesh.getVertices()[mesh.getIndices()[i]].position;
+		}
+
+		for (auto& iter : tris)
+			if (h3d::Math::intersectRay(ray, iter, res_point))
+				return true;
+	}
 	return false;
 }

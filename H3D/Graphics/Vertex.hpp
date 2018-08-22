@@ -10,14 +10,13 @@
 /////////////////////////////////////////////////////////////////
 //	class Vertex
 /////////////////////////////////////////////////////////////////
-typedef float GLfloat;
 namespace h3d {
 class Vertex
 {
 public:				 
-	h3d::Vec3<GLfloat>  position;
-	h3d::Vec3<GLfloat>  normal;
-	h3d::Vec2<GLfloat>  texCoord;
+	h3d::Vec3<float>  position;
+	h3d::Vec3<float>  normal;
+	h3d::Vec2<float>  texCoord;
 };
 }
 /////////////////////////////////////////////////////////////////
