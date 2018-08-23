@@ -7,6 +7,7 @@
 
 #include <vector>
 #include "../../H3D/Graphics/Vertex.hpp"
+#include "../../H3D/Model/BoundingBox.hpp"
 
 typedef unsigned int GLuint;
 /////////////////////////////////////////////////////////////////
@@ -24,6 +25,8 @@ namespace h3d {
         std::vector<h3d::Vertex> m_vertices;
         std::vector<unsigned int> m_indices;
 		size_t m_indicesCount;
+
+		h3d::BoundingBox m_boundingBox;
 	public:
         H3D_API Mesh();
         H3D_API ~Mesh();
@@ -31,15 +34,15 @@ namespace h3d {
         void H3D_API render();
 
         bool H3D_API loadFromAiMesh(const aiMesh *m_ptr);
-		void H3D_API clearOfflineData();
 
 		void H3D_API passVertices(std::vector<h3d::Vertex> &vertices);
-		H3D_API std::vector<h3d::Vertex>& getVertices();
 		void H3D_API passIndices(std::vector<unsigned int> &indices);
+		H3D_API std::vector<h3d::Vertex>& getVertices();
 		H3D_API std::vector<unsigned int>& getIndices();
 
         void H3D_API loadToOpenGL();
         bool H3D_API unloadFromOpenGL();
+		void H3D_API clearOfflineData();
 
         GLuint H3D_API getVertexBufferID();
         GLuint H3D_API getElementBufferID();

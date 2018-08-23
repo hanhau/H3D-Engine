@@ -28,6 +28,10 @@ namespace h3d {
 
 		void H3D_API render();
 
+		void H3D_API setValues(float x_s,float x_e,
+							   float y_s,float y_e,
+							   float z_s,float z_e);
+
 		void H3D_API create();
 		bool H3D_API intersect(const h3d::Math::Ray& ray);
 	};

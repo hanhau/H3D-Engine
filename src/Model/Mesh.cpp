@@ -43,6 +43,26 @@ namespace h3d {
 				m_indices.push_back(face.mIndices[j]);
 		}
 		m_indicesCount = m_indices.size();
+		
+		float x_s = m_vertices[0].position.x;
+		float x_e = m_vertices[0].position.x;
+		float y_s = m_vertices[0].position.y;
+		float y_e = m_vertices[0].position.y;
+		float z_s = m_vertices[0].position.z;
+		float z_e = m_vertices[0].position.z;
+
+		for (auto& iter : m_vertices) {
+			if (iter.position.x < x_s) x_s = iter.position.x;
+			if (iter.position.x > x_e) x_e = iter.position.x;
+			if (iter.position.y < y_s) y_s = iter.position.y;
+			if (iter.position.y > y_e) y_e = iter.position.y;
+			if (iter.position.z < z_s) z_s = iter.position.z;
+			if (iter.position.z > z_e) z_e = iter.position.z;
+		}
+
+		m_boundingBox.setValues(x_s, x_e, y_s, y_e, z_s, z_e);
+		m_boundingBox.create();
+
         return true;
     }
 	void Mesh::clearOfflineData() {

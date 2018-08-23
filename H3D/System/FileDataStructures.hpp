@@ -185,6 +185,14 @@ namespace h3d {
 				uint64_t	size;		// total file size
 				char		type;		// 1 static or 2 animated
 			};
+			struct BoundingBox {
+				float x_start;
+				float x_end;
+				float y_start;
+				float y_end;
+				float z_start;
+				float z_end;
+			};
 			struct Information {
 				int32_t numMesh;		
 				int32_t numMaterial;
