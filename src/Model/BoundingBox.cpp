@@ -65,6 +65,8 @@ struct h3d::BoundingBox::impl {
 
 	static std::unordered_map<size_t, impl&> m_map;
 	static GLuint m_elementBuffer;
+	static GLuint m_vao;
+	static GLuint m_vertexBuffer;
 
 	std::vector<h3d::Vertex> vertices;
 
