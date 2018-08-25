@@ -68,12 +68,14 @@ struct h3d::BoundingBox::impl {
 	static GLuint m_vao;
 	static GLuint m_vertexBuffer;
 
-	std::vector<h3d::Vertex> vertices;
+	static std::vector<h3d::Vertex> vertices;
 
 	size_t m_ID;
 
 	impl() : m_ID(m_currentID) {
 		if (m_count == 0) {
+			glCreateVertexArrays(1, &m_vao);
+
 			glCreateBuffers(1, &m_elementBuffer);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(short) * 36, m_indices, GL_STATIC_DRAW);
@@ -88,8 +90,17 @@ struct h3d::BoundingBox::impl {
 		m_count--;
 		m_map.erase(m_ID);
 
-		if (m_count == 0) 
+		if (m_count == 0) {
 			glDeleteBuffers(1, &m_elementBuffer);
+			glDeleteVertexArrays(1,&m_vao);
+		}
+	}
+
+	static void updateVertices() {
+		static int lastVertNum = 0;
+		if (vertices.size() != lastVertNum) {
+
+		}
 	}
 };
 size_t h3d::BoundingBox::impl::m_count = 0;
