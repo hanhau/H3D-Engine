@@ -1,12 +1,20 @@
 #pragma once
-#include "Mesh.hpp"
 #include "../Math/Math.hpp"
 #include "../dep_lib_fwd.h"
+#include <memory>
+#include <array>
+#include <vector>
 /////////////////////////////////////////////////////////////////
 // Bounding Box
 /////////////////////////////////////////////////////////////////
 namespace h3d {
+	namespace ModelConverter{
+		bool convert(std::string input, std::string output);
+	}
+
+	class Mesh;
 	class BoundingBox {
+		friend bool h3d::ModelConverter::convert(std::string input, std::string output);
 		float x_start;
 		float x_end;
 		float y_start;
@@ -14,8 +22,8 @@ namespace h3d {
 		float z_start;
 		float z_end;
 
-		h3d::Mesh m_mesh;
 		h3d::Vec3<float> m_lastIntersectPoint;
+		std::array<h3d::Math::Triangle,12> m_tris;
 
 		struct impl;
 		static std::unique_ptr<impl> m_impl;
@@ -33,6 +41,7 @@ namespace h3d {
 							   float z_s,float z_e);
 
 		void H3D_API create();
+		void H3D_API createFromMultiple(std::vector<h3d::BoundingBox*>& boxes);
 		bool H3D_API intersect(const h3d::Math::Ray& ray);
 	};
 }

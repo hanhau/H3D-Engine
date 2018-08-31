@@ -34,6 +34,7 @@ namespace h3d {
         void H3D_API render();
 
         bool H3D_API loadFromAiMesh(const aiMesh *m_ptr);
+		H3D_API h3d::BoundingBox& getBoundingBox();
 
 		void H3D_API passVertices(std::vector<h3d::Vertex> &vertices);
 		void H3D_API passIndices(std::vector<unsigned int> &indices);
@@ -48,6 +49,7 @@ namespace h3d {
         GLuint H3D_API getElementBufferID();
         GLuint H3D_API getVbaID();
         size_t H3D_API getVertexNum();
+		size_t H3D_API getIndicesNum();
 	};
 }
 /////////////////////////////////////////////////////////////////

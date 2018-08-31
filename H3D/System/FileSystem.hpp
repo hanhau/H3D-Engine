@@ -73,7 +73,7 @@ namespace h3d {
 	template<typename T>
 	void setObjectToFileHandle(T& object, h3d::FileHandle &fh)
 	{
-		fh.write((char*)&src, sizeof(T));
+		fh.write((char*)&object, sizeof(T));
 	}
 	/////////////////////////////////////////////////////////////
 	//	Class for File handling and loading

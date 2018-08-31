@@ -38,7 +38,7 @@ int main()
 	h3d::Audio::initialize();
 
 	h3d::Model3D model;
-	//model.loadFromFile("C:/Users/hanne/Downloads/M4A1/M4A1.obj");
+	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
 	model.loadFromFile("C:\\Users\\hanne\\Desktop\\blender objekte\\Schachbrett.obj");
 	model.logModelData();
 
@@ -51,7 +51,7 @@ int main()
 	program.link();
 	program.use();
 
-	h3d::mat4x4 mat_scale = h3d::Math::scale(0.80, 0.80, 0.80);
+	h3d::mat4x4 mat_scale = h3d::Math::scale(0.20, 0.20, 0.20);
 	program.Uniform.setMatrix4x4(mat_scale, "mat_scale");
 
 	h3d::mat4x4 mat_proj = h3d::Math::projectionMatrix(95.f,0.0001f,10000.f,1.f);

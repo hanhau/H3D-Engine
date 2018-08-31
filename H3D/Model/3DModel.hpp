@@ -24,7 +24,12 @@ namespace h3d {
 		std::vector<h3d::Mesh> m_meshes;
 		std::vector<h3d::Material> m_materials;
 
+		h3d::BoundingBox m_boundingBox;
 		void processNode(aiNode *node, const aiScene *scene);
+		void clearEntireData();
+
+		bool loadFromMH3D(char path[]);
+		bool loadFromUni(char path[]);
 	public:
 		// Con-/Destructor
 		H3D_API Model3D() noexcept;
@@ -40,6 +45,7 @@ namespace h3d {
 		// get Intel
 		bool H3D_API isAnimated();
 		void H3D_API logModelData();
+		H3D_API const h3d::BoundingBox& getBoundingBox();
 
 		// Animation Controls
 		void H3D_API play();

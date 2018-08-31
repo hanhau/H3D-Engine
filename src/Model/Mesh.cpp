@@ -65,6 +65,11 @@ namespace h3d {
 
         return true;
     }
+
+	h3d::BoundingBox& h3d::Mesh::getBoundingBox() {
+		return m_boundingBox;
+	}
+
 	void Mesh::clearOfflineData() {
 		m_indices.clear();
 		m_vertices.clear();
@@ -125,6 +130,6 @@ namespace h3d {
     GLuint Mesh::getElementBufferID() { return m_ebo; }
     GLuint Mesh::getVbaID()           { return m_vao; }
     size_t Mesh::getVertexNum() { return m_vertices.size();}
-    
+	size_t Mesh::getIndicesNum() { return m_indices.size(); }
 }
 /////////////////////////////////////////////////////////////////
