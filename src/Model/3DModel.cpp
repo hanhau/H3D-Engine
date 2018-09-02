@@ -57,8 +57,11 @@ bool h3d::Model3D::loadFromFile(char Path[])
 
 	std::experimental::filesystem::path path(Path);
 	if (path.extension().c_str() != L"mh3d") {
-		h3d::Log::error("Convert it to a mh3d file first");
-		return false;
+		
+	}
+	else
+	{
+
 	}
 
 	h3d::FileHandle fh;
@@ -150,5 +153,12 @@ const h3d::BoundingBox& h3d::Model3D::getBoundingBox() {
 /////////////////////////////////////////////////////////////////
 // Specialised Loading Functions
 /////////////////////////////////////////////////////////////////
+bool h3d::Model3D::loadFromMH3D(char path[])
+{
 
+}
+bool h3d::Model3D::loadFromUni(char path[])
+{
+
+}
 /////////////////////////////////////////////////////////////////
