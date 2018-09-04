@@ -14,6 +14,7 @@
 #include "../System/Config.hpp"
 #include "../OS/Win32FileStreamImpl.hpp"
 #include "../OS/LinuxFileStreamImpl.hpp"
+#include "Memorystream.hpp"
 
 #include <windows.h>
 /////////////////////////////////////////////////////////////////
@@ -34,27 +35,6 @@ namespace h3d {
 			
 		};
 	}
-	/////////////////////////////////////////////////////////////
-	// MemoryStream 	
-	/////////////////////////////////////////////////////////////
-	class MemoryStream 
-	{
-	private:
-		char**        m_bufferPtr;
-		unsigned long m_bufferSize;
-		unsigned long m_currentPos;
-	public:
-		// Con-/Destructor
-		H3D_API MemoryStream();
-		H3D_API ~MemoryStream();
-
-		// Open & Close
-		void H3D_API open(char* buffer, unsigned long size);
-		void H3D_API close();
-
-		// Read bytes
-		H3D_API char* read(unsigned long bytes);
-	};
 	/////////////////////////////////////////////////////////////
 	// Template function to set struct from buffer
 	/////////////////////////////////////////////////////////////

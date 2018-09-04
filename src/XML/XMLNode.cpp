@@ -1,5 +1,4 @@
 #include "../../H3D/XML/XML.hpp"
-
 /////////////////////////////////////////////////////////////////
 // xml::Node Implementation
 /////////////////////////////////////////////////////////////////
@@ -22,7 +21,7 @@ namespace h3d {
 			return m_name;
 		}
 
-		std::vector<Node>& Node::getChildVec() {
+		std::vector<Node>& Node::getChildNodes() {
 			return m_childs;
 		}
 		std::vector<Value>& Node::getValueVec() {
@@ -30,6 +29,27 @@ namespace h3d {
 		}
 		std::vector<Attribute>& Node::getAttributeVec() {
 			return m_attributes;
+		}
+
+		void Node::recSearchFromId(std::string id,Node* out) {
+			bool has_id = false;
+			h3d::xml::Value id_val;
+			for (auto & iter : m_attributes)
+				if (iter.name == "id") {
+					has_id = true;
+					id_val = iter.value;
+				}
+
+			//if (has_id && id_val.get<std::string>() == (std::string)"")
+			//	out = this;
+		}
+		void Node::recSearchFromType(std::string type,std::vector<Node*>& outvecs)
+		{
+			if (this->m_name == type)
+				outvecs.push_back(this);
+
+			for (auto& iter : m_childs)
+				iter.recSearchFromType(type, outvecs);
 		}
 	}
 }

@@ -4,8 +4,9 @@
 #else
 #define H3D_API __declspec(dllimport)
 #endif
-/////////////////////////////////////////////////////////////////
 
+#include <cstdint>
+/////////////////////////////////////////////////////////////////
 namespace h3d {
 	class MemoryStream
 	{
@@ -23,6 +24,6 @@ namespace h3d {
 		void H3D_API close();
 
 		// Read bytes
-		H3D_API char* read(unsigned long bytes);
+		H3D_API uint32_t read(uint32_t bytes,void* output);
 	};
 }

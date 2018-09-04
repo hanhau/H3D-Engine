@@ -54,20 +54,42 @@ void h3d::Model3D::processNode(aiNode *node, const aiScene *scene)
 bool h3d::Model3D::loadFromFile(char Path[]) 
 {
 	clearEntireData();
-
 	std::experimental::filesystem::path path(Path);
-	if (path.extension().c_str() != L"mh3d") {
-		
-	}
+	bool res = false;
+
+	h3d::Log::info("Loading %s now", Path);
+	if (path.extension().c_str() == L"mh3d")
+		res = loadFromMH3D(Path);
 	else
-	{
+		res = loadFromUni(Path);
+	h3d::Log::info("Loading %s Res = %b", Path,res);
 
-	}
-
+	return res;
+}
+/////////////////////////////////////////////////////////////////
+void h3d::Model3D::render() {
+    for (auto &iter : m_meshes) {
+        iter.render();
+    }
+}
+void h3d::Model3D::logModelData() {
+    h3d::Log::info("+ Data Content of Model3D:");
+    h3d::Log::info("| Num Materials: %d",m_materials.size());
+    h3d::Log::info("| Num Meshes: %d",m_meshes.size());
+    h3d::Log::info("+ Meshes: %d",1);
+}
+const h3d::BoundingBox& h3d::Model3D::getBoundingBox() {
+	return m_boundingBox;
+}
+/////////////////////////////////////////////////////////////////
+// Specialised Loading Functions
+/////////////////////////////////////////////////////////////////
+bool h3d::Model3D::loadFromMH3D(char path[])
+{
 	h3d::FileHandle fh;
-	fh.open(Path);
+	fh.open(path);
 	if (!fh.isOpen()) {
-		h3d::Log::error("Unable to open %s", Path);
+		h3d::Log::error("Unable to open %s", path);
 		return false;
 	}
 
@@ -78,12 +100,12 @@ bool h3d::Model3D::loadFromFile(char Path[])
 	h3d::FileType::MH3D::MaterialInfo	f_materialInfo;
 	h3d::FileType::MH3D::AnimationData	f_animationData;
 
-	h3d::setObjectFromFileHandle(f_header,fh);
-	
-	h3d::setObjectFromFileHandle(f_boundingBox,fh);
+	h3d::setObjectFromFileHandle(f_header, fh);
+
+	h3d::setObjectFromFileHandle(f_boundingBox, fh);
 	m_boundingBox.setValues(f_boundingBox.x_start, f_boundingBox.x_end,
-							f_boundingBox.y_start, f_boundingBox.y_end,
-							f_boundingBox.z_start, f_boundingBox.z_end);
+		f_boundingBox.y_start, f_boundingBox.y_end,
+		f_boundingBox.z_start, f_boundingBox.z_end);
 	m_boundingBox.create();
 
 	h3d::setObjectFromFileHandle(f_information, fh);
@@ -110,55 +132,27 @@ bool h3d::Model3D::loadFromFile(char Path[])
 
 		m_meshes.push_back(temp_mesh);
 	}
-
-	// // // //
 	return true;
-    h3d::Log::info("Loading %s now",Path);
+}
+bool h3d::Model3D::loadFromUni(char path[])
+{
+	Assimp::Importer importer;
+	const aiScene* scene = importer.ReadFile(path,
+		aiProcess_Triangulate |
+		aiProcess_JoinIdenticalVertices);
+	if (!scene) {
+		h3d::Log::error("Unable to load %s", path);
+		return false;
+	}
 
-    Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(Path,
-        aiProcess_Triangulate |
-        aiProcess_JoinIdenticalVertices);
-    if (!scene) {
-        h3d::Log::error("Unable to load %s", Path);
-        return false;
-    }
+	for (unsigned int i = 0; i < scene->mNumMaterials; i++) {
 
-	for (unsigned int i = 0; i < scene->mNumMaterials;i++) {
-		
 	}
 
 	processNode(scene->mRootNode, scene);
 	for (auto &iter : m_meshes)
 		iter.clearOfflineData();
 
-	h3d::Log::info("Finished loading %s", Path);
-    return true;
-}
-/////////////////////////////////////////////////////////////////
-void h3d::Model3D::render() {
-    for (auto &iter : m_meshes) {
-        iter.render();
-    }
-}
-void h3d::Model3D::logModelData() {
-    h3d::Log::info("+ Data Content of Model3D:");
-    h3d::Log::info("| Num Materials: %d",m_materials.size());
-    h3d::Log::info("| Num Meshes: %d",m_meshes.size());
-    h3d::Log::info("+ Meshes: %d",1);
-}
-const h3d::BoundingBox& h3d::Model3D::getBoundingBox() {
-	return m_boundingBox;
-}
-/////////////////////////////////////////////////////////////////
-// Specialised Loading Functions
-/////////////////////////////////////////////////////////////////
-bool h3d::Model3D::loadFromMH3D(char path[])
-{
-
-}
-bool h3d::Model3D::loadFromUni(char path[])
-{
-
+	return true;
 }
 /////////////////////////////////////////////////////////////////

@@ -12,10 +12,16 @@
 #include <H3D/Math/Math.hpp>
 
 #include <gl/GL.h>
+#include <any>
 #pragma comment(lib,"opengl32.lib")
 
 int main()
 {
+	std::any a;
+	a = 12;
+	a = "12";
+	a = 12.f;
+
 	h3d::mat4x4 mat1;
 	h3d::mat4x4 mat2;
 	h3d::mat4x4 mat3 = mat1 * mat2;
@@ -39,7 +45,6 @@ int main()
 
 	h3d::Model3D model;
 	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
-	model.loadFromFile("C:\\Users\\hanne\\Desktop\\blender objekte\\Schachbrett.obj");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");

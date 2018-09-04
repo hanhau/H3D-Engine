@@ -7,52 +7,13 @@
 
 #include <string>
 #include <vector>
+#include <any>
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	namespace xml {
 		class Value {
-			union v
-			{
-				inline v() {}
-				inline ~v(){}
-				int i; float f; std::string s;
-			};
-			v m_union;
+			std::string content;
 		public:
-			enum class Type {
-				_int,_float,_string
-			};
-
-			Type type;
-
-			inline Value() {}
-			inline ~Value() {}
-			inline Value(const Value& val) {
-				*this = val;
-			}
-
-			inline Value& operator=(const Value& val) {
-				memcpy(this, &val, sizeof(val));
-				return *this;
-			}
-
-			inline Value& operator=(int i) {
-				type = Type::_int; m_union.i = i;
-			}
-			inline Value& operator=(float f) {
-				type = Type::_float; m_union.f = f;
-			}
-			inline Value& operator=(std::string s) {
-				type = Type::_string; m_union.s = s;
-			}
-
-			template<typename T> T& get() {
-				switch (type) {
-				case Type::_int: return m_union.i;
-				case Type::_float: return m_union.f;
-				case Type::_string: return m_union.s;
-				}
-			}
 		};
 
 		struct Attribute {
@@ -60,8 +21,10 @@ namespace h3d {
 			Value       value;
 		};
 
+		class Tree;
 		class Node
 		{
+			friend Tree;
 			enum class ValueType {
 				_int,_float,_string
 			};
@@ -71,6 +34,8 @@ namespace h3d {
 			std::vector<Node>	   m_childs;
 			std::string            m_name;
 
+			void recSearchFromId(std::string id,Node* out);
+			void recSearchFromType(std::string type, std::vector<Node*>& outvecs);
 		public:
 			H3D_API Node();
 			H3D_API Node(const Node& node);
@@ -80,7 +45,7 @@ namespace h3d {
 			
 			H3D_API const std::string&  getName();
 
-			H3D_API std::vector<Node>&  getChildVec();
+			H3D_API std::vector<Node>&  getChildNodes();
 			H3D_API std::vector<Value>& getValueVec();
 			H3D_API std::vector<Attribute>& getAttributeVec();
 		};
@@ -94,7 +59,8 @@ namespace h3d {
 
 			H3D_API Node& getBaseNode();
 
-			template<typename T> T& getValue(char path[]) const;
+			H3D_API Node& getNodeFromId(std::string id);
+			std::vector<Node*> H3D_API getNodesFromType(std::string type);
 		};
 
 		class File

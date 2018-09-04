@@ -1,6 +1,7 @@
 #include "../../H3D/XML/XML.hpp"
 
 #include "../../H3D/System/FileSystem.hpp"
+#include "../../H3D/System/Memorystream.hpp"
 #include "../../H3D/System/Utilities.hpp"
 /////////////////////////////////////////////////////////////////
 // XML Implementation
@@ -20,8 +21,15 @@ namespace h3d {
 				Log::error("Error opening %s",path);
 				return false;
 			}
-
-
+			
+			char * mapping_ptr = fh.getMappingPtr<char*>();
+			if (mapping_ptr != nullptr)
+				loadFromMemory(mapping_ptr);
+			else
+			{
+				h3d::Log::error("Unable to get Mapping Ptr");
+				return false;
+			}
 
 			fh.close();
 			return true;
@@ -29,6 +37,34 @@ namespace h3d {
 		bool File::loadFromMemory(void * mem) {
 			if (h3d::DebugMode)
 				Log::info("Loading XML from memory @ %d",&mem);
+			h3dverify(mem != nullptr);
+
+			int node_lvl = 0; // base node
+			bool in_tag = false;
+			bool in_attrib_name = false;
+			bool in_attrib_value = false;
+
+			std::string_view view = (const char*)mem;
+			view.remove_prefix(view.find_first_of('>', 0));
+			for (auto& const iter : view)
+			{
+				if (iter == '<') {
+					node_lvl++;
+					in_tag = true;
+				}
+				else if (iter == '>') {
+					node_lvl--;
+					in_tag = false;
+				}
+				else if(in_tag)
+				{
+					
+				}
+				else 
+				{
+
+				}
+			}
 
 			return true;
 		}
@@ -44,8 +80,8 @@ namespace h3d {
 
 			output += "\n";
 
-			if (beg.getChildVec().size() != 0)
-				for (auto & iter : beg.getChildVec()) {
+			if (beg.getChildNodes().size() != 0)
+				for (auto & iter : beg.getChildNodes()) {
 					depth++;
 					writeTree(iter,output);
 					depth--;

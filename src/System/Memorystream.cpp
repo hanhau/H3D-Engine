@@ -24,14 +24,15 @@ void h3d::MemoryStream::close()
 	m_bufferSize = 0;
 }
 /////////////////////////////////////////////////////////////////
-char* h3d::MemoryStream::read(unsigned long bytes)
+uint32_t h3d::MemoryStream::read(uint32_t bytes,void* output)
 {
 	if (bytes + m_currentPos > m_bufferSize)
 	{
-		static char* tempBuffer;
-		tempBuffer = new char[bytes];
-		memcpy(tempBuffer, *m_bufferPtr + m_currentPos, bytes);
-		return tempBuffer;
+		memcpy(output, *m_bufferPtr + m_currentPos, bytes);
+		return bytes;
 	}
-	else return nullptr;
+	else {
+		output = nullptr;
+		return 0;
+	}
 }
