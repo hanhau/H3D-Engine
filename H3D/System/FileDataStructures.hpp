@@ -164,10 +164,11 @@ namespace h3d {
 			#pragma pack(push,CONTAINERFILE_ITEMLISTING,1)
 			struct ItemListing
 			{
-				std::string filename; // normal filename
-				uint64_t    filesize; // size in bytes
-				uint64_t    begin,    // first byte in container
-					end;      // last byte -in container
+				int32_t     filenameLength;
+				std::string filename; 
+				int64_t    filesize; 
+				int64_t    begin,    
+						   end;      
 			};
 			#pragma pack(pop,CONTAINERFILE_ITEMLISTING)
 			#pragma pack (push,CONTAINERFILE_ITEMDICTIONARY,1)

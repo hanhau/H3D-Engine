@@ -12,8 +12,8 @@
 namespace h3d {
 	namespace xml {
 		class Value {
-			std::string content;
 		public:
+			std::string content;
 		};
 
 		struct Attribute {

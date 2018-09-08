@@ -125,6 +125,7 @@ namespace h3d {
 		// Create/Destroy Handle to File
 		bool H3D_API open(std::string path, std::initializer_list<Mode> il, bool a);
 		bool H3D_API open(std::string path,bool filemapping=false);
+		bool H3D_API open();
 		bool H3D_API close();
 
 		// Checksum operations

@@ -96,14 +96,14 @@ public:
 	// operators
 	Vec4& operator= (Vec4 &obj);
 	Vec4& operator= (float val);
-	Vec4& operator+ (Vec4 &obj);
-	Vec4& operator+ (float val);
-	Vec4& operator- (Vec4 &obj);
-	Vec4& operator- (float val);
-	Vec4& operator* (Vec4 &obj);
-	Vec4& operator* (float val);
-	Vec4& operator/ (Vec4 &obj);
-	Vec4& operator/ (float val);
+	Vec4 operator+ (Vec4 &obj) const;
+	Vec4 operator+ (float val) const;
+	Vec4 operator- (Vec4 &obj) const;
+	Vec4 operator- (float val) const;
+	Vec4 operator* (Vec4 &obj) const;
+	Vec4 operator* (float val) const;
+	Vec4 operator/ (Vec4 &obj) const;
+	Vec4 operator/ (float val) const;
 	Vec4& operator+=(Vec4 &obj);
 	Vec4& operator-=(Vec4 &obj);
 	Vec4& operator*=(Vec4 &obj);

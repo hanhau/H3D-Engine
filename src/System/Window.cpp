@@ -82,9 +82,9 @@ h3d::Window::~Window() {
 }
 /////////////////////////////////////////////////////////////////
 // Getting
-h3d::Vec2<int>   h3d::Window::getSize() { return m_Size; }
-std::string		 h3d::Window::getTitle() { return m_Title; }
-h3d::WindowStyle h3d::Window::getStyle() { return m_WindowStyle; }
-bool			 h3d::Window::isOpen() { return m_opened = m_impl->isOpen(); }
-bool			 h3d::Window::isFullscreen() { return m_isFullscreen; }
+h3d::Vec2<int>   h3d::Window::getSize() const { return m_Size; }
+std::string		 h3d::Window::getTitle() const { return m_Title; }
+h3d::WindowStyle h3d::Window::getStyle() const { return m_WindowStyle; }
+bool			 h3d::Window::isOpen() const { return m_impl->isOpen(); }
+bool			 h3d::Window::isFullscreen() const { return m_isFullscreen; }
 /////////////////////////////////////////////////////////////////

@@ -15,7 +15,6 @@ namespace h3d {
 		struct Ray {
 			h3d::Vec3<float> m_pos;
 			h3d::Vec3<float> m_target;
-			bool H3D_API intersect(Triangle& tri);
 		};
 		struct Triangle{
 			h3d::Vec3<float> m_pos[3];

@@ -258,7 +258,7 @@ namespace h3d{
 /////////////////////////////////////////////////////////////////
 // GET METHODS
 namespace h3d {
-	mat4x4&      Program::tagUniformOperations::getMatrix4x4(GLint location)
+	mat4x4      Program::tagUniformOperations::getMatrix4x4(GLint location)
 	{
 		if ((m_uniformMap.find(location) != m_uniformMap.end()) &&
 			std::get<0>(m_uniformMap[location]) == _TYPE_MAT4X4_F) {
@@ -267,7 +267,7 @@ namespace h3d {
 		}
 		else return mat4x4();
 	}
-	Vec4&        Program::tagUniformOperations::getUniform4f(GLint location)
+	Vec4        Program::tagUniformOperations::getUniform4f(GLint location)
 	{
 		if ((m_uniformMap.find(location) != m_uniformMap.end()) &&
 			std::get<0>(m_uniformMap[location]) == _TYPE_VEC4F) {
@@ -276,7 +276,7 @@ namespace h3d {
 		}
 		else return Vec4(0, 0, 0, 0);
 	}
-	Vec3<float>& Program::tagUniformOperations::getUniform3f(GLint location)
+	Vec3<float> Program::tagUniformOperations::getUniform3f(GLint location)
 	{
 		if ((m_uniformMap.find(location) != m_uniformMap.end()) &&
 			std::get<0>(m_uniformMap[location]) == _TYPE_VEC3F) {
@@ -285,7 +285,7 @@ namespace h3d {
 		}
 		else return Vec3<float>(0,0,0);
 	}
-	Vec2<float>& Program::tagUniformOperations::getUniform2f(GLint location)
+	Vec2<float> Program::tagUniformOperations::getUniform2f(GLint location)
 	{
 		if ((m_uniformMap.find(location) != m_uniformMap.end()) &&
 			std::get<0>(m_uniformMap[location]) == _TYPE_VEC2F) {

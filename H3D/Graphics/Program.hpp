@@ -84,11 +84,11 @@ namespace h3d{
 			void H3D_API setUniform1fv(const float* vals, GLint location);
 
 			// get Uniform Variables
-			H3D_API h3d::mat4x4&      getMatrix4x4(GLint location);
-			H3D_API h3d::Vec4&        getUniform4f(GLint location);
-			H3D_API h3d::Vec3<float>& getUniform3f(GLint location);
-			H3D_API h3d::Vec2<float>& getUniform2f(GLint location);
-			float             H3D_API getUniform1f(GLint location);
+			h3d::mat4x4		 H3D_API getMatrix4x4(GLint location);
+			h3d::Vec4        H3D_API getUniform4f(GLint location);
+			h3d::Vec3<float> H3D_API getUniform3f(GLint location);
+			h3d::Vec2<float> H3D_API getUniform2f(GLint location);
+			float            H3D_API getUniform1f(GLint location);
 		};
 	public:
 		// Con-/Destructor

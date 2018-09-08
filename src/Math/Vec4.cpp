@@ -22,33 +22,33 @@ h3d::Vec4& h3d::Vec4::operator= (float val) {
 	_mm_set_ps(val, val, val, val);
 	return *this;
 }
-h3d::Vec4& h3d::Vec4::operator+ (Vec4 &obj) {
+h3d::Vec4 h3d::Vec4::operator+ (Vec4 &obj) const {
 	return Vec4();
 }
-h3d::Vec4& h3d::Vec4::operator+ (float val) {
+h3d::Vec4 h3d::Vec4::operator+ (float val) const {
 	return Vec4();
 }
-h3d::Vec4& h3d::Vec4::operator- (Vec4 &obj) {
+h3d::Vec4 h3d::Vec4::operator- (Vec4 &obj) const {
 	return Vec4();
 }
-h3d::Vec4& h3d::Vec4::operator- (float val) {
+h3d::Vec4 h3d::Vec4::operator- (float val) const {
 	return Vec4();
 }
-h3d::Vec4& h3d::Vec4::operator* (Vec4 &obj) {
+h3d::Vec4 h3d::Vec4::operator* (Vec4 &obj) const {
 	return Vec4();
 }
-h3d::Vec4& h3d::Vec4::operator* (float val) {
+h3d::Vec4 h3d::Vec4::operator* (float val) const {
 	return Vec4(x*val,y*val,z*val,w*val);
 }
-h3d::Vec4& h3d::Vec4::operator/ (Vec4 &obj) {
+h3d::Vec4 h3d::Vec4::operator/ (Vec4 &obj) const {
 	return Vec4();
 }
-h3d::Vec4& h3d::Vec4::operator/ (float val) {
+h3d::Vec4 h3d::Vec4::operator/ (float val) const {
 	return Vec4();
 }
 h3d::Vec4& h3d::Vec4::operator+=(Vec4 &obj) {
 	
-	return *this;
+	return *this = obj;
 }
 h3d::Vec4& h3d::Vec4::operator-=(Vec4 &obj) {
 	x -= obj.x;

@@ -104,11 +104,11 @@ public:
 	void		H3D_API setVSync(bool val);
 
 	// Getting
-	Vec2<int>		   H3D_API getSize();
-	std::string        H3D_API getTitle();
-	WindowStyle        H3D_API getStyle();
-	bool			   H3D_API isOpen();
-	bool			   H3D_API isFullscreen();
+	Vec2<int>		   H3D_API getSize() const;
+	std::string        H3D_API getTitle() const;
+	WindowStyle        H3D_API getStyle() const;
+	bool			   H3D_API isOpen() const;
+	bool			   H3D_API isFullscreen() const;
 
 	// Setting
 	void H3D_API setSize(h3d::Vec2<int>size);	

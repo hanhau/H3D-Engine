@@ -53,16 +53,71 @@ bool h3d::ContainerFile::openContainerFile(std::string path)
 	m_fh.close();
 	return true;
 }
+bool h3d::ContainerFile::openContainerFile(h3d::FileHandle &const filehandle)
+{
+	return true;
+}
 bool h3d::ContainerFile::close() 
 {
-	for (auto &iter : m_items) {
-		iter.second.filehandle.close();
-	}
+	m_fh.close();
 	return true;
 }
 /////////////////////////////////////////////////////////////////
-h3d::FileHandle& h3d::ContainerFile::getFileHandle(char filename[48])
+h3d::MemoryStream& const h3d::ContainerFile::getMemoryStream(std::string filename)
 {
-	return h3d::FileHandle();
+	static MemoryStream ms = MemoryStream();
+	ms.close();
+	if (m_items.find(filename) != m_items.end()) {
+		return m_items[filename].m_memoryStream;
+	}
+	else
+		return ms;
+}
+/////////////////////////////////////////////////////////////////
+// Container File Utilities
+/////////////////////////////////////////////////////////////////
+bool h3d::createContainerFile(std::string output_file,
+	std::vector<std::string> input_files)
+{
+	h3d::Log::info("Creating ContainerFile %s", output_file.c_str());
+
+	// Create Output Filestream
+	h3d::FileHandle fh;
+	if (!fh.open(output_file)) return false;
+
+	// Setup Header in file
+	h3d::FileType::CH3D::Header header;
+	strcpy_s(header.formatStr, "h3dcon");
+	header.itemCount = input_files.size();
+
+	fh.write((char*)&header, sizeof(header));
+
+	h3d::Log::info("%s will contain %d items.", output_file.c_str(), header.itemCount);
+
+	// Write until done
+	static h3d::FileHandle infh;
+	static h3d::FileType::CH3D::ItemListing itemlisting;
+	static char* buffer;
+
+	for (auto &iter : input_files)
+	{
+		h3d::Log::info("Copying from %s", iter.c_str());
+
+		// Filestream
+		infh.open(iter);
+		auto file_length = infh.getFileSize();
+
+		buffer = new char[file_length];
+		infh.read(buffer, file_length);
+		infh.close();
+
+		itemlisting.filename = iter;
+		itemlisting.filesize = file_length;
+
+		fh.write((char*)&itemlisting, sizeof(itemlisting));
+		fh.write(buffer, file_length);
+	}
+
+	return true;
 }
 /////////////////////////////////////////////////////////////////
