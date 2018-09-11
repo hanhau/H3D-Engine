@@ -11,8 +11,8 @@
 /////////////////////////////////////////////////////////////////
 namespace h3d{
     namespace ModelConverter{
-		static bool convert(std::string input, std::string output);
-		static bool convertFolderContent(std::string folder_in,std::string folder_out);
+		bool H3D_API convert(std::string input, std::string output);
+		bool H3D_API convertFolderContent(std::string folder_in,std::string folder_out);
     }
 }
 /////////////////////////////////////////////////////////////////

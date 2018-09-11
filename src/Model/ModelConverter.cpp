@@ -22,7 +22,6 @@ void processNode(aiNode *node, const aiScene *scene,std::vector<h3d::Mesh>& cons
 		const aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
 		meshes.push_back(h3d::Mesh());
 		meshes.back().loadFromAiMesh(mesh);
-		meshes.back().loadToOpenGL();
 	}
 
 	// children
@@ -58,6 +57,15 @@ bool h3d::ModelConverter::convert(std::string input, std::string output) {
 	h3d::FileType::MH3D::ModelData		f_modelData;
 	h3d::FileType::MH3D::MaterialInfo	f_materialInfo;
 	h3d::FileType::MH3D::AnimationData	f_animationData;
+
+	h3d::Log::info("sizeof f_header %i", sizeof(f_header));
+	h3d::Log::info("sizeof f_bounding %i", sizeof(f_boundingBox));
+	h3d::Log::info("sizeof f_info %i", sizeof(f_information));
+	h3d::Log::info("sizeof f_modeldata %i", sizeof(f_modelData));
+	h3d::Log::info("sizeof f_matinfo %i", sizeof(f_materialInfo));
+	h3d::Log::info("sizeof f_animdata %i", sizeof(f_animationData));
+	h3d::Log::info("sizeof vector %i", sizeof(h3d::Vec3<float>));
+	h3d::Log::info("sizeof vertex %i", sizeof(h3d::Vertex));
 
 	memcpy(f_header.format, "mh3d_?", 6);
 	f_header.size = 0;

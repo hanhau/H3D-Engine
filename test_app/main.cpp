@@ -17,6 +17,8 @@
 
 int main()
 {
+	h3d::ModelConverter::convert("C:/Users/Hannes/Downloads/M4A1/M4A1.obj", "demo.mh3d");
+
 	std::any a;
 	a = 12;
 	a = "12";

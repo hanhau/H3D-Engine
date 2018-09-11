@@ -181,11 +181,14 @@ namespace h3d {
 		/////////////////////////////////////////////////////////
 		// H3D Model Format
 		namespace MH3D {
+#pragma pack(push,MH3D_HEADER,1)
 			struct Header {
 				char		format[6];	// "mh3d_?"
 				uint64_t	size;		// total file size
 				char		type;		// 1 static or 2 animated
 			};
+#pragma pack(pop,MH3D_HEADER)
+#pragma pack(push,MH3D_BOUNDING_BOX,1)
 			struct BoundingBox {
 				float x_start;
 				float x_end;
@@ -194,6 +197,8 @@ namespace h3d {
 				float z_start;
 				float z_end;
 			};
+#pragma pack(pop,MH3D_BOUNDING_BOX)
+#pragma pack(push,MH3D_INFORMATION,1)
 			struct Information {
 				int32_t numMesh;		
 				int32_t numMaterial;
@@ -204,6 +209,8 @@ namespace h3d {
 				int8_t hasDiffuseMap;
 				int8_t hasDisplacementMap;
 			};
+#pragma pack(pop,MH3D_INFORMATION)
+#pragma pack(push,MH3D_MATERIAL_INFO,1)
 			struct MaterialInfo {
 				union {uint64_t v[4];}m_uid; // 256 bit uid
 				int8_t numLayers;
@@ -218,12 +225,17 @@ namespace h3d {
 				int64_t sizeBytes;
 				int64_t offsetContent;
 			};
+#pragma pack(pop,MH3D_MATERIAL_INFO)
+#pragma pack(push,MH3D_MODEL_DATA,1)
 			struct ModelData {
 
 			};
+#pragma pack(pop,MH3D_MODEL_DATA)
+#pragma pack(push,MH3D_ANIMATION_DATA,1)
 			struct AnimationData {
 
 			};
+#pragma pack(pop,MH3D_ANIMATION_DATA)
 		}
 	}
 /////////////////////////////////////////////////////////////////

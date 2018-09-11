@@ -23,16 +23,16 @@ h3d::Vec4& h3d::Vec4::operator= (float val) {
 	return *this;
 }
 h3d::Vec4 h3d::Vec4::operator+ (Vec4 &obj) const {
-	return Vec4();
+	return Vec4(x+obj.x, y + obj.y, z+obj.z, w+obj.w);
 }
 h3d::Vec4 h3d::Vec4::operator+ (float val) const {
-	return Vec4();
+	return Vec4(x+val, y+val, z+val, w+val);
 }
 h3d::Vec4 h3d::Vec4::operator- (Vec4 &obj) const {
-	return Vec4();
+	return Vec4(x + (-obj.x), y + (-obj.y), z + (-obj.z), w + (-obj.w));
 }
 h3d::Vec4 h3d::Vec4::operator- (float val) const {
-	return Vec4();
+	return Vec4(x-val, y-val, z-val, w-val);
 }
 h3d::Vec4 h3d::Vec4::operator* (Vec4 &obj) const {
 	return Vec4();
@@ -44,7 +44,7 @@ h3d::Vec4 h3d::Vec4::operator/ (Vec4 &obj) const {
 	return Vec4();
 }
 h3d::Vec4 h3d::Vec4::operator/ (float val) const {
-	return Vec4();
+	return Vec4(x / val, y / val, z / val, w / val);
 }
 h3d::Vec4& h3d::Vec4::operator+=(Vec4 &obj) {
 	
@@ -58,12 +58,10 @@ h3d::Vec4& h3d::Vec4::operator-=(Vec4 &obj) {
 	return *this;
 }
 h3d::Vec4& h3d::Vec4::operator*=(Vec4 &obj) {
-	
-	return *this;
+	return *this = *this * obj;
 }
 h3d::Vec4& h3d::Vec4::operator/=(Vec4 &obj) {
-	
-	return *this;
+	return *this = *this * obj;
 }
 /////////////////////////////////////////////////////////////////
 // Mathematical Operations
