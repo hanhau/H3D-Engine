@@ -47,6 +47,7 @@ int main()
 
 	h3d::Model3D model;
 	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
+	model.loadFromFile("demo.mh3d");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");

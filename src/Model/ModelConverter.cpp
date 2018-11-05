@@ -96,6 +96,13 @@ bool h3d::ModelConverter::convert(std::string input, std::string output) {
 	// Information
 	{
 		f_information.numMesh = meshes.size();
+		f_information.numVertices = 666;
+		f_information.numMaterial = 666;
+		f_information.numAnimations = 666;
+		f_information.hasSpecularMap = 0;
+		f_information.hasNormalMap = 1;
+		f_information.hasDisplacementMap = 0;
+		f_information.hasDiffuseMap = 1;
 	}
 	h3d::setObjectToFileHandle(f_information, fh);
 

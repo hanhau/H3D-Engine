@@ -32,6 +32,7 @@ namespace h3d {
 
 		void H3D_API applySSAO(GLuint framebuffer,
 							   SSAO_ControlValues &&vals);
+		bool H3D_API initSSAO();
 	}
 }
 /////////////////////////////////////////////////////////////////

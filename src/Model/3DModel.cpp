@@ -114,6 +114,7 @@ bool h3d::Model3D::loadFromMH3D(char path[])
 	h3d::Mesh temp_mesh;
 	std::vector<h3d::Vertex> temp_vertices;
 	std::vector<unsigned int> temp_indices;
+
 	for (int i = 0; i < f_information.numMesh; i++) {
 		temp_mesh = h3d::Mesh();
 		temp_vertices.clear();
