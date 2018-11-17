@@ -13,9 +13,9 @@
 /////////////////////////////////////////////////////////////////
 // Network Socket
 /////////////////////////////////////////////////////////////////
-#define SOCKET_TRANSPORT_IN    0
-#define SOCKET_TRANSPORT_OUT   1
-#define SOCKET_TRANSPORT_INOUT 2
+constexpr auto SOCKET_TRANSPORT_IN = 0;
+constexpr auto SOCKET_TRANSPORT_OUT = 1;
+constexpr auto SOCKET_TRANSPORT_INOUT = 2;
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	namespace Network {

@@ -88,7 +88,7 @@ namespace h3d {namespace mem {namespace math {
 													uint8_t alignment, 
 													uint8_t headerSize)
 	{
-
+		
 	}
 	inline uint8_t alignBackwardAdjustment(const void* address, 
 										   uint8_t alignment)

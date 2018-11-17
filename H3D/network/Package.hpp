@@ -13,8 +13,9 @@
 namespace h3d {
 	namespace Network {
 		class Package;
-		static void encryptPkgAES256(Package& pkg, char *key);
-		static void decryptPkgAES256(Package& pkg, char *key);
+		static void calcPBKDF2(char* out32, const std::string input);
+		static void encryptPkgAES256(Package& pkg, const char key[32]);
+		static void decryptPkgAES256(Package& pkg, const char key[32]);
 
 		class Package
 		{
@@ -48,11 +49,14 @@ namespace h3d {
 	}
 }
 /////////////////////////////////////////////////////////////////
-void h3d::Network::encryptPkgAES256(h3d::Network::Package& pkg, char *key)
-{
+void h3d::Network::calcPBKDF2(char* out32, const std::string input) {
 
 }
-void h3d::Network::decryptPkgAES256(h3d::Network::Package& pkg, char *key)
+void h3d::Network::encryptPkgAES256(h3d::Network::Package& pkg,const char key[32])
+{
+	
+}
+void h3d::Network::decryptPkgAES256(h3d::Network::Package& pkg,const char key[32])
 {
 
 }
