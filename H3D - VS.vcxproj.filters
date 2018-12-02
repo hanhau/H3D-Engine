@@ -82,6 +82,8 @@
     <ClInclude Include="H3D\hashing\SHA1.hpp" />
     <ClInclude Include="H3D\Math\Math.hpp" />
     <ClInclude Include="H3D\Model\BoundingBox.hpp" />
+    <ClInclude Include="H3D\Network\Address.hpp" />
+    <ClInclude Include="H3D\Network\SocketDescriptor.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Audio\Audio.cpp" />

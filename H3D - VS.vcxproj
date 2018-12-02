@@ -333,9 +333,11 @@
     <ClInclude Include="H3D\Model\BoundingBox.hpp" />
     <ClInclude Include="H3D\Model\Mesh.hpp" />
     <ClInclude Include="H3D\Model\ModelConverter.hpp" />
+    <ClInclude Include="H3D\Network\Address.hpp" />
     <ClInclude Include="H3D\Network\Network.hpp" />
     <ClInclude Include="H3D\Network\Package.hpp" />
     <ClInclude Include="H3D\Network\Socket.hpp" />
+    <ClInclude Include="H3D\Network\SocketDescriptor.hpp" />
     <ClInclude Include="H3D\OpenGL\GLMultithreading.hpp" />
     <ClInclude Include="H3D\OpenGL\GLMultithreadingPackages.hpp" />
     <ClInclude Include="H3D\OS\FileStreamImpl.hpp" />
