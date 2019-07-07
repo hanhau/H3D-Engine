@@ -17,16 +17,22 @@ namespace h3d {
     class Material 
     {
         std::string m_name;
+
         Color<GLfloat> m_colDiffuse;
         Color<GLfloat> m_colSpecular;
         Color<GLfloat> m_colAmbient;
         Color<GLfloat> m_colEmissive;
         Color<GLfloat> m_colTransparent;
+
         float m_opacity;
         float m_shininess;
         float m_shininessStrength;
+		float m_refraction;
+
     public:
-        bool loadFromAssimpMaterial(const aiMaterial* mat);
+        bool H3D_API loadFromAssimpMaterial(const aiMaterial* mat);
+
+
     };
 }
 /////////////////////////////////////////////////////////////////

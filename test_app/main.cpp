@@ -15,9 +15,34 @@
 #include <any>
 #pragma comment(lib,"opengl32.lib")
 
+const std::string model_path = "C:\\Users\\hanne\\OneDrive\\Dokumente\\untitled.obj";
+
+class printer {
+public:
+	~printer() {}
+	virtual void print() = 0;
+};
+
+class A : public printer{
+	public:
+	void print() {
+		std::cout << "TEST A\n";
+	}
+};
+
+class B : public printer{
+public:
+	void print() {
+		std::cout << "TEST B\n";
+	}
+};
+
 int main()
 {
-	h3d::ModelConverter::convert("C:/Users/Hannes/Downloads/M4A1/M4A1.obj", "demo.mh3d");
+	printer* pA = new A();
+	printer* pB = new B();
+	pA->print();
+	pB->print();
 
 	std::any a;
 	a = 12;
@@ -46,8 +71,8 @@ int main()
 	h3d::Audio::initialize();
 
 	h3d::Model3D model;
-	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
-	model.loadFromFile("demo.mh3d");
+	model.loadFromFile((char*)model_path.c_str());
+	//model.loadFromFile("demo.mh3d");
 	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
@@ -72,6 +97,8 @@ int main()
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+
+	app.setVSync(true);
 
 	while (app.isOpen())
 	{

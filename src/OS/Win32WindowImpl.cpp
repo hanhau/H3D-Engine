@@ -137,8 +137,16 @@ void h3d::intern::Win32WindowImpl::setActive(bool val){
 
 }
 void h3d::intern::Win32WindowImpl::setVSync(bool val){
-	if (1) {
-		wglSwapIntervalEXT((val) ? 1 : 0);
+	const char* extensions = wglGetExtensionsStringEXT();
+	if (extensions != nullptr &&
+		strstr(extensions, "WGL_EXT_swap_control"))
+	{
+		wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC)
+			wglGetProcAddress("wglSwapIntervalEXT");
+		wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC)
+			wglGetProcAddress("wglGetSwapIntervalEXT");
+
+		wglSwapIntervalEXT(val ? 1 : 0);
 	}
 	else
 		h3d::Log::error("VSync cant be toggled %d", val);

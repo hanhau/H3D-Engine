@@ -5,6 +5,7 @@
 #define H3D_API __declspec(dllimport)
 #endif
 #include <string>
+#include <memory>
 
 namespace h3d {
 	namespace intern {

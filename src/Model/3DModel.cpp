@@ -146,8 +146,33 @@ bool h3d::Model3D::loadFromUni(char path[])
 		return false;
 	}
 
-	for (unsigned int i = 0; i < scene->mNumMaterials; i++) {
+	h3d::Log::info("| Num embedded Textures: %d", scene->mNumTextures);
 
+	for (unsigned int i = 0; i < scene->mNumMaterials; i++) {
+		aiMaterial* const mat = scene->mMaterials[i]; 
+
+		aiString name;
+		aiColor3D color;
+
+		mat->Get(AI_MATKEY_NAME, name);
+		h3d::Log::info("Name %name", name.C_Str());
+
+		mat->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+		h3d::Log::info("Diffuse %d %d %d", color.r, color.g, color.b);
+
+		mat->Get(AI_MATKEY_COLOR_SPECULAR, color);
+		h3d::Log::info("Specular %d %d %d", color.r, color.g, color.b);
+
+		mat->Get(AI_MATKEY_COLOR_AMBIENT, color);
+		h3d::Log::info("Ambient %d %d %d", color.r, color.g, color.b);
+
+		mat->Get(AI_MATKEY_COLOR_EMISSIVE, color);
+		h3d::Log::info("Emissive %d %d %d", color.r, color.g, color.b);
+
+		mat->Get(AI_MATKEY_COLOR_TRANSPARENT, color);
+		h3d::Log::info("Transparent %d %d %d", color.r, color.g, color.b);
+
+		h3d::Log::info("-----------------------");
 	}
 
 	processNode(scene->mRootNode, scene);
