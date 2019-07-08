@@ -22,6 +22,7 @@ namespace h3d {
         Color<GLfloat> m_colAmbient;
         Color<GLfloat> m_colEmissive;
         Color<GLfloat> m_colTransparent;
+
         float m_opacity;
         float m_shininess;
         float m_shininessStrength;

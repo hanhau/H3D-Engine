@@ -12,10 +12,15 @@ namespace h3d {
 			enum class Family {
 			};
 			enum class SocketType {
+				UDP, TCP
 			};
 			enum class Protocol {
-
+				IP
 			};
+
+			Family family;
+			SocketType sockettype;
+			Protocol protocol;
 		};
 	}
 }

@@ -28,8 +28,6 @@ struct h3d::BoundingBox::impl {
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_elementBuffer);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(short) * 36, m_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-			
 		}
 
 		m_currentID++;
@@ -56,6 +54,7 @@ struct h3d::BoundingBox::impl {
 std::unordered_map<size_t, h3d::BoundingBox::impl&> h3d::BoundingBox::impl::m_map;
 size_t h3d::BoundingBox::impl::m_count = 0;
 size_t h3d::BoundingBox::impl::m_currentID = 1;
+GLuint h3d::BoundingBox::impl::m_vao = 0;
 std::vector<h3d::Vertex> h3d::BoundingBox::impl::vertices;
 const short* h3d::BoundingBox::impl::m_indices = new short[36]{
 	0,1,2,1,2,3,
@@ -157,6 +156,7 @@ bool h3d::BoundingBox::intersect(const h3d::Math::Ray& ray)
 	}
 }
 void h3d::BoundingBox::render() {
-
+	glBindVertexArray(m_impl->m_vao);
+	glDrawElements(GL_VERTEX_ARRAY, 12, GL_STATIC_DRAW, 0);
 }
 /////////////////////////////////////////////////////////////////

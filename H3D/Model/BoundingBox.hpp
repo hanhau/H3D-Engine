@@ -30,8 +30,9 @@ namespace h3d {
 	public:
 		H3D_API BoundingBox();
 		H3D_API BoundingBox(float xstart, float xend,
-			float ystart, float yend,
-			float zstart, float zend);
+							float ystart, float yend,
+							float zstart, float zend);
+		//H3D_API BoundingBox(Mesh mesh);
 		H3D_API ~BoundingBox();
 
 		void H3D_API render();

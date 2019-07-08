@@ -17,12 +17,8 @@
 
 int main()
 {
-	h3d::ModelConverter::convert("C:/Users/Hannes/Downloads/M4A1/M4A1.obj", "demo.mh3d");
-
-	std::any a;
-	a = 12;
-	a = "12";
-	a = 12.f;
+	h3d::Model3D model;
+	model.loadFromFile("C:\\Users\\Hannes\\Documents\\untitled.fbx");
 
 	h3d::mat4x4 mat1;
 	h3d::mat4x4 mat2;
@@ -44,11 +40,6 @@ int main()
 	h3d::Window app(h3d::Vec2<int>(900, 900), "Test", h3d::WindowStyle::Default,h3d::ContextSettings());
 
 	h3d::Audio::initialize();
-
-	h3d::Model3D model;
-	model.loadFromFile("C:/Users/Hannes/Downloads/M4A1/M4A1.obj");
-	model.loadFromFile("demo.mh3d");
-	model.logModelData();
 
 	h3d::Shader vert_shader(h3d::Shader::Type::Vertex,"vert_shader.vert");
 	h3d::Shader frag_shader(h3d::Shader::Type::Fragment, "frag_shader.frag");
@@ -96,7 +87,7 @@ int main()
 
 		program.Uniform.setUniform3f(h3d::Vec3<float>(5.f,10.f,7.f), "lightPos");
 
-		model.render();
+		//del.render();
 		
 		app.swapBuffers();
 	}
