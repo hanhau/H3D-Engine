@@ -15,7 +15,7 @@
 #include <any>
 #pragma comment(lib,"opengl32.lib")
 
-const std::string model_path = "C:\\Users\\hanne\\OneDrive\\Dokumente\\untitled.obj";
+const std::string model_path = "C:\\Users\\hanne\\Downloads\\untitled.fbx";
 
 class printer {
 public:
@@ -84,7 +84,7 @@ int main()
 	program.link();
 	program.use();
 
-	h3d::mat4x4 mat_scale = h3d::Math::scale(0.20, 0.20, 0.20);
+	h3d::mat4x4 mat_scale = h3d::Math::scale(0.60, 0.60, 0.60);
 	program.Uniform.setMatrix4x4(mat_scale, "mat_scale");
 
 	h3d::mat4x4 mat_proj = h3d::Math::projectionMatrix(95.f,0.0001f,10000.f,1.f);
@@ -113,12 +113,12 @@ int main()
 		}
 
 		app.clear(h3d::Window::BufferBit::Color | h3d::Window::BufferBit::Depth,
-				  h3d::Color<float>(0.6,1.0,0.2,1.0));
+				  h3d::Color<float>(0.6,0.6,0.6,1.0));
 
 		const float x = h3d::Mouse::getPosition().x;
 		const float y = h3d::Mouse::getPosition().y;
 
-		h3d::mat4x4 mat_rotate = h3d::Math::rotate(y, x, 0);
+		h3d::mat4x4 mat_rotate = h3d::Math::rotate(clock.getMilliSeconds()/10,clock.getMilliSeconds()/9, 0);
 		program.Uniform.setMatrix4x4(mat_rotate, "mat_rotate");
 
 		program.Uniform.setUniform3f(h3d::Vec3<float>(5.f,10.f,7.f), "lightPos");

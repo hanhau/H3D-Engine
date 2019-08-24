@@ -26,7 +26,7 @@ namespace h3d {
 				};
 			};
 
-			FileStreamImpl() {};
+			FileStreamImpl() noexcept {};
 			virtual ~FileStreamImpl() {};
 
 			virtual bool open(std::string Path, int params) = 0;

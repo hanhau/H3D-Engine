@@ -8,7 +8,7 @@ uniform vec3 lightPos;
 
 void main()
 {    
-    float ambientStrength = 0.1;
+    float ambientStrength = 0.2;
     vec3 ambient = ambientStrength * vec3(1.0,0.95,0.95);
 
     vec3 norm = normalize(Normal);
@@ -18,5 +18,5 @@ void main()
             
     vec3 result = (ambient + diffuse) * vec3(0.5,0.7,0.3);
 
-	FragColor = vec4(vec3(gl_FragCoord.z), 1.0) + vec4(result, 1.0);
+	FragColor = vec4(Normal, 1.0) + vec4(result, 1.0);
 }
