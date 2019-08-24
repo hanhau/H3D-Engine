@@ -130,9 +130,17 @@ bool h3d::Network::Socket::recv(const h3d::Network::Package& pkg)
 	return 0;
 }
 /////////////////////////////////////////////////////////////////
-bool h3d::Network::Socket::shutdown(int what)
+bool h3d::Network::Socket::shutdown(h3d::Network::Socket::Transport way)
 {
-	if (::shutdown(0, what) != 0){
+	int param = 0;
+	if (way == h3d::Network::Socket::Transport::both)
+		param = 2;
+	else if (way == h3d::Network::Socket::Transport::in)
+		param = 0;
+	else if (way == h3d::Network::Socket::Transport::out)
+		param = 1;
+
+	if (::shutdown(0, param) != 0) {
 		h3d::Log::error("Unable to shutdown socket !");
 		return false;
 	}

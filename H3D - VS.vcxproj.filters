@@ -38,7 +38,6 @@
     <ClInclude Include="H3D\MemoryMng\pool_alloc.hpp" />
     <ClInclude Include="H3D\Model\3DModel.hpp" />
     <ClInclude Include="H3D\Model\Mesh.hpp" />
-    <ClInclude Include="H3D\Model\ModelConverter.hpp" />
     <ClInclude Include="H3D\Network\Network.hpp" />
     <ClInclude Include="H3D\Network\Package.hpp" />
     <ClInclude Include="H3D\Network\Socket.hpp" />
@@ -82,6 +81,8 @@
     <ClInclude Include="H3D\hashing\SHA1.hpp" />
     <ClInclude Include="H3D\Math\Math.hpp" />
     <ClInclude Include="H3D\Model\BoundingBox.hpp" />
+    <ClInclude Include="H3D\Network\Address.hpp" />
+    <ClInclude Include="H3D\Network\SocketDescriptor.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Audio\Audio.cpp" />
@@ -159,7 +160,6 @@
     <ClCompile Include="src\OS\Win32FileStreamImpl.cpp" />
     <ClCompile Include="src\OS\LinuxFileStreamImpl.cpp" />
     <ClCompile Include="src\System\Memorystream.cpp" />
-    <ClCompile Include="src\Model\ModelConverter.cpp" />
     <ClCompile Include="src\Math\Math.cpp" />
     <ClCompile Include="src\Model\BoundingBox.cpp" />
   </ItemGroup>

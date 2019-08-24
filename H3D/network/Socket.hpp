@@ -6,16 +6,13 @@
 #endif
 /////////////////////////////////////////////////////////////////
 #include "../../H3D/Network/Network.hpp"
+#include "../../H3D/Network/Address.hpp"
 #include <string>
 #include <WS2tcpip.h>
 #include <WinSock2.h>
 #include <Windows.h>
 /////////////////////////////////////////////////////////////////
 // Network Socket
-/////////////////////////////////////////////////////////////////
-constexpr auto SOCKET_TRANSPORT_IN = 0;
-constexpr auto SOCKET_TRANSPORT_OUT = 1;
-constexpr auto SOCKET_TRANSPORT_INOUT = 2;
 /////////////////////////////////////////////////////////////////
 namespace h3d {
 	namespace Network {
@@ -38,12 +35,14 @@ namespace h3d {
 			};
 
 			H3D_API Socket();
+			H3D_API Socket(h3d::Network::Address address);
 			H3D_API Socket(int ai_family,
 						   int ai_socktype,
 						   int ai_protocol,
 						   const char* port, const char* address);
 			H3D_API ~Socket();
 
+			bool H3D_API create(h3d::Network::Address address);
 			bool H3D_API create(int ai_family,
 								int ai_socktype,
 								int ai_protocol,
@@ -51,6 +50,7 @@ namespace h3d {
 			bool H3D_API bind();
 
 			bool H3D_API connect();
+			bool H3D_API connect(h3d::Network::Address address);
 
 			bool H3D_API listen();
 			bool H3D_API accept();
@@ -58,10 +58,10 @@ namespace h3d {
 			bool H3D_API send(const h3d::Network::Package& pkg);
 			bool H3D_API recv(const h3d::Network::Package& pkg);
 			
-			bool H3D_API sendTo();
-			bool H3D_API recvFrom();
+			bool H3D_API sendTo(h3d::Network::Address address);
+			bool H3D_API recvFrom(h3d::Network::Address address);
 
-			bool H3D_API shutdown(int what);
+			bool H3D_API shutdown(Transport way);
 		};
 	}
 }
